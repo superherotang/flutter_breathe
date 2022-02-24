@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 class CityController extends GetxController
     with GetSingleTickerProviderStateMixin {
   late TabController tabController;
-  var selectCity = Get.arguments["city"];
 
   @override
   void onInit() {

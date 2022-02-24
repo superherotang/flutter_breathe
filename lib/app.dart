@@ -12,8 +12,24 @@ Widget createApp() {
     debugShowCheckedModeBanner: false,
     locale: Get.deviceLocale, //跟随系统语言
     fallbackLocale: const Locale('zh', 'CN'), //配置错误的情况
+    builder: (context, child) => Scaffold(
+      // Global GestureDetector that will dismiss the keyboard
+      body: GestureDetector(
+        onTap: () {
+          hideKeyboard(context);
+        },
+        child: child,
+      ),
+    ),
     initialRoute: Routes.TABS, //初始页面
     getPages: AppPages.pages, //路由
     theme: AppTheme.light,
   );
+}
+
+void hideKeyboard(BuildContext context) {
+  FocusScopeNode currentFocus = FocusScope.of(context);
+  if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
+    FocusManager.instance.primaryFocus?.unfocus();
+  }
 }

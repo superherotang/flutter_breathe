@@ -26,12 +26,8 @@ class HomeTop extends GetView<HomeController> {
     return InkWell(
       onTap: () async {
         //跳转传值
-        var backCity = await Get.toNamed(Routes.CITY,
-            arguments: {"city": controller.city.value});
-
-        if (backCity != null) {
-          controller.city.value = backCity;
-        }
+        await Get.toNamed(Routes.CITY);
+        controller.getLocation();
       },
       child: Row(
         children: [

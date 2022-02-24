@@ -2,9 +2,11 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_hubang/data/db/database.dart';
+import 'package:flutter_hubang/data/db/locations/locations_dao.dart';
 import 'package:flutter_hubang/model/city/area.dart';
 import 'package:flutter_hubang/model/city/city_pinying.dart';
-import 'package:flutter_hubang/pages/city/city_controller.dart';
+import 'package:drift/drift.dart' as D;
 import 'package:flutter_hubang/utils/adapt.dart';
 import 'package:get/get.dart';
 import 'package:lpinyin/lpinyin.dart';
@@ -58,8 +60,8 @@ class Domestic extends GetView<DomesticController> {
                       },
                       itemCount: cityList.length,
                       shrinkWrap: true,
-                      padding: EdgeInsets.all(0),
-                      physics: NeverScrollableScrollPhysics(),
+                      padding: const EdgeInsets.all(0),
+                      physics: const NeverScrollableScrollPhysics(),
                     )
                   ],
                 ),
@@ -165,7 +167,7 @@ class Domestic extends GetView<DomesticController> {
   //列表项
   Widget titleItem(Citys citys) {
     return InkWell(
-      onTap: () => onChangerCity(citys.label),
+      onTap: () => controller.onChangerCity(Location(city: citys.label)),
       child: Container(
         color: Colors.white,
         padding: EdgeInsets.symmetric(horizontal: Adapt.px(20)),
@@ -207,7 +209,7 @@ class Domestic extends GetView<DomesticController> {
                     child: Container(
                   alignment: Alignment.centerRight,
                   child: Text(
-                    "选择县区",
+                    controller.locationList[0].area == null ? "选择区县" : "切换区县",
                     style:
                         TextStyle(fontSize: Adapt.px(26), color: Colors.grey),
                   ),
@@ -223,7 +225,7 @@ class Domestic extends GetView<DomesticController> {
                 alignment: WrapAlignment.start,
                 runAlignment: WrapAlignment.end,
                 children: currentDistrict(
-                    controller.selectCity.value, controller.pinyingList),
+                    controller.locationList[0], controller.pinyingList),
               ),
             ),
             isExpanded: controller.isExpanded.value,
@@ -255,7 +257,7 @@ class Domestic extends GetView<DomesticController> {
           Wrap(
             children: [
               ButtonItem(
-                value: "北京",
+                location: Location(city: "北京"),
                 text: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -300,17 +302,14 @@ class Domestic extends GetView<DomesticController> {
 }
 
 //计算当前城市
-List<Widget> currentDistrict(String district, List<CityPinying> allCity) {
-  if (district.isEmpty) {
-    return [Container()];
-  }
+List<Widget> currentDistrict(Location location, List<CityPinying> allCity) {
   CityPinying getCityPinying =
-      allCity.firstWhere((element) => element.name == district);
+      allCity.firstWhere((element) => element.name == location.city);
   Citys getDistrictList = getCityPinying.citys;
-  var districtName = getDistrictList.children.toList().map((e) => e.label);
-  return districtName
+  var areaName = getDistrictList.children.toList().map((e) => e.label);
+  return areaName
       .map((item) => ButtonItem(
-          value: item,
+          location: Location(city: location.city, area: item),
           text: Text(
             item,
             style: TextStyle(
@@ -322,32 +321,27 @@ List<Widget> currentDistrict(String district, List<CityPinying> allCity) {
       .toList();
 }
 
-void onChangerCity(String city) {
-  DomesticController controller = DomesticController();
-  controller.selectCity.value = city;
-  Get.back(result: city);
-}
-
 //方框按钮
 class ButtonItem extends StatelessWidget {
   const ButtonItem({
     Key? key,
     required this.text,
-    required this.value,
+    required this.location,
   }) : super(key: key);
 
   final Widget text;
-  final String value;
+  final Location location;
 
   @override
   Widget build(BuildContext context) {
+    var controller = Get.find<DomesticController>();
     return ElevatedButton(
       child: Padding(
         padding: EdgeInsets.symmetric(
             horizontal: Adapt.px(20), vertical: Adapt.px(10)),
         child: text,
       ),
-      onPressed: () => onChangerCity(value),
+      onPressed: () => controller.onChangerCity(location),
       style: ButtonStyle(
         backgroundColor:
             MaterialStateProperty.all<Color>(const Color(0xFFFFFFFF)),
@@ -360,7 +354,7 @@ class ButtonItem extends StatelessWidget {
 List<Widget> generateList() {
   return hotCity
       .map((item) => ButtonItem(
-          value: item,
+          location: Location(city: item),
           text: Text(
             item,
             style: TextStyle(
@@ -461,8 +455,49 @@ class DomesticController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    selectCity.value = Get.find<CityController>().selectCity;
+  }
+
+  @override
+  void onReady() {
+    super.onReady();
+
+    getLocation();
     letterList.add("定位");
     loadData();
+  }
+
+  final LocationsDao locationsDao = Get.find<LocationsDao>();
+
+  final List<Location> locationList = [];
+
+  var isArea = false.obs;
+
+  void getLocation() async {
+    try {
+      var list = await locationsDao.getDescLocations();
+      if (list.isNotEmpty) {
+        locationList.add(list[0]);
+      }
+    } catch (e) {}
+    if (locationList[0].area == null) {
+      selectCity.value = locationList[0].city;
+      isArea.value = false;
+    } else {
+      selectCity.value = locationList[0].area!;
+      isArea.value = true;
+    }
+    update();
+  }
+
+  //点击定位
+  void onChangerCity(Location location) {
+    if (location.city == locationList[0].city) {
+      locationsDao.updateLocation(Location(
+          id: locationList[0].id, city: location.city, area: location.area));
+    } else {
+      locationsDao.insertLocation(LocationsCompanion(
+          city: D.Value(location.city), area: D.Value(location.area)));
+    }
+    Get.back();
   }
 }

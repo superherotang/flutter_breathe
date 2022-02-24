@@ -60,12 +60,12 @@ class TabsView extends GetView<TabsController> {
         ),
       ),
       floatingActionButton: Container(
-        margin: EdgeInsets.only(top: Adapt.px(80)),
+        margin: EdgeInsets.only(top: Adapt.px(65)),
         child: FloatingActionButton(
           onPressed: () {
             Get.toNamed(Routes.Login);
           },
-          child: const Icon(Icons.add_circle_rounded, size: 50),
+          child: Icon(Icons.add_circle_rounded, size: Adapt.px(100)),
         ),
       ), // 浮动按钮
       floatingActionButtonLocation:

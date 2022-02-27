@@ -4,6 +4,7 @@ part 'area.g.dart';
 
 List<Area> getAreaList(List<dynamic> list) {
   List<Area> result = [];
+  // ignore: avoid_function_literals_in_foreach_calls
   list.forEach((item) {
     result.add(Area.fromJson(item));
   });

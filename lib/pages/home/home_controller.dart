@@ -33,32 +33,10 @@ class HomeController extends GetxController
     ),
   ];
 
-  final List<Widget> tabsContent = [
-    ListView.builder(
-      itemBuilder: (BuildContext context, int index) {
-        return Container(
-          height: 80,
-          color: Colors.primaries[index % Colors.primaries.length],
-          alignment: Alignment.center,
-          child: Text(
-            '$index',
-            style: const TextStyle(color: Colors.white, fontSize: 20),
-          ),
-        );
-      },
-      itemCount: 20,
-    ),
-    Text("111"),
-    Text("111"),
-    Text("111"),
-    Text("111"),
-    Text("111"),
-  ];
-
   @override
   void onInit() {
     super.onInit();
-    tabController = TabController(length: myTabs.length, vsync: this);
+    tabController = TabController(length: 6, vsync: this);
   }
 
   @override

@@ -7,7 +7,6 @@ import 'package:flutter_hubang/widgets/keep_alive_wrapper.dart';
 import 'package:get/get.dart';
 
 import 'components/group_list_view.dart';
-import 'components/message_search/message_search_view.dart';
 
 class MessageView extends GetView<MessageController> {
   const MessageView({Key? key}) : super(key: key);
@@ -45,7 +44,7 @@ class MessageView extends GetView<MessageController> {
                   size: Adapt.px(60),
                 ),
                 onPressed: () {
-                  Get.toNamed(Routes.MESSAGESERACH);
+                  Get.toNamed(Routes.MESSAGE + Routes.MESSAGESERACH);
                 },
               )),
           Padding(

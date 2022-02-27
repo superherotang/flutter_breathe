@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 import 'package:flutter_hubang/pages/Message/message_view.dart';
 import 'package:flutter_hubang/pages/city/city_binding.dart';
 import 'package:flutter_hubang/pages/city/city_view.dart';
@@ -60,6 +62,6 @@ abstract class Routes {
   static const MY = "/my";
   static const Login = "/login";
   static const MESSAGE = "/message";
-  static const MESSAGESERACH = "/message/serach";
+  static const MESSAGESERACH = "/serach";
   static const CITY = "/city";
 }

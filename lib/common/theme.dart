@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hubang/utils/adapt.dart';
 
 import 'color.dart';
 
@@ -24,26 +25,29 @@ class AppTheme {
       ),
       titleTextStyle: TextStyle(
         color: AppColor.primaryText,
-        fontSize: 20,
         fontWeight: FontWeight.w500,
       ),
       toolbarTextStyle: TextStyle(
         color: AppColor.primaryText,
-        fontSize: 20,
         fontWeight: FontWeight.w500,
       ),
     ),
-    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: AppColor.scaffoldBackground,
-      unselectedLabelStyle: TextStyle(fontSize: 12),
-      selectedLabelStyle: TextStyle(fontSize: 12),
-      unselectedItemColor: Color(0xffA2A5B9),
-      selectedItemColor: AppColor.accentColor,
+      unselectedLabelStyle: TextStyle(fontSize: Adapt.px(24)),
+      selectedLabelStyle:
+          TextStyle(fontSize: Adapt.px(24), fontWeight: FontWeight.bold),
+      unselectedItemColor: AppColor.unselectedColor,
+      unselectedIconTheme: const IconThemeData(color: AppColor.unselectedColor),
+      selectedIconTheme: const IconThemeData(color: AppColor.mainColor),
+      selectedItemColor: AppColor.mainColor,
     ),
-    tabBarTheme: const TabBarTheme(
-      indicatorSize: TabBarIndicatorSize.label,
-      labelColor: AppColor.accentColor,
-      unselectedLabelColor: AppColor.secondaryText,
-    ),
+    tabBarTheme: TabBarTheme(
+        indicatorSize: TabBarIndicatorSize.label,
+        labelColor: AppColor.primaryText,
+        labelStyle:
+            TextStyle(fontSize: Adapt.px(36), fontWeight: FontWeight.bold),
+        unselectedLabelColor: AppColor.secondaryText,
+        unselectedLabelStyle: TextStyle(fontSize: Adapt.px(26))),
   );
 }

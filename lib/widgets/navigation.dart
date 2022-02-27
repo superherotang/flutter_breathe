@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hubang/utils/adapt.dart';
 
 import 'icon.dart';
 
@@ -40,8 +41,8 @@ class BuildNavigation extends StatelessWidget {
                 children: [
                   SvgIconWidget(
                     items[i].icon,
-                    size: 24,
-                    color: currentIndex != i ? color : null,
+                    size: Adapt.px(46),
+                    color: color,
                   ),
                   Positioned(
                     //提示

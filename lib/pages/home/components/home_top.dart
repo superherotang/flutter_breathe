@@ -35,8 +35,8 @@ class HomeTop extends GetView<HomeController> {
             constraints: BoxConstraints(maxWidth: Adapt.px(150)),
             child: Obx(
               () => Text(controller.city.value,
-                  style: const TextStyle(
-                      fontSize: 18, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      fontSize: Adapt.px(36), fontWeight: FontWeight.bold),
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1),
             ),

@@ -65,7 +65,10 @@ class TabsView extends GetView<TabsController> {
           onPressed: () {
             Get.toNamed(Routes.Login);
           },
-          child: Icon(Icons.add_circle_rounded, size: Adapt.px(100)),
+          child: Icon(
+            Icons.add_circle_rounded,
+            size: Adapt.px(100),
+          ),
         ),
       ), // 浮动按钮
       floatingActionButtonLocation:

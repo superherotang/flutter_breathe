@@ -12,10 +12,13 @@ class MessageSearchView extends GetView<MessageSearchController> {
     Get.put(MessageSearchController);
     return Scaffold(
       body: SafeArea(
-          child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: Adapt.px(30)),
-        child: Column(
-          children: [searchInput(), history()],
+          child: Container(
+        margin: EdgeInsets.only(top: Adapt.px(20)),
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: Adapt.px(30)),
+          child: Column(
+            children: [searchInput(), history()],
+          ),
         ),
       )),
     );

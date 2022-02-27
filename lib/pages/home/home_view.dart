@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hubang/common/color.dart';
 import 'package:flutter_hubang/pages/home/home_controller.dart';
 import 'package:get/get.dart';
 
 import 'components/home_top.dart';
+import 'components/recommend.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);
@@ -20,9 +22,21 @@ class HomeView extends GetView<HomeController> {
         ),
       ),
       body: TabBarView(
-        children: controller.tabsContent,
+        children: tabsContent,
         controller: controller.tabController,
       ),
     );
   }
 }
+
+List<Widget> tabsContent = [
+  const Material(
+    child: const Recommend(),
+    color: AppColor.listBackground,
+  ),
+  Text("111"),
+  Text("111"),
+  Text("111"),
+  Text("111"),
+  Text("111"),
+];

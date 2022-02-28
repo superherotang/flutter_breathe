@@ -3,6 +3,8 @@
 import 'package:flutter_hubang/pages/Message/message_view.dart';
 import 'package:flutter_hubang/pages/city/city_binding.dart';
 import 'package:flutter_hubang/pages/city/city_view.dart';
+import 'package:flutter_hubang/pages/detail/detail_binding.dart';
+import 'package:flutter_hubang/pages/detail/detail_view.dart';
 import 'package:flutter_hubang/pages/home/home_binding.dart';
 import 'package:flutter_hubang/pages/home/home_view.dart';
 import 'package:flutter_hubang/pages/login/login_binding.dart';
@@ -51,6 +53,10 @@ abstract class AppPages {
         name: Routes.CITY,
         page: () => const CityView(),
         binding: CityBinding()),
+    GetPage(
+        name: Routes.DETAILID,
+        page: () => const DetailView(),
+        binding: DetailBinding()),
   ];
 }
 
@@ -64,4 +70,6 @@ abstract class Routes {
   static const MESSAGE = "/message";
   static const MESSAGESERACH = "/serach";
   static const CITY = "/city";
+  static const DETAIL = "/detail/";
+  static const DETAILID = "/detail/:id";
 }

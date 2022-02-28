@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hubang/pages/personal/personal_controller.dart';
 import 'package:flutter_hubang/utils/adapt.dart';
+import 'package:flutter_hubang/widgets/more_text.dart';
 import 'package:get/get.dart';
 
 class AccInfoSet extends GetView<PersonalController> {
@@ -47,7 +48,9 @@ class AccInfoSet extends GetView<PersonalController> {
                   ),
                 ],
               ),
-              const Text("人生无常，大肠包小肠，人生无常，大肠包小肠，人生无常，大肠包小肠"),
+              MoreText(
+                  "人生无常，大肠包小肠，人生无常，大肠包小肠，人生无常，大肠包小肠，人生无常，大肠包小肠，人生无常，大肠包小肠，人生无常，大肠包小肠",
+                  maxLines: 2),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

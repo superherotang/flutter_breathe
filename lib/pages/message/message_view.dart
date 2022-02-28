@@ -57,12 +57,9 @@ class MessageView extends GetView<MessageController> {
         ],
         bottom: TabBar(
           controller: controller.tabController,
-          labelColor: Colors.blue,
-          indicatorColor: Colors.blue,
           indicatorSize: TabBarIndicatorSize.label,
           indicatorWeight: 2.0,
           isScrollable: false,
-          unselectedLabelColor: Colors.grey,
           tabs: const <Tab>[Tab(text: '聊天'), Tab(text: '群组')],
         ));
   }

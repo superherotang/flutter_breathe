@@ -10,7 +10,7 @@ class LikeButton extends GetView {
     this.size = 48,
   }) : super(key: key);
   final IconData icon;
-  final int count;
+  final String count;
   final double? size;
 
   @override
@@ -33,7 +33,7 @@ class LikeButton extends GetView {
               width: Adapt.px(2),
             ),
             Text(
-              count.toString(),
+              count,
               style: TextStyle(fontSize: size! / 3),
             )
           ],

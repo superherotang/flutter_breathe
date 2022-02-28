@@ -1,18 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hubang/model/tag_model.dart';
+import 'package:flutter_hubang/routes/app_routes.dart';
+import 'package:flutter_hubang/widgets/tag.dart';
 import 'package:get/get.dart';
 
 import '../utils/adapt.dart';
 import 'like_button.dart';
 
 class ShowBox extends GetView {
-  const ShowBox({Key? key, required this.child}) : super(key: key);
   final Widget child;
+  final int likeCount;
+  final int commentCount;
+  final int watchCount;
+  final List<TagModel> tagList;
+  final int id;
+  const ShowBox(
+      {Key? key,
+      required this.child,
+      required this.likeCount,
+      required this.commentCount,
+      required this.watchCount,
+      required this.tagList,
+      required this.id})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      child: Column(children: [
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         //上
         Padding(
           padding: EdgeInsets.symmetric(horizontal: Adapt.px(30)),
@@ -50,25 +66,64 @@ class ShowBox extends GetView {
             ],
           ),
         ),
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: Adapt.px(30)),
-          child: child,
+        GestureDetector(
+          onTap: () => Get.toNamed(Routes.DETAIL + id.toString()),
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: Adapt.px(30)),
+            child: child,
+          ),
         ),
         //下
-        Row(
-          children: const [
-            Expanded(
-                child:
-                    Center(child: LikeButton(icon: Icons.ac_unit, count: 100))),
-            Expanded(
-                child:
-                    Center(child: LikeButton(icon: Icons.ac_unit, count: 100))),
-            Expanded(
-                child:
-                    Center(child: LikeButton(icon: Icons.ac_unit, count: 100))),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: Adapt.px(5),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: Adapt.px(30)),
+              child: Wrap(
+                  spacing: 8.0, runSpacing: 20.0, children: tagListWidget()),
+            ),
+            Row(
+              children: [
+                Expanded(
+                    child: Center(
+                        child: LikeButton(
+                            icon: Icons.ac_unit,
+                            count: intFormat(watchCount)))),
+                Expanded(
+                    child: Center(
+                        child: LikeButton(
+                            icon: Icons.ac_unit,
+                            count: intFormat(commentCount)))),
+                Expanded(
+                    child: Center(
+                        child: LikeButton(
+                            icon: Icons.ac_unit, count: intFormat(likeCount)))),
+              ],
+            ),
           ],
         ),
       ]),
     );
+  }
+
+  String intFormat(int count) {
+    if (count.toString().length >= 5 && count.toString().length < 9) {
+      return (count / 10000).toString() + "万";
+    } else if (count.toString().length >= 9) {
+      return (count / 100000000).toString() + "亿";
+    } else {
+      return count.toString();
+    }
+  }
+
+  List<Widget> tagListWidget() {
+    List<Widget> list = [];
+    tagList.forEach((element) {
+      list.add(Tag(tagType: element.tagType, count: element.count));
+    });
+    return list;
   }
 }

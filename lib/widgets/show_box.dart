@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hubang/model/tag_model.dart';
 import 'package:flutter_hubang/routes/app_routes.dart';
+import 'package:flutter_hubang/utils/utils.dart';
 import 'package:flutter_hubang/widgets/tag.dart';
 import 'package:get/get.dart';
 
@@ -91,32 +92,23 @@ class ShowBox extends GetView {
                     child: Center(
                         child: LikeButton(
                             icon: Icons.ac_unit,
-                            count: intFormat(watchCount)))),
+                            count: Utils.intFormat(watchCount)))),
                 Expanded(
                     child: Center(
                         child: LikeButton(
                             icon: Icons.ac_unit,
-                            count: intFormat(commentCount)))),
+                            count: Utils.intFormat(commentCount)))),
                 Expanded(
                     child: Center(
                         child: LikeButton(
-                            icon: Icons.ac_unit, count: intFormat(likeCount)))),
+                            icon: Icons.ac_unit,
+                            count: Utils.intFormat(likeCount)))),
               ],
             ),
           ],
         ),
       ]),
     );
-  }
-
-  String intFormat(int count) {
-    if (count.toString().length >= 5 && count.toString().length < 9) {
-      return (count / 10000).toString() + "万";
-    } else if (count.toString().length >= 9) {
-      return (count / 100000000).toString() + "亿";
-    } else {
-      return count.toString();
-    }
   }
 
   List<Widget> tagListWidget() {

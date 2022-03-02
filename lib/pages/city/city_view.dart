@@ -10,8 +10,6 @@ class CityView extends GetView<CityController> {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(CityController());
-
     return Scaffold(
         backgroundColor: const Color(0xfff8f8f8),
         appBar: AppBar(

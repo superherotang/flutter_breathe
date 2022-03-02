@@ -37,4 +37,7 @@ class AppColor {
 
   ///未选中颜色
   static const Color unselectedColor = Color(0xffA2A5B9);
+
+  ///常用背景
+  static const Color oftenBackground = Color(0xFFF6F9FA);
 }

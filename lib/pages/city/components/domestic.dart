@@ -8,6 +8,7 @@ import 'package:flutter_hubang/model/city/area.dart';
 import 'package:flutter_hubang/model/city/city_pinying.dart';
 import 'package:drift/drift.dart' as D;
 import 'package:flutter_hubang/utils/adapt.dart';
+import 'package:flutter_hubang/utils/location_controller.dart';
 import 'package:get/get.dart';
 import 'package:lpinyin/lpinyin.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
@@ -30,7 +31,7 @@ class Domestic extends GetView<DomesticController> {
               //获取字母列表
               String key = controller.letterList[index];
               //获取字母对应列表
-              List<Citys> cityList =
+              List<City> cityList =
                   key == "定位" ? [] : controller.cityMap[key]!.toList();
               return Container(
                 child: Column(
@@ -55,7 +56,7 @@ class Domestic extends GetView<DomesticController> {
                           ),
                     ListView.builder(
                       itemBuilder: (context, index) {
-                        Citys entity = cityList[index];
+                        City entity = cityList[index];
                         return titleItem(entity);
                       },
                       itemCount: cityList.length,
@@ -165,7 +166,7 @@ class Domestic extends GetView<DomesticController> {
   }
 
   //列表项
-  Widget titleItem(Citys citys) {
+  Widget titleItem(City citys) {
     return InkWell(
       onTap: () => controller.onChangerCity(Location(city: citys.label)),
       child: Container(
@@ -305,8 +306,8 @@ class Domestic extends GetView<DomesticController> {
 List<Widget> currentDistrict(Location location, List<CityPinying> allCity) {
   CityPinying getCityPinying =
       allCity.firstWhere((element) => element.name == location.city);
-  Citys getDistrictList = getCityPinying.citys;
-  var areaName = getDistrictList.children.toList().map((e) => e.label);
+  City getDistrictList = getCityPinying.city;
+  var areaName = getDistrictList.county.toList().map((e) => e.label);
   return areaName
       .map((item) => ButtonItem(
           location: Location(city: location.city, area: item),
@@ -407,7 +408,7 @@ class DomesticController extends GetxController {
   var letterCount = 0.obs;
 
   ///分类
-  Map<String, List<Citys>> cityMap = <String, List<Citys>>{};
+  Map<String, List<City>> cityMap = <String, List<City>>{};
 
   final ItemScrollController itemScrollController = ItemScrollController();
   final ItemPositionsListener itemPositionsListener =
@@ -428,7 +429,7 @@ class DomesticController extends GetxController {
     List<Area> responses = getAreaList(jsonResponse);
 
     responses.forEach((item) {
-      item.citys.forEach((city) {
+      item.city.forEach((city) {
         cityListLength.value++;
 
         //处理拼音
@@ -436,14 +437,14 @@ class DomesticController extends GetxController {
         String pinYin = PinyinHelper.getPinyin(cityName,
             separator: "", format: PinyinFormat.WITHOUT_TONE);
         pinyingList
-            .add(CityPinying(pinying: pinYin, name: cityName, citys: city));
+            .add(CityPinying(pinying: pinYin, name: cityName, city: city));
       });
     });
     //排序
     pinyingList.sort((a, b) => a.pinying.compareTo(b.pinying));
     pinyingList.forEach((element) {
       String firstPinyin = element.pinying.substring(0, 1).toUpperCase();
-      cityMap.putIfAbsent(firstPinyin, () => []).add(element.citys);
+      cityMap.putIfAbsent(firstPinyin, () => []).add(element.city);
     });
     //print(cityMap);
     letterList.addAll(cityMap.keys.toList());
@@ -498,6 +499,8 @@ class DomesticController extends GetxController {
       locationsDao.insertLocation(LocationsCompanion(
           city: D.Value(location.city), area: D.Value(location.area)));
     }
+    var locationController = Get.find<LocationController>();
+    locationController.updateLocation();
     Get.back();
   }
 }

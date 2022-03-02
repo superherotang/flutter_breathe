@@ -4,7 +4,6 @@ part 'area.g.dart';
 
 List<Area> getAreaList(List<dynamic> list) {
   List<Area> result = [];
-  // ignore: avoid_function_literals_in_foreach_calls
   list.forEach((item) {
     result.add(Area.fromJson(item));
   });
@@ -19,13 +18,13 @@ class Area extends Object {
   @JsonKey(name: 'label')
   String label;
 
-  @JsonKey(name: 'citys')
-  List<Citys> citys;
+  @JsonKey(name: 'city')
+  List<City> city;
 
   Area(
     this.value,
     this.label,
-    this.citys,
+    this.city,
   );
 
   factory Area.fromJson(Map<String, dynamic> srcJson) =>
@@ -35,43 +34,43 @@ class Area extends Object {
 }
 
 @JsonSerializable()
-class Citys extends Object {
+class City extends Object {
   @JsonKey(name: 'value')
   String value;
 
   @JsonKey(name: 'label')
   String label;
 
-  @JsonKey(name: 'children')
-  List<Children> children;
+  @JsonKey(name: 'county')
+  List<County> county;
 
-  Citys(
+  City(
     this.value,
     this.label,
-    this.children,
+    this.county,
   );
 
-  factory Citys.fromJson(Map<String, dynamic> srcJson) =>
-      _$CitysFromJson(srcJson);
+  factory City.fromJson(Map<String, dynamic> srcJson) =>
+      _$CityFromJson(srcJson);
 
-  Map<String, dynamic> toJson() => _$CitysToJson(this);
+  Map<String, dynamic> toJson() => _$CityToJson(this);
 }
 
 @JsonSerializable()
-class Children extends Object {
+class County extends Object {
   @JsonKey(name: 'value')
   String value;
 
   @JsonKey(name: 'label')
   String label;
 
-  Children(
+  County(
     this.value,
     this.label,
   );
 
-  factory Children.fromJson(Map<String, dynamic> srcJson) =>
-      _$ChildrenFromJson(srcJson);
+  factory County.fromJson(Map<String, dynamic> srcJson) =>
+      _$CountyFromJson(srcJson);
 
-  Map<String, dynamic> toJson() => _$ChildrenToJson(this);
+  Map<String, dynamic> toJson() => _$CountyToJson(this);
 }

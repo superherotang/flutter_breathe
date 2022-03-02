@@ -9,37 +9,37 @@ part of 'area.dart';
 Area _$AreaFromJson(Map<String, dynamic> json) => Area(
       json['value'] as String,
       json['label'] as String,
-      (json['citys'] as List<dynamic>)
-          .map((e) => Citys.fromJson(e as Map<String, dynamic>))
+      (json['city'] as List<dynamic>)
+          .map((e) => City.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
 Map<String, dynamic> _$AreaToJson(Area instance) => <String, dynamic>{
       'value': instance.value,
       'label': instance.label,
-      'citys': instance.citys,
+      'city': instance.city,
     };
 
-Citys _$CitysFromJson(Map<String, dynamic> json) => Citys(
+City _$CityFromJson(Map<String, dynamic> json) => City(
       json['value'] as String,
       json['label'] as String,
-      (json['children'] as List<dynamic>)
-          .map((e) => Children.fromJson(e as Map<String, dynamic>))
+      (json['county'] as List<dynamic>)
+          .map((e) => County.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$CitysToJson(Citys instance) => <String, dynamic>{
+Map<String, dynamic> _$CityToJson(City instance) => <String, dynamic>{
       'value': instance.value,
       'label': instance.label,
-      'children': instance.children,
+      'county': instance.county,
     };
 
-Children _$ChildrenFromJson(Map<String, dynamic> json) => Children(
+County _$CountyFromJson(Map<String, dynamic> json) => County(
       json['value'] as String,
       json['label'] as String,
     );
 
-Map<String, dynamic> _$ChildrenToJson(Children instance) => <String, dynamic>{
+Map<String, dynamic> _$CountyToJson(County instance) => <String, dynamic>{
       'value': instance.value,
       'label': instance.label,
     };

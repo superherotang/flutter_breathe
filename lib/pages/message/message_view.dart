@@ -13,7 +13,6 @@ class MessageView extends GetView<MessageController> {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(MessageController());
     return Scaffold(
       appBar: messageAppBar(),
       body: TabBarView(controller: controller.tabController, children: const [

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hubang/model/tag_model.dart';
+import 'package:flutter_hubang/routes/app_routes.dart';
 import 'package:flutter_hubang/utils/adapt.dart';
 import 'package:flutter_hubang/widgets/multi_content.dart';
 import 'package:flutter_hubang/widgets/show_box.dart';
@@ -39,6 +40,7 @@ class Recommend extends GetView {
                   imglist: ["asd"],
                   bounty: Container(),
                   id: 123,
+                  route: Routes.DETAIL,
                 ))
           ],
         );

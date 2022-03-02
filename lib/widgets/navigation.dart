@@ -47,8 +47,8 @@ class BuildNavigation extends StatelessWidget {
                   Positioned(
                     //提示
 
-                    left: 15,
-                    top: -4,
+                    left: 18,
+                    top: -2,
                     child: items[i].count > 0
                         ? Container(
                             alignment: Alignment.center,

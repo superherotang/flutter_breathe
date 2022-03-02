@@ -10,7 +10,6 @@ class PersonalAppBar extends GetView<PersonalController> {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(PersonalController());
     return Obx(
       () => SliverAppBar(
         pinned: true,

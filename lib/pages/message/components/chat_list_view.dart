@@ -14,13 +14,7 @@ class ChatListView extends GetView<MessageController> {
 
   @override
   Widget build(BuildContext context) {
-    return LoadingView(
-        future: getData(),
-        errorWidget: Text("error"),
-        waitWidget: Center(
-          child: CircularProgressIndicator(),
-        ),
-        doneWidget: chatList());
+    return chatList();
   }
 
   Widget chatList() {

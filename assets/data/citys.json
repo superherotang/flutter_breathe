@@ -2,11 +2,11 @@
   {
     "value": "110000",
     "label": "北京市",
-    "citys": [
+    "city": [
       {
         "value": "110100",
         "label": "北京",
-        "children": [
+        "county": [
           {
             "value": "110101",
             "label": "东城区"
@@ -78,11 +78,11 @@
   {
     "value": "120000",
     "label": "天津市",
-    "citys": [
+    "city": [
       {
         "value": "120100",
         "label": "天津",
-        "children": [
+        "county": [
           {
             "value": "120101",
             "label": "和平区"
@@ -154,11 +154,11 @@
   {
     "value": "130000",
     "label": "河北省",
-    "citys": [
+    "city": [
       {
         "value": "130100",
         "label": "石家庄",
-        "children": [
+        "county": [
           {
             "value": "130102",
             "label": "长安区"
@@ -252,7 +252,7 @@
       {
         "value": "130200",
         "label": "唐山",
-        "children": [
+        "county": [
           {
             "value": "130202",
             "label": "路南区"
@@ -314,7 +314,7 @@
       {
         "value": "130300",
         "label": "秦皇岛",
-        "children": [
+        "county": [
           {
             "value": "130302",
             "label": "海港区"
@@ -348,7 +348,7 @@
       {
         "value": "130400",
         "label": "邯郸",
-        "children": [
+        "county": [
           {
             "value": "130402",
             "label": "邯山区"
@@ -426,7 +426,7 @@
       {
         "value": "130500",
         "label": "邢台",
-        "children": [
+        "county": [
           {
             "value": "130502",
             "label": "桥东区"
@@ -508,7 +508,7 @@
       {
         "value": "130600",
         "label": "保定",
-        "children": [
+        "county": [
           {
             "value": "130602",
             "label": "竞秀区"
@@ -610,7 +610,7 @@
       {
         "value": "130700",
         "label": "张家口",
-        "children": [
+        "county": [
           {
             "value": "130702",
             "label": "桥东区"
@@ -680,7 +680,7 @@
       {
         "value": "130800",
         "label": "承德",
-        "children": [
+        "county": [
           {
             "value": "130802",
             "label": "双桥区"
@@ -730,7 +730,7 @@
       {
         "value": "130900",
         "label": "沧州",
-        "children": [
+        "county": [
           {
             "value": "130902",
             "label": "新华区"
@@ -800,7 +800,7 @@
       {
         "value": "131000",
         "label": "廊坊",
-        "children": [
+        "county": [
           {
             "value": "131002",
             "label": "安次区"
@@ -846,7 +846,7 @@
       {
         "value": "131100",
         "label": "衡水",
-        "children": [
+        "county": [
           {
             "value": "131102",
             "label": "桃城区"
@@ -898,11 +898,11 @@
   {
     "value": "140000",
     "label": "山西省",
-    "citys": [
+    "city": [
       {
         "value": "140100",
         "label": "太原",
-        "children": [
+        "county": [
           {
             "value": "140105",
             "label": "小店区"
@@ -948,7 +948,7 @@
       {
         "value": "140200",
         "label": "大同",
-        "children": [
+        "county": [
           {
             "value": "140202",
             "label": "城区"
@@ -998,7 +998,7 @@
       {
         "value": "140300",
         "label": "阳泉",
-        "children": [
+        "county": [
           {
             "value": "140302",
             "label": "城区"
@@ -1024,7 +1024,7 @@
       {
         "value": "140400",
         "label": "长治",
-        "children": [
+        "county": [
           {
             "value": "140402",
             "label": "城区"
@@ -1082,7 +1082,7 @@
       {
         "value": "140500",
         "label": "晋城",
-        "children": [
+        "county": [
           {
             "value": "140502",
             "label": "城区"
@@ -1112,7 +1112,7 @@
       {
         "value": "140600",
         "label": "朔州",
-        "children": [
+        "county": [
           {
             "value": "140602",
             "label": "朔城区"
@@ -1142,7 +1142,7 @@
       {
         "value": "140700",
         "label": "晋中",
-        "children": [
+        "county": [
           {
             "value": "140702",
             "label": "榆次区"
@@ -1192,7 +1192,7 @@
       {
         "value": "140800",
         "label": "运城",
-        "children": [
+        "county": [
           {
             "value": "140802",
             "label": "盐湖区"
@@ -1250,7 +1250,7 @@
       {
         "value": "140900",
         "label": "忻州",
-        "children": [
+        "county": [
           {
             "value": "140902",
             "label": "忻府区"
@@ -1312,7 +1312,7 @@
       {
         "value": "141000",
         "label": "临汾",
-        "children": [
+        "county": [
           {
             "value": "141002",
             "label": "尧都区"
@@ -1386,7 +1386,7 @@
       {
         "value": "141100",
         "label": "吕梁",
-        "children": [
+        "county": [
           {
             "value": "141102",
             "label": "离石区"
@@ -1446,11 +1446,11 @@
   {
     "value": "150000",
     "label": "内蒙古自治区",
-    "citys": [
+    "city": [
       {
         "value": "150100",
         "label": "呼和浩特",
-        "children": [
+        "county": [
           {
             "value": "150102",
             "label": "新城区"
@@ -1492,7 +1492,7 @@
       {
         "value": "150200",
         "label": "包头",
-        "children": [
+        "county": [
           {
             "value": "150202",
             "label": "东河区"
@@ -1534,7 +1534,7 @@
       {
         "value": "150300",
         "label": "乌海",
-        "children": [
+        "county": [
           {
             "value": "150302",
             "label": "海勃湾区"
@@ -1552,7 +1552,7 @@
       {
         "value": "150400",
         "label": "赤峰",
-        "children": [
+        "county": [
           {
             "value": "150402",
             "label": "红山区"
@@ -1606,7 +1606,7 @@
       {
         "value": "150500",
         "label": "通辽",
-        "children": [
+        "county": [
           {
             "value": "150502",
             "label": "科尔沁区"
@@ -1644,7 +1644,7 @@
       {
         "value": "150600",
         "label": "鄂尔多斯",
-        "children": [
+        "county": [
           {
             "value": "150602",
             "label": "东胜区"
@@ -1686,7 +1686,7 @@
       {
         "value": "150700",
         "label": "呼伦贝尔",
-        "children": [
+        "county": [
           {
             "value": "150702",
             "label": "海拉尔区"
@@ -1748,7 +1748,7 @@
       {
         "value": "150800",
         "label": "巴彦淖尔",
-        "children": [
+        "county": [
           {
             "value": "150802",
             "label": "临河区"
@@ -1782,7 +1782,7 @@
       {
         "value": "150900",
         "label": "乌兰察布",
-        "children": [
+        "county": [
           {
             "value": "150902",
             "label": "集宁区"
@@ -1832,7 +1832,7 @@
       {
         "value": "152200",
         "label": "兴安盟",
-        "children": [
+        "county": [
           {
             "value": "152201",
             "label": "乌兰浩特市"
@@ -1862,7 +1862,7 @@
       {
         "value": "152500",
         "label": "锡林郭勒盟",
-        "children": [
+        "county": [
           {
             "value": "152501",
             "label": "二连浩特市"
@@ -1916,7 +1916,7 @@
       {
         "value": "152900",
         "label": "阿拉善盟",
-        "children": [
+        "county": [
           {
             "value": "152921",
             "label": "阿拉善左旗"
@@ -1936,11 +1936,11 @@
   {
     "value": "210000",
     "label": "辽宁省",
-    "citys": [
+    "city": [
       {
         "value": "210100",
         "label": "沈阳",
-        "children": [
+        "county": [
           {
             "value": "210102",
             "label": "和平区"
@@ -1998,7 +1998,7 @@
       {
         "value": "210200",
         "label": "大连",
-        "children": [
+        "county": [
           {
             "value": "210202",
             "label": "中山区"
@@ -2044,7 +2044,7 @@
       {
         "value": "210300",
         "label": "鞍山",
-        "children": [
+        "county": [
           {
             "value": "210302",
             "label": "铁东区"
@@ -2078,7 +2078,7 @@
       {
         "value": "210400",
         "label": "抚顺",
-        "children": [
+        "county": [
           {
             "value": "210402",
             "label": "新抚区"
@@ -2112,7 +2112,7 @@
       {
         "value": "210500",
         "label": "本溪",
-        "children": [
+        "county": [
           {
             "value": "210502",
             "label": "平山区"
@@ -2142,7 +2142,7 @@
       {
         "value": "210600",
         "label": "丹东",
-        "children": [
+        "county": [
           {
             "value": "210602",
             "label": "元宝区"
@@ -2172,7 +2172,7 @@
       {
         "value": "210700",
         "label": "锦州",
-        "children": [
+        "county": [
           {
             "value": "210702",
             "label": "古塔区"
@@ -2206,7 +2206,7 @@
       {
         "value": "210800",
         "label": "营口",
-        "children": [
+        "county": [
           {
             "value": "210802",
             "label": "站前区"
@@ -2236,7 +2236,7 @@
       {
         "value": "210900",
         "label": "阜新",
-        "children": [
+        "county": [
           {
             "value": "210902",
             "label": "海州区"
@@ -2270,7 +2270,7 @@
       {
         "value": "211000",
         "label": "辽阳",
-        "children": [
+        "county": [
           {
             "value": "211002",
             "label": "白塔区"
@@ -2304,7 +2304,7 @@
       {
         "value": "211100",
         "label": "盘锦",
-        "children": [
+        "county": [
           {
             "value": "211102",
             "label": "双台子区"
@@ -2326,7 +2326,7 @@
       {
         "value": "211200",
         "label": "铁岭",
-        "children": [
+        "county": [
           {
             "value": "211202",
             "label": "银州区"
@@ -2360,7 +2360,7 @@
       {
         "value": "211300",
         "label": "朝阳",
-        "children": [
+        "county": [
           {
             "value": "211302",
             "label": "双塔区"
@@ -2394,7 +2394,7 @@
       {
         "value": "211400",
         "label": "葫芦岛",
-        "children": [
+        "county": [
           {
             "value": "211402",
             "label": "连山区"
@@ -2426,11 +2426,11 @@
   {
     "value": "220000",
     "label": "吉林省",
-    "citys": [
+    "city": [
       {
         "value": "220100",
         "label": "长春",
-        "children": [
+        "county": [
           {
             "value": "220102",
             "label": "南关区"
@@ -2476,7 +2476,7 @@
       {
         "value": "220200",
         "label": "吉林",
-        "children": [
+        "county": [
           {
             "value": "220202",
             "label": "昌邑区"
@@ -2518,7 +2518,7 @@
       {
         "value": "220300",
         "label": "四平",
-        "children": [
+        "county": [
           {
             "value": "220302",
             "label": "铁西区"
@@ -2548,7 +2548,7 @@
       {
         "value": "220400",
         "label": "辽源",
-        "children": [
+        "county": [
           {
             "value": "220402",
             "label": "龙山区"
@@ -2570,7 +2570,7 @@
       {
         "value": "220500",
         "label": "通化",
-        "children": [
+        "county": [
           {
             "value": "220502",
             "label": "东昌区"
@@ -2604,7 +2604,7 @@
       {
         "value": "220600",
         "label": "白山",
-        "children": [
+        "county": [
           {
             "value": "220602",
             "label": "浑江区"
@@ -2634,7 +2634,7 @@
       {
         "value": "220700",
         "label": "松原",
-        "children": [
+        "county": [
           {
             "value": "220702",
             "label": "宁江区"
@@ -2660,7 +2660,7 @@
       {
         "value": "220800",
         "label": "白城",
-        "children": [
+        "county": [
           {
             "value": "220802",
             "label": "洮北区"
@@ -2686,7 +2686,7 @@
       {
         "value": "222400",
         "label": "延边朝鲜族自治州",
-        "children": [
+        "county": [
           {
             "value": "222401",
             "label": "延吉市"
@@ -2726,11 +2726,11 @@
   {
     "value": "230000",
     "label": "黑龙江省",
-    "citys": [
+    "city": [
       {
         "value": "230100",
         "label": "哈尔滨",
-        "children": [
+        "county": [
           {
             "value": "230102",
             "label": "道里区"
@@ -2808,7 +2808,7 @@
       {
         "value": "230200",
         "label": "齐齐哈尔",
-        "children": [
+        "county": [
           {
             "value": "230202",
             "label": "龙沙区"
@@ -2878,7 +2878,7 @@
       {
         "value": "230300",
         "label": "鸡西",
-        "children": [
+        "county": [
           {
             "value": "230302",
             "label": "鸡冠区"
@@ -2920,7 +2920,7 @@
       {
         "value": "230400",
         "label": "鹤岗",
-        "children": [
+        "county": [
           {
             "value": "230402",
             "label": "向阳区"
@@ -2958,7 +2958,7 @@
       {
         "value": "230500",
         "label": "双鸭山",
-        "children": [
+        "county": [
           {
             "value": "230502",
             "label": "尖山区"
@@ -2996,7 +2996,7 @@
       {
         "value": "230600",
         "label": "大庆",
-        "children": [
+        "county": [
           {
             "value": "230602",
             "label": "萨尔图区"
@@ -3038,7 +3038,7 @@
       {
         "value": "230700",
         "label": "伊春",
-        "children": [
+        "county": [
           {
             "value": "230702",
             "label": "伊春区"
@@ -3112,7 +3112,7 @@
       {
         "value": "230800",
         "label": "佳木斯",
-        "children": [
+        "county": [
           {
             "value": "230803",
             "label": "向阳区"
@@ -3158,7 +3158,7 @@
       {
         "value": "230900",
         "label": "七台河",
-        "children": [
+        "county": [
           {
             "value": "230902",
             "label": "新兴区"
@@ -3180,7 +3180,7 @@
       {
         "value": "231000",
         "label": "牡丹江",
-        "children": [
+        "county": [
           {
             "value": "231002",
             "label": "东安区"
@@ -3226,7 +3226,7 @@
       {
         "value": "231100",
         "label": "黑河",
-        "children": [
+        "county": [
           {
             "value": "231102",
             "label": "爱辉区"
@@ -3256,7 +3256,7 @@
       {
         "value": "231200",
         "label": "绥化",
-        "children": [
+        "county": [
           {
             "value": "231202",
             "label": "北林区"
@@ -3302,7 +3302,7 @@
       {
         "value": "232700",
         "label": "大兴安岭地区",
-        "children": [
+        "county": [
           {
             "value": "232701",
             "label": "加格达奇区"
@@ -3326,11 +3326,11 @@
   {
     "value": "310000",
     "label": "上海市",
-    "citys": [
+    "city": [
       {
         "value": "310100",
         "label": "上海",
-        "children": [
+        "county": [
           {
             "value": "310101",
             "label": "黄浦区"
@@ -3402,11 +3402,11 @@
   {
     "value": "320000",
     "label": "江苏省",
-    "citys": [
+    "city": [
       {
         "value": "320100",
         "label": "南京",
-        "children": [
+        "county": [
           {
             "value": "320102",
             "label": "玄武区"
@@ -3456,7 +3456,7 @@
       {
         "value": "320200",
         "label": "无锡",
-        "children": [
+        "county": [
           {
             "value": "320205",
             "label": "锡山区"
@@ -3490,7 +3490,7 @@
       {
         "value": "320300",
         "label": "徐州",
-        "children": [
+        "county": [
           {
             "value": "320302",
             "label": "鼓楼区"
@@ -3536,7 +3536,7 @@
       {
         "value": "320400",
         "label": "常州",
-        "children": [
+        "county": [
           {
             "value": "320402",
             "label": "天宁区"
@@ -3566,7 +3566,7 @@
       {
         "value": "320500",
         "label": "苏州",
-        "children": [
+        "county": [
           {
             "value": "320505",
             "label": "虎丘区"
@@ -3608,7 +3608,7 @@
       {
         "value": "320600",
         "label": "南通",
-        "children": [
+        "county": [
           {
             "value": "320602",
             "label": "崇川区"
@@ -3646,7 +3646,7 @@
       {
         "value": "320700",
         "label": "连云港",
-        "children": [
+        "county": [
           {
             "value": "320703",
             "label": "连云区"
@@ -3676,7 +3676,7 @@
       {
         "value": "320800",
         "label": "淮安",
-        "children": [
+        "county": [
           {
             "value": "320803",
             "label": "淮安区"
@@ -3710,7 +3710,7 @@
       {
         "value": "320900",
         "label": "盐城",
-        "children": [
+        "county": [
           {
             "value": "320902",
             "label": "亭湖区"
@@ -3752,7 +3752,7 @@
       {
         "value": "321000",
         "label": "扬州",
-        "children": [
+        "county": [
           {
             "value": "321002",
             "label": "广陵区"
@@ -3782,7 +3782,7 @@
       {
         "value": "321100",
         "label": "镇江",
-        "children": [
+        "county": [
           {
             "value": "321102",
             "label": "京口区"
@@ -3812,7 +3812,7 @@
       {
         "value": "321200",
         "label": "泰州",
-        "children": [
+        "county": [
           {
             "value": "321202",
             "label": "海陵区"
@@ -3842,7 +3842,7 @@
       {
         "value": "321300",
         "label": "宿迁",
-        "children": [
+        "county": [
           {
             "value": "321302",
             "label": "宿城区"
@@ -3870,11 +3870,11 @@
   {
     "value": "330000",
     "label": "浙江省",
-    "citys": [
+    "city": [
       {
         "value": "330100",
         "label": "杭州",
-        "children": [
+        "county": [
           {
             "value": "330102",
             "label": "上城区"
@@ -3932,7 +3932,7 @@
       {
         "value": "330200",
         "label": "宁波",
-        "children": [
+        "county": [
           {
             "value": "330203",
             "label": "海曙区"
@@ -3978,7 +3978,7 @@
       {
         "value": "330300",
         "label": "温州",
-        "children": [
+        "county": [
           {
             "value": "330302",
             "label": "鹿城区"
@@ -4028,7 +4028,7 @@
       {
         "value": "330400",
         "label": "嘉兴",
-        "children": [
+        "county": [
           {
             "value": "330402",
             "label": "南湖区"
@@ -4062,7 +4062,7 @@
       {
         "value": "330500",
         "label": "湖州",
-        "children": [
+        "county": [
           {
             "value": "330502",
             "label": "吴兴区"
@@ -4088,7 +4088,7 @@
       {
         "value": "330600",
         "label": "绍兴",
-        "children": [
+        "county": [
           {
             "value": "330602",
             "label": "越城区"
@@ -4118,7 +4118,7 @@
       {
         "value": "330700",
         "label": "金华",
-        "children": [
+        "county": [
           {
             "value": "330702",
             "label": "婺城区"
@@ -4160,7 +4160,7 @@
       {
         "value": "330800",
         "label": "衢州",
-        "children": [
+        "county": [
           {
             "value": "330802",
             "label": "柯城区"
@@ -4190,7 +4190,7 @@
       {
         "value": "330900",
         "label": "舟山",
-        "children": [
+        "county": [
           {
             "value": "330902",
             "label": "定海区"
@@ -4212,7 +4212,7 @@
       {
         "value": "331000",
         "label": "台州",
-        "children": [
+        "county": [
           {
             "value": "331002",
             "label": "椒江区"
@@ -4254,7 +4254,7 @@
       {
         "value": "331100",
         "label": "丽水",
-        "children": [
+        "county": [
           {
             "value": "331102",
             "label": "莲都区"
@@ -4298,11 +4298,11 @@
   {
     "value": "340000",
     "label": "安徽省",
-    "citys": [
+    "city": [
       {
         "value": "340100",
         "label": "合肥",
-        "children": [
+        "county": [
           {
             "value": "340102",
             "label": "瑶海区"
@@ -4344,7 +4344,7 @@
       {
         "value": "340200",
         "label": "芜湖",
-        "children": [
+        "county": [
           {
             "value": "340202",
             "label": "镜湖区"
@@ -4382,7 +4382,7 @@
       {
         "value": "340300",
         "label": "蚌埠",
-        "children": [
+        "county": [
           {
             "value": "340302",
             "label": "龙子湖区"
@@ -4416,7 +4416,7 @@
       {
         "value": "340400",
         "label": "淮南",
-        "children": [
+        "county": [
           {
             "value": "340402",
             "label": "大通区"
@@ -4450,7 +4450,7 @@
       {
         "value": "340500",
         "label": "马鞍山",
-        "children": [
+        "county": [
           {
             "value": "340503",
             "label": "花山区"
@@ -4480,7 +4480,7 @@
       {
         "value": "340600",
         "label": "淮北",
-        "children": [
+        "county": [
           {
             "value": "340602",
             "label": "杜集区"
@@ -4502,7 +4502,7 @@
       {
         "value": "340700",
         "label": "铜陵",
-        "children": [
+        "county": [
           {
             "value": "340705",
             "label": "铜官区"
@@ -4524,7 +4524,7 @@
       {
         "value": "340800",
         "label": "安庆",
-        "children": [
+        "county": [
           {
             "value": "340802",
             "label": "迎江区"
@@ -4570,7 +4570,7 @@
       {
         "value": "341000",
         "label": "黄山",
-        "children": [
+        "county": [
           {
             "value": "341002",
             "label": "屯溪区"
@@ -4604,7 +4604,7 @@
       {
         "value": "341100",
         "label": "滁州",
-        "children": [
+        "county": [
           {
             "value": "341102",
             "label": "琅琊区"
@@ -4642,7 +4642,7 @@
       {
         "value": "341200",
         "label": "阜阳",
-        "children": [
+        "county": [
           {
             "value": "341202",
             "label": "颍州区"
@@ -4680,7 +4680,7 @@
       {
         "value": "341300",
         "label": "宿州",
-        "children": [
+        "county": [
           {
             "value": "341302",
             "label": "埇桥区"
@@ -4706,7 +4706,7 @@
       {
         "value": "341500",
         "label": "六安",
-        "children": [
+        "county": [
           {
             "value": "341502",
             "label": "金安区"
@@ -4740,7 +4740,7 @@
       {
         "value": "341600",
         "label": "亳州",
-        "children": [
+        "county": [
           {
             "value": "341602",
             "label": "谯城区"
@@ -4762,7 +4762,7 @@
       {
         "value": "341700",
         "label": "池州",
-        "children": [
+        "county": [
           {
             "value": "341702",
             "label": "贵池区"
@@ -4784,7 +4784,7 @@
       {
         "value": "341800",
         "label": "宣城",
-        "children": [
+        "county": [
           {
             "value": "341802",
             "label": "宣州区"
@@ -4820,11 +4820,11 @@
   {
     "value": "350000",
     "label": "福建省",
-    "citys": [
+    "city": [
       {
         "value": "350100",
         "label": "福州",
-        "children": [
+        "county": [
           {
             "value": "350102",
             "label": "鼓楼区"
@@ -4882,7 +4882,7 @@
       {
         "value": "350200",
         "label": "厦门",
-        "children": [
+        "county": [
           {
             "value": "350203",
             "label": "思明区"
@@ -4912,7 +4912,7 @@
       {
         "value": "350300",
         "label": "莆田",
-        "children": [
+        "county": [
           {
             "value": "350302",
             "label": "城厢区"
@@ -4938,7 +4938,7 @@
       {
         "value": "350400",
         "label": "三明",
-        "children": [
+        "county": [
           {
             "value": "350402",
             "label": "梅列区"
@@ -4992,7 +4992,7 @@
       {
         "value": "350500",
         "label": "泉州",
-        "children": [
+        "county": [
           {
             "value": "350502",
             "label": "鲤城区"
@@ -5046,7 +5046,7 @@
       {
         "value": "350600",
         "label": "漳州",
-        "children": [
+        "county": [
           {
             "value": "350602",
             "label": "芗城区"
@@ -5096,7 +5096,7 @@
       {
         "value": "350700",
         "label": "南平",
-        "children": [
+        "county": [
           {
             "value": "350702",
             "label": "延平区"
@@ -5142,7 +5142,7 @@
       {
         "value": "350800",
         "label": "龙岩",
-        "children": [
+        "county": [
           {
             "value": "350802",
             "label": "新罗区"
@@ -5176,7 +5176,7 @@
       {
         "value": "350900",
         "label": "宁德",
-        "children": [
+        "county": [
           {
             "value": "350902",
             "label": "蕉城区"
@@ -5220,11 +5220,11 @@
   {
     "value": "360000",
     "label": "江西省",
-    "citys": [
+    "city": [
       {
         "value": "360100",
         "label": "南昌",
-        "children": [
+        "county": [
           {
             "value": "360102",
             "label": "东湖区"
@@ -5266,7 +5266,7 @@
       {
         "value": "360200",
         "label": "景德镇",
-        "children": [
+        "county": [
           {
             "value": "360202",
             "label": "昌江区"
@@ -5288,7 +5288,7 @@
       {
         "value": "360300",
         "label": "萍乡",
-        "children": [
+        "county": [
           {
             "value": "360302",
             "label": "安源区"
@@ -5314,7 +5314,7 @@
       {
         "value": "360400",
         "label": "九江",
-        "children": [
+        "county": [
           {
             "value": "360402",
             "label": "濂溪区"
@@ -5372,7 +5372,7 @@
       {
         "value": "360500",
         "label": "新余",
-        "children": [
+        "county": [
           {
             "value": "360502",
             "label": "渝水区"
@@ -5386,7 +5386,7 @@
       {
         "value": "360600",
         "label": "鹰潭",
-        "children": [
+        "county": [
           {
             "value": "360602",
             "label": "月湖区"
@@ -5404,7 +5404,7 @@
       {
         "value": "360700",
         "label": "赣州",
-        "children": [
+        "county": [
           {
             "value": "360702",
             "label": "章贡区"
@@ -5482,7 +5482,7 @@
       {
         "value": "360800",
         "label": "吉安",
-        "children": [
+        "county": [
           {
             "value": "360802",
             "label": "吉州区"
@@ -5540,7 +5540,7 @@
       {
         "value": "360900",
         "label": "宜春",
-        "children": [
+        "county": [
           {
             "value": "360902",
             "label": "袁州区"
@@ -5586,7 +5586,7 @@
       {
         "value": "361000",
         "label": "抚州",
-        "children": [
+        "county": [
           {
             "value": "361002",
             "label": "临川区"
@@ -5636,7 +5636,7 @@
       {
         "value": "361100",
         "label": "上饶",
-        "children": [
+        "county": [
           {
             "value": "361102",
             "label": "信州区"
@@ -5692,11 +5692,11 @@
   {
     "value": "370000",
     "label": "山东省",
-    "citys": [
+    "city": [
       {
         "value": "370100",
         "label": "济南",
-        "children": [
+        "county": [
           {
             "value": "370102",
             "label": "历下区"
@@ -5742,7 +5742,7 @@
       {
         "value": "370200",
         "label": "青岛",
-        "children": [
+        "county": [
           {
             "value": "370202",
             "label": "市南区"
@@ -5788,7 +5788,7 @@
       {
         "value": "370300",
         "label": "淄博",
-        "children": [
+        "county": [
           {
             "value": "370302",
             "label": "淄川区"
@@ -5826,7 +5826,7 @@
       {
         "value": "370400",
         "label": "枣庄",
-        "children": [
+        "county": [
           {
             "value": "370402",
             "label": "市中区"
@@ -5856,7 +5856,7 @@
       {
         "value": "370500",
         "label": "东营",
-        "children": [
+        "county": [
           {
             "value": "370502",
             "label": "东营区"
@@ -5882,7 +5882,7 @@
       {
         "value": "370600",
         "label": "烟台",
-        "children": [
+        "county": [
           {
             "value": "370602",
             "label": "芝罘区"
@@ -5936,7 +5936,7 @@
       {
         "value": "370700",
         "label": "潍坊",
-        "children": [
+        "county": [
           {
             "value": "370702",
             "label": "潍城区"
@@ -5990,7 +5990,7 @@
       {
         "value": "370800",
         "label": "济宁",
-        "children": [
+        "county": [
           {
             "value": "370811",
             "label": "任城区"
@@ -6040,7 +6040,7 @@
       {
         "value": "370900",
         "label": "泰安",
-        "children": [
+        "county": [
           {
             "value": "370902",
             "label": "泰山区"
@@ -6070,7 +6070,7 @@
       {
         "value": "371000",
         "label": "威海",
-        "children": [
+        "county": [
           {
             "value": "371002",
             "label": "环翠区"
@@ -6092,7 +6092,7 @@
       {
         "value": "371100",
         "label": "日照",
-        "children": [
+        "county": [
           {
             "value": "371102",
             "label": "东港区"
@@ -6114,7 +6114,7 @@
       {
         "value": "371200",
         "label": "莱芜",
-        "children": [
+        "county": [
           {
             "value": "371202",
             "label": "莱城区"
@@ -6128,7 +6128,7 @@
       {
         "value": "371300",
         "label": "临沂",
-        "children": [
+        "county": [
           {
             "value": "371302",
             "label": "兰山区"
@@ -6182,7 +6182,7 @@
       {
         "value": "371400",
         "label": "德州",
-        "children": [
+        "county": [
           {
             "value": "371402",
             "label": "德城区"
@@ -6232,7 +6232,7 @@
       {
         "value": "371500",
         "label": "聊城",
-        "children": [
+        "county": [
           {
             "value": "371502",
             "label": "东昌府区"
@@ -6270,7 +6270,7 @@
       {
         "value": "371600",
         "label": "滨州",
-        "children": [
+        "county": [
           {
             "value": "371602",
             "label": "滨城区"
@@ -6304,7 +6304,7 @@
       {
         "value": "371700",
         "label": "菏泽",
-        "children": [
+        "county": [
           {
             "value": "371702",
             "label": "牡丹区"
@@ -6348,11 +6348,11 @@
   {
     "value": "410000",
     "label": "河南省",
-    "citys": [
+    "city": [
       {
         "value": "410100",
         "label": "郑州",
-        "children": [
+        "county": [
           {
             "value": "410102",
             "label": "中原区"
@@ -6406,7 +6406,7 @@
       {
         "value": "410200",
         "label": "开封",
-        "children": [
+        "county": [
           {
             "value": "410202",
             "label": "龙亭区"
@@ -6448,7 +6448,7 @@
       {
         "value": "410300",
         "label": "洛阳",
-        "children": [
+        "county": [
           {
             "value": "410302",
             "label": "老城区"
@@ -6514,7 +6514,7 @@
       {
         "value": "410400",
         "label": "平顶山",
-        "children": [
+        "county": [
           {
             "value": "410402",
             "label": "新华区"
@@ -6560,7 +6560,7 @@
       {
         "value": "410500",
         "label": "安阳",
-        "children": [
+        "county": [
           {
             "value": "410502",
             "label": "文峰区"
@@ -6602,7 +6602,7 @@
       {
         "value": "410600",
         "label": "鹤壁",
-        "children": [
+        "county": [
           {
             "value": "410602",
             "label": "鹤山区"
@@ -6628,7 +6628,7 @@
       {
         "value": "410700",
         "label": "新乡",
-        "children": [
+        "county": [
           {
             "value": "410702",
             "label": "红旗区"
@@ -6682,7 +6682,7 @@
       {
         "value": "410800",
         "label": "焦作",
-        "children": [
+        "county": [
           {
             "value": "410802",
             "label": "解放区"
@@ -6728,7 +6728,7 @@
       {
         "value": "410900",
         "label": "濮阳",
-        "children": [
+        "county": [
           {
             "value": "410902",
             "label": "华龙区"
@@ -6758,7 +6758,7 @@
       {
         "value": "411000",
         "label": "许昌",
-        "children": [
+        "county": [
           {
             "value": "411002",
             "label": "魏都区"
@@ -6788,7 +6788,7 @@
       {
         "value": "411100",
         "label": "漯河",
-        "children": [
+        "county": [
           {
             "value": "411102",
             "label": "源汇区"
@@ -6814,7 +6814,7 @@
       {
         "value": "411200",
         "label": "三门峡",
-        "children": [
+        "county": [
           {
             "value": "411202",
             "label": "湖滨区"
@@ -6844,7 +6844,7 @@
       {
         "value": "411300",
         "label": "南阳",
-        "children": [
+        "county": [
           {
             "value": "411302",
             "label": "宛城区"
@@ -6902,7 +6902,7 @@
       {
         "value": "411400",
         "label": "商丘",
-        "children": [
+        "county": [
           {
             "value": "411402",
             "label": "梁园区"
@@ -6944,7 +6944,7 @@
       {
         "value": "411500",
         "label": "信阳",
-        "children": [
+        "county": [
           {
             "value": "411502",
             "label": "浉河区"
@@ -6990,7 +6990,7 @@
       {
         "value": "411600",
         "label": "周口",
-        "children": [
+        "county": [
           {
             "value": "411602",
             "label": "川汇区"
@@ -7036,7 +7036,7 @@
       {
         "value": "411700",
         "label": "驻马店",
-        "children": [
+        "county": [
           {
             "value": "411702",
             "label": "驿城区"
@@ -7082,7 +7082,7 @@
       {
         "value": "419001",
         "label": "济源",
-        "children": [
+        "county": [
           {
             "value": "419001",
             "label": "济源市"
@@ -7094,11 +7094,11 @@
   {
     "value": "420000",
     "label": "湖北省",
-    "citys": [
+    "city": [
       {
         "value": "420100",
         "label": "武汉",
-        "children": [
+        "county": [
           {
             "value": "420102",
             "label": "江岸区"
@@ -7156,7 +7156,7 @@
       {
         "value": "420200",
         "label": "黄石",
-        "children": [
+        "county": [
           {
             "value": "420202",
             "label": "黄石港区"
@@ -7186,7 +7186,7 @@
       {
         "value": "420300",
         "label": "十堰",
-        "children": [
+        "county": [
           {
             "value": "420302",
             "label": "茅箭区"
@@ -7224,7 +7224,7 @@
       {
         "value": "420500",
         "label": "宜昌",
-        "children": [
+        "county": [
           {
             "value": "420502",
             "label": "西陵区"
@@ -7282,7 +7282,7 @@
       {
         "value": "420600",
         "label": "襄阳",
-        "children": [
+        "county": [
           {
             "value": "420602",
             "label": "襄城区"
@@ -7324,7 +7324,7 @@
       {
         "value": "420700",
         "label": "鄂州",
-        "children": [
+        "county": [
           {
             "value": "420702",
             "label": "梁子湖区"
@@ -7342,7 +7342,7 @@
       {
         "value": "420800",
         "label": "荆门",
-        "children": [
+        "county": [
           {
             "value": "420802",
             "label": "东宝区"
@@ -7368,7 +7368,7 @@
       {
         "value": "420900",
         "label": "孝感",
-        "children": [
+        "county": [
           {
             "value": "420902",
             "label": "孝南区"
@@ -7402,7 +7402,7 @@
       {
         "value": "421000",
         "label": "荆州",
-        "children": [
+        "county": [
           {
             "value": "421002",
             "label": "沙市区"
@@ -7440,7 +7440,7 @@
       {
         "value": "421100",
         "label": "黄冈",
-        "children": [
+        "county": [
           {
             "value": "421102",
             "label": "黄州区"
@@ -7486,7 +7486,7 @@
       {
         "value": "421200",
         "label": "咸宁",
-        "children": [
+        "county": [
           {
             "value": "421202",
             "label": "咸安区"
@@ -7516,7 +7516,7 @@
       {
         "value": "421300",
         "label": "随州",
-        "children": [
+        "county": [
           {
             "value": "421303",
             "label": "曾都区"
@@ -7534,7 +7534,7 @@
       {
         "value": "422800",
         "label": "恩施土家族苗族自治州",
-        "children": [
+        "county": [
           {
             "value": "422801",
             "label": "恩施市"
@@ -7572,7 +7572,7 @@
       {
         "value": "429004",
         "label": "仙桃",
-        "children": [
+        "county": [
           {
             "value": "429004",
             "label": "仙桃市"
@@ -7582,7 +7582,7 @@
       {
         "value": "429005",
         "label": "潜江",
-        "children": [
+        "county": [
           {
             "value": "429005",
             "label": "潜江市"
@@ -7592,7 +7592,7 @@
       {
         "value": "429006",
         "label": "天门",
-        "children": [
+        "county": [
           {
             "value": "429006",
             "label": "天门市"
@@ -7602,7 +7602,7 @@
       {
         "value": "429021",
         "label": "神农架林区",
-        "children": [
+        "county": [
           {
             "value": "429021",
             "label": "神农架林区"
@@ -7614,11 +7614,11 @@
   {
     "value": "430000",
     "label": "湖南省",
-    "citys": [
+    "city": [
       {
         "value": "430100",
         "label": "长沙",
-        "children": [
+        "county": [
           {
             "value": "430102",
             "label": "芙蓉区"
@@ -7660,7 +7660,7 @@
       {
         "value": "430200",
         "label": "株洲",
-        "children": [
+        "county": [
           {
             "value": "430202",
             "label": "荷塘区"
@@ -7702,7 +7702,7 @@
       {
         "value": "430300",
         "label": "湘潭",
-        "children": [
+        "county": [
           {
             "value": "430302",
             "label": "雨湖区"
@@ -7728,7 +7728,7 @@
       {
         "value": "430400",
         "label": "衡阳",
-        "children": [
+        "county": [
           {
             "value": "430405",
             "label": "珠晖区"
@@ -7782,7 +7782,7 @@
       {
         "value": "430500",
         "label": "邵阳",
-        "children": [
+        "county": [
           {
             "value": "430502",
             "label": "双清区"
@@ -7836,7 +7836,7 @@
       {
         "value": "430600",
         "label": "岳阳",
-        "children": [
+        "county": [
           {
             "value": "430602",
             "label": "岳阳楼区"
@@ -7878,7 +7878,7 @@
       {
         "value": "430700",
         "label": "常德",
-        "children": [
+        "county": [
           {
             "value": "430702",
             "label": "武陵区"
@@ -7920,7 +7920,7 @@
       {
         "value": "430800",
         "label": "张家界",
-        "children": [
+        "county": [
           {
             "value": "430802",
             "label": "永定区"
@@ -7942,7 +7942,7 @@
       {
         "value": "430900",
         "label": "益阳",
-        "children": [
+        "county": [
           {
             "value": "430902",
             "label": "资阳区"
@@ -7972,7 +7972,7 @@
       {
         "value": "431000",
         "label": "郴州",
-        "children": [
+        "county": [
           {
             "value": "431002",
             "label": "北湖区"
@@ -8022,7 +8022,7 @@
       {
         "value": "431100",
         "label": "永州",
-        "children": [
+        "county": [
           {
             "value": "431102",
             "label": "零陵区"
@@ -8072,7 +8072,7 @@
       {
         "value": "431200",
         "label": "怀化",
-        "children": [
+        "county": [
           {
             "value": "431202",
             "label": "鹤城区"
@@ -8126,7 +8126,7 @@
       {
         "value": "431300",
         "label": "娄底",
-        "children": [
+        "county": [
           {
             "value": "431302",
             "label": "娄星区"
@@ -8152,7 +8152,7 @@
       {
         "value": "433100",
         "label": "湘西土家族苗族自治州",
-        "children": [
+        "county": [
           {
             "value": "433101",
             "label": "吉首市"
@@ -8192,11 +8192,11 @@
   {
     "value": "440000",
     "label": "广东省",
-    "citys": [
+    "city": [
       {
         "value": "440100",
         "label": "广州",
-        "children": [
+        "county": [
           {
             "value": "440103",
             "label": "荔湾区"
@@ -8246,7 +8246,7 @@
       {
         "value": "440200",
         "label": "韶关",
-        "children": [
+        "county": [
           {
             "value": "440203",
             "label": "武江区"
@@ -8292,7 +8292,7 @@
       {
         "value": "440300",
         "label": "深圳",
-        "children": [
+        "county": [
           {
             "value": "440303",
             "label": "罗湖区"
@@ -8330,7 +8330,7 @@
       {
         "value": "440400",
         "label": "珠海",
-        "children": [
+        "county": [
           {
             "value": "440402",
             "label": "香洲区"
@@ -8348,7 +8348,7 @@
       {
         "value": "440500",
         "label": "汕头",
-        "children": [
+        "county": [
           {
             "value": "440507",
             "label": "龙湖区"
@@ -8382,7 +8382,7 @@
       {
         "value": "440600",
         "label": "佛山",
-        "children": [
+        "county": [
           {
             "value": "440604",
             "label": "禅城区"
@@ -8408,7 +8408,7 @@
       {
         "value": "440700",
         "label": "江门",
-        "children": [
+        "county": [
           {
             "value": "440703",
             "label": "蓬江区"
@@ -8442,7 +8442,7 @@
       {
         "value": "440800",
         "label": "湛江",
-        "children": [
+        "county": [
           {
             "value": "440802",
             "label": "赤坎区"
@@ -8484,7 +8484,7 @@
       {
         "value": "440900",
         "label": "茂名",
-        "children": [
+        "county": [
           {
             "value": "440902",
             "label": "茂南区"
@@ -8510,7 +8510,7 @@
       {
         "value": "441200",
         "label": "肇庆",
-        "children": [
+        "county": [
           {
             "value": "441202",
             "label": "端州区"
@@ -8548,7 +8548,7 @@
       {
         "value": "441300",
         "label": "惠州",
-        "children": [
+        "county": [
           {
             "value": "441302",
             "label": "惠城区"
@@ -8574,7 +8574,7 @@
       {
         "value": "441400",
         "label": "梅州",
-        "children": [
+        "county": [
           {
             "value": "441402",
             "label": "梅江区"
@@ -8612,7 +8612,7 @@
       {
         "value": "441500",
         "label": "汕尾",
-        "children": [
+        "county": [
           {
             "value": "441502",
             "label": "城区"
@@ -8634,7 +8634,7 @@
       {
         "value": "441600",
         "label": "河源",
-        "children": [
+        "county": [
           {
             "value": "441602",
             "label": "源城区"
@@ -8664,7 +8664,7 @@
       {
         "value": "441700",
         "label": "阳江",
-        "children": [
+        "county": [
           {
             "value": "441702",
             "label": "江城区"
@@ -8686,7 +8686,7 @@
       {
         "value": "441800",
         "label": "清远",
-        "children": [
+        "county": [
           {
             "value": "441802",
             "label": "清城区"
@@ -8724,7 +8724,7 @@
       {
         "value": "441900",
         "label": "东莞",
-        "children": [
+        "county": [
           {
             "value": "441900",
             "label": "东莞市"
@@ -8734,7 +8734,7 @@
       {
         "value": "442000",
         "label": "中山",
-        "children": [
+        "county": [
           {
             "value": "442000",
             "label": "中山市"
@@ -8744,7 +8744,7 @@
       {
         "value": "442100",
         "label": "东沙群岛",
-        "children": [
+        "county": [
           {
             "value": "442100",
             "label": "东沙群岛"
@@ -8754,7 +8754,7 @@
       {
         "value": "445100",
         "label": "潮州",
-        "children": [
+        "county": [
           {
             "value": "445102",
             "label": "湘桥区"
@@ -8772,7 +8772,7 @@
       {
         "value": "445200",
         "label": "揭阳",
-        "children": [
+        "county": [
           {
             "value": "445202",
             "label": "榕城区"
@@ -8798,7 +8798,7 @@
       {
         "value": "445300",
         "label": "云浮",
-        "children": [
+        "county": [
           {
             "value": "445302",
             "label": "云城区"
@@ -8826,11 +8826,11 @@
   {
     "value": "450000",
     "label": "广西壮族自治区",
-    "citys": [
+    "city": [
       {
         "value": "450100",
         "label": "南宁",
-        "children": [
+        "county": [
           {
             "value": "450102",
             "label": "兴宁区"
@@ -8884,7 +8884,7 @@
       {
         "value": "450200",
         "label": "柳州",
-        "children": [
+        "county": [
           {
             "value": "450202",
             "label": "城中区"
@@ -8930,7 +8930,7 @@
       {
         "value": "450300",
         "label": "桂林",
-        "children": [
+        "county": [
           {
             "value": "450302",
             "label": "秀峰区"
@@ -9004,7 +9004,7 @@
       {
         "value": "450400",
         "label": "梧州",
-        "children": [
+        "county": [
           {
             "value": "450403",
             "label": "万秀区"
@@ -9038,7 +9038,7 @@
       {
         "value": "450500",
         "label": "北海",
-        "children": [
+        "county": [
           {
             "value": "450502",
             "label": "海城区"
@@ -9060,7 +9060,7 @@
       {
         "value": "450600",
         "label": "防城港市",
-        "children": [
+        "county": [
           {
             "value": "450602",
             "label": "港口区"
@@ -9082,7 +9082,7 @@
       {
         "value": "450700",
         "label": "钦州",
-        "children": [
+        "county": [
           {
             "value": "450702",
             "label": "钦南区"
@@ -9104,7 +9104,7 @@
       {
         "value": "450800",
         "label": "贵港",
-        "children": [
+        "county": [
           {
             "value": "450802",
             "label": "港北区"
@@ -9130,7 +9130,7 @@
       {
         "value": "450900",
         "label": "玉林",
-        "children": [
+        "county": [
           {
             "value": "450902",
             "label": "玉州区"
@@ -9164,7 +9164,7 @@
       {
         "value": "451000",
         "label": "百色",
-        "children": [
+        "county": [
           {
             "value": "451002",
             "label": "右江区"
@@ -9218,7 +9218,7 @@
       {
         "value": "451100",
         "label": "贺州",
-        "children": [
+        "county": [
           {
             "value": "451102",
             "label": "八步区"
@@ -9244,7 +9244,7 @@
       {
         "value": "451200",
         "label": "河池",
-        "children": [
+        "county": [
           {
             "value": "451202",
             "label": "金城江区"
@@ -9294,7 +9294,7 @@
       {
         "value": "451300",
         "label": "来宾",
-        "children": [
+        "county": [
           {
             "value": "451302",
             "label": "兴宾区"
@@ -9324,7 +9324,7 @@
       {
         "value": "451400",
         "label": "崇左",
-        "children": [
+        "county": [
           {
             "value": "451402",
             "label": "江州区"
@@ -9360,11 +9360,11 @@
   {
     "value": "460000",
     "label": "海南省",
-    "citys": [
+    "city": [
       {
         "value": "460100",
         "label": "海口",
-        "children": [
+        "county": [
           {
             "value": "460105",
             "label": "秀英区"
@@ -9386,7 +9386,7 @@
       {
         "value": "460200",
         "label": "三亚",
-        "children": [
+        "county": [
           {
             "value": "460202",
             "label": "海棠区"
@@ -9408,7 +9408,7 @@
       {
         "value": "460300",
         "label": "三沙",
-        "children": [
+        "county": [
           {
             "value": "460321",
             "label": "西沙群岛"
@@ -9426,7 +9426,7 @@
       {
         "value": "460400",
         "label": "儋州",
-        "children": [
+        "county": [
           {
             "value": "460400",
             "label": "儋州市"
@@ -9436,7 +9436,7 @@
       {
         "value": "469001",
         "label": "五指山",
-        "children": [
+        "county": [
           {
             "value": "469001",
             "label": "五指山市"
@@ -9446,7 +9446,7 @@
       {
         "value": "469002",
         "label": "琼海",
-        "children": [
+        "county": [
           {
             "value": "469002",
             "label": "琼海市"
@@ -9456,7 +9456,7 @@
       {
         "value": "469005",
         "label": "文昌",
-        "children": [
+        "county": [
           {
             "value": "469005",
             "label": "文昌市"
@@ -9466,7 +9466,7 @@
       {
         "value": "469006",
         "label": "万宁",
-        "children": [
+        "county": [
           {
             "value": "469006",
             "label": "万宁市"
@@ -9476,7 +9476,7 @@
       {
         "value": "469007",
         "label": "东方",
-        "children": [
+        "county": [
           {
             "value": "469007",
             "label": "东方市"
@@ -9486,7 +9486,7 @@
       {
         "value": "469021",
         "label": "定安",
-        "children": [
+        "county": [
           {
             "value": "469021",
             "label": "定安县"
@@ -9496,7 +9496,7 @@
       {
         "value": "469022",
         "label": "屯昌",
-        "children": [
+        "county": [
           {
             "value": "469022",
             "label": "屯昌县"
@@ -9506,7 +9506,7 @@
       {
         "value": "469023",
         "label": "澄迈",
-        "children": [
+        "county": [
           {
             "value": "469023",
             "label": "澄迈县"
@@ -9516,7 +9516,7 @@
       {
         "value": "469024",
         "label": "临高",
-        "children": [
+        "county": [
           {
             "value": "469024",
             "label": "临高县"
@@ -9526,7 +9526,7 @@
       {
         "value": "469025",
         "label": "白沙黎族自治县",
-        "children": [
+        "county": [
           {
             "value": "469025",
             "label": "白沙黎族自治县"
@@ -9536,7 +9536,7 @@
       {
         "value": "469026",
         "label": "昌江黎族自治县",
-        "children": [
+        "county": [
           {
             "value": "469026",
             "label": "昌江黎族自治县"
@@ -9546,7 +9546,7 @@
       {
         "value": "469027",
         "label": "乐东黎族自治县",
-        "children": [
+        "county": [
           {
             "value": "469027",
             "label": "乐东黎族自治县"
@@ -9556,7 +9556,7 @@
       {
         "value": "469028",
         "label": "陵水黎族自治县",
-        "children": [
+        "county": [
           {
             "value": "469028",
             "label": "陵水黎族自治县"
@@ -9566,7 +9566,7 @@
       {
         "value": "469029",
         "label": "保亭黎族苗族自治县",
-        "children": [
+        "county": [
           {
             "value": "469029",
             "label": "保亭黎族苗族自治县"
@@ -9576,7 +9576,7 @@
       {
         "value": "469030",
         "label": "琼中黎族苗族自治县",
-        "children": [
+        "county": [
           {
             "value": "469030",
             "label": "琼中黎族苗族自治县"
@@ -9588,11 +9588,11 @@
   {
     "value": "500000",
     "label": "重庆市",
-    "citys": [
+    "city": [
       {
         "value": "500100",
         "label": "重庆",
-        "children": [
+        "county": [
           {
             "value": "500101",
             "label": "万州区"
@@ -9752,11 +9752,11 @@
   {
     "value": "510000",
     "label": "四川省",
-    "citys": [
+    "city": [
       {
         "value": "510100",
         "label": "成都",
-        "children": [
+        "county": [
           {
             "value": "510104",
             "label": "锦江区"
@@ -9842,7 +9842,7 @@
       {
         "value": "510300",
         "label": "自贡",
-        "children": [
+        "county": [
           {
             "value": "510302",
             "label": "自流井区"
@@ -9872,7 +9872,7 @@
       {
         "value": "510400",
         "label": "攀枝花",
-        "children": [
+        "county": [
           {
             "value": "510402",
             "label": "东区"
@@ -9898,7 +9898,7 @@
       {
         "value": "510500",
         "label": "泸州",
-        "children": [
+        "county": [
           {
             "value": "510502",
             "label": "江阳区"
@@ -9932,7 +9932,7 @@
       {
         "value": "510600",
         "label": "德阳",
-        "children": [
+        "county": [
           {
             "value": "510603",
             "label": "旌阳区"
@@ -9962,7 +9962,7 @@
       {
         "value": "510700",
         "label": "绵阳",
-        "children": [
+        "county": [
           {
             "value": "510703",
             "label": "涪城区"
@@ -10004,7 +10004,7 @@
       {
         "value": "510800",
         "label": "广元",
-        "children": [
+        "county": [
           {
             "value": "510802",
             "label": "利州区"
@@ -10038,7 +10038,7 @@
       {
         "value": "510900",
         "label": "遂宁",
-        "children": [
+        "county": [
           {
             "value": "510903",
             "label": "船山区"
@@ -10064,7 +10064,7 @@
       {
         "value": "511000",
         "label": "内江",
-        "children": [
+        "county": [
           {
             "value": "511002",
             "label": "市中区"
@@ -10090,7 +10090,7 @@
       {
         "value": "511100",
         "label": "乐山",
-        "children": [
+        "county": [
           {
             "value": "511102",
             "label": "市中区"
@@ -10140,7 +10140,7 @@
       {
         "value": "511300",
         "label": "南充",
-        "children": [
+        "county": [
           {
             "value": "511302",
             "label": "顺庆区"
@@ -10182,7 +10182,7 @@
       {
         "value": "511400",
         "label": "眉山",
-        "children": [
+        "county": [
           {
             "value": "511402",
             "label": "东坡区"
@@ -10212,7 +10212,7 @@
       {
         "value": "511500",
         "label": "宜宾",
-        "children": [
+        "county": [
           {
             "value": "511502",
             "label": "翠屏区"
@@ -10258,7 +10258,7 @@
       {
         "value": "511600",
         "label": "广安",
-        "children": [
+        "county": [
           {
             "value": "511602",
             "label": "广安区"
@@ -10288,7 +10288,7 @@
       {
         "value": "511700",
         "label": "达州",
-        "children": [
+        "county": [
           {
             "value": "511702",
             "label": "通川区"
@@ -10322,7 +10322,7 @@
       {
         "value": "511800",
         "label": "雅安",
-        "children": [
+        "county": [
           {
             "value": "511802",
             "label": "雨城区"
@@ -10360,7 +10360,7 @@
       {
         "value": "511900",
         "label": "巴中",
-        "children": [
+        "county": [
           {
             "value": "511902",
             "label": "巴州区"
@@ -10386,7 +10386,7 @@
       {
         "value": "512000",
         "label": "资阳",
-        "children": [
+        "county": [
           {
             "value": "512002",
             "label": "雁江区"
@@ -10404,7 +10404,7 @@
       {
         "value": "513200",
         "label": "阿坝藏族羌族自治州",
-        "children": [
+        "county": [
           {
             "value": "513201",
             "label": "马尔康市"
@@ -10462,7 +10462,7 @@
       {
         "value": "513300",
         "label": "甘孜藏族自治州",
-        "children": [
+        "county": [
           {
             "value": "513301",
             "label": "康定市"
@@ -10540,7 +10540,7 @@
       {
         "value": "513400",
         "label": "凉山彝族自治州",
-        "children": [
+        "county": [
           {
             "value": "513401",
             "label": "西昌市"
@@ -10616,11 +10616,11 @@
   {
     "value": "520000",
     "label": "贵州省",
-    "citys": [
+    "city": [
       {
         "value": "520100",
         "label": "贵阳",
-        "children": [
+        "county": [
           {
             "value": "520102",
             "label": "南明区"
@@ -10666,7 +10666,7 @@
       {
         "value": "520200",
         "label": "六盘水",
-        "children": [
+        "county": [
           {
             "value": "520201",
             "label": "钟山区"
@@ -10688,7 +10688,7 @@
       {
         "value": "520300",
         "label": "遵义",
-        "children": [
+        "county": [
           {
             "value": "520302",
             "label": "红花岗区"
@@ -10750,7 +10750,7 @@
       {
         "value": "520400",
         "label": "安顺",
-        "children": [
+        "county": [
           {
             "value": "520402",
             "label": "西秀区"
@@ -10780,7 +10780,7 @@
       {
         "value": "520500",
         "label": "毕节",
-        "children": [
+        "county": [
           {
             "value": "520502",
             "label": "七星关区"
@@ -10818,7 +10818,7 @@
       {
         "value": "520600",
         "label": "铜仁",
-        "children": [
+        "county": [
           {
             "value": "520602",
             "label": "碧江区"
@@ -10864,7 +10864,7 @@
       {
         "value": "522300",
         "label": "黔西南布依族苗族自治州",
-        "children": [
+        "county": [
           {
             "value": "522301",
             "label": "兴义市"
@@ -10902,7 +10902,7 @@
       {
         "value": "522600",
         "label": "黔东南苗族侗族自治州",
-        "children": [
+        "county": [
           {
             "value": "522601",
             "label": "凯里市"
@@ -10972,7 +10972,7 @@
       {
         "value": "522700",
         "label": "黔南布依族苗族自治州",
-        "children": [
+        "county": [
           {
             "value": "522701",
             "label": "都匀市"
@@ -11028,11 +11028,11 @@
   {
     "value": "530000",
     "label": "云南省",
-    "citys": [
+    "city": [
       {
         "value": "530100",
         "label": "昆明",
-        "children": [
+        "county": [
           {
             "value": "530102",
             "label": "五华区"
@@ -11094,7 +11094,7 @@
       {
         "value": "530300",
         "label": "曲靖",
-        "children": [
+        "county": [
           {
             "value": "530302",
             "label": "麒麟区"
@@ -11136,7 +11136,7 @@
       {
         "value": "530400",
         "label": "玉溪",
-        "children": [
+        "county": [
           {
             "value": "530402",
             "label": "红塔区"
@@ -11178,7 +11178,7 @@
       {
         "value": "530500",
         "label": "保山",
-        "children": [
+        "county": [
           {
             "value": "530502",
             "label": "隆阳区"
@@ -11204,7 +11204,7 @@
       {
         "value": "530600",
         "label": "昭通",
-        "children": [
+        "county": [
           {
             "value": "530602",
             "label": "昭阳区"
@@ -11254,7 +11254,7 @@
       {
         "value": "530700",
         "label": "丽江",
-        "children": [
+        "county": [
           {
             "value": "530702",
             "label": "古城区"
@@ -11280,7 +11280,7 @@
       {
         "value": "530800",
         "label": "普洱",
-        "children": [
+        "county": [
           {
             "value": "530802",
             "label": "思茅区"
@@ -11326,7 +11326,7 @@
       {
         "value": "530900",
         "label": "临沧",
-        "children": [
+        "county": [
           {
             "value": "530902",
             "label": "临翔区"
@@ -11364,7 +11364,7 @@
       {
         "value": "532300",
         "label": "楚雄彝族自治州",
-        "children": [
+        "county": [
           {
             "value": "532301",
             "label": "楚雄市"
@@ -11410,7 +11410,7 @@
       {
         "value": "532500",
         "label": "红河哈尼族彝族自治州",
-        "children": [
+        "county": [
           {
             "value": "532501",
             "label": "个旧市"
@@ -11468,7 +11468,7 @@
       {
         "value": "532600",
         "label": "文山壮族苗族自治州",
-        "children": [
+        "county": [
           {
             "value": "532601",
             "label": "文山市"
@@ -11506,7 +11506,7 @@
       {
         "value": "532800",
         "label": "西双版纳傣族自治州",
-        "children": [
+        "county": [
           {
             "value": "532801",
             "label": "景洪市"
@@ -11524,7 +11524,7 @@
       {
         "value": "532900",
         "label": "大理白族自治州",
-        "children": [
+        "county": [
           {
             "value": "532901",
             "label": "大理市"
@@ -11578,7 +11578,7 @@
       {
         "value": "533100",
         "label": "德宏傣族景颇族自治州",
-        "children": [
+        "county": [
           {
             "value": "533102",
             "label": "瑞丽市"
@@ -11604,7 +11604,7 @@
       {
         "value": "533300",
         "label": "怒江傈僳族自治州",
-        "children": [
+        "county": [
           {
             "value": "533301",
             "label": "泸水市"
@@ -11626,7 +11626,7 @@
       {
         "value": "533400",
         "label": "迪庆藏族自治州",
-        "children": [
+        "county": [
           {
             "value": "533401",
             "label": "香格里拉市"
@@ -11646,11 +11646,11 @@
   {
     "value": "540000",
     "label": "西藏自治区",
-    "citys": [
+    "city": [
       {
         "value": "540100",
         "label": "拉萨",
-        "children": [
+        "county": [
           {
             "value": "540102",
             "label": "城关区"
@@ -11688,7 +11688,7 @@
       {
         "value": "540200",
         "label": "日喀则",
-        "children": [
+        "county": [
           {
             "value": "540202",
             "label": "桑珠孜区"
@@ -11766,7 +11766,7 @@
       {
         "value": "540300",
         "label": "昌都",
-        "children": [
+        "county": [
           {
             "value": "540302",
             "label": "卡若区"
@@ -11816,7 +11816,7 @@
       {
         "value": "540400",
         "label": "林芝",
-        "children": [
+        "county": [
           {
             "value": "540402",
             "label": "巴宜区"
@@ -11850,7 +11850,7 @@
       {
         "value": "540500",
         "label": "山南",
-        "children": [
+        "county": [
           {
             "value": "540502",
             "label": "乃东区"
@@ -11904,7 +11904,7 @@
       {
         "value": "542400",
         "label": "那曲地区",
-        "children": [
+        "county": [
           {
             "value": "542421",
             "label": "那曲县"
@@ -11954,7 +11954,7 @@
       {
         "value": "542500",
         "label": "阿里地区",
-        "children": [
+        "county": [
           {
             "value": "542521",
             "label": "普兰县"
@@ -11990,11 +11990,11 @@
   {
     "value": "610000",
     "label": "陕西省",
-    "citys": [
+    "city": [
       {
         "value": "610100",
         "label": "西安",
-        "children": [
+        "county": [
           {
             "value": "610102",
             "label": "新城区"
@@ -12052,7 +12052,7 @@
       {
         "value": "610200",
         "label": "铜川",
-        "children": [
+        "county": [
           {
             "value": "610202",
             "label": "王益区"
@@ -12074,7 +12074,7 @@
       {
         "value": "610300",
         "label": "宝鸡",
-        "children": [
+        "county": [
           {
             "value": "610302",
             "label": "渭滨区"
@@ -12128,7 +12128,7 @@
       {
         "value": "610400",
         "label": "咸阳",
-        "children": [
+        "county": [
           {
             "value": "610402",
             "label": "秦都区"
@@ -12190,7 +12190,7 @@
       {
         "value": "610500",
         "label": "渭南",
-        "children": [
+        "county": [
           {
             "value": "610502",
             "label": "临渭区"
@@ -12240,7 +12240,7 @@
       {
         "value": "610600",
         "label": "延安",
-        "children": [
+        "county": [
           {
             "value": "610602",
             "label": "宝塔区"
@@ -12298,7 +12298,7 @@
       {
         "value": "610700",
         "label": "汉中",
-        "children": [
+        "county": [
           {
             "value": "610702",
             "label": "汉台区"
@@ -12348,7 +12348,7 @@
       {
         "value": "610800",
         "label": "榆林",
-        "children": [
+        "county": [
           {
             "value": "610802",
             "label": "榆阳区"
@@ -12402,7 +12402,7 @@
       {
         "value": "610900",
         "label": "安康",
-        "children": [
+        "county": [
           {
             "value": "610902",
             "label": "汉滨区"
@@ -12448,7 +12448,7 @@
       {
         "value": "611000",
         "label": "商洛",
-        "children": [
+        "county": [
           {
             "value": "611002",
             "label": "商州区"
@@ -12484,11 +12484,11 @@
   {
     "value": "620000",
     "label": "甘肃省",
-    "citys": [
+    "city": [
       {
         "value": "620100",
         "label": "兰州",
-        "children": [
+        "county": [
           {
             "value": "620102",
             "label": "城关区"
@@ -12526,7 +12526,7 @@
       {
         "value": "620200",
         "label": "嘉峪关",
-        "children": [
+        "county": [
           {
             "value": "620200",
             "label": "嘉峪关市"
@@ -12536,7 +12536,7 @@
       {
         "value": "620300",
         "label": "金昌",
-        "children": [
+        "county": [
           {
             "value": "620302",
             "label": "金川区"
@@ -12550,7 +12550,7 @@
       {
         "value": "620400",
         "label": "白银",
-        "children": [
+        "county": [
           {
             "value": "620402",
             "label": "白银区"
@@ -12576,7 +12576,7 @@
       {
         "value": "620500",
         "label": "天水",
-        "children": [
+        "county": [
           {
             "value": "620502",
             "label": "秦州区"
@@ -12610,7 +12610,7 @@
       {
         "value": "620600",
         "label": "武威",
-        "children": [
+        "county": [
           {
             "value": "620602",
             "label": "凉州区"
@@ -12632,7 +12632,7 @@
       {
         "value": "620700",
         "label": "张掖",
-        "children": [
+        "county": [
           {
             "value": "620702",
             "label": "甘州区"
@@ -12662,7 +12662,7 @@
       {
         "value": "620800",
         "label": "平凉",
-        "children": [
+        "county": [
           {
             "value": "620802",
             "label": "崆峒区"
@@ -12696,7 +12696,7 @@
       {
         "value": "620900",
         "label": "酒泉",
-        "children": [
+        "county": [
           {
             "value": "620902",
             "label": "肃州区"
@@ -12730,7 +12730,7 @@
       {
         "value": "621000",
         "label": "庆阳",
-        "children": [
+        "county": [
           {
             "value": "621002",
             "label": "西峰区"
@@ -12768,7 +12768,7 @@
       {
         "value": "621100",
         "label": "定西",
-        "children": [
+        "county": [
           {
             "value": "621102",
             "label": "安定区"
@@ -12802,7 +12802,7 @@
       {
         "value": "621200",
         "label": "陇南",
-        "children": [
+        "county": [
           {
             "value": "621202",
             "label": "武都区"
@@ -12844,7 +12844,7 @@
       {
         "value": "622900",
         "label": "临夏回族自治州",
-        "children": [
+        "county": [
           {
             "value": "622901",
             "label": "临夏市"
@@ -12882,7 +12882,7 @@
       {
         "value": "623000",
         "label": "甘南藏族自治州",
-        "children": [
+        "county": [
           {
             "value": "623001",
             "label": "合作市"
@@ -12922,11 +12922,11 @@
   {
     "value": "630000",
     "label": "青海省",
-    "citys": [
+    "city": [
       {
         "value": "630100",
         "label": "西宁",
-        "children": [
+        "county": [
           {
             "value": "630102",
             "label": "城东区"
@@ -12960,7 +12960,7 @@
       {
         "value": "630200",
         "label": "海东",
-        "children": [
+        "county": [
           {
             "value": "630202",
             "label": "乐都区"
@@ -12990,7 +12990,7 @@
       {
         "value": "632200",
         "label": "海北藏族自治州",
-        "children": [
+        "county": [
           {
             "value": "632221",
             "label": "门源回族自治县"
@@ -13012,7 +13012,7 @@
       {
         "value": "632300",
         "label": "黄南藏族自治州",
-        "children": [
+        "county": [
           {
             "value": "632321",
             "label": "同仁县"
@@ -13034,7 +13034,7 @@
       {
         "value": "632500",
         "label": "海南藏族自治州",
-        "children": [
+        "county": [
           {
             "value": "632521",
             "label": "共和县"
@@ -13060,7 +13060,7 @@
       {
         "value": "632600",
         "label": "果洛藏族自治州",
-        "children": [
+        "county": [
           {
             "value": "632621",
             "label": "玛沁县"
@@ -13090,7 +13090,7 @@
       {
         "value": "632700",
         "label": "玉树藏族自治州",
-        "children": [
+        "county": [
           {
             "value": "632701",
             "label": "玉树市"
@@ -13120,7 +13120,7 @@
       {
         "value": "632800",
         "label": "海西蒙古族藏族自治州",
-        "children": [
+        "county": [
           {
             "value": "632801",
             "label": "格尔木市"
@@ -13152,11 +13152,11 @@
   {
     "value": "640000",
     "label": "宁夏回族自治区",
-    "citys": [
+    "city": [
       {
         "value": "640100",
         "label": "银川",
-        "children": [
+        "county": [
           {
             "value": "640104",
             "label": "兴庆区"
@@ -13186,7 +13186,7 @@
       {
         "value": "640200",
         "label": "石嘴山",
-        "children": [
+        "county": [
           {
             "value": "640202",
             "label": "大武口区"
@@ -13204,7 +13204,7 @@
       {
         "value": "640300",
         "label": "吴忠",
-        "children": [
+        "county": [
           {
             "value": "640302",
             "label": "利通区"
@@ -13230,7 +13230,7 @@
       {
         "value": "640400",
         "label": "固原",
-        "children": [
+        "county": [
           {
             "value": "640402",
             "label": "原州区"
@@ -13256,7 +13256,7 @@
       {
         "value": "640500",
         "label": "中卫",
-        "children": [
+        "county": [
           {
             "value": "640502",
             "label": "沙坡头区"
@@ -13276,11 +13276,11 @@
   {
     "value": "650000",
     "label": "新疆维吾尔自治区",
-    "citys": [
+    "city": [
       {
         "value": "650100",
         "label": "乌鲁木齐",
-        "children": [
+        "county": [
           {
             "value": "650102",
             "label": "天山区"
@@ -13318,7 +13318,7 @@
       {
         "value": "650200",
         "label": "克拉玛依",
-        "children": [
+        "county": [
           {
             "value": "650202",
             "label": "独山子区"
@@ -13340,7 +13340,7 @@
       {
         "value": "650400",
         "label": "吐鲁番",
-        "children": [
+        "county": [
           {
             "value": "650402",
             "label": "高昌区"
@@ -13358,7 +13358,7 @@
       {
         "value": "650500",
         "label": "哈密",
-        "children": [
+        "county": [
           {
             "value": "650502",
             "label": "伊州区"
@@ -13376,7 +13376,7 @@
       {
         "value": "652300",
         "label": "昌吉回族自治州",
-        "children": [
+        "county": [
           {
             "value": "652301",
             "label": "昌吉市"
@@ -13410,7 +13410,7 @@
       {
         "value": "652700",
         "label": "博尔塔拉蒙古自治州",
-        "children": [
+        "county": [
           {
             "value": "652701",
             "label": "博乐市"
@@ -13432,7 +13432,7 @@
       {
         "value": "652800",
         "label": "巴音郭楞蒙古自治州",
-        "children": [
+        "county": [
           {
             "value": "652801",
             "label": "库尔勒市"
@@ -13474,7 +13474,7 @@
       {
         "value": "652900",
         "label": "阿克苏地区",
-        "children": [
+        "county": [
           {
             "value": "652901",
             "label": "阿克苏市"
@@ -13516,7 +13516,7 @@
       {
         "value": "653000",
         "label": "克孜勒苏柯尔克孜自治州",
-        "children": [
+        "county": [
           {
             "value": "653001",
             "label": "阿图什市"
@@ -13538,7 +13538,7 @@
       {
         "value": "653100",
         "label": "喀什地区",
-        "children": [
+        "county": [
           {
             "value": "653101",
             "label": "喀什市"
@@ -13592,7 +13592,7 @@
       {
         "value": "653200",
         "label": "和田地区",
-        "children": [
+        "county": [
           {
             "value": "653201",
             "label": "和田市"
@@ -13630,7 +13630,7 @@
       {
         "value": "654000",
         "label": "伊犁哈萨克自治州",
-        "children": [
+        "county": [
           {
             "value": "654002",
             "label": "伊宁市"
@@ -13680,7 +13680,7 @@
       {
         "value": "654200",
         "label": "塔城地区",
-        "children": [
+        "county": [
           {
             "value": "654201",
             "label": "塔城市"
@@ -13714,7 +13714,7 @@
       {
         "value": "654300",
         "label": "阿勒泰地区",
-        "children": [
+        "county": [
           {
             "value": "654301",
             "label": "阿勒泰市"
@@ -13748,7 +13748,7 @@
       {
         "value": "659001",
         "label": "石河子",
-        "children": [
+        "county": [
           {
             "value": "659001",
             "label": "石河子市"
@@ -13758,7 +13758,7 @@
       {
         "value": "659002",
         "label": "阿拉尔",
-        "children": [
+        "county": [
           {
             "value": "659002",
             "label": "阿拉尔市"
@@ -13768,7 +13768,7 @@
       {
         "value": "659003",
         "label": "图木舒克",
-        "children": [
+        "county": [
           {
             "value": "659003",
             "label": "图木舒克市"
@@ -13778,7 +13778,7 @@
       {
         "value": "659004",
         "label": "五家渠",
-        "children": [
+        "county": [
           {
             "value": "659004",
             "label": "五家渠市"
@@ -13788,7 +13788,7 @@
       {
         "value": "659005",
         "label": "北屯",
-        "children": [
+        "county": [
           {
             "value": "659005",
             "label": "北屯市"
@@ -13798,7 +13798,7 @@
       {
         "value": "659006",
         "label": "铁门关",
-        "children": [
+        "county": [
           {
             "value": "659006",
             "label": "铁门关市"
@@ -13808,7 +13808,7 @@
       {
         "value": "659007",
         "label": "双河",
-        "children": [
+        "county": [
           {
             "value": "659007",
             "label": "双河市"
@@ -13818,7 +13818,7 @@
       {
         "value": "659008",
         "label": "可克达拉",
-        "children": [
+        "county": [
           {
             "value": "659008",
             "label": "可克达拉市"
@@ -13828,7 +13828,7 @@
       {
         "value": "659009",
         "label": "昆玉",
-        "children": [
+        "county": [
           {
             "value": "659009",
             "label": "昆玉市"
@@ -13840,11 +13840,11 @@
   {
     "value": "710000",
     "label": "台湾省",
-    "citys": [
+    "city": [
       {
         "value": "710000",
         "label": "台湾省",
-        "children": [
+        "county": [
           {
             "value": "710000",
             "label": "台湾省"
@@ -13856,11 +13856,11 @@
   {
     "value": "810000",
     "label": "香港特别行政区",
-    "citys": [
+    "city": [
       {
         "value": "810100",
         "label": "香港",
-        "children": [
+        "county": [
           {
             "value": "810101",
             "label": "中西区"
@@ -13940,11 +13940,11 @@
   {
     "value": "820000",
     "label": "澳门特别行政区",
-    "citys": [
+    "city": [
       {
         "value": "820100",
         "label": "澳门",
-        "children": [
+        "county": [
           {
             "value": "820101",
             "label": "花地玛堂区"

@@ -9,7 +9,6 @@ class SliverTopBox extends GetView<PersonalController> {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(PersonalController());
     return Obx(
       () => Stack(
         children: [

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hubang/pages/home/home_controller.dart';
 import 'package:flutter_hubang/routes/app_routes.dart';
 import 'package:flutter_hubang/utils/adapt.dart';
+import 'package:flutter_hubang/utils/location_controller.dart';
+import 'package:flutter_hubang/widgets/clear_input.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
@@ -10,19 +12,27 @@ class HomeTop extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(HomeController());
     return Row(
       children: [
         //选择城市
         selectCity(),
         //搜索框
-        Expanded(child: search()),
+        Expanded(
+            child: Padding(
+          padding: EdgeInsets.only(left: Adapt.px(20), right: Adapt.px(10)),
+          child: ClearInput(
+              readOnly: true,
+              onTap: () {
+                print("object");
+              }),
+        )),
         add(),
       ],
     );
   }
 
   Widget selectCity() {
+    var locationController = Get.find<LocationController>();
     return InkWell(
       onTap: () async {
         //跳转传值
@@ -34,7 +44,7 @@ class HomeTop extends GetView<HomeController> {
           Container(
             constraints: BoxConstraints(maxWidth: Adapt.px(150)),
             child: Obx(
-              () => Text(controller.city.value,
+              () => Text(locationController.city.value,
                   style: TextStyle(
                       fontSize: Adapt.px(36), fontWeight: FontWeight.bold),
                   overflow: TextOverflow.ellipsis,
@@ -45,31 +55,6 @@ class HomeTop extends GetView<HomeController> {
             'assets/icon/down.svg',
             width: Adapt.px(32),
             height: Adapt.px(32),
-          )
-        ],
-      ),
-    );
-  }
-
-  Widget search() {
-    return Container(
-      height: 34,
-      margin: const EdgeInsets.only(left: 15, right: 5),
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(30),
-          color: const Color.fromARGB(255, 240, 240, 240)),
-      child: Row(
-        children: const [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            child: Icon(
-              Icons.search,
-              size: 22,
-            ),
-          ),
-          Text(
-            "搜索",
-            style: TextStyle(fontSize: 16),
           )
         ],
       ),

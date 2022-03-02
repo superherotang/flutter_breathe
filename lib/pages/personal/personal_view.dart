@@ -10,7 +10,6 @@ class PersonalView extends GetView<PersonalController> {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(PersonalController());
     final double statusBarHeight = MediaQuery.of(context).padding.top;
     final double pinnedHeaderHeight =
         //statusBar height

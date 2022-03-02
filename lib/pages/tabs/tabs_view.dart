@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hubang/pages/Message/message_view.dart';
+import 'package:flutter_hubang/pages/community/community_view.dart';
 import 'package:flutter_hubang/pages/home/home_view.dart';
 import 'package:flutter_hubang/pages/personal/personal_view.dart';
 import 'package:flutter_hubang/pages/tabs/tabs_controller.dart';
@@ -14,7 +15,7 @@ class TabsView extends GetView<TabsController> {
 
   final pageItem = const [
     KeepAliveWrapper(child: HomeView()),
-    KeepAliveWrapper(child: HomeView()),
+    KeepAliveWrapper(child: CommunityView()),
     KeepAliveWrapper(child: MessageView()),
     KeepAliveWrapper(child: PersonalView()),
   ];
@@ -41,8 +42,6 @@ class TabsView extends GetView<TabsController> {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(TabsController());
-
     return Scaffold(
       extendBody: true, // 扩展到Scaffold的底部
       resizeToAvoidBottomInset: false, // 不允许键盘事件影响界面

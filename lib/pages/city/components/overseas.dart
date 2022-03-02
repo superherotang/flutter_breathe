@@ -8,7 +8,6 @@ class Overseas extends GetView<CityController> {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(CityController());
     return Container();
   }
 }

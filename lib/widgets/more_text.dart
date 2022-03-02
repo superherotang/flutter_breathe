@@ -5,15 +5,13 @@ import 'package:flutter_hubang/routes/app_routes.dart';
 import 'package:get/get.dart';
 
 class MoreText extends StatefulWidget {
-  const MoreText(
-    this.text, {
-    Key? key,
-    required this.maxLines,
-    this.id,
-  }) : super(key: key);
+  const MoreText(this.text,
+      {Key? key, required this.maxLines, this.id, this.route})
+      : super(key: key);
   final String text;
   final int maxLines;
   final int? id;
+  final String? route;
 
   @override
   State<MoreText> createState() => _MoreTextState();
@@ -23,6 +21,11 @@ class _MoreTextState extends State<MoreText> {
   bool readMore = true;
   @override
   Widget build(BuildContext context) {
+    if (widget.id != null) {
+      if (widget.route == null) {
+        throw Exception('id必须配合route使用');
+      }
+    }
     TextSpan link = TextSpan(
         text: readMore ? "... 更多" : "  收起",
         style: const TextStyle(
@@ -32,7 +35,7 @@ class _MoreTextState extends State<MoreText> {
           ..onTap = () {
             widget.id == null
                 ? setState(() => readMore = !readMore)
-                : Get.toNamed(Routes.DETAIL + widget.id.toString());
+                : Get.toNamed(widget.route! + widget.id.toString());
           });
 
     Widget result = LayoutBuilder(

@@ -12,10 +12,8 @@ class DetailView extends GetView<DetailController> {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(DetailController());
     var text = Get.parameters['id'];
     return Scaffold(
-      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         title: Chip(
           labelPadding: EdgeInsets.symmetric(

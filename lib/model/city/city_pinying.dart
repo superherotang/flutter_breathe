@@ -4,10 +4,10 @@ class CityPinying {
   const CityPinying({
     required this.pinying,
     required this.name,
-    required this.citys,
+    required this.city,
   });
 
   final String pinying;
   final String name;
-  final Citys citys;
+  final City city;
 }

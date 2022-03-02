@@ -3,6 +3,8 @@
 import 'package:flutter_hubang/pages/Message/message_view.dart';
 import 'package:flutter_hubang/pages/city/city_binding.dart';
 import 'package:flutter_hubang/pages/city/city_view.dart';
+import 'package:flutter_hubang/pages/community/community_binding.dart';
+import 'package:flutter_hubang/pages/community/community_view.dart';
 import 'package:flutter_hubang/pages/detail/detail_binding.dart';
 import 'package:flutter_hubang/pages/detail/detail_view.dart';
 import 'package:flutter_hubang/pages/home/home_binding.dart';
@@ -57,6 +59,10 @@ abstract class AppPages {
         name: Routes.DETAILID,
         page: () => const DetailView(),
         binding: DetailBinding()),
+    GetPage(
+        name: Routes.COMMUNITY,
+        page: () => const CommunityView(),
+        binding: CommunityBinding()),
   ];
 }
 
@@ -68,8 +74,10 @@ abstract class Routes {
   static const MY = "/my";
   static const Login = "/login";
   static const MESSAGE = "/message";
-  static const MESSAGESERACH = "/serach";
+  static const MESSAGESERACH = "/messageserach";
   static const CITY = "/city";
   static const DETAIL = "/detail/";
   static const DETAILID = "/detail/:id";
+  static const COMMUNITY = "/community";
+  static const SERACH = "/serach";
 }

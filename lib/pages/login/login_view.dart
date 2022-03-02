@@ -10,7 +10,6 @@ class LoginView extends GetView<LoginController> {
   const LoginView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    Get.put(LoginController()); //重要
     return Scaffold(
       resizeToAvoidBottomInset: false, //忽略键盘影响
       body: SafeArea(

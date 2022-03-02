@@ -9,7 +9,6 @@ class TopContent extends GetView<MessageController> {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(MessageController());
     return Row(
       children: [
         IconClick(onTap: () {}, count: 50, title: "asd"),
@@ -66,7 +65,7 @@ class IconClick extends GetView {
               Positioned(
                 //提示
                 left: Adapt.px(120),
-                top: Adapt.px(5),
+                top: Adapt.px(15),
                 child: count > 0
                     ? Container(
                         alignment: Alignment.center,

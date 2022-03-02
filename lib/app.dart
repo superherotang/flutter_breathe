@@ -13,6 +13,7 @@ Widget createApp() {
     locale: Get.deviceLocale, //跟随系统语言
     fallbackLocale: const Locale('zh', 'CN'), //配置错误的情况
     builder: (context, child) => Scaffold(
+      resizeToAvoidBottomInset: false, // 不允许键盘事件影响界面
       // Global GestureDetector that will dismiss the keyboard
       body: GestureDetector(
         onTap: () {

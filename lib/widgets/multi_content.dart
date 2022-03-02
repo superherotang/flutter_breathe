@@ -9,6 +9,7 @@ class MultiContent extends GetView {
   final Widget? bounty;
   final String? text;
   final int? id;
+  final String? route;
   const MultiContent({
     Key? key,
     this.text,
@@ -17,6 +18,7 @@ class MultiContent extends GetView {
     this.soundlist,
     this.bounty,
     this.id,
+    this.route,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -34,6 +36,7 @@ class MultiContent extends GetView {
                     ? 10
                     : 4,
                 id: id,
+                route: route,
               ),
         showContent()
       ],

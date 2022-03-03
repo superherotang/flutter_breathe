@@ -12,7 +12,7 @@ class DetailView extends GetView<DetailController> {
 
   @override
   Widget build(BuildContext context) {
-    var text = Get.parameters['id'];
+    var getId = Get.parameters['id'];
     return Scaffold(
       appBar: AppBar(
         title: Chip(
@@ -22,7 +22,7 @@ class DetailView extends GetView<DetailController> {
             '名字',
             style: TextStyle(color: Colors.white),
           ),
-          backgroundColor: AppColor.mainColor,
+          backgroundColor: AppColor.primaryColor,
           avatar: const CircleAvatar(
             backgroundImage: NetworkImage(
                 'https://goss.cfp.cn/creative/vcg/800/new/VCG211165042753.jpg'),

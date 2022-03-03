@@ -29,7 +29,7 @@ class CommunityCard extends GetView {
         child: Column(
           children: [
             InkWell(
-              onTap: () {},
+              onTap: () => Get.toNamed(Routes.CHOME + "123"),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -70,7 +70,7 @@ class CommunityCard extends GetView {
                             "人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常",
                             maxLines: 2,
                             id: 123,
-                            route: Routes.DETAIL,
+                            route: Routes.CHOME,
                           ),
                           SizedBox(
                             height: Adapt.px(10),
@@ -133,7 +133,7 @@ class CommunityCard extends GetView {
                   shape: MaterialStateProperty.all(RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30))),
                   backgroundColor:
-                      MaterialStateProperty.all(AppColor.mainColor),
+                      MaterialStateProperty.all(AppColor.primaryColor),
                 ),
               ),
             )

@@ -1,24 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hubang/model/synopsis/synopsis.dart';
 import 'package:flutter_hubang/widgets/more_text.dart';
 import 'package:get/get.dart';
 
 class MultiContent extends GetView {
-  final List? imglist;
-  final List? videolist;
-  final List? soundlist;
-  final Widget? bounty;
   final String? text;
   final int? id;
   final String? route;
+  final Resource resource;
   const MultiContent({
     Key? key,
     this.text,
-    this.imglist,
-    this.videolist,
-    this.soundlist,
-    this.bounty,
     this.id,
     this.route,
+    required this.resource,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -29,10 +24,10 @@ class MultiContent extends GetView {
             ? Container()
             : MoreText(
                 text!,
-                maxLines: (imglist == null &&
-                        videolist == null &&
-                        soundlist == null &&
-                        bounty == null)
+                maxLines: (resource.imgList.isEmpty &&
+                        resource.videoList.isEmpty &&
+                        resource.soundList.isEmpty &&
+                        resource.bountyList.isEmpty)
                     ? 10
                     : 4,
                 id: id,
@@ -44,19 +39,19 @@ class MultiContent extends GetView {
   }
 
   Widget showContent() {
-    if (bounty != null) {
+    if (resource.bountyList.isNotEmpty) {
       return Container(
         child: Text("赏金"),
       );
-    } else if (videolist != null) {
+    } else if (resource.videoList.isNotEmpty) {
       return Container(
         child: Text("视频"),
       );
-    } else if (imglist != null) {
+    } else if (resource.imgList.isNotEmpty) {
       return Container(
         child: Text("图片"),
       );
-    } else if (soundlist != null) {
+    } else if (resource.soundList.isNotEmpty) {
       return Container(
         child: Text("语音"),
       );

@@ -5,7 +5,7 @@ class AppColor {
   static const Color scaffoldBackground = Color(0xFFFFFFFF);
 
   ///列表背景
-  static const Color listBackground = Color(0xFFF6F6F6);
+  static const Color listBackground = Color(0xFFF6F9FA);
 
   /// 主要背景颜色
   // static const Color primaryBackground = Color(0xFF5C78FF);
@@ -33,7 +33,7 @@ class AppColor {
   static const Color yellowColor = Color(0xFFFFB822);
 
   ///主要配色
-  static const Color mainColor = Color(0xFF81D8D0);
+  static const Color primaryColor = Color(0xFF2775b6);
 
   ///未选中颜色
   static const Color unselectedColor = Color(0xffA2A5B9);

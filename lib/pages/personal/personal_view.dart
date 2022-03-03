@@ -1,6 +1,12 @@
+import 'dart:convert';
+
 import 'package:extended_nested_scroll_view/extended_nested_scroll_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hubang/common/color.dart';
+import 'package:flutter_hubang/model/synopsis/synopsis.dart';
 import 'package:flutter_hubang/pages/personal/personal_controller.dart';
+import 'package:flutter_hubang/utils/mock.dart';
+import 'package:flutter_hubang/widgets/box_content.dart';
 import 'package:get/get.dart';
 
 import 'components/build_sliver_header.dart';
@@ -56,11 +62,27 @@ class PersonalView extends GetView<PersonalController> {
             Expanded(
                 child: TabBarView(
               controller: controller.tabController,
-              children: [Text("data"), Text("data")],
+              children: [widgetone(), Text("data")],
             )),
           ]),
         ),
       ),
     );
   }
+}
+
+Widget widgetone() {
+  Synopsis synopsis = Synopsis.fromJson(json.decode(JsonString.synopsisdata));
+  return Material(
+    color: AppColor.listBackground,
+    child: ListView.builder(
+      physics: const AlwaysScrollableScrollPhysics(),
+      itemBuilder: (BuildContext context, int index) {
+        return BoxContent(
+          synopsis: synopsis,
+        );
+      },
+      itemCount: 20,
+    ),
+  );
 }

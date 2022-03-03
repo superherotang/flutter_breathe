@@ -1,6 +1,8 @@
 // ignore_for_file: constant_identifier_names
 
 import 'package:flutter_hubang/pages/Message/message_view.dart';
+import 'package:flutter_hubang/pages/chome/chome_binding.dart';
+import 'package:flutter_hubang/pages/chome/chome_view.dart';
 import 'package:flutter_hubang/pages/city/city_binding.dart';
 import 'package:flutter_hubang/pages/city/city_view.dart';
 import 'package:flutter_hubang/pages/community/community_binding.dart';
@@ -63,6 +65,10 @@ abstract class AppPages {
         name: Routes.COMMUNITY,
         page: () => const CommunityView(),
         binding: CommunityBinding()),
+    GetPage(
+        name: Routes.CHOMEID,
+        page: () => const ChomeView(),
+        binding: ChomeBinding()),
   ];
 }
 
@@ -80,4 +86,6 @@ abstract class Routes {
   static const DETAILID = "/detail/:id";
   static const COMMUNITY = "/community";
   static const SERACH = "/serach";
+  static const CHOME = "/chome/";
+  static const CHOMEID = "/chome/:id";
 }

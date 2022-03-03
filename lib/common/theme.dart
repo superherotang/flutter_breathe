@@ -39,8 +39,8 @@ class AppTheme {
           TextStyle(fontSize: Adapt.px(24), fontWeight: FontWeight.bold),
       unselectedItemColor: AppColor.unselectedColor,
       unselectedIconTheme: const IconThemeData(color: AppColor.unselectedColor),
-      selectedIconTheme: const IconThemeData(color: AppColor.mainColor),
-      selectedItemColor: AppColor.mainColor,
+      selectedIconTheme: const IconThemeData(color: AppColor.primaryColor),
+      selectedItemColor: AppColor.primaryColor,
     ),
     tabBarTheme: TabBarTheme(
         indicatorSize: TabBarIndicatorSize.label,

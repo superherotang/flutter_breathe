@@ -29,39 +29,42 @@ class CommunityView extends GetView<CommunityController> {
               alignment: Alignment.center,
               width: double.infinity,
               height: Adapt.px(70),
-              child: Row(children: [
-                Text("当前位置:",
-                    style:
-                        TextStyle(fontSize: Adapt.px(34), color: Colors.grey)),
-                SizedBox(
-                  width: Adapt.px(5),
-                ),
-                InkWell(
-                  child: Obx(
-                    () => Text(
-                      locationController.city.value,
+              child: Padding(
+                padding: EdgeInsets.only(left: Adapt.px(20)),
+                child: Row(children: [
+                  Text("当前位置:",
                       style: TextStyle(
-                          fontSize: Adapt.px(34),
-                          color: AppColor.primaryText,
-                          fontWeight: FontWeight.bold),
+                          fontSize: Adapt.px(34), color: Colors.grey)),
+                  SizedBox(
+                    width: Adapt.px(5),
+                  ),
+                  InkWell(
+                    child: Obx(
+                      () => Text(
+                        locationController.city.value,
+                        style: TextStyle(
+                            fontSize: Adapt.px(34),
+                            color: AppColor.primaryText,
+                            fontWeight: FontWeight.bold),
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  width: Adapt.px(15),
-                ),
-                InkWell(
-                  child: Icon(
-                    Icons.ac_unit,
-                    size: Adapt.px(40),
+                  SizedBox(
+                    width: Adapt.px(15),
                   ),
-                )
-              ]),
+                  InkWell(
+                    child: Icon(
+                      Icons.ac_unit,
+                      size: Adapt.px(40),
+                    ),
+                  )
+                ]),
+              ),
             ),
             Expanded(
               child: ListView.builder(
                 itemBuilder: (BuildContext context, int index) {
-                  return CommunityCard();
+                  return const CommunityCard();
                 },
                 itemCount: 20,
               ),

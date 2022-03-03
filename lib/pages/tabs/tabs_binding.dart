@@ -1,3 +1,4 @@
+import 'package:flutter_hubang/pages/city/city_controller.dart';
 import 'package:flutter_hubang/pages/community/community_controller.dart';
 import 'package:flutter_hubang/pages/home/home_controller.dart';
 import 'package:flutter_hubang/pages/message/message_controller.dart';

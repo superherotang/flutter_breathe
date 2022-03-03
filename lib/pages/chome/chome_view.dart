@@ -47,7 +47,13 @@ class ChomeView extends GetView<ChomeController> {
             children: [
               TabBarView(
                 controller: controller.tabController,
-                children: [widgetone(), widgetone(), widgetone()],
+                children: [
+                  widgetone(),
+                  Center(
+                    child: Text("asd"),
+                  ),
+                  widgetone()
+                ],
               ),
               Container(
                 width: double.infinity,

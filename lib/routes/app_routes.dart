@@ -36,9 +36,10 @@ abstract class AppPages {
         page: () => const HomeView(),
         binding: HomeBinding()),
     GetPage(
-        name: Routes.Login,
-        page: () => const LoginView(),
-        binding: LoginBinding()),
+      name: Routes.Login,
+      page: () => const LoginView(),
+      binding: LoginBinding(),
+    ),
     GetPage(
         name: Routes.MY,
         page: () => const PersonalView(),

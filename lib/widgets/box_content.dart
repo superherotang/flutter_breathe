@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hubang/model/synopsis/synopsis.dart';
 import 'package:flutter_hubang/model/tag_model.dart';
 import 'package:flutter_hubang/routes/app_routes.dart';
-import 'package:flutter_hubang/utils/adapt.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import 'multi_content.dart';
@@ -21,7 +21,7 @@ class BoxContent extends GetView {
     return Column(
       children: [
         SizedBox(
-          height: Adapt.px(20),
+          height: 20.w,
         ),
         ShowBox(
             likeCount: synopsis.data[0].likeCount,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hubang/utils/adapt.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:get/get.dart';
 
 class LikeButton extends GetView {
@@ -20,17 +21,16 @@ class LikeButton extends GetView {
         print("object");
       },
       child: Padding(
-        padding: EdgeInsets.symmetric(
-            horizontal: Adapt.px(30), vertical: Adapt.px(10)),
+        padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 10.w),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             Icon(
               icon,
-              size: Adapt.px(size),
+              size: size!.w,
             ),
             SizedBox(
-              width: Adapt.px(2),
+              width: 2.w,
             ),
             Text(
               count,

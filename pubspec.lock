@@ -169,15 +169,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.0.4"
-  custom_nested_scroll_view:
-    dependency: "direct main"
-    description:
-      path: "."
-      ref: HEAD
-      resolved-ref: "364860e390d22c4554f29e7d34bb9d513012c53b"
-      url: "https://github.com/idootop/custom_nested_scroll_view.git"
-    source: git
-    version: "0.0.1"
   dart_style:
     dependency: transitive
     description:
@@ -274,6 +265,13 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.0.3"
+  flutter_screenutil:
+    dependency: "direct main"
+    description:
+      name: flutter_screenutil
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "5.3.1"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -482,13 +480,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.0.5"
-  pedantic:
-    dependency: transitive
-    description:
-      name: pedantic
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "1.11.1"
   petitparser:
     dependency: transitive
     description:

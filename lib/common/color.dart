@@ -40,4 +40,7 @@ class AppColor {
 
   ///常用背景
   static const Color oftenBackground = Color(0xFFF6F9FA);
+
+  ///常用背景
+  static const Color someBackground = Color(0xFFE4E7E9);
 }

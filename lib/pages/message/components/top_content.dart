@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hubang/pages/message/message_controller.dart';
-import 'package:flutter_hubang/utils/adapt.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
@@ -43,18 +43,17 @@ class IconClick extends GetView {
             children: [
               Container(
                 alignment: Alignment.bottomCenter,
-                width: Adapt.width / 4,
-                height: Adapt.px(140),
+                width: 1.sw / 4,
+                height: 140.w,
                 child: Container(
-                    width: Adapt.px(120),
-                    height: Adapt.px(120),
+                    width: 120.w,
+                    height: 120.w,
                     decoration: BoxDecoration(
                       color: Colors.grey[200],
-                      borderRadius:
-                          BorderRadius.all(Radius.circular(Adapt.px(120))),
+                      borderRadius: BorderRadius.all(Radius.circular(120.w)),
                     ),
                     child: Padding(
-                      padding: EdgeInsets.all(Adapt.px(20)),
+                      padding: EdgeInsets.all(20.w),
                       child: SvgPicture.asset(
                         "assets/icon/home.svg",
                         width: 1,
@@ -64,17 +63,17 @@ class IconClick extends GetView {
               ),
               Positioned(
                 //提示
-                left: Adapt.px(120),
-                top: Adapt.px(15),
+                left: 120.w,
+                top: 15.w,
                 child: count > 0
                     ? Container(
                         alignment: Alignment.center,
                         padding: const EdgeInsets.symmetric(
                           horizontal: 3,
                         ),
-                        height: Adapt.px(40),
+                        height: 40.w,
                         constraints: BoxConstraints(
-                          minWidth: Adapt.px(40),
+                          minWidth: 40.w,
                         ),
                         decoration: BoxDecoration(
                           color: Colors.red,
@@ -93,7 +92,7 @@ class IconClick extends GetView {
             ],
           ),
           Padding(
-            padding: EdgeInsets.symmetric(vertical: Adapt.px(20)),
+            padding: EdgeInsets.symmetric(vertical: 20.w),
             child: Text(title),
           )
         ],

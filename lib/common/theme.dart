@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hubang/utils/adapt.dart';
 
 import 'color.dart';
 
@@ -32,22 +31,20 @@ class AppTheme {
         fontWeight: FontWeight.w500,
       ),
     ),
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: AppColor.scaffoldBackground,
-      unselectedLabelStyle: TextStyle(fontSize: Adapt.px(24)),
-      selectedLabelStyle:
-          TextStyle(fontSize: Adapt.px(24), fontWeight: FontWeight.bold),
+      unselectedLabelStyle: TextStyle(fontSize: 14),
+      selectedLabelStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
       unselectedItemColor: AppColor.unselectedColor,
-      unselectedIconTheme: const IconThemeData(color: AppColor.unselectedColor),
-      selectedIconTheme: const IconThemeData(color: AppColor.primaryColor),
+      unselectedIconTheme: IconThemeData(color: AppColor.unselectedColor),
+      selectedIconTheme: IconThemeData(color: AppColor.primaryColor),
       selectedItemColor: AppColor.primaryColor,
     ),
-    tabBarTheme: TabBarTheme(
+    tabBarTheme: const TabBarTheme(
         indicatorSize: TabBarIndicatorSize.label,
         labelColor: AppColor.primaryText,
-        labelStyle:
-            TextStyle(fontSize: Adapt.px(36), fontWeight: FontWeight.bold),
+        labelStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         unselectedLabelColor: AppColor.secondaryText,
-        unselectedLabelStyle: TextStyle(fontSize: Adapt.px(26))),
+        unselectedLabelStyle: TextStyle(fontSize: 16)),
   );
 }

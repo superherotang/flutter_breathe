@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hubang/utils/adapt.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import 'components/topping.dart';
@@ -50,16 +50,16 @@ class ChomeController extends GetxController
     ));
     list.addAll(exList);
 
-    listHeight.value += exList.length * Adapt.px(60);
+    listHeight.value += exList.length * 60.w;
 
     if (overList.isNotEmpty) {
-      listHeight.value += Adapt.px(40);
+      listHeight.value += 40.w;
       list.add(
         InkWell(
           onTap: () {
             isOpen.value = !isOpen.value;
             if (isOpen.value == true) {
-              overHeight.value += overList.length * Adapt.px(60);
+              overHeight.value += overList.length * 60.w;
               list.insertAll(3, overList);
             } else {
               overHeight.value = 0.0;
@@ -71,12 +71,12 @@ class ChomeController extends GetxController
               alignment: Alignment.topCenter,
               color: Colors.grey[200],
               width: double.infinity,
-              height: Adapt.px(40),
+              height: 40.w,
               child: Icon(
                 isOpen.value == false
                     ? Icons.arrow_drop_down_rounded
                     : Icons.arrow_drop_up_rounded,
-                size: Adapt.px(40),
+                size: 40.w,
               ),
             ),
           ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hubang/utils/adapt.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'icon.dart';
 
@@ -41,23 +41,20 @@ class BuildNavigation extends StatelessWidget {
                 children: [
                   SvgIconWidget(
                     items[i].icon,
-                    size: Adapt.px(46),
+                    size: 46.w,
                     color: color,
                   ),
                   Positioned(
                     //提示
 
-                    left: 18,
-                    top: -2,
+                    left: 28.w,
+                    top: -4.w,
                     child: items[i].count > 0
                         ? Container(
                             alignment: Alignment.center,
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 3,
-                            ),
-                            height: 16,
-                            constraints: const BoxConstraints(
-                              minWidth: 16,
+                            height: 28.w,
+                            constraints: BoxConstraints(
+                              minWidth: 28.w,
                             ),
                             decoration: BoxDecoration(
                               color: Colors.red,
@@ -67,8 +64,8 @@ class BuildNavigation extends StatelessWidget {
                               items[i].count <= 99
                                   ? items[i].count.toString()
                                   : '99+',
-                              style: const TextStyle(
-                                fontSize: 11,
+                              style: TextStyle(
+                                fontSize: 20.w,
                                 color: Colors.white,
                               ),
                             ),
@@ -77,7 +74,7 @@ class BuildNavigation extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 5),
+              SizedBox(height: 1.w),
               Text(
                 items[i].label,
                 maxLines: 1,
@@ -91,7 +88,7 @@ class BuildNavigation extends StatelessWidget {
     return BottomAppBar(
       color: theme.backgroundColor,
       shape: CustomNotchedShape(context), // 中间凸起的形状
-      notchMargin: 10, //凸的尺寸
+      // notchMargin: 100, //凸的尺寸
       child: SizedBox(
         height: kBottomNavigationBarHeight,
         child: Row(children: ws),

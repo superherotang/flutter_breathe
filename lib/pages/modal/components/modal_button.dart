@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hubang/utils/adapt.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:get/get.dart';
 
 class ModalButton extends GetView {
@@ -11,8 +12,8 @@ class ModalButton extends GetView {
     return Column(
       children: [
         Container(
-            height: Adapt.px(150),
-            width: Adapt.px(150),
+            height: 150.w,
+            width: 150.w,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(80),
               gradient: LinearGradient(
@@ -29,7 +30,7 @@ class ModalButton extends GetView {
         ),
         Text(
           text,
-          style: TextStyle(fontSize: Adapt.px(30)),
+          style: TextStyle(fontSize: 30.w),
         )
       ],
     );

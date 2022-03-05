@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hubang/pages/home/home_controller.dart';
 import 'package:flutter_hubang/routes/app_routes.dart';
-import 'package:flutter_hubang/utils/adapt.dart';
 import 'package:flutter_hubang/utils/location_controller.dart';
 import 'package:flutter_hubang/widgets/clear_input.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
@@ -19,7 +19,7 @@ class HomeTop extends GetView<HomeController> {
         //搜索框
         Expanded(
             child: Padding(
-          padding: EdgeInsets.only(left: Adapt.px(20), right: Adapt.px(10)),
+          padding: EdgeInsets.only(left: 20.w, right: 10.w),
           child: ClearInput(
               readOnly: true,
               onTap: () {
@@ -42,19 +42,18 @@ class HomeTop extends GetView<HomeController> {
       child: Row(
         children: [
           Container(
-            constraints: BoxConstraints(maxWidth: Adapt.px(150)),
+            constraints: BoxConstraints(maxWidth: 150.w),
             child: Obx(
               () => Text(locationController.city.value,
-                  style: TextStyle(
-                      fontSize: Adapt.px(36), fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 36.w, fontWeight: FontWeight.bold),
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1),
             ),
           ),
           SvgPicture.asset(
             'assets/icon/down.svg',
-            width: Adapt.px(32),
-            height: Adapt.px(32),
+            width: 32.w,
+            height: 32.w,
           )
         ],
       ),

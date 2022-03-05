@@ -1,6 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hubang/utils/adapt.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
@@ -22,14 +22,14 @@ class LoginView extends GetView<LoginController> {
               topAndLogoArea(),
               Expanded(
                   child: Container(
-                width: Adapt.width,
+                width: 1.sw,
                 child: Column(
                   children: [
                     topTip(),
-                    SizedBox(height: Adapt.px(10)),
+                    SizedBox(height: 10.w),
                     inputAccTextArea(),
                     loginAgreement(),
-                    SizedBox(height: Adapt.px(10)),
+                    SizedBox(height: 10.w),
                     loginButton(),
                     Expanded(child: Container()), //将第三方置于底部
                     thirdLoginArea()
@@ -66,20 +66,20 @@ class LoginView extends GetView<LoginController> {
 //顶部及其LOGO
   Widget topAndLogoArea() {
     return Container(
-      height: Adapt.px(300),
+      height: 300.w,
       alignment: Alignment.topCenter,
       child: Stack(
         children: [
           Positioned(
-            top: Adapt.px(35),
-            right: Adapt.px(35),
+            top: 35.w,
+            right: 35.w,
             child: InkWell(
               onTap: () {
                 Get.back();
               },
               child: SizedBox(
-                height: Adapt.px(50),
-                width: Adapt.px(50),
+                height: 50.w,
+                width: 50.w,
                 child: SvgPicture.asset(
                   "assets/icon/close.svg",
                   color: Colors.black,
@@ -88,14 +88,14 @@ class LoginView extends GetView<LoginController> {
             ),
           ),
           Container(
-            margin: EdgeInsets.only(top: Adapt.px(100)),
+            margin: EdgeInsets.only(top: 100.w),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  height: Adapt.px(100),
-                  width: Adapt.px(100),
-                  padding: EdgeInsets.only(right: Adapt.px(10)),
+                  height: 100.w,
+                  width: 100.w,
+                  padding: EdgeInsets.only(right: 10.w),
                   child: SvgPicture.asset(
                     "assets/icon/tiger.svg",
                   ),
@@ -103,7 +103,7 @@ class LoginView extends GetView<LoginController> {
                 Text(
                   'hubang'.tr,
                   style: TextStyle(
-                      fontSize: Adapt.px(60),
+                      fontSize: 60.w,
                       color: Colors.black,
                       letterSpacing: 6,
                       fontWeight: FontWeight.w900,
@@ -125,11 +125,11 @@ class LoginView extends GetView<LoginController> {
         Expanded(
             child: Container(
           alignment: Alignment.centerLeft,
-          padding: EdgeInsets.only(left: Adapt.px(60)),
+          padding: EdgeInsets.only(left: 60.w),
           child: Text(
             "登录",
             style: TextStyle(
-                fontSize: Adapt.px(50),
+                fontSize: 50.w,
                 fontWeight: FontWeight.bold,
                 color: Colors.white),
           ),
@@ -138,10 +138,10 @@ class LoginView extends GetView<LoginController> {
             flex: 2,
             child: Container(
               alignment: Alignment.centerRight,
-              padding: EdgeInsets.only(right: Adapt.px(50)),
+              padding: EdgeInsets.only(right: 50.w),
               child: Text(
                 "未注册的手机号将自动注册",
-                style: TextStyle(fontSize: Adapt.px(24), color: Colors.red),
+                style: TextStyle(fontSize: 24.w, color: Colors.red),
               ),
             )),
       ],
@@ -151,7 +151,7 @@ class LoginView extends GetView<LoginController> {
 //账号输入框
   Widget inputAccTextArea() {
     return Container(
-      margin: EdgeInsets.only(left: Adapt.px(40), right: Adapt.px(40)),
+      margin: EdgeInsets.only(left: 40.w, right: 40.w),
       width: double.maxFinite,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -168,20 +168,18 @@ class LoginView extends GetView<LoginController> {
                 InkWell(
                   onTap: () => {},
                   child: Padding(
-                    padding: EdgeInsets.only(
-                        top: Adapt.px(14),
-                        left: Adapt.px(30),
-                        bottom: Adapt.px(14)),
+                    padding:
+                        EdgeInsets.only(top: 14.w, left: 30.w, bottom: 14.w),
                     child: const Text("+86",
                         style: TextStyle(fontWeight: FontWeight.bold)),
                   ),
                 ),
                 //竖线
                 Padding(
-                  padding: EdgeInsets.all(Adapt.px(20)),
+                  padding: EdgeInsets.all(20.w),
                   child: Container(
                     width: 1,
-                    height: Adapt.px(40),
+                    height: 40.w,
                     color: Colors.black,
                   ),
                 ),
@@ -204,7 +202,7 @@ class LoginView extends GetView<LoginController> {
               ],
             ),
           ),
-          SizedBox(height: Adapt.px(20)),
+          SizedBox(height: 20.w),
           Container(
             decoration: BoxDecoration(
                 color: Colors.white,
@@ -215,7 +213,7 @@ class LoginView extends GetView<LoginController> {
                 Expanded(
                   flex: 2,
                   child: Container(
-                    padding: EdgeInsets.only(left: Adapt.px(40)),
+                    padding: EdgeInsets.only(left: 40.w),
                     child: const TextField(
                       keyboardType: TextInputType.text,
                       decoration: InputDecoration(
@@ -230,7 +228,7 @@ class LoginView extends GetView<LoginController> {
                   padding: const EdgeInsets.only(left: 0),
                   child: Container(
                     width: 1,
-                    height: Adapt.px(40),
+                    height: 40.w,
                     color: Colors.black,
                   ),
                 ),
@@ -241,7 +239,7 @@ class LoginView extends GetView<LoginController> {
                       () => Text(controller.countdownText.value,
                           style: TextStyle(
                             fontWeight: FontWeight.w500,
-                            fontSize: Adapt.px(26),
+                            fontSize: 26.w,
                             color: controller.isButtonEnable.value
                                 ? Colors.blue
                                 : Colors.grey,
@@ -260,8 +258,7 @@ class LoginView extends GetView<LoginController> {
   //登录协议
   Widget loginAgreement() {
     return Container(
-      margin: EdgeInsets.only(
-          left: Adapt.px(50), right: Adapt.px(50), top: Adapt.px(15)),
+      margin: EdgeInsets.only(left: 50.w, right: 50.w, top: 15.w),
       child: Row(
         children: [
           Container(
@@ -275,8 +272,8 @@ class LoginView extends GetView<LoginController> {
                   controller.checkOnSelect.value
                       ? "assets/icon/select.svg"
                       : "assets/icon/unselect.svg",
-                  width: Adapt.px(30),
-                  height: Adapt.px(30),
+                  width: 30.w,
+                  height: 30.w,
                 );
               }),
             ),
@@ -300,17 +297,16 @@ class LoginView extends GetView<LoginController> {
   //登录按钮
   Widget loginButton() {
     return Padding(
-      padding: EdgeInsets.only(left: Adapt.px(40), right: Adapt.px(40)),
+      padding: EdgeInsets.only(left: 40.w, right: 40.w),
       child: ElevatedButton(
         onPressed: () {},
         child: Container(
           alignment: Alignment.center,
           width: double.maxFinite,
-          height: Adapt.px(90),
+          height: 90.w,
           child: Text(
             "login in".tr,
-            style:
-                TextStyle(fontSize: Adapt.px(50), fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 50.w, fontWeight: FontWeight.bold),
           ),
         ),
         style: ButtonStyle(
@@ -328,8 +324,7 @@ class LoginView extends GetView<LoginController> {
 //第三方登录区域
   Widget thirdLoginArea() {
     return Container(
-      margin: EdgeInsets.only(
-          left: Adapt.px(40), right: Adapt.px(40), bottom: Adapt.px(40)),
+      margin: EdgeInsets.only(left: 40.w, right: 40.w, bottom: 40.w),
       child: Column(
         children: <Widget>[
           Row(
@@ -337,20 +332,20 @@ class LoginView extends GetView<LoginController> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               Container(
-                width: Adapt.px(120),
+                width: 120.w,
                 height: 1,
                 color: Colors.grey,
               ),
               const Text('第三方登录'),
               Container(
-                width: Adapt.px(120),
+                width: 120.w,
                 height: 1,
                 color: Colors.grey,
               ),
             ],
           ),
           SizedBox(
-            height: Adapt.px(30),
+            height: 30.w,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -364,7 +359,7 @@ class LoginView extends GetView<LoginController> {
                   color: Colors.green[200],
                   // 第三方库icon图标
                   icon: Icon(Icons.accessible),
-                  iconSize: Adapt.px(70),
+                  iconSize: 70.w,
                   onPressed: () {},
                 ),
               ),
@@ -377,7 +372,7 @@ class LoginView extends GetView<LoginController> {
                   color: Colors.green[200],
                   // 第三方库icon图标
                   icon: Icon(Icons.accessible),
-                  iconSize: Adapt.px(70),
+                  iconSize: 70.w,
                   onPressed: () {},
                 ),
               ),
@@ -390,7 +385,7 @@ class LoginView extends GetView<LoginController> {
                   color: Colors.green[200],
                   // 第三方库icon图标
                   icon: Icon(Icons.accessible),
-                  iconSize: Adapt.px(70),
+                  iconSize: 70.w,
                   onPressed: () {},
                 ),
               )

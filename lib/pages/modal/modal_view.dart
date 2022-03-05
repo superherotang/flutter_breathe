@@ -2,7 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hubang/pages/tabs/tabs_controller.dart';
-import 'package:flutter_hubang/utils/adapt.dart';
+import 'package:flutter_hubang/routes/app_routes.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import 'components/modal_button.dart';
@@ -20,19 +21,19 @@ class ModalView extends GetView<ModalController> {
         filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
         child: Container(
           color: Colors.white.withOpacity(0.8),
-          height: Adapt.height,
-          width: Adapt.width,
+          height: 1.sh,
+          width: 1.sw,
           alignment: Alignment.bottomCenter,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Wrap(
-                spacing: Adapt.px(60),
-                runSpacing: Adapt.px(60),
+                spacing: 60.w,
+                runSpacing: 60.w,
                 children: [
                   InkWell(
                       onTap: () {
-                        print("object1");
+                        Get.toNamed(Routes.RELEASE);
                       },
                       child: ModalButton("帖子")),
                   ModalButton("图片"),
@@ -43,7 +44,7 @@ class ModalView extends GetView<ModalController> {
                 ],
               ),
               SizedBox(
-                height: Adapt.px(80),
+                height: 80.w,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -51,8 +52,8 @@ class ModalView extends GetView<ModalController> {
                   InkWell(
                     onTap: () => tabsController.showModelView(),
                     child: Container(
-                      height: Adapt.px(150),
-                      width: Adapt.px(150),
+                      height: 150.w,
+                      width: 150.w,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(50),
                           color: Colors.amber),
@@ -61,7 +62,7 @@ class ModalView extends GetView<ModalController> {
                 ],
               ),
               SizedBox(
-                height: Adapt.px(80),
+                height: 80.w,
               ),
             ],
           ),

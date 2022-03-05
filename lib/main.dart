@@ -7,6 +7,7 @@ import 'common/dependency_injection.dart';
 void main() async {
   SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+
   await DenpendencyInjection.init();
   runApp(createApp());
 }

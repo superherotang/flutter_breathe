@@ -1,8 +1,8 @@
 import 'package:extended_nested_scroll_view/extended_nested_scroll_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hubang/common/color.dart';
-import 'package:flutter_hubang/utils/adapt.dart';
 import 'package:flutter_hubang/widgets/loading_view.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import 'detail_controller.dart';
@@ -16,8 +16,7 @@ class DetailView extends GetView<DetailController> {
     return Scaffold(
       appBar: AppBar(
         title: Chip(
-          labelPadding: EdgeInsets.symmetric(
-              horizontal: Adapt.px(25), vertical: Adapt.px(5)),
+          labelPadding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 5.w),
           label: const Text(
             '名字',
             style: TextStyle(color: Colors.white),
@@ -50,11 +49,11 @@ class DetailView extends GetView<DetailController> {
               Row(
                 children: [
                   SizedBox(
-                    width: Adapt.px(300),
+                    width: 300.w,
                     child: TabBar(
                       controller: controller.tabController,
                       indicator: const BoxDecoration(),
-                      labelStyle: TextStyle(fontSize: Adapt.px(26)),
+                      labelStyle: TextStyle(fontSize: 26.w),
                       labelPadding: EdgeInsets.zero,
                       isScrollable: false,
                       unselectedLabelColor: Colors.grey,
@@ -70,36 +69,33 @@ class DetailView extends GetView<DetailController> {
                         children: [
                           InkWell(
                             child: Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: Adapt.px(20)),
+                              padding: EdgeInsets.symmetric(horizontal: 20.w),
                               child: const Text("热度"),
                             ),
                           ),
                           SizedBox(
                             width: 1,
-                            height: Adapt.px(20),
+                            height: 20.w,
                             child: const DecoratedBox(
                               decoration: BoxDecoration(color: Colors.grey),
                             ),
                           ),
                           InkWell(
                             child: Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: Adapt.px(20)),
+                              padding: EdgeInsets.symmetric(horizontal: 20.w),
                               child: const Text("最新"),
                             ),
                           ),
                           SizedBox(
                             width: 1,
-                            height: Adapt.px(20),
+                            height: 20.w,
                             child: const DecoratedBox(
                               decoration: BoxDecoration(color: Colors.grey),
                             ),
                           ),
                           InkWell(
                             child: Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: Adapt.px(20)),
+                              padding: EdgeInsets.symmetric(horizontal: 20.w),
                               child: const Text("最早"),
                             ),
                           ),
@@ -125,14 +121,14 @@ class DetailView extends GetView<DetailController> {
       decoration: BoxDecoration(color: Colors.white, boxShadow: [
         BoxShadow(
             color: Colors.grey,
-            offset: Offset(0, -Adapt.px(1)), //阴影x轴偏移量
+            offset: Offset(0, -1.w), //阴影x轴偏移量
             blurRadius: 1, //阴影模糊程度
             spreadRadius: 0 //阴影扩散程度
             )
       ]),
       width: double.infinity,
-      height: Adapt.px(100),
-      padding: EdgeInsets.symmetric(horizontal: Adapt.px(20)),
+      height: 100.w,
+      padding: EdgeInsets.symmetric(horizontal: 20.w),
       alignment: Alignment.center,
       child: Row(
         children: [
@@ -146,7 +142,7 @@ class DetailView extends GetView<DetailController> {
             child: Row(
               children: [
                 Padding(
-                  padding: EdgeInsets.only(left: Adapt.px(20)),
+                  padding: EdgeInsets.only(left: 20.w),
                   child: const Text(
                     "我来说点什么",
                     style: TextStyle(fontSize: 16),
@@ -158,17 +154,17 @@ class DetailView extends GetView<DetailController> {
           InkWell(
             onTap: () {},
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: Adapt.px(15)),
+              padding: EdgeInsets.symmetric(horizontal: 15.w),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(
                     Icons.ac_unit,
-                    size: Adapt.px(40),
+                    size: 40.w,
                   ),
                   Text("100",
                       style: TextStyle(
-                        height: Adapt.px(2.5),
+                        height: 2.5.w,
                       ))
                 ],
               ),
@@ -177,17 +173,17 @@ class DetailView extends GetView<DetailController> {
           InkWell(
             onTap: () {},
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: Adapt.px(15)),
+              padding: EdgeInsets.symmetric(horizontal: 15.w),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(
                     Icons.ac_unit,
-                    size: Adapt.px(40),
+                    size: 40.w,
                   ),
                   Text("评论",
                       style: TextStyle(
-                        height: Adapt.px(2.5),
+                        height: 2.5.w,
                       ))
                 ],
               ),
@@ -196,17 +192,17 @@ class DetailView extends GetView<DetailController> {
           InkWell(
             onTap: () {},
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: Adapt.px(15)),
+              padding: EdgeInsets.symmetric(horizontal: 15.w),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(
                     Icons.ac_unit,
-                    size: Adapt.px(40),
+                    size: 40.w,
                   ),
                   Text("收藏",
                       style: TextStyle(
-                        height: Adapt.px(2.5),
+                        height: 2.5.w,
                       ))
                 ],
               ),

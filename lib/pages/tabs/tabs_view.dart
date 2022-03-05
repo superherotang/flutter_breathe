@@ -5,9 +5,9 @@ import 'package:flutter_hubang/pages/home/home_view.dart';
 import 'package:flutter_hubang/pages/modal/modal_view.dart';
 import 'package:flutter_hubang/pages/personal/personal_view.dart';
 import 'package:flutter_hubang/pages/tabs/tabs_controller.dart';
-import 'package:flutter_hubang/utils/adapt.dart';
 import 'package:flutter_hubang/widgets/keep_alive_wrapper.dart';
 import 'package:flutter_hubang/widgets/navigation.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class TabsView extends GetView<TabsController> {
@@ -61,14 +61,14 @@ class TabsView extends GetView<TabsController> {
             ),
           ),
           floatingActionButton: Container(
-            margin: EdgeInsets.only(top: Adapt.px(65)),
+            margin: EdgeInsets.only(top: 70.w),
             child: FloatingActionButton(
               onPressed: () {
                 controller.showModelView();
               },
               child: Icon(
                 Icons.add_circle_rounded,
-                size: Adapt.px(100),
+                size: 100.w,
               ),
             ),
           ), // 浮动按钮

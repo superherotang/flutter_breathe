@@ -4,10 +4,10 @@ import 'package:extended_nested_scroll_view/extended_nested_scroll_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hubang/common/color.dart';
 import 'package:flutter_hubang/model/synopsis/synopsis.dart';
-import 'package:flutter_hubang/utils/adapt.dart';
 import 'package:flutter_hubang/utils/mock.dart';
 import 'package:flutter_hubang/utils/utils.dart';
 import 'package:flutter_hubang/widgets/box_content.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import 'chome_controller.dart';
@@ -18,7 +18,7 @@ class ChomeView extends GetView<ChomeController> {
   @override
   Widget build(BuildContext context) {
     var getId = Get.parameters['id'];
-    final double statusBarHeight = Adapt.topbarH;
+    final double statusBarHeight = ScreenUtil().statusBarHeight;
     final double pinnedHeaderHeight =
         //statusBar height
         statusBarHeight +
@@ -58,11 +58,11 @@ class ChomeView extends GetView<ChomeController> {
               Container(
                 width: double.infinity,
                 color: Color(0xBB87CEFA),
-                height: Adapt.px(60),
+                height: 60.w,
                 alignment: Alignment.center,
                 child: Text(
                   "为您推荐30条内容",
-                  style: TextStyle(color: Colors.white, fontSize: Adapt.px(28)),
+                  style: TextStyle(color: Colors.white, fontSize: 28.w),
                 ),
               )
             ],
@@ -81,8 +81,8 @@ class ChomeView extends GetView<ChomeController> {
           IconButton(onPressed: () {}, icon: Icon(Icons.ac_unit)),
           IconButton(onPressed: () {}, icon: Icon(Icons.ac_unit))
         ],
-        expandedHeight: Adapt.px(370) -
-            Adapt.topbarH +
+        expandedHeight: 370.w -
+            ScreenUtil().statusBarHeight +
             controller.listHeight.value +
             controller.overHeight.value,
         flexibleSpace: FlexibleSpaceBar(
@@ -91,7 +91,7 @@ class ChomeView extends GetView<ChomeController> {
             children: [
               Container(
                 width: double.infinity,
-                height: Adapt.px(400),
+                height: 400.w,
                 color: AppColor.primaryColor,
               ),
               topContent(),
@@ -105,14 +105,14 @@ class ChomeView extends GetView<ChomeController> {
 
   Widget extendList() {
     return Container(
-      margin: EdgeInsets.only(top: Adapt.px(350)),
+      margin: EdgeInsets.only(top: 350.w),
       decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.vertical(top: Radius.circular(15)),
       ),
       width: double.infinity,
       child: Padding(
-        padding: EdgeInsets.only(top: Adapt.px(15)),
+        padding: EdgeInsets.only(top: 15.w),
         child: Column(children: controller.list),
       ),
     );
@@ -120,17 +120,17 @@ class ChomeView extends GetView<ChomeController> {
 
   Widget topContent() {
     return Container(
-      margin: EdgeInsets.only(top: Adapt.topbarH + kToolbarHeight),
+      margin:
+          EdgeInsets.only(top: ScreenUtil().statusBarHeight + kToolbarHeight),
       width: double.infinity,
-      height: Adapt.px(350) - Adapt.topbarH - kToolbarHeight,
+      height: 350.w - ScreenUtil().statusBarHeight - kToolbarHeight,
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: Adapt.px(20)),
+        padding: EdgeInsets.symmetric(horizontal: 20.w),
         child: Row(children: [
           SizedBox(
             height:
-                Adapt.px(350) - Adapt.topbarH - kToolbarHeight - Adapt.px(50),
-            width:
-                Adapt.px(350) - Adapt.topbarH - kToolbarHeight - Adapt.px(50),
+                350.w - ScreenUtil().statusBarHeight - kToolbarHeight - 50.w,
+            width: 350.w - ScreenUtil().statusBarHeight - kToolbarHeight - 50.w,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: Image.asset(
@@ -142,7 +142,7 @@ class ChomeView extends GetView<ChomeController> {
           Expanded(
             child: Padding(
               //中间间隔
-              padding: EdgeInsets.symmetric(horizontal: Adapt.px(20)),
+              padding: EdgeInsets.symmetric(horizontal: 20.w),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -152,7 +152,7 @@ class ChomeView extends GetView<ChomeController> {
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
-                        fontSize: Adapt.px(38),
+                        fontSize: 38.w,
                         overflow: TextOverflow.ellipsis),
                   ),
                   Text.rich(TextSpan(
@@ -167,18 +167,18 @@ class ChomeView extends GetView<ChomeController> {
                   Row(
                     children: [
                       SizedBox(
-                        height: Adapt.px(40),
-                        width: Adapt.px(40),
+                        height: 40.w,
+                        width: 40.w,
                         child: const CircleAvatar(
                           backgroundImage: NetworkImage(
                               'https://goss.cfp.cn/creative/vcg/800/new/VCG211165042753.jpg'),
                         ),
                       ),
                       SizedBox(
-                        width: Adapt.px(10),
+                        width: 10.w,
                       ),
                       Container(
-                        constraints: BoxConstraints(maxWidth: Adapt.px(200)),
+                        constraints: BoxConstraints(maxWidth: 200.w),
                         child: const Text(
                           "ALEC TANG",
                           style: TextStyle(
@@ -187,19 +187,17 @@ class ChomeView extends GetView<ChomeController> {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(left: Adapt.px(5)),
+                        padding: EdgeInsets.only(left: 5.w),
                         child: Container(
-                          decoration: BoxDecoration(
-                              color: const Color(0x33FFFFFF),
-                              borderRadius:
-                                  BorderRadius.circular(Adapt.px(10))),
-                          alignment: Alignment.center,
-                          height: Adapt.px(40),
-                          width: Adapt.px(60),
-                          child: Text("社管",
-                              style: TextStyle(
-                                  color: Colors.white, fontSize: Adapt.px(20))),
-                        ),
+                            decoration: BoxDecoration(
+                                color: const Color(0x33FFFFFF),
+                                borderRadius: BorderRadius.circular(10.w)),
+                            alignment: Alignment.center,
+                            height: 40.w,
+                            width: 60.w,
+                            child: Text("社管",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 20.w))),
                       )
                     ],
                   )
@@ -210,15 +208,14 @@ class ChomeView extends GetView<ChomeController> {
           InkWell(
             onTap: () {},
             child: Container(
-              padding: EdgeInsets.symmetric(
-                  horizontal: Adapt.px(40), vertical: Adapt.px(14)),
+              padding: EdgeInsets.symmetric(horizontal: 40.w, vertical: 14.w),
               decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular((Adapt.px(60)))),
+                  borderRadius: BorderRadius.circular((60.w))),
               child: Text('入驻',
                   style: TextStyle(
                       color: Colors.black,
-                      fontSize: Adapt.px(26),
+                      fontSize: 26.w,
                       fontWeight: FontWeight.bold)),
             ),
           )

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hubang/utils/adapt.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class ClearInput extends GetView<ClearInputController> {
@@ -17,55 +17,54 @@ class ClearInput extends GetView<ClearInputController> {
     }
     return InkWell(
       onTap: onTap,
-      child: Expanded(
-        child: Container(
-          //背景与圆角
-          decoration: BoxDecoration(
-            //border: Border.all(color: Colors.black12, width: 1.0), //边框
-            color: Colors.black12,
-            borderRadius: BorderRadius.all(Radius.circular(Adapt.px(60))),
-          ),
-          height: Adapt.px(60),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(
-                padding: EdgeInsets.only(left: Adapt.px(20), top: Adapt.px(8)),
-                child: Icon(
-                  Icons.search_outlined,
-                  size: Adapt.px(40),
+      child: Container(
+        //背景与圆角
+        decoration: BoxDecoration(
+          //border: Border.all(color: Colors.black12, width: 1.0), //边框
+          color: Colors.black12,
+          borderRadius: BorderRadius.all(Radius.circular(60.w)),
+        ),
+        height: 60.w,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(left: 20.w, top: 8.w),
+              child: Icon(
+                Icons.search_outlined,
+                size: 40.w,
+              ),
+            ),
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.only(left: 10.w),
+                child: TextField(
+                  onTap: onTap,
+                  readOnly: readOnly,
+                  style: TextStyle(fontSize: 34.w),
+                  controller: controller.textEditingController,
+                  decoration: const InputDecoration(
+                      isCollapsed: true,
+                      hintText: '搜索',
+                      border: InputBorder.none,
+                      contentPadding: EdgeInsets.all(0)),
                 ),
               ),
-              Expanded(
-                child: Padding(
-                  padding: EdgeInsets.only(left: Adapt.px(20)),
-                  child: TextField(
-                    onTap: onTap,
-                    readOnly: readOnly,
-                    style: TextStyle(fontSize: Adapt.px(34)),
-                    controller: controller.textEditingController,
-                    decoration: InputDecoration(
-                        contentPadding: EdgeInsets.only(bottom: Adapt.px(14)),
-                        hintText: '搜索',
-                        border: InputBorder.none),
-                  ),
-                ),
-              ),
-              Obx(() => controller.isDel.value
-                  ? Padding(
-                      padding: EdgeInsets.only(right: Adapt.px(20)),
-                      child: InkWell(
-                        onTap: () => controller.textEditingController.clear(),
-                        child: Icon(
-                          Icons.cancel,
-                          color: Colors.grey,
-                          size: Adapt.px(40),
-                        ),
+            ),
+            Obx(() => controller.isDel.value
+                ? Padding(
+                    padding: EdgeInsets.only(right: 20.w),
+                    child: InkWell(
+                      onTap: () => controller.textEditingController.clear(),
+                      child: Icon(
+                        Icons.cancel,
+                        color: Colors.grey,
+                        size: 40.w,
                       ),
-                    )
-                  : Container())
-            ],
-          ),
+                    ),
+                  )
+                : Container())
+          ],
         ),
       ),
     );
@@ -75,7 +74,7 @@ class ClearInput extends GetView<ClearInputController> {
 // IconButton(
 //                       icon: const Icon(Icons.cancel),
 //                       color: Colors.grey,
-//                       iconSize: Adapt.px(40),
+//                       iconSize: 40.w,
 //                       onPressed: () => controller.textEditingController.clear(),
 //                     )
 

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hubang/common/color.dart';
-import 'package:flutter_hubang/utils/adapt.dart';
+
 import 'package:flutter_hubang/utils/location_controller.dart';
 import 'package:flutter_hubang/widgets/clear_input.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import 'community_controller.dart';
@@ -28,34 +29,33 @@ class CommunityView extends GetView<CommunityController> {
               color: Colors.white,
               alignment: Alignment.center,
               width: double.infinity,
-              height: Adapt.px(70),
+              height: 70.w,
               child: Padding(
-                padding: EdgeInsets.only(left: Adapt.px(20)),
+                padding: EdgeInsets.only(left: 20.w),
                 child: Row(children: [
                   Text("当前位置:",
-                      style: TextStyle(
-                          fontSize: Adapt.px(34), color: Colors.grey)),
+                      style: TextStyle(fontSize: 34.w, color: Colors.grey)),
                   SizedBox(
-                    width: Adapt.px(5),
+                    width: 5.w,
                   ),
                   InkWell(
                     child: Obx(
                       () => Text(
                         locationController.city.value,
                         style: TextStyle(
-                            fontSize: Adapt.px(34),
+                            fontSize: 34.w,
                             color: AppColor.primaryText,
                             fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),
                   SizedBox(
-                    width: Adapt.px(15),
+                    width: 15.w,
                   ),
                   InkWell(
                     child: Icon(
                       Icons.ac_unit,
-                      size: Adapt.px(40),
+                      size: 40.w,
                     ),
                   )
                 ]),

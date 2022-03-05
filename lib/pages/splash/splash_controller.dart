@@ -4,7 +4,7 @@ import 'package:flutter_hubang/routes/app_routes.dart';
 import 'package:get/get.dart';
 
 class SplashController extends GetxController {
-  var count = 1.obs;
+  var count = 5.obs;
   late Timer _Timer;
 
   @override

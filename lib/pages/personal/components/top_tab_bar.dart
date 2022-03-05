@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hubang/pages/personal/personal_controller.dart';
-import 'package:flutter_hubang/utils/adapt.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class TopTabBar extends GetView<PersonalController> {
@@ -17,7 +17,7 @@ class TopTabBar extends GetView<PersonalController> {
           Text("动态91"),
           Text("喜欢11"),
         ],
-        labelStyle: TextStyle(fontSize: Adapt.px(40)),
+        labelStyle: TextStyle(fontSize: 40.w),
       ),
     );
   }

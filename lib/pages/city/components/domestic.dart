@@ -7,8 +7,8 @@ import 'package:flutter_hubang/data/db/locations/locations_dao.dart';
 import 'package:flutter_hubang/model/city/area.dart';
 import 'package:flutter_hubang/model/city/city_pinying.dart';
 import 'package:drift/drift.dart' as D;
-import 'package:flutter_hubang/utils/adapt.dart';
 import 'package:flutter_hubang/utils/location_controller.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lpinyin/lpinyin.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
@@ -47,11 +47,10 @@ class Domestic extends GetView<DomesticController> {
                         ? Container()
                         : Padding(
                             padding: EdgeInsets.symmetric(
-                                horizontal: Adapt.px(20),
-                                vertical: Adapt.px(15)),
+                                horizontal: 20.w, vertical: 15.w),
                             child: Text(
                               key,
-                              style: TextStyle(fontSize: Adapt.px(30)),
+                              style: TextStyle(fontSize: 30.w),
                             ),
                           ),
                     ListView.builder(
@@ -73,10 +72,10 @@ class Domestic extends GetView<DomesticController> {
         //右边Nav
         Obx(
           () => Positioned(
-              top: Adapt.px(130),
-              bottom: Adapt.px(100),
+              top: 130.w,
+              bottom: 100.w,
               right: 0,
-              width: Adapt.px(60),
+              width: 60.w,
               child: Container(
                 color: controller.navBackground.value,
                 child: LayoutBuilder(builder: (context, constraints) {
@@ -122,16 +121,16 @@ class Domestic extends GetView<DomesticController> {
             offstage: controller.isHideLetter.value,
             child: Center(
               child: Container(
-                width: Adapt.width / 3,
-                height: Adapt.width / 3,
+                width: 1.sw / 3,
+                height: 1.sw / 3,
                 decoration: BoxDecoration(
                   color: Colors.black26,
-                  borderRadius: BorderRadius.all(Radius.circular(Adapt.px(20))),
+                  borderRadius: BorderRadius.all(Radius.circular(20.w)),
                 ),
                 child: Center(
                   child: Text(
                     controller.currentLetter.value,
-                    style: TextStyle(fontSize: Adapt.px(50)),
+                    style: TextStyle(fontSize: 50.w),
                   ),
                 ),
               ),
@@ -171,17 +170,16 @@ class Domestic extends GetView<DomesticController> {
       onTap: () => controller.onChangerCity(Location(city: citys.label)),
       child: Container(
         color: Colors.white,
-        padding: EdgeInsets.symmetric(horizontal: Adapt.px(20)),
+        padding: EdgeInsets.symmetric(horizontal: 20.w),
         child: Container(
           decoration: const BoxDecoration(
               border: Border(
                   bottom: BorderSide(width: 1, color: Color(0xffe5e5e5)))),
           child: Container(
-            padding: EdgeInsets.symmetric(vertical: Adapt.px(20)),
+            padding: EdgeInsets.symmetric(vertical: 20.w),
             child: Text(
               citys.label,
-              style: TextStyle(
-                  fontSize: Adapt.px(36), fontWeight: FontWeight.w500),
+              style: TextStyle(fontSize: 36.w, fontWeight: FontWeight.w500),
             ),
           ),
         ),
@@ -200,8 +198,8 @@ class Domestic extends GetView<DomesticController> {
               print(controller.selectCity.value);
               return Row(children: [
                 Text.rich(TextSpan(
-                    style: TextStyle(
-                        fontSize: Adapt.px(36), fontWeight: FontWeight.bold),
+                    style:
+                        TextStyle(fontSize: 36.w, fontWeight: FontWeight.bold),
                     children: [
                       const TextSpan(text: "您正在看:"),
                       TextSpan(text: controller.selectCity.value)
@@ -211,15 +209,13 @@ class Domestic extends GetView<DomesticController> {
                   alignment: Alignment.centerRight,
                   child: Text(
                     controller.locationList[0].area == null ? "选择区县" : "切换区县",
-                    style:
-                        TextStyle(fontSize: Adapt.px(26), color: Colors.grey),
+                    style: TextStyle(fontSize: 26.w, color: Colors.grey),
                   ),
                 ))
               ]);
             },
             body: Padding(
-              padding:
-                  EdgeInsets.only(right: Adapt.px(50), bottom: Adapt.px(20)),
+              padding: EdgeInsets.only(right: 50.w, bottom: 20.w),
               child: Wrap(
                 spacing: 12,
                 runSpacing: 13,
@@ -244,7 +240,7 @@ class Domestic extends GetView<DomesticController> {
   //定位
   Widget location() {
     return Container(
-      padding: EdgeInsets.all(Adapt.px(20)),
+      padding: EdgeInsets.all(20.w),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -252,7 +248,7 @@ class Domestic extends GetView<DomesticController> {
             "当前定位:",
             style: TextStyle(
                 color: Colors.grey,
-                fontSize: Adapt.px(38),
+                fontSize: 38.w,
                 fontWeight: FontWeight.w500),
           ),
           Wrap(
@@ -266,7 +262,7 @@ class Domestic extends GetView<DomesticController> {
                       "定位失败,点击重试",
                       style: TextStyle(
                           color: Colors.blue,
-                          fontSize: Adapt.px(34),
+                          fontSize: 34.w,
                           fontWeight: FontWeight.w500),
                     ),
                     const Icon(
@@ -286,7 +282,7 @@ class Domestic extends GetView<DomesticController> {
             "热门城市:",
             style: TextStyle(
                 color: Colors.grey,
-                fontSize: Adapt.px(38),
+                fontSize: 38.w,
                 fontWeight: FontWeight.w500),
           ),
           Wrap(
@@ -315,7 +311,7 @@ List<Widget> currentDistrict(Location location, List<CityPinying> allCity) {
             item,
             style: TextStyle(
                 color: Colors.blue,
-                fontSize: Adapt.px(36),
+                fontSize: 36.w,
                 fontWeight: FontWeight.w500,
                 overflow: TextOverflow.ellipsis),
           )))
@@ -338,15 +334,14 @@ class ButtonItem extends StatelessWidget {
     var controller = Get.find<DomesticController>();
     return ElevatedButton(
       child: Padding(
-        padding: EdgeInsets.symmetric(
-            horizontal: Adapt.px(20), vertical: Adapt.px(10)),
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10.w),
         child: text,
       ),
       onPressed: () => controller.onChangerCity(location),
       style: ButtonStyle(
         backgroundColor:
             MaterialStateProperty.all<Color>(const Color(0xFFFFFFFF)),
-        elevation: MaterialStateProperty.all<double>(Adapt.px(3)),
+        elevation: MaterialStateProperty.all<double>(3.w),
       ),
     );
   }
@@ -360,7 +355,7 @@ List<Widget> generateList() {
             item,
             style: TextStyle(
                 color: Colors.blue,
-                fontSize: Adapt.px(36),
+                fontSize: 36.w,
                 fontWeight: FontWeight.w500),
           )))
       .toList();

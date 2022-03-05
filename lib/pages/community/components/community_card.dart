@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hubang/common/color.dart';
 import 'package:flutter_hubang/routes/app_routes.dart';
-import 'package:flutter_hubang/utils/adapt.dart';
+
 import 'package:flutter_hubang/utils/utils.dart';
 import 'package:flutter_hubang/widgets/more_text.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class CommunityCard extends GetView {
@@ -12,12 +13,11 @@ class CommunityCard extends GetView {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(
-          horizontal: Adapt.px(30), vertical: Adapt.px(20)),
+      padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 20.w),
       child: Container(
         decoration: BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.all(Radius.circular(Adapt.px(20))),
+            borderRadius: BorderRadius.all(Radius.circular(20.w)),
             boxShadow: const [
               BoxShadow(
                   color: Color.fromARGB(255, 223, 241, 243),
@@ -35,10 +35,10 @@ class CommunityCard extends GetView {
                 children: [
                   //左边图片
                   Padding(
-                    padding: EdgeInsets.all(Adapt.px(30)),
+                    padding: EdgeInsets.all(30.w),
                     child: SizedBox(
-                      height: Adapt.px(250),
-                      width: Adapt.px(250),
+                      height: 250.w,
+                      width: 250.w,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(20),
                         child: Image.network(
@@ -51,7 +51,7 @@ class CommunityCard extends GetView {
                   //右边内容
                   Expanded(
                     child: Padding(
-                      padding: EdgeInsets.symmetric(vertical: Adapt.px(30)),
+                      padding: EdgeInsets.symmetric(vertical: 30.w),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -60,11 +60,10 @@ class CommunityCard extends GetView {
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
                             style: TextStyle(
-                                fontSize: Adapt.px(40),
-                                fontWeight: FontWeight.bold),
+                                fontSize: 40.w, fontWeight: FontWeight.bold),
                           ),
                           SizedBox(
-                            height: Adapt.px(10),
+                            height: 10.w,
                           ),
                           const MoreText(
                             "人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常",
@@ -73,27 +72,25 @@ class CommunityCard extends GetView {
                             route: Routes.CHOME,
                           ),
                           SizedBox(
-                            height: Adapt.px(10),
+                            height: 10.w,
                           ),
                           Text.rich(
                               TextSpan(children: [
                                 const TextSpan(text: "云南"),
                                 TextSpan(
                                     text: "•",
-                                    style:
-                                        TextStyle(letterSpacing: Adapt.px(15))),
+                                    style: TextStyle(letterSpacing: 15.w)),
                                 const TextSpan(text: "曲靖"),
                                 TextSpan(
                                     text: "•",
-                                    style:
-                                        TextStyle(letterSpacing: Adapt.px(15))),
+                                    style: TextStyle(letterSpacing: 15.w)),
                                 const TextSpan(text: "麒麟区"),
                               ]),
                               style: const TextStyle(
                                   color: Colors.orange,
                                   fontWeight: FontWeight.bold)),
                           SizedBox(
-                            height: Adapt.px(5),
+                            height: 5.w,
                           ),
                           Text.rich(TextSpan(children: [
                             const TextSpan(text: "入驻人数"),
@@ -111,21 +108,18 @@ class CommunityCard extends GetView {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(
-                  bottom: Adapt.px(30),
-                  left: Adapt.px(30),
-                  right: Adapt.px(30)),
+              padding: EdgeInsets.only(bottom: 30.w, left: 30.w, right: 30.w),
               child: ElevatedButton(
                 onPressed: () {},
                 child: Container(
                   alignment: Alignment.center,
                   width: double.maxFinite,
-                  height: Adapt.px(60),
+                  height: 60.w,
                   child: Text(
                     "加入社区",
                     style: TextStyle(
-                        letterSpacing: Adapt.px(25),
-                        fontSize: Adapt.px(30),
+                        letterSpacing: 25.w,
+                        fontSize: 30.w,
                         fontWeight: FontWeight.bold),
                   ),
                 ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hubang/model/tag_model.dart';
-import 'package:flutter_hubang/utils/adapt.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Tag extends StatelessWidget {
   const Tag({
@@ -18,11 +18,10 @@ class Tag extends StatelessWidget {
           shape: BoxShape.rectangle,
           borderRadius: const BorderRadius.all(Radius.circular(20)),
           color: judgeColor(tagType)),
-      padding:
-          EdgeInsets.symmetric(horizontal: Adapt.px(20), vertical: Adapt.px(5)),
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 5.w),
       child: Text(
         judgeText(tagType, count),
-        style: TextStyle(color: Colors.white, fontSize: Adapt.px(24)),
+        style: TextStyle(color: Colors.white, fontSize: 24.w),
       ),
     );
   }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hubang/utils/adapt.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class PersonalController extends GetxController
@@ -29,7 +29,7 @@ class PersonalController extends GetxController
     animation = Tween(begin: 0.0, end: 0.0).animate(animationController);
 
     scrollController.addListener(() =>
-        sliverAppBarHeight - Adapt.topbarH <= kToolbarHeight
+        sliverAppBarHeight - ScreenUtil().statusBarHeight <= kToolbarHeight
             ? isPicFold.value = true
             : isPicFold.value = false);
   }
@@ -45,7 +45,7 @@ class PersonalController extends GetxController
   updatePicHeight(change) {
     if (picHeight.value < 0) picHeight.value = 0; //重置
     //只允许拉半屏
-    if (picHeight.value + Adapt.px(350) > Adapt.height / 2) {
+    if (picHeight.value + 350 > 1.sh / 2) {
       return;
     }
     //只有在顶端才可以拉升

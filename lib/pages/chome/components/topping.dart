@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hubang/common/color.dart';
-import 'package:flutter_hubang/utils/adapt.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class Topping extends GetView {
@@ -12,33 +12,33 @@ class Topping extends GetView {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: Adapt.px(60),
+      height: 60.w,
       alignment: Alignment.center,
-      padding: EdgeInsets.symmetric(horizontal: Adapt.px(20)),
+      padding: EdgeInsets.symmetric(horizontal: 20.w),
       child: Row(
         children: [
           Container(
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(Adapt.px(5)),
+                borderRadius: BorderRadius.circular(5.w),
                 color: AppColor.primaryColor),
             child: Padding(
-              padding: EdgeInsets.all(Adapt.px(5)),
+              padding: EdgeInsets.all(5.w),
               child: Text(
                 textType,
-                style: TextStyle(color: Colors.white, fontSize: Adapt.px(22)),
+                style: TextStyle(color: Colors.white, fontSize: 22.w),
               ),
             ),
           ),
           SizedBox(
-            width: Adapt.px(10),
+            width: 10.w,
           ),
           Expanded(
             child: Padding(
-              padding: EdgeInsets.only(right: Adapt.px(40)),
+              padding: EdgeInsets.only(right: 40.w),
               child: Text(
                 text,
-                style: TextStyle(
-                    overflow: TextOverflow.ellipsis, fontSize: Adapt.px(30)),
+                style:
+                    TextStyle(overflow: TextOverflow.ellipsis, fontSize: 30.w),
               ),
             ),
           )

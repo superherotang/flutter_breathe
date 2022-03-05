@@ -3,9 +3,9 @@ import 'package:flutter_hubang/model/tag_model.dart';
 import 'package:flutter_hubang/routes/app_routes.dart';
 import 'package:flutter_hubang/utils/utils.dart';
 import 'package:flutter_hubang/widgets/tag.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../utils/adapt.dart';
 import 'like_button.dart';
 
 class ShowBox extends GetView {
@@ -32,33 +32,33 @@ class ShowBox extends GetView {
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         //上
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: Adapt.px(30)),
+          padding: EdgeInsets.symmetric(horizontal: 30.w),
           child: Row(
             children: [
               CircleAvatar(
                   backgroundImage: const NetworkImage(
                       "https://goss.cfp.cn/creative/vcg/800/new/VCG211165042753.jpg"),
-                  radius: Adapt.px(40)),
+                  radius: 40.w),
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.only(left: Adapt.px(10)),
+                  padding: EdgeInsets.only(left: 10.w),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         "ALEC TANG",
                         style: TextStyle(
-                            fontSize: Adapt.px(30),
+                            fontSize: 30.w,
                             fontWeight: FontWeight.w500,
-                            wordSpacing: Adapt.px(2),
-                            letterSpacing: Adapt.px(1)),
+                            wordSpacing: 2.w,
+                            letterSpacing: 1.w),
                       ),
                       Text("data",
                           style: TextStyle(
                               color: Colors.grey,
-                              fontSize: Adapt.px(26),
-                              wordSpacing: Adapt.px(2),
-                              letterSpacing: Adapt.px(1)))
+                              fontSize: 26.w,
+                              wordSpacing: 2.w,
+                              letterSpacing: 1.w))
                     ],
                   ),
                 ),
@@ -70,7 +70,7 @@ class ShowBox extends GetView {
         GestureDetector(
           onTap: () => Get.toNamed(Routes.DETAIL + id.toString()),
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: Adapt.px(30)),
+            padding: EdgeInsets.symmetric(horizontal: 30.w),
             child: child,
           ),
         ),
@@ -79,10 +79,10 @@ class ShowBox extends GetView {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              height: Adapt.px(5),
+              height: 5.w,
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: Adapt.px(30)),
+              padding: EdgeInsets.symmetric(horizontal: 30.w),
               child: Wrap(
                   spacing: 8.0, runSpacing: 20.0, children: tagListWidget()),
             ),

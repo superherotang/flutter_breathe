@@ -18,6 +18,8 @@ import 'package:flutter_hubang/pages/message/components/message_search/message_s
 import 'package:flutter_hubang/pages/message/message_binding.dart';
 import 'package:flutter_hubang/pages/personal/personal_binding.dart';
 import 'package:flutter_hubang/pages/personal/personal_view.dart';
+import 'package:flutter_hubang/pages/release/release_binding.dart';
+import 'package:flutter_hubang/pages/release/release_view.dart';
 import 'package:flutter_hubang/pages/splash/splash_binding.dart';
 import 'package:flutter_hubang/pages/splash/splash_view.dart';
 import 'package:flutter_hubang/pages/tabs/tabs_binding.dart';
@@ -70,6 +72,10 @@ abstract class AppPages {
         name: Routes.CHOMEID,
         page: () => const ChomeView(),
         binding: ChomeBinding()),
+    GetPage(
+        name: Routes.RELEASE,
+        page: () => const ReleaseView(),
+        binding: ReleaseBinding()),
   ];
 }
 
@@ -89,4 +95,5 @@ abstract class Routes {
   static const SERACH = "/serach";
   static const CHOME = "/chome/";
   static const CHOMEID = "/chome/:id";
+  static const RELEASE = "/release";
 }

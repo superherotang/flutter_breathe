@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hubang/pages/message/components/message_search/message_search_controller.dart';
-import 'package:flutter_hubang/utils/adapt.dart';
 import 'package:flutter_hubang/widgets/clear_input.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class MessageSearchView extends GetView<MessageSearchController> {
@@ -13,9 +13,9 @@ class MessageSearchView extends GetView<MessageSearchController> {
     return Scaffold(
       body: SafeArea(
           child: Container(
-        margin: EdgeInsets.only(top: Adapt.px(20)),
+        margin: EdgeInsets.only(top: 20.w),
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: Adapt.px(30)),
+          padding: EdgeInsets.symmetric(horizontal: 30.w),
           child: Column(
             children: [searchInput(), history()],
           ),
@@ -34,10 +34,10 @@ class MessageSearchView extends GetView<MessageSearchController> {
             Get.back();
           },
           child: Padding(
-            padding: EdgeInsets.only(left: Adapt.px(30)),
+            padding: EdgeInsets.only(left: 30.w),
             child: Text(
               "取消",
-              style: TextStyle(fontSize: Adapt.px(32)),
+              style: TextStyle(fontSize: 32.w),
             ),
           ),
         )
@@ -49,14 +49,14 @@ class MessageSearchView extends GetView<MessageSearchController> {
     return Card(
       elevation: 0,
       child: SizedBox(
-        height: Adapt.px(250),
+        height: 250.w,
         child: Column(
           children: [
             Row(
               children: [
                 Text(
                   "搜索历史",
-                  style: TextStyle(fontSize: Adapt.px(30)),
+                  style: TextStyle(fontSize: 30.w),
                 ),
                 Expanded(
                     child: Container(
@@ -80,7 +80,7 @@ class MessageSearchView extends GetView<MessageSearchController> {
 
   Widget storyCard() {
     return SizedBox(
-      width: Adapt.px(160),
+      width: 160.w,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -90,9 +90,9 @@ class MessageSearchView extends GetView<MessageSearchController> {
             CircleAvatar(
                 backgroundImage: const NetworkImage(
                     "https://goss.cfp.cn/creative/vcg/800/new/VCG211165042753.jpg"),
-                radius: Adapt.px(60)),
+                radius: 60.w),
             Padding(
-              padding: EdgeInsets.only(top: Adapt.px(15)),
+              padding: EdgeInsets.only(top: 15.w),
               child: const Text(
                 "阿松大阿松大",
                 overflow: TextOverflow.ellipsis,

@@ -55,10 +55,8 @@ dependencies:
   sqlite3_flutter_libs: ^0.5.0
   path_provider: ^2.0.0
   path: ^1.8.0
-  #滑动
-  custom_nested_scroll_view:
-    git:
-      url: https://github.com/idootop/custom_nested_scroll_view.git
+  #适配
+  flutter_screenutil: ^5.3.1
 
 dev_dependencies:
   flutter_test:

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hubang/pages/personal/personal_controller.dart';
-import 'package:flutter_hubang/utils/adapt.dart';
 import 'package:flutter_hubang/widgets/more_text.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class AccInfoSet extends GetView<PersonalController> {
@@ -11,21 +11,20 @@ class AccInfoSet extends GetView<PersonalController> {
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: SizedBox(
-        width: Adapt.width,
+        width: 1.sw,
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: Adapt.px(30)),
+          padding: EdgeInsets.symmetric(horizontal: 30.w),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 "ALECTANG",
-                style: TextStyle(
-                    fontSize: Adapt.px(50), fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 50.w, fontWeight: FontWeight.bold),
               ),
-              SizedBox(height: Adapt.px(10)),
+              SizedBox(height: 10.w),
               const Text("ID:1111111111"),
-              SizedBox(height: Adapt.px(10)),
+              SizedBox(height: 10.w),
               const Divider(
                 height: 1.0,
                 color: Colors.grey,
@@ -34,7 +33,7 @@ class AccInfoSet extends GetView<PersonalController> {
                 // endIndent: 15.0,
               ),
               Wrap(
-                spacing: Adapt.px(15),
+                spacing: 15.w,
                 children: [
                   Chip(
                     label: Text("标签"),
@@ -60,20 +59,20 @@ class AccInfoSet extends GetView<PersonalController> {
                       children: [
                         const Icon(Icons.ice_skating),
                         SizedBox(
-                          width: Adapt.px(10),
+                          width: 10.w,
                         ),
                         const Text("编辑资料")
                       ],
                     ),
                   ),
-                  SizedBox(width: Adapt.px(20)),
+                  SizedBox(width: 20.w),
                   ElevatedButton(
                     onPressed: () {},
                     child: Row(
                       children: [
                         const Icon(Icons.ice_skating),
                         SizedBox(
-                          width: Adapt.px(20),
+                          width: 20.w,
                         ),
                         const Text("设置")
                       ],

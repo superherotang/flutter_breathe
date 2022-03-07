@@ -1,4 +1,4 @@
-import 'package:flutter_hubang/pages/city/components/domestic.dart';
+import 'package:flutter_breathe/pages/city/components/domestic.dart';
 import 'package:get/get.dart';
 
 import 'city_controller.dart';

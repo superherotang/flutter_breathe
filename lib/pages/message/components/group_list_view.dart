@@ -1,9 +1,9 @@
 import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:flutter_hubang/model/message_list_data.dart';
-import 'package:flutter_hubang/pages/message/message_controller.dart';
-import 'package:flutter_hubang/widgets/loading_view.dart';
+import 'package:flutter_breathe/model/message_list_data.dart';
+import 'package:flutter_breathe/pages/message/message_controller.dart';
+import 'package:flutter_breathe/widgets/loading_view.dart';
 import 'package:get/get.dart';
 
 import 'message_item.dart';

@@ -1,4 +1,4 @@
-import 'package:flutter_hubang/data/providers/location_dao_service.dart';
+import 'package:flutter_breathe/data/providers/location_dao_service.dart';
 import 'package:get/get.dart';
 
 class DenpendencyInjection {

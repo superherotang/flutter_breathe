@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hubang/common/color.dart';
-import 'package:flutter_hubang/routes/app_routes.dart';
+import 'package:flutter_breathe/common/color.dart';
+import 'package:flutter_breathe/routes/app_routes.dart';
 
-import 'package:flutter_hubang/utils/utils.dart';
-import 'package:flutter_hubang/widgets/more_text.dart';
+import 'package:flutter_breathe/utils/utils.dart';
+import 'package:flutter_breathe/widgets/more_text.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 

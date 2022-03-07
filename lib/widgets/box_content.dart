@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hubang/model/synopsis/synopsis.dart';
-import 'package:flutter_hubang/model/tag_model.dart';
-import 'package:flutter_hubang/routes/app_routes.dart';
+import 'package:flutter_breathe/model/synopsis/synopsis.dart';
+import 'package:flutter_breathe/model/tag_model.dart';
+import 'package:flutter_breathe/routes/app_routes.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 

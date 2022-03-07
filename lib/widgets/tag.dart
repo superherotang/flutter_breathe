@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hubang/model/tag_model.dart';
+import 'package:flutter_breathe/model/tag_model.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Tag extends StatelessWidget {

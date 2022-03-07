@@ -1,4 +1,4 @@
-import 'package:flutter_hubang/model/city/area.dart';
+import 'package:flutter_breathe/model/city/area.dart';
 
 class CityPinying {
   const CityPinying({

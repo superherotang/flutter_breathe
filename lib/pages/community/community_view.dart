@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hubang/common/color.dart';
+import 'package:flutter_breathe/common/color.dart';
 
-import 'package:flutter_hubang/utils/location_controller.dart';
-import 'package:flutter_hubang/widgets/clear_input.dart';
+import 'package:flutter_breathe/utils/location_controller.dart';
+import 'package:flutter_breathe/widgets/clear_input.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 

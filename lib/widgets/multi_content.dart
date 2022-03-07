@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hubang/model/synopsis/synopsis.dart';
-import 'package:flutter_hubang/widgets/more_text.dart';
+import 'package:flutter_breathe/model/synopsis/synopsis.dart';
+import 'package:flutter_breathe/widgets/more_text.dart';
 import 'package:get/get.dart';
 
 class MultiContent extends GetView {

@@ -1,4 +1,4 @@
-import 'package:flutter_hubang/data/db/locations/locations_dao.dart';
+import 'package:flutter_breathe/data/db/locations/locations_dao.dart';
 import 'package:get/get.dart';
 
 class LocationRepository {

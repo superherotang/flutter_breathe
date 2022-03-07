@@ -1,29 +1,31 @@
 // ignore_for_file: constant_identifier_names
 
-import 'package:flutter_hubang/pages/Message/message_view.dart';
-import 'package:flutter_hubang/pages/chome/chome_binding.dart';
-import 'package:flutter_hubang/pages/chome/chome_view.dart';
-import 'package:flutter_hubang/pages/city/city_binding.dart';
-import 'package:flutter_hubang/pages/city/city_view.dart';
-import 'package:flutter_hubang/pages/community/community_binding.dart';
-import 'package:flutter_hubang/pages/community/community_view.dart';
-import 'package:flutter_hubang/pages/detail/detail_binding.dart';
-import 'package:flutter_hubang/pages/detail/detail_view.dart';
-import 'package:flutter_hubang/pages/home/home_binding.dart';
-import 'package:flutter_hubang/pages/home/home_view.dart';
-import 'package:flutter_hubang/pages/login/login_binding.dart';
-import 'package:flutter_hubang/pages/login/login_view.dart';
-import 'package:flutter_hubang/pages/message/components/message_search/message_search_binding.dart';
-import 'package:flutter_hubang/pages/message/components/message_search/message_search_view.dart';
-import 'package:flutter_hubang/pages/message/message_binding.dart';
-import 'package:flutter_hubang/pages/personal/personal_binding.dart';
-import 'package:flutter_hubang/pages/personal/personal_view.dart';
-import 'package:flutter_hubang/pages/release/release_binding.dart';
-import 'package:flutter_hubang/pages/release/release_view.dart';
-import 'package:flutter_hubang/pages/splash/splash_binding.dart';
-import 'package:flutter_hubang/pages/splash/splash_view.dart';
-import 'package:flutter_hubang/pages/tabs/tabs_binding.dart';
-import 'package:flutter_hubang/pages/tabs/tabs_view.dart';
+import 'package:flutter_breathe/pages/chome/chome_binding.dart';
+import 'package:flutter_breathe/pages/chome/chome_view.dart';
+import 'package:flutter_breathe/pages/city/city_binding.dart';
+import 'package:flutter_breathe/pages/city/city_view.dart';
+import 'package:flutter_breathe/pages/community/community_binding.dart';
+import 'package:flutter_breathe/pages/community/community_view.dart';
+import 'package:flutter_breathe/pages/demo/demo_binding.dart';
+import 'package:flutter_breathe/pages/demo/demo_view.dart';
+import 'package:flutter_breathe/pages/detail/detail_binding.dart';
+import 'package:flutter_breathe/pages/detail/detail_view.dart';
+import 'package:flutter_breathe/pages/home/home_binding.dart';
+import 'package:flutter_breathe/pages/home/home_view.dart';
+import 'package:flutter_breathe/pages/login/login_binding.dart';
+import 'package:flutter_breathe/pages/login/login_view.dart';
+import 'package:flutter_breathe/pages/message/components/message_search/message_search_binding.dart';
+import 'package:flutter_breathe/pages/message/components/message_search/message_search_view.dart';
+import 'package:flutter_breathe/pages/message/message_binding.dart';
+import 'package:flutter_breathe/pages/message/message_view.dart';
+import 'package:flutter_breathe/pages/personal/personal_binding.dart';
+import 'package:flutter_breathe/pages/personal/personal_view.dart';
+import 'package:flutter_breathe/pages/release/release_binding.dart';
+import 'package:flutter_breathe/pages/release/release_view.dart';
+import 'package:flutter_breathe/pages/splash/splash_binding.dart';
+import 'package:flutter_breathe/pages/splash/splash_view.dart';
+import 'package:flutter_breathe/pages/tabs/tabs_binding.dart';
+import 'package:flutter_breathe/pages/tabs/tabs_view.dart';
 import 'package:get/get.dart';
 
 abstract class AppPages {
@@ -76,6 +78,10 @@ abstract class AppPages {
         name: Routes.RELEASE,
         page: () => const ReleaseView(),
         binding: ReleaseBinding()),
+    GetPage(
+        name: Routes.DEMO,
+        page: () => const DemoView(),
+        binding: DemoBinding()),
   ];
 }
 
@@ -96,4 +102,5 @@ abstract class Routes {
   static const CHOME = "/chome/";
   static const CHOMEID = "/chome/:id";
   static const RELEASE = "/release";
+  static const DEMO = "/demo";
 }

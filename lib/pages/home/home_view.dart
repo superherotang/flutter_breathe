@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hubang/common/color.dart';
-import 'package:flutter_hubang/pages/home/home_controller.dart';
+import 'package:flutter_breathe/common/color.dart';
+import 'package:flutter_breathe/pages/home/home_controller.dart';
 import 'package:get/get.dart';
 import 'components/home_top.dart';
 import 'components/recommend.dart';

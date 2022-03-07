@@ -1,6 +1,6 @@
-import 'package:flutter_hubang/data/db/database.dart';
+import 'package:flutter_breathe/data/db/database.dart';
 import 'package:drift/drift.dart' as D;
-import 'package:flutter_hubang/data/db/locations/locations_dao.dart';
+import 'package:flutter_breathe/data/db/locations/locations_dao.dart';
 import 'package:get/get.dart';
 
 class CommunityController extends GetxController {

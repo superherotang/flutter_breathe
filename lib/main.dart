@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_hubang/app.dart';
+import 'app.dart';
 
 import 'common/dependency_injection.dart';
 

@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/services.dart';
-import 'package:flutter_hubang/routes/app_routes.dart';
+import 'package:flutter_breathe/routes/app_routes.dart';
 import 'package:get/get.dart';
 
 class SplashController extends GetxController {

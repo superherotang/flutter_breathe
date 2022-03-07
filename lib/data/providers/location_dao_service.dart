@@ -1,5 +1,5 @@
-import 'package:flutter_hubang/data/db/database.dart';
-import 'package:flutter_hubang/data/db/locations/locations_dao.dart';
+import 'package:flutter_breathe/data/db/database.dart';
+import 'package:flutter_breathe/data/db/locations/locations_dao.dart';
 import 'package:get/get.dart';
 
 class LocationDaoSerivce extends GetxService {

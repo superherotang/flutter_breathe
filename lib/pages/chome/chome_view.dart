@@ -2,14 +2,14 @@ import 'dart:convert';
 
 import 'package:extended_nested_scroll_view/extended_nested_scroll_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hubang/common/color.dart';
-import 'package:flutter_hubang/model/synopsis/synopsis.dart';
-import 'package:flutter_hubang/utils/mock.dart';
-import 'package:flutter_hubang/utils/utils.dart';
-import 'package:flutter_hubang/widgets/box_content.dart';
+import 'package:flutter_breathe/common/color.dart';
+import 'package:flutter_breathe/model/synopsis/synopsis.dart';
+import 'package:flutter_breathe/utils/mock.dart';
+import 'package:flutter_breathe/utils/utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../widgets/box_content.dart';
 import 'chome_controller.dart';
 
 class ChomeView extends GetView<ChomeController> {

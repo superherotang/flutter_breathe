@@ -1,4 +1,4 @@
-import 'package:flutter_hubang/pages/message/message_controller.dart';
+import 'package:flutter_breathe/pages/message/message_controller.dart';
 import 'package:get/get.dart';
 
 class MessageBinding implements Bindings {

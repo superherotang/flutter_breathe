@@ -1,8 +1,8 @@
 import 'package:drift/drift.dart' as D;
 import 'package:flutter/material.dart';
-import 'package:flutter_hubang/data/db/database.dart';
+import 'package:flutter_breathe/data/db/database.dart';
 import 'package:get/get.dart';
-import 'package:flutter_hubang/data/db/locations/locations_dao.dart';
+import 'package:flutter_breathe/data/db/locations/locations_dao.dart';
 
 class HomeController extends GetxController
     with GetSingleTickerProviderStateMixin {

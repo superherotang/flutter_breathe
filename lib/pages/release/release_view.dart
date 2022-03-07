@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hubang/common/color.dart';
+import 'package:flutter_breathe/common/color.dart';
+import 'package:flutter_breathe/pages/release/components/small_button.dart';
+import 'package:flutter_breathe/widgets/icon.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
@@ -84,38 +86,19 @@ class ReleaseView extends GetView<ReleaseController> {
                 height: 70.w,
                 child: Row(children: [
                   SizedBox(width: 10.w),
-                  ActionChip(
-                    side: const BorderSide(color: Colors.black45),
-                    label: const Text(
-                      '添加位置',
-                      style: TextStyle(color: Colors.black45),
+                  const SmallButton(
+                    "定位",
+                    svg: SvgIconWidget(
+                      "assets/icon/home.svg",
+                      color: Colors.white,
                     ),
-                    backgroundColor: Colors.white,
-                    avatar: const CircleAvatar(
-                      backgroundImage: AssetImage('assets/images/topbg.jpg'),
-                    ),
-                    onPressed: () {
-                      print("object1");
-                    },
                   ),
-                  Expanded(
-                    child: Container(
-                      alignment: Alignment.centerRight,
-                      child: ActionChip(
-                        side: const BorderSide(color: Colors.black45),
-                        label: const Text(
-                          '公开',
-                          style: TextStyle(color: Colors.black45),
-                        ),
-                        backgroundColor: Colors.white,
-                        avatar: const CircleAvatar(
-                          backgroundImage:
-                              AssetImage('assets/images/topbg.jpg'),
-                        ),
-                        onPressed: () {
-                          print("object");
-                        },
-                      ),
+                  Expanded(child: Container()),
+                  const SmallButton(
+                    "公开",
+                    svg: SvgIconWidget(
+                      "assets/icon/home.svg",
+                      color: Colors.white,
                     ),
                   ),
                   SizedBox(

@@ -101,7 +101,7 @@ class LoginView extends GetView<LoginController> {
                   ),
                 ),
                 Text(
-                  'hubang'.tr,
+                  'breathe'.tr,
                   style: TextStyle(
                       fontSize: 60.w,
                       color: Colors.black,

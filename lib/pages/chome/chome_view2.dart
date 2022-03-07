@@ -2,10 +2,10 @@
 
 // import 'package:custom_nested_scroll_view/custom_nested_scroll_view.dart';
 // import 'package:flutter/material.dart';
-// import 'package:flutter_hubang/common/color.dart';
-// import 'package:flutter_hubang/model/synopsis/synopsis.dart';
-// import 'package:flutter_hubang/utils/mock.dart';
-// import 'package:flutter_hubang/widgets/box_content.dart';
+// import 'package:flutter_breathe/common/color.dart';
+// import 'package:flutter_breathe/model/synopsis/synopsis.dart';
+// import 'package:flutter_breathe/utils/mock.dart';
+// import 'package:flutter_breathe/widgets/box_content.dart';
 // import 'package:get/get.dart';
 
 // class ChomeView extends GetView {

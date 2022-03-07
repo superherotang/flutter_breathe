@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hubang/common/color.dart';
-import 'package:flutter_hubang/routes/app_routes.dart';
+import 'package:flutter_breathe/common/color.dart';
+import 'package:flutter_breathe/routes/app_routes.dart';
 import 'package:get/get.dart';
 
 class MoreText extends StatefulWidget {
@@ -101,8 +101,8 @@ class _MoreTextState extends State<MoreText> {
 
 // import 'package:flutter/gestures.dart';
 // import 'package:flutter/material.dart';
-// import 'package:flutter_hubang/common/color.dart';
-// import 'package:flutter_hubang/routes/app_routes.dart';
+// import 'package:flutter_breathe/common/color.dart';
+// import 'package:flutter_breathe/routes/app_routes.dart';
 // import 'package:get/get.dart';
 
 // class MoreText extends GetView<ExpandableController> {

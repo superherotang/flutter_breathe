@@ -1,8 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_hubang/pages/tabs/tabs_controller.dart';
-import 'package:flutter_hubang/routes/app_routes.dart';
+import 'package:flutter_breathe/pages/tabs/tabs_controller.dart';
+import 'package:flutter_breathe/routes/app_routes.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
@@ -36,7 +36,11 @@ class ModalView extends GetView<ModalController> {
                         Get.toNamed(Routes.RELEASE);
                       },
                       child: ModalButton("帖子")),
-                  ModalButton("图片"),
+                  InkWell(
+                      onTap: () {
+                        Get.toNamed(Routes.DEMO);
+                      },
+                      child: ModalButton("DEMO")),
                   ModalButton("视频"),
                   ModalButton("求助"),
                   ModalButton("悬赏"),

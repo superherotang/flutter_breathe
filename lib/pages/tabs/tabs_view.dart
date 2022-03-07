@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hubang/pages/Message/message_view.dart';
-import 'package:flutter_hubang/pages/community/community_view.dart';
-import 'package:flutter_hubang/pages/home/home_view.dart';
-import 'package:flutter_hubang/pages/modal/modal_view.dart';
-import 'package:flutter_hubang/pages/personal/personal_view.dart';
-import 'package:flutter_hubang/pages/tabs/tabs_controller.dart';
-import 'package:flutter_hubang/widgets/keep_alive_wrapper.dart';
-import 'package:flutter_hubang/widgets/navigation.dart';
+import 'package:flutter_breathe/pages/Message/message_view.dart';
+import 'package:flutter_breathe/pages/community/community_view.dart';
+import 'package:flutter_breathe/pages/home/home_view.dart';
+import 'package:flutter_breathe/pages/modal/modal_view.dart';
+import 'package:flutter_breathe/pages/personal/personal_view.dart';
+import 'package:flutter_breathe/pages/tabs/tabs_controller.dart';
+import 'package:flutter_breathe/widgets/keep_alive_wrapper.dart';
+import 'package:flutter_breathe/widgets/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 

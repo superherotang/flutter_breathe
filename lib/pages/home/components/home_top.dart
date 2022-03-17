@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_breathe/pages/home/home_controller.dart';
 import 'package:flutter_breathe/routes/app_routes.dart';
 import 'package:flutter_breathe/utils/location_controller.dart';
-import 'package:flutter_breathe/widgets/clear_input.dart';
+import 'package:flutter_breathe/widgets/search_input.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -20,7 +20,7 @@ class HomeTop extends GetView<HomeController> {
         Expanded(
             child: Padding(
           padding: EdgeInsets.only(left: 20.w, right: 10.w),
-          child: ClearInput(
+          child: SearchInput(
               readOnly: true,
               onTap: () {
                 print("object");

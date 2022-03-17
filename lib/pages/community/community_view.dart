@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_breathe/common/color.dart';
 
 import 'package:flutter_breathe/utils/location_controller.dart';
-import 'package:flutter_breathe/widgets/clear_input.dart';
+import 'package:flutter_breathe/widgets/search_input.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
@@ -18,7 +18,7 @@ class CommunityView extends GetView<CommunityController> {
     return Scaffold(
         backgroundColor: AppColor.oftenBackground,
         appBar: AppBar(
-          title: ClearInput(
+          title: SearchInput(
             readOnly: true,
             onTap: () {},
           ),

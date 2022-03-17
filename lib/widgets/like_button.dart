@@ -7,11 +7,11 @@ class LikeButton extends GetView {
   const LikeButton({
     Key? key,
     required this.icon,
-    required this.count,
+    this.count,
     this.size = 48,
   }) : super(key: key);
   final IconData icon;
-  final String count;
+  final String? count;
   final double? size;
 
   @override
@@ -21,7 +21,7 @@ class LikeButton extends GetView {
         print("object");
       },
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 10.w),
+        padding: EdgeInsets.symmetric(vertical: 10.w),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -32,10 +32,12 @@ class LikeButton extends GetView {
             SizedBox(
               width: 2.w,
             ),
-            Text(
-              count,
-              style: TextStyle(fontSize: size! / 3),
-            )
+            count == null
+                ? Container()
+                : Text(
+                    count!,
+                    style: TextStyle(fontSize: size! / 2.2, height: 1.2),
+                  )
           ],
         ),
       ),

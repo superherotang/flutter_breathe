@@ -33,7 +33,7 @@ Widget createApp() {
         ),
       );
     },
-    initialRoute: Routes.SERACH, //初始页面
+    initialRoute: Routes.LOGIN, //初始页面
     getPages: AppPages.pages, //路由
     theme: AppTheme.light,
   );

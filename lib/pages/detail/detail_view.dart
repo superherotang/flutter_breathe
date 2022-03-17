@@ -1,6 +1,7 @@
 import 'package:extended_nested_scroll_view/extended_nested_scroll_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_breathe/common/color.dart';
+import 'package:flutter_breathe/pages/detail/components/comment_box.dart';
 import 'package:flutter_breathe/widgets/loading_view.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -45,75 +46,90 @@ class DetailView extends GetView<DetailController> {
             },
             //2.[inner scrollables in tabview sync issue](https://github.com/flutter/flutter/issues/21868)
             onlyOneScrollInBody: true,
-            body: Column(children: [
-              Row(
-                children: [
-                  SizedBox(
-                    width: 300.w,
-                    child: TabBar(
-                      controller: controller.tabController,
-                      indicator: const BoxDecoration(),
-                      labelStyle: TextStyle(fontSize: 26.w),
-                      labelPadding: EdgeInsets.zero,
-                      isScrollable: false,
-                      unselectedLabelColor: Colors.grey,
-                      tabs: const [Tab(text: '全部回复'), Tab(text: '只看楼主')],
-                    ),
-                  ),
-                  Expanded(
-                      child: Container(
-                    alignment: Alignment.centerRight,
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          InkWell(
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 20.w),
-                              child: const Text("热度"),
-                            ),
-                          ),
-                          SizedBox(
-                            width: 1,
-                            height: 20.w,
-                            child: const DecoratedBox(
-                              decoration: BoxDecoration(color: Colors.grey),
-                            ),
-                          ),
-                          InkWell(
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 20.w),
-                              child: const Text("最新"),
-                            ),
-                          ),
-                          SizedBox(
-                            width: 1,
-                            height: 20.w,
-                            child: const DecoratedBox(
-                              decoration: BoxDecoration(color: Colors.grey),
-                            ),
-                          ),
-                          InkWell(
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 20.w),
-                              child: const Text("最早"),
-                            ),
-                          ),
-                        ]),
-                  ))
-                ],
-              ),
-              Expanded(
-                child: TabBarView(
-                    controller: controller.tabController,
-                    children: [reply(), reply()]),
-              )
-            ]),
+            body: Stack(
+              children: [
+                replyList(),
+                //replyDetails(),
+              ],
+            ),
           )),
           bottonBox()
         ],
       ),
     );
+  }
+
+  //回复列表
+  Widget replyList() {
+    return Column(children: [
+      Row(
+        children: [
+          SizedBox(
+            width: 300.w,
+            child: TabBar(
+              controller: controller.tabController,
+              indicator: const BoxDecoration(),
+              labelStyle: TextStyle(fontSize: 26.w),
+              labelPadding: EdgeInsets.zero,
+              isScrollable: false,
+              unselectedLabelColor: Colors.grey,
+              tabs: const [Tab(text: '全部回复'), Tab(text: '只看楼主')],
+            ),
+          ),
+          Expanded(
+              child: Container(
+            alignment: Alignment.centerRight,
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  InkWell(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20.w),
+                      child: const Text("热度"),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 1,
+                    height: 20.w,
+                    child: const DecoratedBox(
+                      decoration: BoxDecoration(color: Colors.grey),
+                    ),
+                  ),
+                  InkWell(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20.w),
+                      child: const Text("最新"),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 1,
+                    height: 20.w,
+                    child: const DecoratedBox(
+                      decoration: BoxDecoration(color: Colors.grey),
+                    ),
+                  ),
+                  InkWell(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20.w),
+                      child: const Text("最早"),
+                    ),
+                  ),
+                ]),
+          ))
+        ],
+      ),
+      Expanded(
+        child: TabBarView(
+            physics: const NeverScrollableScrollPhysics(), //禁止滑动
+            controller: controller.tabController,
+            children: [replyall(), replyLZ()]),
+      )
+    ]);
+  }
+
+  Widget replyDetails() {
+    return Container(width: double.infinity, height: 500, color: Colors.red);
   }
 
   Container bottonBox() {
@@ -221,16 +237,28 @@ Widget buildSliverHeader() {
   );
 }
 
-Widget reply() {
+Widget replyall() {
   return LoadingView(
       future: getData(),
-      errorWidget: Text("error"),
-      waitWidget: Center(
+      errorWidget: const Text("error"),
+      waitWidget: const Center(
+        child: CircularProgressIndicator(),
+      ),
+      doneWidget: ListView(
+        children: [CommentBox()],
+      ));
+}
+
+Widget replyLZ() {
+  return LoadingView(
+      future: getData(),
+      errorWidget: const Text("error"),
+      waitWidget: const Center(
         child: CircularProgressIndicator(),
       ),
       doneWidget: Text("asd"));
 }
 
 Future getData() async {
-  await Future.delayed(Duration(milliseconds: 1000), () {});
+  await Future.delayed(Duration(milliseconds: 0), () {});
 }

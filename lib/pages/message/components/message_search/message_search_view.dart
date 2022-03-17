@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_breathe/pages/message/components/message_search/message_search_controller.dart';
-import 'package:flutter_breathe/widgets/clear_input.dart';
+import 'package:flutter_breathe/widgets/search_input.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
@@ -28,7 +28,7 @@ class MessageSearchView extends GetView<MessageSearchController> {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const Expanded(child: ClearInput()),
+        const Expanded(child: SearchInput()),
         InkWell(
           onTap: () {
             Get.back();

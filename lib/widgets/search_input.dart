@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-class ClearInput extends GetView<ClearInputController> {
+class SearchInput extends GetView<ClearInputController> {
   final bool readOnly;
   final void Function()? onTap;
-  const ClearInput({Key? key, this.readOnly = false, this.onTap})
+  const SearchInput({Key? key, this.readOnly = false, this.onTap})
       : super(key: key);
 
   @override

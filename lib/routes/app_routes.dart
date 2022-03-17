@@ -40,7 +40,7 @@ abstract class AppPages {
         page: () => const HomeView(),
         binding: HomeBinding()),
     GetPage(
-      name: Routes.Login,
+      name: Routes.LOGIN,
       page: () => const LoginView(),
       binding: LoginBinding(),
     ),
@@ -75,9 +75,10 @@ abstract class AppPages {
         page: () => const ChomeView(),
         binding: ChomeBinding()),
     GetPage(
-        name: Routes.RELEASE,
-        page: () => const ReleaseView(),
-        binding: ReleaseBinding()),
+      name: Routes.RELEASE,
+      page: () => const ReleaseView(),
+      binding: ReleaseBinding(),
+    ),
     GetPage(
         name: Routes.DEMO,
         page: () => const DemoView(),
@@ -91,7 +92,7 @@ abstract class Routes {
   static const TABS = "/tabs";
   static const HOME = "/home";
   static const MY = "/my";
-  static const Login = "/login";
+  static const LOGIN = "/login";
   static const MESSAGE = "/message";
   static const MESSAGESERACH = "/messageserach";
   static const CITY = "/city";

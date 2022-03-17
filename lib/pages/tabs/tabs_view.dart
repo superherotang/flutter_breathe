@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_breathe/pages/Message/message_view.dart';
 import 'package:flutter_breathe/pages/community/community_view.dart';
 import 'package:flutter_breathe/pages/home/home_view.dart';
-import 'package:flutter_breathe/pages/modal/modal_view.dart';
 import 'package:flutter_breathe/pages/personal/personal_view.dart';
 import 'package:flutter_breathe/pages/tabs/tabs_controller.dart';
 import 'package:flutter_breathe/widgets/keep_alive_wrapper.dart';
 import 'package:flutter_breathe/widgets/navigation.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+
+import 'components/modal_view.dart';
 
 class TabsView extends GetView<TabsController> {
   TabsView({Key? key}) : super(key: key);
@@ -42,6 +43,14 @@ class TabsView extends GetView<TabsController> {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(
+        BoxConstraints(
+            maxWidth: MediaQuery.of(context).size.width,
+            maxHeight: MediaQuery.of(context).size.height),
+        designSize: const Size(750, 1334),
+        context: context,
+        minTextAdapt: true,
+        orientation: Orientation.portrait);
     return Stack(
       children: [
         Scaffold(

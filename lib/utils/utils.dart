@@ -1,9 +1,13 @@
 class Utils {
   static String intFormat(int count) {
     if (count.toString().length >= 5 && count.toString().length < 9) {
-      return (count / 10000).toString() + "万";
+      List<String> list = (count / 10000).toString().split('.');
+      String integer = list[0];
+      String decimal = list[1].substring(0, 1);
+
+      return integer + '.' + decimal + "万";
     } else if (count.toString().length >= 9) {
-      return (count / 100000000).toString() + "亿";
+      return (count / 100000000).toStringAsFixed(1).toString() + "亿";
     } else {
       return count.toString();
     }

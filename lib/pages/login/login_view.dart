@@ -13,6 +13,7 @@ class LoginView extends GetView<LoginController> {
 
   @override
   Widget build(BuildContext context) {
+    controller.context = context;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -76,6 +77,7 @@ class LoginView extends GetView<LoginController> {
                 //输入
                 Expanded(
                     child: TextField(
+                  focusNode: controller.phoneFocusNode,
                   controller: controller.textEditingPhoneController,
                   keyboardType: TextInputType.number,
                   inputFormatters: [
@@ -134,6 +136,7 @@ class LoginView extends GetView<LoginController> {
             child: Container(
               padding: EdgeInsets.only(left: 40.w),
               child: TextField(
+                focusNode: controller.codeFocusNode,
                 controller: controller.textEditingCodeController,
                 inputFormatters: [
                   LengthLimitingTextInputFormatter(6),
@@ -192,6 +195,7 @@ class LoginView extends GetView<LoginController> {
             child: Container(
               padding: EdgeInsets.only(left: 40.w),
               child: TextField(
+                focusNode: controller.pwdFocusNode,
                 controller: controller.textEditingPwdController,
                 inputFormatters: [
                   LengthLimitingTextInputFormatter(30),
@@ -247,38 +251,104 @@ class LoginView extends GetView<LoginController> {
           ),
         ),
         const SizedBox(width: 1),
-        Expanded(
-            child: RichText(
-          text: TextSpan(children: [
-            const TextSpan(
-                text: "我已阅读并同意", style: TextStyle(color: Colors.black)),
-            TextSpan(
-                text: "《用户服务协议及隐私政策》",
-                style: TextStyle(color: Colors.orange),
-                recognizer: TapGestureRecognizer()..onTap = () => print("a")),
-          ]),
-        ))
+        Expanded(child: agreement())
       ],
+    );
+  }
+
+  Widget agreement() {
+    return RichText(
+      text: TextSpan(children: [
+        const TextSpan(text: "已阅读并同意", style: TextStyle(color: Colors.black)),
+        TextSpan(
+            text: " 用户协议 ",
+            style: TextStyle(color: Colors.orange),
+            recognizer: TapGestureRecognizer()..onTap = () => print("a")),
+        const TextSpan(text: "和", style: TextStyle(color: Colors.black)),
+        TextSpan(
+            text: " 隐私政策 ",
+            style: TextStyle(color: Colors.orange),
+            recognizer: TapGestureRecognizer()..onTap = () => print("a")),
+      ]),
     );
   }
 
   //登录按钮
   Widget loginButton() {
-    return ElevatedButton(
-      onPressed: () {},
-      child: Container(
-        alignment: Alignment.center,
-        width: double.maxFinite,
-        height: 90.w,
-        child: Text(
-          "login in".tr,
-          style: TextStyle(fontSize: 50.w, fontWeight: FontWeight.bold),
+    return Obx(
+      () => Opacity(
+        opacity: controller.readOnlyButton.value ? 1 : 0.6,
+        child: ElevatedButton(
+          onPressed: controller.readOnlyButton.value
+              ? () {
+                  controller.unAllFocus();
+                  controller.checkOnSelect.value
+                      ? Get.snackbar("title", "asd")
+                      : agreementDialog();
+                }
+              : null,
+          child: Container(
+            alignment: Alignment.center,
+            width: double.maxFinite,
+            height: 90.w,
+            child: Text(
+              "login in".tr,
+              style: TextStyle(fontSize: 50.w, fontWeight: FontWeight.bold),
+            ),
+          ),
+          style: ButtonStyle(
+            shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30))),
+            backgroundColor: MaterialStateProperty.all(AppColor.primaryColor),
+          ),
         ),
       ),
-      style: ButtonStyle(
-        shape: MaterialStateProperty.all(
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))),
-        backgroundColor: MaterialStateProperty.all(AppColor.primaryColor),
+    );
+  }
+
+  //确认协议弹窗
+  Future agreementDialog() {
+    return Get.defaultDialog(
+      barrierDismissible: false,
+      title: "用户协议及隐私保护",
+      contentPadding: const EdgeInsets.only(bottom: 0),
+      content: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 80.w),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            agreement(),
+            Text(
+              "呼吸将严格保护你的个人信息安全",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 26.w),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                controller.clickOnSelect();
+                Get.back();
+              },
+              style: ButtonStyle(
+                  textStyle: MaterialStateProperty.all(
+                      TextStyle(fontSize: 100.w, color: Colors.red))),
+              child: Container(
+                  width: double.infinity,
+                  alignment: Alignment.center,
+                  child: Text(
+                    "同意并登录",
+                    style: TextStyle(fontSize: 36.w),
+                  )),
+            ),
+            InkWell(
+              onTap: () {
+                Get.back();
+              },
+              child: Text(
+                "不同意",
+                style: TextStyle(fontSize: 24.w),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
@@ -340,18 +410,6 @@ class LoginView extends GetView<LoginController> {
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 // import 'package:flutter/gestures.dart';
 // import 'package:flutter/material.dart';
@@ -579,7 +637,7 @@ class LoginView extends GetView<LoginController> {
 //                   ),
 //                 ),
 //                 //竖线
-//                 Padding( 
+//                 Padding(
 //                   padding: const EdgeInsets.only(left: 0),
 //                   child: Container(
 //                     width: 1,

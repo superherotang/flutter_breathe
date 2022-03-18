@@ -60,12 +60,16 @@ class ReleaseView extends GetView<ReleaseController> {
                         ],
                       ),
                     ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 35.w),
-                      child: const Text(
-                        "发布",
-                        style: TextStyle(color: Colors.white),
-                      ),
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 30.w),
+                          child: const Text(
+                            "发布",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),

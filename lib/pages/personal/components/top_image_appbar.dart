@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_breathe/pages/personal/components/setting.dart';
 import 'package:flutter_breathe/pages/personal/personal_controller.dart';
 import 'package:flutter_breathe/utils/utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,8 +19,21 @@ class TopImageAppbar extends GetView {
             kToolbarHeight;
     return Obx(
       () => SliverAppBar(
-        leading: const Icon(Icons.arrow_back_sharp),
-        actions: const [Icon(Icons.ac_unit), Icon(Icons.ac_unit)],
+        pinned: true,
+        leading:
+            controller.id == null ? null : const Icon(Icons.arrow_back_sharp),
+        actions: [
+          Padding(
+              padding: EdgeInsets.symmetric(horizontal: 15.w),
+              child: InkWell(
+                onTap: () => Get.to(() => const Setting(),
+                    transition: Transition.rightToLeft),
+                child: Icon(
+                  Icons.ac_unit,
+                  size: 50.w,
+                ),
+              ))
+        ],
         //bug
         expandedHeight:
             (430.w - statusBarHeight + controller.extraPicHeight.value) < 0

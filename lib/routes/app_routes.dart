@@ -45,7 +45,11 @@ abstract class AppPages {
       binding: LoginBinding(),
     ),
     GetPage(
-        name: Routes.MY,
+        name: Routes.PERSONAL,
+        page: () => const PersonalView(),
+        binding: PersonalBinding()),
+    GetPage(
+        name: Routes.PERSONALID,
         page: () => const PersonalView(),
         binding: PersonalBinding()),
     GetPage(
@@ -91,7 +95,8 @@ abstract class Routes {
   static const SPLASH = "/splash";
   static const TABS = "/tabs";
   static const HOME = "/home";
-  static const MY = "/my";
+  static const PERSONAL = "/personal";
+  static const PERSONALID = "/personal/:id";
   static const LOGIN = "/login";
   static const MESSAGE = "/message";
   static const MESSAGESERACH = "/messageserach";

@@ -35,31 +35,40 @@ class ShowBox extends GetView {
           padding: EdgeInsets.symmetric(horizontal: 30.w),
           child: Row(
             children: [
-              CircleAvatar(
-                  backgroundImage: const NetworkImage(
-                      "https://goss.cfp.cn/creative/vcg/800/new/VCG211165042753.jpg"),
-                  radius: 40.w),
+              GestureDetector(
+                onTap: () {},
+                child: CircleAvatar(
+                    backgroundImage: const NetworkImage(
+                        "https://goss.cfp.cn/creative/vcg/800/new/VCG211165042753.jpg"),
+                    radius: 40.w),
+              ),
               Expanded(
                 child: Padding(
                   padding: EdgeInsets.only(left: 10.w),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "ALEC TANG",
-                        style: TextStyle(
-                            fontSize: 30.w,
-                            fontWeight: FontWeight.w500,
-                            wordSpacing: 2.w,
-                            letterSpacing: 1.w),
-                      ),
-                      Text("data",
+                  child: GestureDetector(
+                    onTap: () {
+                      print("object");
+                    },
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "ALEC TANG",
                           style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 26.w,
+                              fontSize: 30.w,
+                              fontWeight: FontWeight.w500,
                               wordSpacing: 2.w,
-                              letterSpacing: 1.w))
-                    ],
+                              overflow: TextOverflow.ellipsis,
+                              letterSpacing: 1.w),
+                        ),
+                        Text("data",
+                            style: TextStyle(
+                                color: Colors.grey,
+                                fontSize: 26.w,
+                                wordSpacing: 2.w,
+                                letterSpacing: 1.w))
+                      ],
+                    ),
                   ),
                 ),
               ),

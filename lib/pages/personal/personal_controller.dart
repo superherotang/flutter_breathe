@@ -9,6 +9,7 @@ class PersonalController extends GetxController
   late AnimationController animationController;
   late Animation<double> animation;
   late ScrollController scrollController;
+  String? id;
 
   var extraPicHeight = 0.0.obs;
   double prevDy = 0.0;
@@ -18,6 +19,7 @@ class PersonalController extends GetxController
   @override
   void onInit() {
     super.onInit();
+    id = Get.parameters['id'];
     tabController = TabController(length: 2, vsync: this);
     animationController = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 300));

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_breathe/common/color.dart';
 import 'package:flutter_breathe/pages/release/components/small_button.dart';
 import 'package:flutter_breathe/widgets/icon.dart';
+import 'package:flutter_breathe/widgets/release_type_box/release_type_images.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
@@ -13,94 +14,77 @@ class ReleaseView extends GetView<ReleaseController> {
 
   @override
   Widget build(BuildContext context) {
+    controller.context = context;
     return Scaffold(
       resizeToAvoidBottomInset: true, // 允许键盘事件影响界面
-      appBar: AppBar(
-        leading: InkWell(
-          onTap: () {
-            FocusManager.instance.primaryFocus?.unfocus();
-            Future.delayed(const Duration(milliseconds: 200));
-
-            Get.back();
-          },
-          child: Container(
-              height: kToolbarHeight,
-              alignment: Alignment.center,
-              child: Text(
-                "取消",
-                style: TextStyle(fontSize: 28.w),
-              )),
-        ),
-        title: Text(
-          "发帖",
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 34.w),
-        ),
-        actions: [
-          Padding(
-            padding: EdgeInsets.only(
-                right: 20.w,
-                top: kToolbarHeight / 4,
-                bottom: kToolbarHeight / 4),
-            child: InkWell(
-              onTap: () => print("object"),
-              child: Obx(
-                () => Opacity(
-                  opacity: controller.haveContent.value == false ? 0.5 : 1,
-                  child: Container(
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(60),
-                      gradient: const LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        stops: [0.0, 0.9],
-                        colors: [
-                          AppColor.primaryColor,
-                          Color.fromARGB(255, 186, 195, 253),
-                        ],
-                      ),
-                    ),
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 30.w),
-                          child: const Text(
-                            "发布",
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
+      appBar: topAppBar(),
       body: Stack(children: [
         Container(
-          padding: EdgeInsets.only(bottom: 100.w),
+          padding: EdgeInsets.only(bottom: 30.w),
           constraints: BoxConstraints(
               maxHeight:
-                  1.sh - MediaQuery.of(context).viewInsets.bottom - 200.w),
-          child: inputContent(),
+                  1.sh - MediaQuery.of(context).viewInsets.bottom - 215.w),
+          child: Column(
+            children: [
+              Expanded(
+                  child: ListView(
+                children: [
+                  Container(
+                    constraints: BoxConstraints(minHeight: 200.w),
+                    child: inputContent(),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(bottom: 80.w,top: 50.w),
+                    child: Obx(
+                      () => ReleaseTypeImages(
+                        data: controller.assetEntitys.value,
+                      ),
+                    ),
+                  ),
+                ],
+              )),
+            ],
+          ),
         ),
         Align(
           alignment: Alignment.bottomCenter,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              SizedBox(
+              Container(
+                color: Colors.white,
                 width: double.infinity,
                 height: 70.w,
                 child: Row(children: [
                   SizedBox(width: 10.w),
-                  const SmallButton(
-                    "定位",
-                    svg: SvgIconWidget(
-                      "assets/icon/home.svg",
-                      color: Colors.white,
+                  InkWell(
+                    onTap: () => Get.bottomSheet(Container(
+                      child: Wrap(
+                        children: [
+                          ListTile(
+                            tileColor: Colors.white,
+                            leading: Icon(Icons.wb_sunny_outlined),
+                            title: Text("白天模式"),
+                            onTap: () {
+                              Get.changeTheme(ThemeData.light());
+                            },
+                          ),
+                          ListTile(
+                            leading: Icon(Icons.wb_sunny),
+                            title: Text("黑夜模式"),
+                            onTap: () {
+                              Get.changeTheme(ThemeData.dark());
+                            },
+                          )
+                        ],
+                      ),
+                    )),
+                    child: const SmallButton(
+                      "定位",
+                      svg: SvgIconWidget(
+                        "assets/icon/home.svg",
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                   Expanded(child: Container()),
@@ -116,7 +100,7 @@ class ReleaseView extends GetView<ReleaseController> {
                   )
                 ]),
               ),
-              menuItem()
+              menuItem(context)
             ],
           ),
         )
@@ -124,17 +108,81 @@ class ReleaseView extends GetView<ReleaseController> {
     );
   }
 
+  AppBar topAppBar() {
+    return AppBar(
+      leading: InkWell(
+        onTap: () {
+          FocusManager.instance.primaryFocus?.unfocus();
+          Future.delayed(const Duration(milliseconds: 200));
+
+          Get.back();
+        },
+        child: Container(
+            height: kToolbarHeight,
+            alignment: Alignment.center,
+            child: Text(
+              "取消",
+              style: TextStyle(fontSize: 28.w),
+            )),
+      ),
+      title: Text(
+        "发帖",
+        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 34.w),
+      ),
+      actions: [
+        Padding(
+          padding: EdgeInsets.only(
+              right: 20.w, top: kToolbarHeight / 4, bottom: kToolbarHeight / 4),
+          child: InkWell(
+            onTap: () => print("object"),
+            child: Obx(
+              () => Opacity(
+                opacity: controller.haveContent.value == false ? 0.5 : 1,
+                child: Container(
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(60),
+                    gradient: const LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      stops: [0.0, 0.9],
+                      colors: [
+                        AppColor.primaryColor,
+                        Color.fromARGB(255, 186, 195, 253),
+                      ],
+                    ),
+                  ),
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 30.w),
+                        child: const Text(
+                          "发布",
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
   //键盘上面菜单
-  menuItem() {
+  menuItem(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 90.w,
+      height: 90.w + MediaQuery.of(context).padding.bottom,
       color: AppColor.someBackground,
       child: Row(children: [
         Expanded(
           child: InkWell(
             onTap: () {
-              print("object");
+              controller.pickImages();
             },
             child: Icon(
               Icons.ac_unit,

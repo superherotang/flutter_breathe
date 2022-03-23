@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_breathe/model/posts_type.dart';
 import 'package:flutter_breathe/model/synopsis/synopsis.dart';
 import 'package:flutter_breathe/model/tag_model.dart';
 import 'package:flutter_breathe/routes/app_routes.dart';
@@ -44,25 +45,25 @@ class BoxContent extends GetView {
     if (synopsis.data[0].resource[0].bountyList.isNotEmpty) {
       list.add(TagModel(
         count: synopsis.data[0].resource[0].bountyList.length,
-        tagType: TagType.bounty,
+        postsType: PostsType.bounty,
       ));
     }
     if (synopsis.data[0].resource[0].videoList.isNotEmpty) {
       list.add(TagModel(
         count: synopsis.data[0].resource[0].videoList.length,
-        tagType: TagType.video,
+        postsType: PostsType.video,
       ));
     }
     if (synopsis.data[0].resource[0].imgList.isNotEmpty) {
       list.add(TagModel(
         count: synopsis.data[0].resource[0].imgList.length,
-        tagType: TagType.img,
+        postsType: PostsType.img,
       ));
     }
     if (synopsis.data[0].resource[0].soundList.isNotEmpty) {
       list.add(TagModel(
         count: synopsis.data[0].resource[0].soundList.length,
-        tagType: TagType.sound,
+        postsType: PostsType.sound,
       ));
     }
 

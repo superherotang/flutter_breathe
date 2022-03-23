@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:extended_nested_scroll_view/extended_nested_scroll_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_breathe/common/color.dart';
 import 'package:flutter_breathe/pages/personal/components/top_image_appbar.dart';
+import 'package:flutter_breathe/utils/cus_behavior.dart';
 import 'package:flutter_breathe/widgets/more_text.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -46,17 +49,20 @@ class PersonalView extends GetView<PersonalController> {
               child: TabBarView(
             controller: controller.tabController,
             children: [
-              ListView.builder(
-                itemCount: 20,
-                itemBuilder: (BuildContext c, int i) {
-                  return Container(
-                    alignment: Alignment.center,
-                    height: 60.0,
-                    child: Text(
-                      const Key('Tab1').toString() + ': ListView$i',
-                    ),
-                  );
-                },
+              ScrollConfiguration(
+                behavior: CusBehavior(),
+                child: ListView.builder(
+                  itemCount: 20,
+                  itemBuilder: (BuildContext c, int i) {
+                    return Container(
+                      alignment: Alignment.center,
+                      height: 60.0,
+                      child: Text(
+                        const Key('Tab1').toString() + ': ListView$i',
+                      ),
+                    );
+                  },
+                ),
               ),
               Center(
                 child: Text("CENTER"),

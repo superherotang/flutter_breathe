@@ -123,7 +123,7 @@ class ShowBox extends GetView {
   List<Widget> tagListWidget() {
     List<Widget> list = [];
     tagList.forEach((element) {
-      list.add(Tag(tagType: element.tagType, count: element.count));
+      list.add(Tag(postsType: element.postsType, count: element.count));
     });
     return list;
   }

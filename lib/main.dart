@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:wechat_assets_picker/wechat_assets_picker.dart';
 import 'app.dart';
 
 import 'common/dependency_injection.dart';
@@ -21,4 +22,5 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   runApp(createApp());
+  AssetPicker.registerObserve();
 }

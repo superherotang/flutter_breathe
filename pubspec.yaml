@@ -66,6 +66,12 @@ dependencies:
   extended_text_field: ^10.0.0
   extended_text_library: ^9.0.0
 
+  #图片视频音频选择
+  wechat_assets_picker: ^7.0.5
+  wechat_camera_picker: ^3.0.2
+  extended_image: ^6.0.2+1
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

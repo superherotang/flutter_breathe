@@ -42,8 +42,9 @@ class ReleaseTypeImages extends GetView {
               top: 0,
               right: 0,
               child: InkWell(
-                onTap: (){
-                  releaseController.assetEntitys.remove(data[i]);
+                onTap: () {
+                  releaseController.assetEntitysImage.remove(data[i]);
+                  releaseController.typeThemeChange();
                 },
                 child: Container(
                   height: 60.w,

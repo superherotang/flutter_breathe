@@ -1,4 +1,7 @@
 enum PostsType {
+  ///纯文本
+  text,
+
   ///图片
   img,
 

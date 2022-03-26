@@ -63,13 +63,19 @@ dependencies:
   #文件选择
   #file_picker: ^4.5.1
   #flutter_quill: ^4.0.9
+  extended_text: ^9.0.0
   extended_text_field: ^10.0.0
   extended_text_library: ^9.0.0
+  #视频
+  video_player: ^2.3.0
+  chewie: ^1.3.1
 
   #图片视频音频选择
   wechat_assets_picker: ^7.0.5
   wechat_camera_picker: ^3.0.2
   extended_image: ^6.0.2+1
+  #
+  just_audio: ^0.9.20
 
 
 dev_dependencies:

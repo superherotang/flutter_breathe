@@ -1,9 +1,11 @@
 import 'package:extended_text_field/extended_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_breathe/common/color.dart';
+import 'package:flutter_breathe/model/posts_type.dart';
 import 'package:flutter_breathe/pages/release/components/small_button.dart';
 import 'package:flutter_breathe/widgets/icon.dart';
 import 'package:flutter_breathe/widgets/release_type_box/release_type_images.dart';
+import 'package:flutter_breathe/widgets/release_type_box/release_type_video.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
@@ -34,11 +36,19 @@ class ReleaseView extends GetView<ReleaseController> {
                     child: inputContent(),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(bottom: 80.w,top: 50.w),
+                    padding: EdgeInsets.only(bottom: 80.w, top: 50.w),
                     child: Obx(
-                      () => ReleaseTypeImages(
-                        data: controller.assetEntitys.value,
-                      ),
+                      () {
+                        if (controller.postsType.value == PostsType.video) {
+                          return ReleaseTypeVideo(
+                            data: controller.assetEntitysVideo.value[0],
+                          );
+                        } else {
+                          return ReleaseTypeImages(
+                            data: controller.assetEntitysImage.value,
+                          );
+                        }
+                      },
                     ),
                   ),
                 ],
@@ -174,55 +184,101 @@ class ReleaseView extends GetView<ReleaseController> {
 
   //键盘上面菜单
   menuItem(BuildContext context) {
+    var controller = Get.find<ReleaseController>();
     return Container(
       width: double.infinity,
       height: 90.w + MediaQuery.of(context).padding.bottom,
       color: AppColor.someBackground,
-      child: Row(children: [
-        Expanded(
-          child: InkWell(
-            onTap: () {
-              controller.pickImages();
-            },
-            child: Icon(
-              Icons.ac_unit,
-              size: 50.w,
+      child: Obx(
+        () => Row(children: [
+          Expanded(
+            child: InkWell(
+              onTap: () => controller.typeTheme.value.imageOnTap
+                  ? controller.pickImages()
+                  : null,
+              child: Icon(
+                Icons.image,
+                color: controller.typeTheme.value.imageColor,
+                size: 50.w,
+              ),
             ),
           ),
-        ),
-        Expanded(
-          child: InkWell(
-            child: Icon(
-              Icons.ac_unit,
-              size: 50.w,
+          Expanded(
+            child: InkWell(
+              onTap: () => controller.typeTheme.value.videoOnTap
+                  ? controller.pickVideo()
+                  : null,
+              child: Icon(
+                Icons.videocam_rounded,
+                color: controller.typeTheme.value.videoColor,
+                size: 50.w,
+              ),
             ),
           ),
-        ),
-        Expanded(
-          child: InkWell(
-            child: Icon(
-              Icons.ac_unit,
-              size: 50.w,
+          Expanded(
+            child: InkWell(
+              onTap: () => controller.typeTheme.value.soundOnTap
+                  ? Get.bottomSheet(Container(
+                      child: Wrap(
+                        children: [
+                          ListTile(
+                            tileColor: Colors.white,
+                            title: const Center(child: Text("录音")),
+                            onTap: () => controller.pickAudio(),
+                          ),
+                          ListTile(
+                            tileColor: Colors.white,
+                            title: const Center(child: Text("选取文件")),
+                            onTap: () {},
+                          ),
+                          const ListTile(
+                            tileColor: Colors.white,
+                            title: Divider(),
+                          ),
+                          ListTile(
+                            tileColor: Colors.white,
+                            title: const Center(child: Text("取消")),
+                            onTap: () {
+                              Get.back();
+                            },
+                          ),
+                        ],
+                      ),
+                    ))
+                  : null,
+              child: Icon(
+                Icons.surround_sound,
+                color: controller.typeTheme.value.soundColor,
+                size: 50.w,
+              ),
             ),
           ),
-        ),
-        Expanded(
-          child: InkWell(
-            child: Icon(
-              Icons.ac_unit,
-              size: 50.w,
+          Expanded(
+            child: InkWell(
+              child: Icon(
+                Icons.ac_unit,
+                size: 50.w,
+              ),
             ),
           ),
-        ),
-        Expanded(
-          child: InkWell(
-            child: Icon(
-              Icons.ac_unit,
-              size: 50.w,
+          Expanded(
+            child: InkWell(
+              child: Icon(
+                Icons.emoji_emotions,
+                size: 50.w,
+              ),
             ),
           ),
-        ),
-      ]),
+          Expanded(
+            child: InkWell(
+              child: Icon(
+                Icons.add_circle_rounded,
+                size: 50.w,
+              ),
+            ),
+          ),
+        ]),
+      ),
     );
   }
 

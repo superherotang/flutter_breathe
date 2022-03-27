@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_breathe/pages/home/home_controller.dart';
 import 'package:flutter_breathe/routes/app_routes.dart';
-import 'package:flutter_breathe/utils/location_controller.dart';
+import 'package:flutter_breathe/service/location_service.dart';
 import 'package:flutter_breathe/widgets/search_input.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -32,19 +32,19 @@ class HomeTop extends GetView<HomeController> {
   }
 
   Widget selectCity() {
-    var locationController = Get.find<LocationController>();
+    
+    LocationService locationService = Get.find<LocationService>();
     return InkWell(
       onTap: () async {
         //跳转传值
         await Get.toNamed(Routes.CITY);
-        controller.getLocation();
       },
       child: Row(
         children: [
           Container(
             constraints: BoxConstraints(maxWidth: 150.w),
             child: Obx(
-              () => Text(locationController.city.value,
+              () => Text(locationService.city.value,
                   style: TextStyle(fontSize: 36.w, fontWeight: FontWeight.bold),
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1),

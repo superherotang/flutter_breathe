@@ -9,7 +9,15 @@ class DemoView extends GetView<DemoController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Container(),
+      body: Container(
+        child: ElevatedButton(
+          child: Text("asd"),
+          onPressed: () {
+            int aaa = controller.player.duration!.inSeconds;
+            print(aaa);
+          },
+        ),
+      ),
     );
   }
 }

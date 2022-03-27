@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-class AudioPlayerLZ extends GetView {
-  const AudioPlayerLZ({
+class AudioPlayerUnit extends GetView {
+  const AudioPlayerUnit({
     Key? key,
     this.height = 55,
     this.playSize = 30,
@@ -18,16 +17,18 @@ class AudioPlayerLZ extends GetView {
   final double audioDuration;
   @override
   Widget build(BuildContext context) {
-    var controller = Get.put(AudioPlayerController());
+    var controller = Get.put(AudioPlayerUnitController());
     controller.audioDuration.value = audioDuration;
     controller.audioPosition.value = audioPosition;
 
     return Column(
       children: [
         Container(
+          height: height,
+          width: double.infinity,
           decoration: BoxDecoration(
             color: Colors.amber,
-            borderRadius: BorderRadius.circular(1.sw),
+            borderRadius: BorderRadius.circular(999),
           ),
           child: Row(children: [
             Padding(
@@ -40,7 +41,7 @@ class AudioPlayerLZ extends GetView {
               ),
             ),
             Text(
-              audioPosition.toString(),
+              audioPosition.toInt().toString(),
               style: TextStyle(fontSize: fontSize),
             ),
             Expanded(
@@ -50,7 +51,6 @@ class AudioPlayerLZ extends GetView {
                 max: controller.audioDuration.value,
                 value: controller.sliderValue.value,
                 onChanged: (value) {
-                  print(value);
                   controller.sliderValue.value = value;
                 },
               ),
@@ -58,7 +58,7 @@ class AudioPlayerLZ extends GetView {
             Padding(
               padding: const EdgeInsets.only(right: 20),
               child: Text(
-                audioDuration.toString(),
+                audioDuration.toInt().toString(),
                 style: TextStyle(fontSize: fontSize),
               ),
             ),
@@ -69,7 +69,7 @@ class AudioPlayerLZ extends GetView {
   }
 }
 
-class AudioPlayerController extends GetxController {
+class AudioPlayerUnitController extends GetxController {
   var audioPosition = 0.0.obs;
   var audioDuration = 0.0.obs;
   var sliderValue = 0.0.obs;
@@ -80,14 +80,10 @@ class AudioPlayerController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-
   }
 
   @override
   void onClose() {
     super.onClose();
-
   }
-
-
 }

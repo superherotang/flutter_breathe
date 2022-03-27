@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_breathe/common/color.dart';
+import 'package:flutter_breathe/service/location_service.dart';
 
-import 'package:flutter_breathe/utils/location_controller.dart';
 import 'package:flutter_breathe/widgets/search_input.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -14,7 +14,7 @@ class CommunityView extends GetView<CommunityController> {
 
   @override
   Widget build(BuildContext context) {
-    var locationController = Get.find<LocationController>();
+    LocationService locationService = Get.find<LocationService>();
     return Scaffold(
         backgroundColor: AppColor.oftenBackground,
         appBar: AppBar(
@@ -41,7 +41,7 @@ class CommunityView extends GetView<CommunityController> {
                   InkWell(
                     child: Obx(
                       () => Text(
-                        locationController.city.value,
+                        locationService.city.value,
                         style: TextStyle(
                             fontSize: 34.w,
                             color: AppColor.primaryText,

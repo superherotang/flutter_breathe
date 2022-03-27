@@ -35,7 +35,9 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_svg: ^1.0.3
   get: ^4.6.1
-  flutter_picker: ^2.0.2
+  #地址选择
+  path_provider: ^2.0.0
+  path: ^1.8.0
   #刷新
   flutter_easyrefresh: ^2.2.1
   extended_nested_scroll_view: ^5.0.0
@@ -51,30 +53,21 @@ dependencies:
   #定位跳转
   scrollable_positioned_list: ^0.2.3
   #数据库
-  drift: ^1.4.0
-  sqlite3_flutter_libs: ^0.5.0
-  path_provider: ^2.0.0
-  path: ^1.8.0
+  shared_preferences: ^2.0.13
   #适配
   flutter_screenutil: ^5.3.1
   #文本
-  #flutter_widget_from_html_core: ^0.8.5
-  #html_editor_enhanced: ^2.4.0+1
-  #文件选择
-  #file_picker: ^4.5.1
-  #flutter_quill: ^4.0.9
   extended_text: ^9.0.0
   extended_text_field: ^10.0.0
   extended_text_library: ^9.0.0
   #视频
   video_player: ^2.3.0
   chewie: ^1.3.1
-
   #图片视频音频选择
   wechat_assets_picker: ^7.0.5
   wechat_camera_picker: ^3.0.2
   extended_image: ^6.0.2+1
-  #
+  #音频
   just_audio: ^0.9.20
 
 
@@ -88,7 +81,6 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^1.0.0
-  drift_dev: ^1.4.0
   build_runner: ^2.1.7
 
 # For information on the generic Dart part of this file, see the

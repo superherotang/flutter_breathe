@@ -4,6 +4,7 @@ import 'package:flutter_breathe/common/color.dart';
 import 'package:flutter_breathe/model/posts_type.dart';
 import 'package:flutter_breathe/pages/release/components/small_button.dart';
 import 'package:flutter_breathe/widgets/icon.dart';
+import 'package:flutter_breathe/widgets/release_type_box/release_type_audio.dart';
 import 'package:flutter_breathe/widgets/release_type_box/release_type_images.dart';
 import 'package:flutter_breathe/widgets/release_type_box/release_type_video.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -31,6 +32,24 @@ class ReleaseView extends GetView<ReleaseController> {
               Expanded(
                   child: ListView(
                 children: [
+                  Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20.w),
+                      child: Row(
+                        children: [
+                          const Icon(Icons.ac_unit),
+                          SizedBox(width: 10.w),
+                          const Text("选择社区"),
+                          Expanded(child: Container()),
+                          const Icon(Icons.arrow_right_sharp)
+                        ],
+                      )),
+                  SizedBox(height: 15.w),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20.w),
+                    child: const Divider(
+                      height: 1,
+                    ),
+                  ),
                   Container(
                     constraints: BoxConstraints(minHeight: 200.w),
                     child: inputContent(),
@@ -44,8 +63,23 @@ class ReleaseView extends GetView<ReleaseController> {
                             data: controller.assetEntitysVideo.value[0],
                           );
                         } else {
-                          return ReleaseTypeImages(
-                            data: controller.assetEntitysImage.value,
+                          return Column(
+                            children: [
+                              controller.assetEntitysImage.isEmpty
+                                  ? Container()
+                                  : ReleaseTypeImages(
+                                      data: controller.assetEntitysImage.value,
+                                    ),
+                              SizedBox(
+                                height: 15.w,
+                              ),
+                              controller.assetEntitysAudio.isEmpty
+                                  ? Container()
+                                  : ReleaseTypeAudio(
+                                      data:
+                                          controller.assetEntitysAudio.value[0],
+                                    ),
+                            ],
                           );
                         }
                       },
@@ -224,12 +258,15 @@ class ReleaseView extends GetView<ReleaseController> {
                           ListTile(
                             tileColor: Colors.white,
                             title: const Center(child: Text("录音")),
-                            onTap: () => controller.pickAudio(),
+                            onTap: () {},
                           ),
                           ListTile(
                             tileColor: Colors.white,
                             title: const Center(child: Text("选取文件")),
-                            onTap: () {},
+                            onTap: () async {
+                              await controller.pickAudio();
+                              Get.back();
+                            },
                           ),
                           const ListTile(
                             tileColor: Colors.white,

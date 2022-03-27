@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_breathe/service/location_service.dart';
+import 'package:get/get.dart';
 import 'package:wechat_assets_picker/wechat_assets_picker.dart';
 import 'app.dart';
 
-import 'common/dependency_injection.dart';
+import 'utils/storage.dart';
 
 void main() async {
   SystemChrome.setSystemUIOverlayStyle(
@@ -17,10 +19,21 @@ void main() async {
       // DeviceOrientation.landscapeRight,
     ],
   );
-
-  await DenpendencyInjection.init();
-  WidgetsFlutterBinding.ensureInitialized();
+  await initStore();
 
   runApp(createApp());
   AssetPicker.registerObserve();
+}
+
+Future<void> initStore() async {
+  // 初始化本地存储类d
+
+  await SpUtil().init();
+  // 初始化request类
+  // HttpUtils.init(
+  //   baseUrl: Api.baseUrl,
+  // );
+
+  //位置历史记录，全局
+  await Get.putAsync(() => LocationService().init());
 }

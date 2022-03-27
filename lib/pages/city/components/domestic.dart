@@ -1,13 +1,13 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_breathe/data/db/database.dart';
-import 'package:flutter_breathe/data/db/locations/locations_dao.dart';
 import 'package:flutter_breathe/model/city/area.dart';
 import 'package:flutter_breathe/model/city/city_pinying.dart';
-import 'package:drift/drift.dart' as D;
-import 'package:flutter_breathe/utils/location_controller.dart';
+import 'package:flutter_breathe/model/city/location.dart';
+import 'package:flutter_breathe/service/location_service.dart';
+import 'package:flutter_breathe/utils/storage.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lpinyin/lpinyin.dart';
@@ -19,6 +19,12 @@ class Domestic extends GetView<DomesticController> {
   @override
   Widget build(BuildContext context) {
     Get.put(DomesticController());
+    return Obx(() => controller.isInit.value
+        ? cityList()
+        : const CircularProgressIndicator());
+  }
+
+  Widget cityList() {
     return Stack(
       children: [
         //主体滚动内容
@@ -31,7 +37,7 @@ class Domestic extends GetView<DomesticController> {
               //获取字母列表
               String key = controller.letterList[index];
               //获取字母对应列表
-              List<City> cityList =
+              List<Location> cityList =
                   key == "定位" ? [] : controller.cityMap[key]!.toList();
               return Container(
                 child: Column(
@@ -55,8 +61,7 @@ class Domestic extends GetView<DomesticController> {
                           ),
                     ListView.builder(
                       itemBuilder: (context, index) {
-                        City entity = cityList[index];
-                        return titleItem(entity);
+                        return titleItem(cityList[index]);
                       },
                       itemCount: cityList.length,
                       shrinkWrap: true,
@@ -86,7 +91,8 @@ class Domestic extends GetView<DomesticController> {
                       //点击变色
                       controller.navBackground.value = Colors.black12;
                       int clickIndex = (details.localPosition.dy ~/
-                              controller.letterItemHeight)
+                              (constraints.maxHeight /
+                                  controller.letterCount.value))
                           .clamp(0, controller.letterCount.value - 1);
                       calculateLetters(clickIndex);
                       toLetter(clickIndex);
@@ -101,7 +107,8 @@ class Domestic extends GetView<DomesticController> {
                     },
                     onVerticalDragUpdate: (details) {
                       int clickIndex = (details.localPosition.dy ~/
-                              controller.letterItemHeight)
+                              (constraints.maxHeight /
+                                  controller.letterCount.value))
                           .clamp(0, controller.letterCount.value - 1);
                       calculateLetters(clickIndex);
 
@@ -165,9 +172,9 @@ class Domestic extends GetView<DomesticController> {
   }
 
   //列表项
-  Widget titleItem(City citys) {
+  Widget titleItem(Location location) {
     return InkWell(
-      onTap: () => controller.onChangerCity(Location(city: citys.label)),
+      onTap: () => controller.onChangerCity(location),
       child: Container(
         color: Colors.white,
         padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -178,7 +185,7 @@ class Domestic extends GetView<DomesticController> {
           child: Container(
             padding: EdgeInsets.symmetric(vertical: 20.w),
             child: Text(
-              citys.label,
+              location.city,
               style: TextStyle(fontSize: 36.w, fontWeight: FontWeight.w500),
             ),
           ),
@@ -189,26 +196,27 @@ class Domestic extends GetView<DomesticController> {
 
   //选择城市
   Widget currentCity() {
+    var locationService = Get.find<LocationService>();
     return Obx(
       () => ExpansionPanelList(
         elevation: 1,
         children: <ExpansionPanel>[
           ExpansionPanel(
             headerBuilder: (context, isExpanded) {
-              print(controller.selectCity.value);
+              //print(controller.selectCity.value);
               return Row(children: [
                 Text.rich(TextSpan(
                     style:
                         TextStyle(fontSize: 36.w, fontWeight: FontWeight.bold),
                     children: [
-                      const TextSpan(text: "您正在看:"),
-                      TextSpan(text: controller.selectCity.value)
+                      const TextSpan(text: "您正在看: "),
+                      TextSpan(text: locationService.city.value)
                     ])),
                 Expanded(
                     child: Container(
                   alignment: Alignment.centerRight,
                   child: Text(
-                    controller.locationList[0].area == null ? "选择区县" : "切换区县",
+                    controller.locationList[0].county == '' ? "选择区县" : "切换区县",
                     style: TextStyle(fontSize: 26.w, color: Colors.grey),
                   ),
                 ))
@@ -254,7 +262,7 @@ class Domestic extends GetView<DomesticController> {
           Wrap(
             children: [
               ButtonItem(
-                location: Location(city: "北京"),
+                location: const Location(area: '北京市', city: '北京', county: ''),
                 text: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -300,13 +308,16 @@ class Domestic extends GetView<DomesticController> {
 
 //计算当前城市
 List<Widget> currentDistrict(Location location, List<CityPinying> allCity) {
+  var controller = Get.find<DomesticController>();
   CityPinying getCityPinying =
       allCity.firstWhere((element) => element.name == location.city);
-  City getDistrictList = getCityPinying.city;
+  City getDistrictList = controller.cityToCounty
+      .firstWhere((element) => element.label == getCityPinying.location.city);
   var areaName = getDistrictList.county.toList().map((e) => e.label);
   return areaName
       .map((item) => ButtonItem(
-          location: Location(city: location.city, area: item),
+          location:
+              Location(area: location.area, city: location.city, county: item),
           text: Text(
             item,
             style: TextStyle(
@@ -334,7 +345,7 @@ class ButtonItem extends StatelessWidget {
     var controller = Get.find<DomesticController>();
     return ElevatedButton(
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10.w),
+        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.w),
         child: text,
       ),
       onPressed: () => controller.onChangerCity(location),
@@ -350,9 +361,9 @@ class ButtonItem extends StatelessWidget {
 List<Widget> generateList() {
   return hotCity
       .map((item) => ButtonItem(
-          location: Location(city: item),
+          location: item,
           text: Text(
-            item,
+            item.city,
             style: TextStyle(
                 color: Colors.blue,
                 fontSize: 36.w,
@@ -361,16 +372,16 @@ List<Widget> generateList() {
       .toList();
 }
 
-List<String> hotCity = [
-  '北京',
-  '上海',
-  '深圳',
-  '昆明',
-  '广州',
-  '成都',
-  '杭州',
-  '南京',
-  '曲靖',
+List<Location> hotCity = const [
+  Location(area: '北京市', city: '北京', county: ''),
+  Location(area: '北京市', city: '北京', county: ''),
+  Location(area: '北京市', city: '北京', county: ''),
+  Location(area: '北京市', city: '北京', county: ''),
+  Location(area: '北京市', city: '北京', county: ''),
+  Location(area: '北京市', city: '北京', county: ''),
+  Location(area: '北京市', city: '北京', county: ''),
+  Location(area: '北京市', city: '北京', county: ''),
+  Location(area: '北京市', city: '北京', county: ''),
 ];
 
 class DomesticController extends GetxController {
@@ -402,8 +413,16 @@ class DomesticController extends GetxController {
   //字母总数
   var letterCount = 0.obs;
 
+  var isInit = false.obs;
+
+  //存储城市带地区列表
+  List<City> cityToCounty = [];
+
   ///分类
-  Map<String, List<City>> cityMap = <String, List<City>>{};
+  Map<String, List<Location>> cityMap = <String, List<Location>>{};
+
+  List<Map<String, dynamic>> locationListMap = [];
+  List<Location> locationList = [];
 
   final ItemScrollController itemScrollController = ItemScrollController();
   final ItemPositionsListener itemPositionsListener =
@@ -416,6 +435,15 @@ class DomesticController extends GetxController {
     return rootBundle.loadString('assets/data/citys.json');
   }
 
+  void mapToList() {
+    for (var element in locationListMap) {
+      locationList.add(Location(
+          area: element['area'],
+          city: element['city'],
+          county: element['county']));
+    }
+  }
+
   ///城市排序分组
   Future loadData() async {
     String jsonString = await _loadAssets();
@@ -425,21 +453,25 @@ class DomesticController extends GetxController {
 
     responses.forEach((item) {
       item.city.forEach((city) {
+        cityToCounty.add(city);
         cityListLength.value++;
 
         //处理拼音
         String cityName = city.label;
         String pinYin = PinyinHelper.getPinyin(cityName,
             separator: "", format: PinyinFormat.WITHOUT_TONE);
-        pinyingList
-            .add(CityPinying(pinying: pinYin, name: cityName, city: city));
+        pinyingList.add(CityPinying(
+            pinying: pinYin,
+            name: cityName,
+            location:
+                Location(area: item.label, city: city.label, county: '')));
       });
     });
     //排序
     pinyingList.sort((a, b) => a.pinying.compareTo(b.pinying));
     pinyingList.forEach((element) {
       String firstPinyin = element.pinying.substring(0, 1).toUpperCase();
-      cityMap.putIfAbsent(firstPinyin, () => []).add(element.city);
+      cityMap.putIfAbsent(firstPinyin, () => []).add(element.location);
     });
     //print(cityMap);
     letterList.addAll(cityMap.keys.toList());
@@ -451,51 +483,21 @@ class DomesticController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-
-    getLocation();
+    //初始化历史
+    locationListMap = List.from(SpUtil().getJSON("location") ?? []);
+    mapToList();
     letterList.add("定位");
-    loadData();
+
+    loadData().then((_) => isInit.value = true);
   }
-
-  final LocationsDao locationsDao = Get.find<LocationsDao>();
-
-  final List<Location> locationList = [];
 
   var isArea = false.obs;
 
-  void getLocation() async {
-    try {
-      var list = await locationsDao.getDescLocations();
-      if (list.isNotEmpty) {
-        locationList.add(list[0]);
-      }
-    } catch (e) {}
-    if (locationList[0].area == null) {
-      selectCity.value = locationList[0].city;
-      isArea.value = false;
-    } else {
-      selectCity.value = locationList[0].area!;
-      isArea.value = true;
-    }
-    update();
-  }
-
   //点击定位
   void onChangerCity(Location location) {
-    if (location.city == locationList[0].city) {
-      locationsDao.updateLocation(Location(
-          id: locationList[0].id, city: location.city, area: location.area));
-    } else {
-      locationsDao.insertLocation(LocationsCompanion(
-          city: D.Value(location.city), area: D.Value(location.area)));
-    }
-    var locationController = Get.find<LocationController>();
-    locationController.updateLocation();
+    LocationService()
+        .add(area: location.area, city: location.city, county: location.county);
+    LocationService().upadte();
     Get.back();
   }
 }

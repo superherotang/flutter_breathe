@@ -26,7 +26,7 @@ class ReleaseController extends GetxController {
   //资源类型列表
   var assetEntitysImage = <AssetEntity>[].obs;
   var assetEntitysVideo = <AssetEntity>[].obs;
-  var assetEntitysSound = <AssetEntity>[].obs;
+  var assetEntitysAudio = <AssetEntity>[].obs;
   var assetEntitysBounty = false.obs;
 
   BuildContext? context;
@@ -50,9 +50,16 @@ class ReleaseController extends GetxController {
   }
 
   void typeThemeChange() {
+    if (textEditingController.text.isEmpty&&assetEntitysImage.isEmpty &&
+        assetEntitysVideo.isEmpty &&
+        assetEntitysAudio.isEmpty) {
+      haveContent.value = false;
+    } else {
+      haveContent.value = true;
+    }
     if (assetEntitysBounty.isTrue) {
       postsType.value = PostsType.bounty;
-    } else if (assetEntitysSound.isNotEmpty) {
+    } else if (assetEntitysAudio.isNotEmpty) {
       postsType.value = PostsType.sound;
     } else if (assetEntitysVideo.isNotEmpty) {
       postsType.value = PostsType.video;
@@ -138,7 +145,7 @@ class ReleaseController extends GetxController {
     typeThemeChange();
   }
 
-   //图片选择
+  //图片选择
   Future<void> pickVideo() async {
     unFocusFunction();
     var temp = await PickMethod().pickVideo(context!, assetEntitysImage);
@@ -155,9 +162,9 @@ class ReleaseController extends GetxController {
     unFocusFunction();
     var temp = await PickMethod().pickAudio(context!, assetEntitysImage);
     if (temp == null) {
-      assetEntitysVideo.value = <AssetEntity>[];
+      assetEntitysAudio.value = <AssetEntity>[];
     } else {
-      assetEntitysVideo.value = temp;
+      assetEntitysAudio.value = temp;
     }
     typeThemeChange();
   }

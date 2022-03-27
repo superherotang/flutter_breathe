@@ -7,6 +7,5 @@ class CityBinding implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut<CityController>(() => CityController());
-    Get.lazyPut<DomesticController>(() => DomesticController());
   }
 }

@@ -1,13 +1,13 @@
-import 'package:flutter_breathe/model/city/area.dart';
+import 'package:flutter_breathe/model/city/location.dart';
 
 class CityPinying {
   const CityPinying({
     required this.pinying,
     required this.name,
-    required this.city,
+    required this.location,
   });
 
   final String pinying;
   final String name;
-  final City city;
+  final Location location;
 }

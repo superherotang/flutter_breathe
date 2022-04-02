@@ -42,7 +42,7 @@ class MessageView extends GetView<MessageController> {
                   size: 60.w,
                 ),
                 onPressed: () {
-                  Get.toNamed(Routes.MESSAGE + Routes.MESSAGESERACH);
+                  Get.toNamed(Routes.MESSAGESERACH);
                 },
               )),
           Padding(

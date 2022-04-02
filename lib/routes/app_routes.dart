@@ -35,33 +35,31 @@ abstract class AppPages {
         page: () => const SplashView(),
         binding: SplashBinding()),
     GetPage(name: Routes.TABS, page: () => TabsView(), binding: TabsBinding()),
-    GetPage(
-        name: Routes.HOME,
-        page: () => const HomeView(),
-        binding: HomeBinding()),
+    // GetPage(
+    //     name: Routes.HOME,
+    //     page: () => const HomeView(),
+    //     binding: HomeBinding()),
     GetPage(
       name: Routes.LOGIN,
       page: () => const LoginView(),
       binding: LoginBinding(),
     ),
-    GetPage(
-        name: Routes.PERSONAL,
-        page: () => const PersonalView(),
-        binding: PersonalBinding()),
+    // GetPage(
+    //     name: Routes.PERSONAL,
+    //     page: () => const PersonalView(),
+    //     binding: PersonalBinding()),
     GetPage(
         name: Routes.PERSONALID,
         page: () => const PersonalView(),
         binding: PersonalBinding()),
-    GetPage(
-        name: Routes.MESSAGE,
-        page: () => const MessageView(),
-        binding: MessageBinding(),
-        children: [
-          GetPage(
+    // GetPage(
+    //     name: Routes.MESSAGE,
+    //     page: () => const MessageView(),
+    //     binding: MessageBinding()),
+         GetPage(
               name: Routes.MESSAGESERACH,
               page: () => const MessageSearchView(),
               binding: MessageSearchBinding()),
-        ]),
     GetPage(
         name: Routes.CITY,
         page: () => const CityView(),
@@ -70,10 +68,10 @@ abstract class AppPages {
         name: Routes.DETAILID,
         page: () => const DetailView(),
         binding: DetailBinding()),
-    GetPage(
-        name: Routes.COMMUNITY,
-        page: () => const CommunityView(),
-        binding: CommunityBinding()),
+    // GetPage(
+    //     name: Routes.COMMUNITY,
+    //     page: () => const CommunityView(),
+    //     binding: CommunityBinding()),
     GetPage(
         name: Routes.CHOMEID,
         page: () => const ChomeView(),

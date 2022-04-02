@@ -8,7 +8,7 @@ class LikeButton extends GetView {
     Key? key,
     required this.icon,
     this.count,
-    this.size = 48,
+    this.size = 36                  ,
   }) : super(key: key);
   final IconData icon;
   final String? count;

@@ -37,7 +37,7 @@ dependencies:
   get: ^4.6.1
   #地址选择
   path_provider: ^2.0.0
-  path: ^1.8.0
+  #path: ^1.8.0
   #刷新
   flutter_easyrefresh: ^2.2.1
   extended_nested_scroll_view: ^5.0.0

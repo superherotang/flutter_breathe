@@ -8,6 +8,14 @@ class SplashView extends GetView<SplashController> {
 
   @override
   Widget build(BuildContext context) {
+     ScreenUtil.init(
+        BoxConstraints(
+            maxWidth: MediaQuery.of(context).size.width,
+            maxHeight: MediaQuery.of(context).size.height),
+        designSize: const Size(750, 1334),
+        context: context,
+        minTextAdapt: true,
+        orientation: Orientation.portrait);
     //跳到主页面
     //隐藏底部栏和顶部状态栏
     double rpx = MediaQuery.of(context).size.width / 750;

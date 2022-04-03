@@ -1,4 +1,6 @@
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_breathe/widgets/slide_image_page.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
@@ -29,11 +31,14 @@ class ShowTypeImages extends GetView {
         ),
         itemCount: data.length,
         itemBuilder: (BuildContext context, int index) {
-          return Image(
-            fit: BoxFit.cover,
-            width: double.infinity,
-            height: double.infinity,
-            image: NetworkImage(data[index]),
+          return GestureDetector(
+            onTap: () {
+              Get.to(SlideImagePage(images: data,current: index,));
+            },
+            child: ExtendedImage.network(
+                            data[index],
+                            fit: BoxFit.cover,
+                          ),
           );
         },
       ),

@@ -21,7 +21,7 @@ class Domestic extends GetView<DomesticController> {
     Get.put(DomesticController());
     return Obx(() => controller.isInit.value
         ? cityList()
-        : const CircularProgressIndicator());
+        : const Center(child: CircularProgressIndicator(),));
   }
 
   Widget cityList() {

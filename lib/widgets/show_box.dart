@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 
 import 'like_button.dart';
 
+///帖子框架
 class ShowBox extends GetView {
   final Widget child;
   final int likeCount;

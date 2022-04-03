@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_breathe/model/synopsis/synopsis.dart';
 import 'package:flutter_breathe/widgets/more_text.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import 'show_type_box/show_type_images.dart';
+
+
+///帖子内容
 class MultiContent extends GetView {
   final String? text;
   final int? id;
@@ -39,17 +44,28 @@ class MultiContent extends GetView {
   }
 
   Widget showContent() {
+          List<String> images = <String>[
+    'https://photo.tuchong.com/14649482/f/601672690.jpg',
+    'https://photo.tuchong.com/17325605/f/641585173.jpg',
+    'https://photo.tuchong.com/3541468/f/256561232.jpg',
+    'https://photo.tuchong.com/16709139/f/278778447.jpg',
+    'https://photo.tuchong.com/15195571/f/233361383.jpg',
+    'https://photo.tuchong.com/5040418/f/43305517.jpg',
+    'https://photo.tuchong.com/3019649/f/302699092.jpg'
+  ];
     if (resource.bountyList.isNotEmpty) {
       return Container(
         child: Text("赏金"),
       );
     } else if (resource.videoList.isNotEmpty) {
-      return Container(
+      return Padding(
+        padding: EdgeInsets.symmetric(vertical: 10.w),
         child: Text("视频"),
       );
     } else if (resource.imgList.isNotEmpty) {
-      return Container(
-        child: Text("图片"),
+      return Padding(
+        padding: EdgeInsets.symmetric(vertical: 10.w),
+        child: ShowTypeImages(data: images),
       );
     } else if (resource.soundList.isNotEmpty) {
       return Container(

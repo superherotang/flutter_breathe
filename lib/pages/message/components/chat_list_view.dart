@@ -2,7 +2,6 @@ import 'package:faker/faker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_breathe/model/message_list_data.dart';
-import 'package:flutter_breathe/widgets/loading_view.dart';
 import 'package:get/get.dart';
 
 import '../message_controller.dart';
@@ -47,7 +46,7 @@ class ChatListView extends GetView<MessageController> {
                       senderName: faker.person.name(),
                       message: faker.lorem.sentence(),
                       messageDate: DateTime(2019, 1, 10, 9, 30),
-                      dataMessage: "asdasd",
+                      dataMessage: "昨天",
                       profilePicture:
                           "https://goss.cfp.cn/creative/vcg/800/new/VCG211165042753.jpg"));
             }, childCount: controller.count.value))

@@ -365,9 +365,12 @@ class LoginView extends GetView<LoginController> {
                   color: Colors.white,
                   borderRadius: const BorderRadius.all(Radius.circular(60)),
                   border: Border.all(color: Colors.black45)),
-              child: Icon(
-                Icons.ac_unit,
-                size: 80.w,
+              child: Padding(
+                padding:  EdgeInsets.all(10.w),
+                child: Icon(
+                  Icons.password,
+                  size: 60.w,
+                ),
               )),
         ),
         InkWell(
@@ -377,9 +380,12 @@ class LoginView extends GetView<LoginController> {
                   color: Colors.white,
                   borderRadius: const BorderRadius.all(Radius.circular(60)),
                   border: Border.all(color: Colors.black45)),
-              child: Icon(
-                Icons.ac_unit,
-                size: 80.w,
+              child: Padding(
+                padding: EdgeInsets.all(10.w),
+                child: Icon(
+                  Icons.alternate_email_rounded,
+                  size: 60.w,
+                ),
               )),
         ),
         InkWell(
@@ -389,9 +395,12 @@ class LoginView extends GetView<LoginController> {
                   color: Colors.white,
                   borderRadius: const BorderRadius.all(Radius.circular(60)),
                   border: Border.all(color: Colors.black45)),
-              child: Icon(
-                Icons.ac_unit,
-                size: 80.w,
+              child: Padding(
+                padding:  EdgeInsets.all(10.w),
+                child: Icon(
+                  Icons.ac_unit,
+                  size: 60.w,
+                ),
               )),
         ),
         InkWell(
@@ -401,9 +410,12 @@ class LoginView extends GetView<LoginController> {
                   color: Colors.white,
                   borderRadius: const BorderRadius.all(Radius.circular(60)),
                   border: Border.all(color: Colors.black45)),
-              child: Icon(
-                Icons.ac_unit,
-                size: 80.w,
+              child: Padding(
+                padding:  EdgeInsets.all(10.w),
+                child: Icon(
+                  Icons.woo_commerce,
+                  size: 60.w,
+                ),
               )),
         ),
       ],

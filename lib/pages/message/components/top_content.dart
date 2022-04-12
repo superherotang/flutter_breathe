@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_breathe/pages/message/message_controller.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 class TopContent extends GetView<MessageController> {
@@ -11,10 +10,10 @@ class TopContent extends GetView<MessageController> {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        IconClick(onTap: () {}, count: 50, title: "asd"),
-        IconClick(onTap: () {}, count: 0, title: "asd"),
-        IconClick(onTap: () {}, count: 0, title: "asd"),
-        IconClick(onTap: () {}, count: 100, title: "asd"),
+        IconClick(icon: Icons.alternate_email_rounded, onTap: () {}, count: 50, title: "@我"),
+        IconClick(icon: Icons.favorite,onTap: () {}, count: 0, title: "赞"),
+        IconClick(icon: Icons.comment,onTap: () {}, count: 0, title: "评论"),
+        IconClick(icon: Icons.face_retouching_natural,onTap: () {}, count: 100, title: "粉丝"),
       ],
     );
   }
@@ -24,9 +23,11 @@ class IconClick extends GetView {
   final int count;
   final Function onTap;
   final String title;
+  final IconData icon;
 
   const IconClick({
     Key? key,
+    required this.icon,
     required this.count,
     required this.onTap,
     required this.title,
@@ -54,11 +55,7 @@ class IconClick extends GetView {
                     ),
                     child: Padding(
                       padding: EdgeInsets.all(20.w),
-                      child: SvgPicture.asset(
-                        "assets/icon/home.svg",
-                        width: 1,
-                        height: 1,
-                      ),
+                      child: Icon(icon,size: 60.w,),
                     )),
               ),
               Positioned(

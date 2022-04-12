@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_breathe/model/tag_model.dart';
 import 'package:flutter_breathe/routes/app_routes.dart';
 import 'package:flutter_breathe/utils/utils.dart';
-import 'package:flutter_breathe/widgets/tag.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
@@ -62,7 +61,7 @@ class ShowBox extends GetView {
                               overflow: TextOverflow.ellipsis,
                               letterSpacing: 1.w),
                         ),
-                        Text("data",
+                        Text("昨天",
                             style: TextStyle(
                                 color: Colors.grey,
                                 fontSize: 26.w,
@@ -91,11 +90,11 @@ class ShowBox extends GetView {
             SizedBox(
               height: 5.w,
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30.w),
-              child: Wrap(
-                  spacing: 8.0, runSpacing: 20.0, children: tagListWidget()),
-            ),
+            // Padding(
+            //   padding: EdgeInsets.symmetric(horizontal: 30.w),
+            //   child: Wrap(
+            //       spacing: 8.0, runSpacing: 20.0, children: tagListWidget()),
+            // ),
             Row(
               children: [
                 Expanded(
@@ -121,11 +120,11 @@ class ShowBox extends GetView {
     );
   }
 
-  List<Widget> tagListWidget() {
-    List<Widget> list = [];
-    tagList.forEach((element) {
-      list.add(Tag(postsType: element.postsType, count: element.count));
-    });
-    return list;
-  }
+  // List<Widget> tagListWidget() {
+  //   List<Widget> list = [];
+  //   tagList.forEach((element) {
+  //     list.add(Tag(postsType: element.postsType, count: element.count));
+  //   });
+  //   return list;
+  // }
 }

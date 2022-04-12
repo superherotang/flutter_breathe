@@ -29,7 +29,7 @@ class HomeView extends GetView<HomeController> {
 
 List<Widget> tabsContent = [
   const Material(
-    child: const Recommend(),
+    child:  Recommend(),
     color: AppColor.listBackground,
   ),
   Text("111"),

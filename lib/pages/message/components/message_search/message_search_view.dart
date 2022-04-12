@@ -70,7 +70,7 @@ class MessageSearchView extends GetView<MessageSearchController> {
               itemBuilder: (BuildContext context, int index) {
                 return storyCard();
               },
-              itemCount: 10,
+              itemCount: 2,
             ))
           ],
         ),

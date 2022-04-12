@@ -44,7 +44,7 @@ class ModalView extends GetView {
                         child: const ModalButton("DEMO")),
                     InkWell(
                         onTap: () {
-                          print("");
+                          Get.toNamed(Routes.LOGIN);
                         },
                         child: const ModalButton("视频")),
                     ModalButton("求助"),

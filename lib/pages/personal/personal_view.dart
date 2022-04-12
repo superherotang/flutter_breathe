@@ -1,11 +1,16 @@
-import 'dart:io';
+import 'dart:convert';
 
 import 'package:extended_nested_scroll_view/extended_nested_scroll_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_breathe/common/color.dart';
+import 'package:flutter_breathe/model/synopsis/synopsis.dart';
 import 'package:flutter_breathe/pages/personal/components/top_image_appbar.dart';
+import 'package:flutter_breathe/routes/app_routes.dart';
 import 'package:flutter_breathe/utils/cus_behavior.dart';
+import 'package:flutter_breathe/utils/mock.dart';
+import 'package:flutter_breathe/widgets/box_content.dart';
 import 'package:flutter_breathe/widgets/more_text.dart';
+import 'package:flutter_breathe/widgets/multi_content.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
@@ -43,28 +48,19 @@ class PersonalView extends GetView<PersonalController> {
           TabBar(
             controller: controller.tabController,
             isScrollable: false,
-            tabs: const [Tab(text: 'Tab0'), Tab(text: 'Tab1')],
+            tabs: const [Tab(text: '我的帖子'), Tab(text: '我的收藏')],
           ),
           Expanded(
               child: TabBarView(
             controller: controller.tabController,
             children: [
-              ScrollConfiguration(
-                behavior: CusBehavior(),
-                child: ListView.builder(
-                  itemCount: 20,
-                  itemBuilder: (BuildContext c, int i) {
-                    return Container(
-                      alignment: Alignment.center,
-                      height: 60.0,
-                      child: Text(
-                        const Key('Tab1').toString() + ': ListView$i',
-                      ),
-                    );
-                  },
+              Material(
+                child: ScrollConfiguration(
+                  behavior: CusBehavior(),
+                  child: posts(),
                 ),
               ),
-              Center(
+              const Center(
                 child: Text("CENTER"),
               ),
             ],
@@ -73,6 +69,33 @@ class PersonalView extends GetView<PersonalController> {
       ),
     );
   }
+}
+
+Widget posts() {
+  Synopsis synopsis = Synopsis.fromJson(json.decode(JsonString.synopsisdata));
+  return Padding(
+    padding: EdgeInsets.symmetric(horizontal: 20.w),
+    child: ListView.builder(
+      itemBuilder: (BuildContext context, int index) {
+        return GestureDetector(
+          onTap: () {
+            Get.toNamed(Routes.DETAIL+"123");
+          },
+          child: Container(
+            color: Colors.white,
+            margin: EdgeInsets.only(bottom: 30.w),
+            child: MultiContent(
+              text: synopsis.data[0].text,
+              resource: synopsis.data[0].resource[0],
+              id: synopsis.data[0].id,
+              route: Routes.DETAIL,
+            ),
+          ),
+        );
+      },
+      itemCount: 20,
+    ),
+  );
 }
 
 List<Widget> personalTopBuilder() {
@@ -89,7 +112,7 @@ Widget topContent() {
       padding: EdgeInsets.symmetric(horizontal: 40.w),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Text(
-          "SuperHeroTang",
+          "ALECTANG",
           style: TextStyle(
               fontSize: 40.w,
               fontWeight: FontWeight.bold,

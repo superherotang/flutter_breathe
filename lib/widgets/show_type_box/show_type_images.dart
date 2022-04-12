@@ -33,7 +33,7 @@ class ShowTypeImages extends GetView {
         itemBuilder: (BuildContext context, int index) {
           return GestureDetector(
             onTap: () {
-              Get.to(SlideImagePage(images: data,current: index,));
+              Get.to(()=>SlideImagePage(images: data,current: index));
             },
             child: ExtendedImage.network(
                             data[index],

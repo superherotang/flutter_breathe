@@ -1,11 +1,17 @@
+import 'dart:convert';
+
 import 'package:extended_nested_scroll_view/extended_nested_scroll_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_breathe/common/color.dart';
+import 'package:flutter_breathe/model/synopsis/synopsis.dart';
 import 'package:flutter_breathe/pages/detail/components/comment_box.dart';
+import 'package:flutter_breathe/routes/app_routes.dart';
 import 'package:flutter_breathe/widgets/loading_view.dart';
+import 'package:flutter_breathe/widgets/multi_content.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../utils/mock.dart';
 import 'detail_controller.dart';
 
 class DetailView extends GetView<DetailController> {
@@ -16,10 +22,11 @@ class DetailView extends GetView<DetailController> {
     var getId = Get.parameters['id'];
     return Scaffold(
       appBar: AppBar(
+        elevation: 1,
         title: Chip(
           labelPadding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 5.w),
           label: const Text(
-            '名字',
+            'ALECTANG',
             style: TextStyle(color: Colors.white),
           ),
           backgroundColor: AppColor.primaryColor,
@@ -232,9 +239,19 @@ class DetailView extends GetView<DetailController> {
 
 //文章
 Widget buildSliverHeader() {
+      Synopsis synopsis = Synopsis.fromJson(json.decode(JsonString.synopsisdata));
+      
   return SliverToBoxAdapter(
-    child: Container(width: double.infinity, height: 300, color: Colors.amber),
-  );
+    child: Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20.w,vertical: 10.w),
+      child: MultiContent(
+                text: synopsis.data[0].text,
+                resource: synopsis.data[0].resource[0],
+                id: synopsis.data[0].id,
+                route: Routes.DETAIL,
+              ),
+    ));
+  
 }
 
 Widget replyall() {

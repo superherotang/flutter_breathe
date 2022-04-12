@@ -83,8 +83,8 @@ class ReleaseController extends GetxController {
         typeTheme.value.imageOnTap = true;
         typeTheme.value.videoColor = Colors.grey;
         typeTheme.value.videoOnTap = false;
-        typeTheme.value.soundColor = Colors.black;
-        typeTheme.value.soundOnTap = true;
+        typeTheme.value.soundColor = Colors.grey;
+        typeTheme.value.soundOnTap = false;
         typeTheme.refresh();
         break;
       case PostsType.video:
@@ -97,8 +97,8 @@ class ReleaseController extends GetxController {
         typeTheme.refresh();
         break;
       case PostsType.sound:
-        typeTheme.value.imageColor = Colors.black;
-        typeTheme.value.imageOnTap = true;
+        typeTheme.value.imageColor = Colors.grey;
+        typeTheme.value.imageOnTap = false;
         typeTheme.value.videoColor = Colors.grey;
         typeTheme.value.videoOnTap = false;
         typeTheme.value.soundColor = Colors.black;

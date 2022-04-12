@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_breathe/service/location_service.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController
@@ -13,19 +12,19 @@ class HomeController extends GetxController
       text: '推荐',
     ),
     const Tab(
-      text: '赏金任务',
+      text: '关注的人',
     ),
     const Tab(
       text: '关注的社区',
     ),
     const Tab(
-      text: '关注的人',
+      text: '图文',
     ),
     const Tab(
-      text: '直播',
+      text: '视频',
     ),
     const Tab(
-      text: '信息',
+      text: '语音',
     ),
   ];
 

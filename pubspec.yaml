@@ -69,6 +69,8 @@ dependencies:
   extended_image: ^6.0.2+1
   #音频
   just_audio: ^0.9.20
+  #网络状态
+  connectivity_plus: ^2.3.0
 
 
 dev_dependencies:

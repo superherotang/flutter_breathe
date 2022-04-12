@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_breathe/common/color.dart';
-import 'package:flutter_breathe/service/location_service.dart';
+import 'package:flutter_breathe/common/store/location_store.dart';
 
 import 'package:flutter_breathe/widgets/search_input.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,7 +14,7 @@ class CommunityView extends GetView<CommunityController> {
 
   @override
   Widget build(BuildContext context) {
-    LocationService locationService = Get.find<LocationService>();
+    LocationStore locationService = Get.find<LocationStore>();
     return Scaffold(
         backgroundColor: AppColor.oftenBackground,
         appBar: AppBar(

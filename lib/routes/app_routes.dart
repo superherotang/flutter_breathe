@@ -1,5 +1,6 @@
 // ignore_for_file: constant_identifier_names
 
+import 'package:flutter_breathe/common/middlewares/router_auth.dart';
 import 'package:flutter_breathe/pages/chome/chome_binding.dart';
 import 'package:flutter_breathe/pages/chome/chome_view.dart';
 import 'package:flutter_breathe/pages/city/city_binding.dart';
@@ -34,7 +35,10 @@ abstract class AppPages {
         name: Routes.INITIAL,
         page: () => const SplashView(),
         binding: SplashBinding()),
-    GetPage(name: Routes.TABS, page: () => TabsView(), binding: TabsBinding()),
+    GetPage(
+        name: Routes.TABS,
+        page: () => TabsView(),
+        binding: TabsBinding()),
     // GetPage(
     //     name: Routes.HOME,
     //     page: () => const HomeView(),
@@ -56,10 +60,10 @@ abstract class AppPages {
     //     name: Routes.MESSAGE,
     //     page: () => const MessageView(),
     //     binding: MessageBinding()),
-         GetPage(
-              name: Routes.MESSAGESERACH,
-              page: () => const MessageSearchView(),
-              binding: MessageSearchBinding()),
+    GetPage(
+        name: Routes.MESSAGESERACH,
+        page: () => const MessageSearchView(),
+        binding: MessageSearchBinding()),
     GetPage(
         name: Routes.CITY,
         page: () => const CityView(),

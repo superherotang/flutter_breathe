@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_breathe/common/middlewares/router_auth.dart';
+import 'package:flutter_breathe/common/store/user_store.dart';
 import 'package:flutter_breathe/pages/personal/components/setting.dart';
 import 'package:flutter_breathe/pages/personal/personal_controller.dart';
 import 'package:flutter_breathe/utils/utils.dart';
@@ -43,31 +45,41 @@ class TopImageAppbar extends GetView {
             collapseMode: CollapseMode.pin,
             background: Stack(
               children: [
-                Image.asset(
-                  "assets/images/topbg.jpg",
-                  width: 1.sw,
-                  height: 330.w + controller.extraPicHeight.value,
-                  fit: controller.fitType.value,
+                GestureDetector(
+                  onTap: () => UserStore().token.value.isEmpty
+                      ? RouteAuth().auth(null)
+                      : null,
+                  child: Image.asset(
+                    "assets/images/topbg.jpg",
+                    width: 1.sw,
+                    height: 330.w + controller.extraPicHeight.value,
+                    fit: controller.fitType.value,
+                  ),
                 ),
                 topContent(),
                 Positioned(
                     top: 230.w + controller.extraPicHeight.value,
                     left: 1.sw / 2 - 100.w,
-                    child: Container(
-                      padding: EdgeInsets.all(5.w),
-                      height: 200.w,
-                      width: 200.w,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(100.w),
-                      ),
+                    child: GestureDetector(
+                      onTap: () => UserStore().token.value.isEmpty
+                          ? RouteAuth().auth(null)
+                          : null,
                       child: Container(
-                          decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100.w),
-                        image: const DecorationImage(
-                            image: AssetImage("assets/images/topbg.jpg"),
-                            fit: BoxFit.cover),
-                      )),
+                        padding: EdgeInsets.all(5.w),
+                        height: 200.w,
+                        width: 200.w,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(100.w),
+                        ),
+                        child: Container(
+                            decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(100.w),
+                          image: const DecorationImage(
+                              image: AssetImage("assets/images/topbg.jpg"),
+                              fit: BoxFit.cover),
+                        )),
+                      ),
                     ))
               ],
             )),
@@ -92,6 +104,8 @@ Widget topContent() {
       children: [
         Expanded(
             child: InkWell(
+          onTap: () =>
+              UserStore().token.value.isEmpty ? RouteAuth().auth(null) : null,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -118,6 +132,8 @@ Widget topContent() {
         ),
         Expanded(
             child: InkWell(
+          onTap: () =>
+              UserStore().token.value.isEmpty ? RouteAuth().auth(null) : null,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -137,6 +153,8 @@ Widget topContent() {
         SizedBox(width: 200.w),
         Expanded(
             child: InkWell(
+          onTap: () =>
+              UserStore().token.value.isEmpty ? RouteAuth().auth(null) : null,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -163,6 +181,8 @@ Widget topContent() {
         ),
         Expanded(
             child: InkWell(
+          onTap: () =>
+              UserStore().token.value.isEmpty ? RouteAuth().auth(null) : null,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

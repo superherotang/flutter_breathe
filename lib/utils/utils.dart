@@ -1,4 +1,6 @@
+
 class Utils {
+  //数值显示格式化
   static String intFormat(int count) {
     if (count.toString().length >= 5 && count.toString().length < 9) {
       List<String> list = (count / 10000).toString().split('.');
@@ -12,4 +14,5 @@ class Utils {
       return count.toString();
     }
   }
+
 }

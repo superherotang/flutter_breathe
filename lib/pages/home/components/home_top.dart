@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_breathe/pages/home/home_controller.dart';
 import 'package:flutter_breathe/routes/app_routes.dart';
-import 'package:flutter_breathe/service/location_service.dart';
+import 'package:flutter_breathe/common/store/location_store.dart';
 import 'package:flutter_breathe/widgets/search_input.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -33,7 +33,7 @@ class HomeTop extends GetView<HomeController> {
 
   Widget selectCity() {
     
-    LocationService locationService = Get.find<LocationService>();
+    LocationStore locationService = Get.find<LocationStore>();
     return InkWell(
       onTap: () async {
         //跳转传值

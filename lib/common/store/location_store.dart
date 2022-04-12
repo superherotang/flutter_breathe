@@ -1,21 +1,23 @@
-import 'package:flutter_breathe/utils/storage.dart';
 import 'package:get/get.dart';
 
-class LocationService extends GetxService {
+import '../../service/storage_service.dart';
+
+class LocationStore extends GetxController {
   // 历史记录
   RxList<dynamic> historyLocationList = [].obs;
 
   var city = ''.obs;
 
-  Future<LocationService> init() async {
+  @override
+  void onInit() {
+    super.onInit();
     List<Map<String, dynamic>> hisData =
-        List.from(SpUtil().getJSON("location") ?? []);
+        List.from(StorageService().getJSON("location") ?? []);
     historyLocationList.addAll(hisData);
     if (historyLocationList.isEmpty) {
       add(area: '北京市', city: '北京', county: '');
     }
     updateCity();
-    return this;
   }
 
   //更新城市
@@ -29,7 +31,7 @@ class LocationService extends GetxService {
 
   Future<void> upadte() async {
     List<Map<String, dynamic>> hisData =
-        List.from(SpUtil().getJSON("location") ?? []);
+        List.from(StorageService().getJSON("location") ?? []);
     List<dynamic> list = hisData;
     historyLocationList.value = list;
     updateCity();
@@ -60,6 +62,6 @@ class LocationService extends GetxService {
       "city": city,
       "county": county,
     });
-    return SpUtil().setJSON('location', historyLocationList.toList());
+    return StorageService().setJSON('location', historyLocationList.toList());
   }
 }

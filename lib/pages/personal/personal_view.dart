@@ -1,14 +1,16 @@
 import 'dart:convert';
 
 import 'package:extended_nested_scroll_view/extended_nested_scroll_view.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_breathe/common/color.dart';
+import 'package:flutter_breathe/common/middlewares/router_auth.dart';
+import 'package:flutter_breathe/common/store/user_store.dart';
 import 'package:flutter_breathe/model/synopsis/synopsis.dart';
 import 'package:flutter_breathe/pages/personal/components/top_image_appbar.dart';
 import 'package:flutter_breathe/routes/app_routes.dart';
 import 'package:flutter_breathe/utils/cus_behavior.dart';
 import 'package:flutter_breathe/utils/mock.dart';
-import 'package:flutter_breathe/widgets/box_content.dart';
 import 'package:flutter_breathe/widgets/more_text.dart';
 import 'package:flutter_breathe/widgets/multi_content.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -79,7 +81,7 @@ Widget posts() {
       itemBuilder: (BuildContext context, int index) {
         return GestureDetector(
           onTap: () {
-            Get.toNamed(Routes.DETAIL+"123");
+            Get.toNamed(Routes.DETAIL + "123");
           },
           child: Container(
             color: Colors.white,
@@ -107,44 +109,57 @@ List<Widget> personalTopBuilder() {
 }
 
 Widget topContent() {
+  var controller = Get.find<PersonalController>();
   return SliverToBoxAdapter(
     child: Padding(
       padding: EdgeInsets.symmetric(horizontal: 40.w),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Text(
-          "ALECTANG",
-          style: TextStyle(
-              fontSize: 40.w,
-              fontWeight: FontWeight.bold,
-              overflow: TextOverflow.ellipsis),
+        GestureDetector(
+          onTap: () =>
+              UserStore().token.value.isEmpty ? RouteAuth().auth(null) : null,
+          child: Text(
+            controller.nickname.value,
+            style: TextStyle(
+                fontSize: 40.w,
+                fontWeight: FontWeight.bold,
+                overflow: TextOverflow.ellipsis),
+          ),
         ),
         SizedBox(height: 10.w),
         Row(
           children: [
-            const Text.rich(TextSpan(children: [
-              TextSpan(text: "呼吸号: "),
-              TextSpan(text: "1231231212")
+            Text.rich(TextSpan(children: [
+              const TextSpan(text: "呼吸号: "),
+              TextSpan(
+                text: controller.uid.value,
+                recognizer: TapGestureRecognizer()
+                  ..onTap = () {
+                    UserStore().token.value.isEmpty
+                        ? RouteAuth().auth(null)
+                        : null;
+                  },
+              )
             ])),
             SizedBox(width: 10.w),
-            InkWell(
-                child: Icon(
-              Icons.ac_unit,
-              size: 38.w,
-            ))
+            Offstage(
+                child: InkWell(
+                    child: Icon(
+                  Icons.ac_unit,
+                  size: 38.w,
+                )),
+                offstage: UserStore().token.value.isEmpty)
           ],
         ),
         const Divider(),
-        const MoreText(
-            "人生无常大肠包小肠,人生无常大肠包小肠,人生无常大肠包小肠,人生无常大肠包小肠,人生无常大肠包小肠,人生无常大肠包小肠,人生无常大肠包小肠,人生无常大肠包小肠,人生无常大肠包小肠,人生无常大肠包小肠,人生无常大肠包小肠,人生无常大肠包小肠,人生无常大肠包小肠,人生无常大肠包小肠,人生无常大肠包小肠,人生无常大肠包小肠,人生无常大肠包小肠,",
-            maxLines: 4),
+        MoreText(controller.introduction.value, maxLines: 4),
         SizedBox(height: 10.w),
         Row(
           children: [
             Expanded(
               child: InkWell(
-                onTap: () {
-                  print("object");
-                },
+                onTap: () => UserStore().token.value.isEmpty
+                    ? RouteAuth().auth(null)
+                    : null,
                 child: Container(
                     alignment: Alignment.center,
                     padding: EdgeInsets.symmetric(vertical: 10.w),
@@ -162,9 +177,9 @@ Widget topContent() {
             SizedBox(width: 10.w),
             Expanded(
               child: InkWell(
-                onTap: () {
-                  print("object");
-                },
+                onTap: () => UserStore().token.value.isEmpty
+                    ? RouteAuth().auth(null)
+                    : null,
                 child: Container(
                     alignment: Alignment.center,
                     padding: EdgeInsets.symmetric(vertical: 10.w),

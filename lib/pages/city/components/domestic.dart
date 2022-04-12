@@ -1,13 +1,12 @@
 import 'dart:convert';
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_breathe/model/city/area.dart';
 import 'package:flutter_breathe/model/city/city_pinying.dart';
 import 'package:flutter_breathe/model/city/location.dart';
-import 'package:flutter_breathe/service/location_service.dart';
-import 'package:flutter_breathe/utils/storage.dart';
+import 'package:flutter_breathe/common/store/location_store.dart';
+import 'package:flutter_breathe/service/storage_service.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:lpinyin/lpinyin.dart';
@@ -196,7 +195,7 @@ class Domestic extends GetView<DomesticController> {
 
   //选择城市
   Widget currentCity() {
-    var locationService = Get.find<LocationService>();
+    var locationService = Get.find<LocationStore>();
     return Obx(
       () => ExpansionPanelList(
         elevation: 1,
@@ -484,7 +483,7 @@ class DomesticController extends GetxController {
   void onInit() {
     super.onInit();
     //初始化历史
-    locationListMap = List.from(SpUtil().getJSON("location") ?? []);
+    locationListMap = List.from(StorageService().getJSON("location") ?? []);
     mapToList();
     letterList.add("定位");
 
@@ -495,9 +494,9 @@ class DomesticController extends GetxController {
 
   //点击定位
   void onChangerCity(Location location) {
-    LocationService()
+    LocationStore()
         .add(area: location.area, city: location.city, county: location.county);
-    LocationService().upadte();
+    LocationStore().upadte();
     Get.back();
   }
 }

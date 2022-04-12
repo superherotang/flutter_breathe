@@ -3,8 +3,8 @@ import 'package:flutter_breathe/routes/app_routes.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import 'common/index.dart';
 import 'common/lang/translation_service.dart';
+import 'common/theme.dart';
 
 Widget createApp() {
   return GetMaterialApp(

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_breathe/common/middlewares/router_auth.dart';
+import 'package:flutter_breathe/common/store/user_store.dart';
 import 'package:flutter_breathe/pages/Message/message_view.dart';
 import 'package:flutter_breathe/pages/community/community_view.dart';
 import 'package:flutter_breathe/pages/home/home_view.dart';
@@ -44,7 +46,6 @@ class TabsView extends GetView<TabsController> {
 
   @override
   Widget build(BuildContext context) {
-   
     return Stack(
       children: [
         Scaffold(
@@ -67,7 +68,9 @@ class TabsView extends GetView<TabsController> {
             margin: EdgeInsets.only(top: 70.w),
             child: FloatingActionButton(
               onPressed: () {
-                controller.showModelView();
+                UserStore().token.value.isEmpty
+                    ? RouteAuth().auth(null)
+                    : controller.showModelView();
               },
               child: Icon(
                 Icons.add_circle_rounded,

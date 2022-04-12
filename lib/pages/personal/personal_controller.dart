@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_breathe/common/middlewares/router_auth.dart';
+import 'package:flutter_breathe/common/store/user_store.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
@@ -16,6 +18,10 @@ class PersonalController extends GetxController
 
   var fitType = BoxFit.fitWidth.obs;
 
+  var nickname = '未登录'.obs;
+  var uid = '0'.obs;
+  var introduction = ''.obs;
+
   @override
   void onInit() {
     super.onInit();
@@ -31,6 +37,7 @@ class PersonalController extends GetxController
     if (extraPicHeight.value < 0) {
       return;
     }
+
     //只有在顶端才可以拉升
     if (scrollController.offset == 0) {
       //初始化前一个

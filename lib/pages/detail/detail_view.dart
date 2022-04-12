@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:extended_nested_scroll_view/extended_nested_scroll_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_breathe/common/color.dart';
+import 'package:flutter_breathe/common/middlewares/router_auth.dart';
 import 'package:flutter_breathe/model/synopsis/synopsis.dart';
 import 'package:flutter_breathe/pages/detail/components/comment_box.dart';
 import 'package:flutter_breathe/routes/app_routes.dart';
@@ -156,24 +157,30 @@ class DetailView extends GetView<DetailController> {
       child: Row(
         children: [
           Expanded(
-              child: Container(
-            height: 34,
-            margin: const EdgeInsets.only(right: 5),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                color: const Color.fromARGB(255, 240, 240, 240)),
-            child: Row(
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(left: 20.w),
-                  child: const Text(
-                    "我来说点什么",
-                    style: TextStyle(fontSize: 16),
-                  ),
-                )
-              ],
-            ),
-          )),
+              child: GestureDetector(
+                onTap: () {
+                  RouteAuth().auth(null);
+
+                },
+                child: Container(
+                          height: 34,
+                          margin: const EdgeInsets.only(right: 5),
+                          decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                  color: const Color.fromARGB(255, 240, 240, 240)),
+                          child: Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(left: 20.w),
+                    child: const Text(
+                      "我来说点什么",
+                      style: TextStyle(fontSize: 16),
+                    ),
+                  )
+                ],
+                          ),
+                        ),
+              )),
           InkWell(
             onTap: () {},
             child: Padding(

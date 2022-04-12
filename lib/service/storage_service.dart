@@ -1,12 +1,13 @@
 import 'dart:convert';
+import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // 本地存储
-class SpUtil {
-  SpUtil._internal();
-  static final SpUtil _instance = SpUtil._internal();
+class StorageService extends GetxService {
+  StorageService._internal();
+  static final StorageService _instance = StorageService._internal();
 
-  factory SpUtil() {
+  factory StorageService() {
     return _instance;
   }
 
@@ -14,11 +15,6 @@ class SpUtil {
 
   Future<void> init() async {
     prefs = await SharedPreferences.getInstance();
-    print("object");
-  }
-
-  Future<bool> clear() {
-    return prefs!.clear();
   }
 
   Future<bool> setJSON(String key, dynamic jsonVal) {
@@ -37,6 +33,14 @@ class SpUtil {
 
   bool? getBool(String key) {
     return prefs!.getBool(key);
+  }
+
+  Future<bool> setString(String key, String value) async {
+    return await prefs!.setString(key, value);
+  }
+
+  String getString(String key) {
+    return prefs!.getString(key) ?? '';
   }
 
   Future<bool> remove(String key) {

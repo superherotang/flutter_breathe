@@ -5,6 +5,7 @@ import 'package:flutter_breathe/service/storage_service.dart';
 import 'package:get/get.dart';
 import 'package:wechat_assets_picker/wechat_assets_picker.dart';
 
+import 'apis/base_url.dart';
 import 'store/user_store.dart';
 
 class Global {
@@ -25,7 +26,7 @@ class Global {
     await StorageService().init();
     //初始化request类
     // HttpUtils.init(
-    //   baseUrl: Api.baseUrl,
+    //   baseUrl: baseUrl,
     // );
 
     //位置历史记录，全局

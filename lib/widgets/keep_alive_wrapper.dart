@@ -9,6 +9,7 @@ class KeepAliveWrapper extends StatefulWidget {
   __KeepAliveWrapperState createState() => __KeepAliveWrapperState();
 }
 
+//页面保活
 class __KeepAliveWrapperState extends State<KeepAliveWrapper>
     with AutomaticKeepAliveClientMixin {
   @override
@@ -20,6 +21,3 @@ class __KeepAliveWrapperState extends State<KeepAliveWrapper>
   @override
   bool get wantKeepAlive => true;
 }
-
-
-//页面保活

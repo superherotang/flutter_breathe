@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_breathe/common/apis/user_api.dart';
 import 'package:flutter_breathe/pages/tabs/tabs_controller.dart';
 import 'package:flutter_breathe/routes/app_routes.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -44,7 +45,7 @@ class ModalView extends GetView {
                         child: const ModalButton("DEMO")),
                     InkWell(
                         onTap: () {
-                          Get.toNamed(Routes.LOGIN);
+                         // UserApi.sendSms(phone: "18187418771");
                         },
                         child: const ModalButton("视频")),
                     ModalButton("求助"),

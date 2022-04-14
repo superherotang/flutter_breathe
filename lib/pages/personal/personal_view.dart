@@ -115,51 +115,57 @@ Widget topContent() {
       padding: EdgeInsets.symmetric(horizontal: 40.w),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         GestureDetector(
-          onTap: () =>
-              UserStore().token.value.isEmpty ? RouteAuth().auth(null) : null,
-          child: Text(
-            controller.nickname.value,
-            style: TextStyle(
-                fontSize: 40.w,
-                fontWeight: FontWeight.bold,
-                overflow: TextOverflow.ellipsis),
+          onTap: () {
+            if (controller.id == null) {
+              UserStore().token.value.isEmpty ? RouteAuth().auth(null) : null;
+            }
+          },
+          child: Obx(
+            () => Text(
+              controller.userDataModel.value.nickname,
+              style: TextStyle(
+                  fontSize: 40.w,
+                  fontWeight: FontWeight.bold,
+                  overflow: TextOverflow.ellipsis),
+            ),
           ),
         ),
         SizedBox(height: 10.w),
         Row(
           children: [
-            Text.rich(TextSpan(children: [
-              const TextSpan(text: "呼吸号: "),
-              TextSpan(
-                text: controller.uid.value,
-                recognizer: TapGestureRecognizer()
-                  ..onTap = () {
-                    UserStore().token.value.isEmpty
-                        ? RouteAuth().auth(null)
-                        : null;
-                  },
-              )
-            ])),
-            SizedBox(width: 10.w),
-            Offstage(
-                child: InkWell(
-                    child: Icon(
-                  Icons.ac_unit,
-                  size: 38.w,
-                )),
-                offstage: UserStore().token.value.isEmpty)
+            Obx(
+              () => Text.rich(TextSpan(children: [
+                const TextSpan(text: "呼吸号: "),
+                TextSpan(
+                  text: controller.userDataModel.value.uid.toString(),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () {
+                      if (controller.id == null) {
+                        UserStore().token.value.isEmpty
+                            ? RouteAuth().auth(null)
+                            : null;
+                      }
+                    },
+                )
+              ])),
+            ),
           ],
         ),
         const Divider(),
-        MoreText(controller.introduction.value, maxLines: 4),
+        Obx(() =>
+            MoreText(controller.userDataModel.value.description, maxLines: 4)),
         SizedBox(height: 10.w),
         Row(
           children: [
             Expanded(
               child: InkWell(
-                onTap: () => UserStore().token.value.isEmpty
-                    ? RouteAuth().auth(null)
-                    : null,
+                onTap: () {
+                  if (controller.id == null) {
+                    UserStore().token.value.isEmpty
+                        ? RouteAuth().auth(null)
+                        : null;
+                  }
+                },
                 child: Container(
                     alignment: Alignment.center,
                     padding: EdgeInsets.symmetric(vertical: 10.w),
@@ -177,9 +183,13 @@ Widget topContent() {
             SizedBox(width: 10.w),
             Expanded(
               child: InkWell(
-                onTap: () => UserStore().token.value.isEmpty
-                    ? RouteAuth().auth(null)
-                    : null,
+                onTap: () {
+                  if (controller.id == null) {
+                    UserStore().token.value.isEmpty
+                        ? RouteAuth().auth(null)
+                        : null;
+                  }
+                },
                 child: Container(
                     alignment: Alignment.center,
                     padding: EdgeInsets.symmetric(vertical: 10.w),

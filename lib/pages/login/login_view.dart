@@ -1,9 +1,16 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_breathe/common/apis/user_api.dart';
 import 'package:flutter_breathe/common/color.dart';
+import 'package:flutter_breathe/common/store/user_store.dart';
+import 'package:flutter_breathe/model/login/login_model.dart';
+import 'package:flutter_breathe/model/request/my_response.dart';
+import 'package:flutter_breathe/service/storage_service.dart';
+import 'package:flutter_breathe/utils/my_toast.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
 import 'login_controller.dart';
@@ -273,6 +280,17 @@ class LoginView extends GetView<LoginController> {
     );
   }
 
+  void clickLogin(String phone, String code) async {
+    MyResponse myResponse =
+        await UserApi.smsLoginOrRegister(phone: phone, code: code);
+    if (myResponse.success) {
+      LoginModel loginModel = LoginModel.fromJson(myResponse.data);
+      UserStore().setToken(loginModel.token);
+    } else {
+      MyToast(myResponse.message);
+    }
+  }
+
   //登录按钮
   Widget loginButton() {
     return Obx(
@@ -283,7 +301,7 @@ class LoginView extends GetView<LoginController> {
               ? () {
                   controller.unAllFocus();
                   controller.checkOnSelect.value
-                      ? Get.snackbar("title", "asd")
+                      ? clickLogin("18187418771", "111111")
                       : agreementDialog();
                 }
               : null,
@@ -292,7 +310,7 @@ class LoginView extends GetView<LoginController> {
             width: double.maxFinite,
             height: 90.w,
             child: Text(
-              "login in".tr,
+              "登    录",
               style: TextStyle(fontSize: 50.w, fontWeight: FontWeight.bold),
             ),
           ),
@@ -366,7 +384,7 @@ class LoginView extends GetView<LoginController> {
                   borderRadius: const BorderRadius.all(Radius.circular(60)),
                   border: Border.all(color: Colors.black45)),
               child: Padding(
-                padding:  EdgeInsets.all(10.w),
+                padding: EdgeInsets.all(10.w),
                 child: Icon(
                   Icons.password,
                   size: 60.w,
@@ -396,7 +414,7 @@ class LoginView extends GetView<LoginController> {
                   borderRadius: const BorderRadius.all(Radius.circular(60)),
                   border: Border.all(color: Colors.black45)),
               child: Padding(
-                padding:  EdgeInsets.all(10.w),
+                padding: EdgeInsets.all(10.w),
                 child: Icon(
                   Icons.ac_unit,
                   size: 60.w,
@@ -411,7 +429,7 @@ class LoginView extends GetView<LoginController> {
                   borderRadius: const BorderRadius.all(Radius.circular(60)),
                   border: Border.all(color: Colors.black45)),
               child: Padding(
-                padding:  EdgeInsets.all(10.w),
+                padding: EdgeInsets.all(10.w),
                 child: Icon(
                   Icons.woo_commerce,
                   size: 60.w,

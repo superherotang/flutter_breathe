@@ -50,7 +50,7 @@ class TopImageAppbar extends GetView {
                       ? RouteAuth().auth(null)
                       : null,
                   child: Image.asset(
-                    "assets/images/topbg.jpg",
+                    "assets/images/personal_top_default.jpg",
                     width: 1.sw,
                     height: 330.w + controller.extraPicHeight.value,
                     fit: controller.fitType.value,
@@ -110,15 +110,20 @@ Widget topContent() {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "帖子",
+                "获赞",
                 style: TextStyle(fontSize: 30.w, height: 1),
               ),
               SizedBox(
                 height: 20.w,
               ),
-              Text(Utils.intFormat(10000100),
-                  style: TextStyle(
-                      fontSize: 28.w, fontWeight: FontWeight.bold, height: 1))
+              Obx(
+                () => Text(
+                    Utils.intFormat(controller.userCountModel.value.like),
+                    style: TextStyle(
+                        fontSize: 28.w,
+                        fontWeight: FontWeight.bold,
+                        height: 1)),
+              )
             ],
           ),
         )),
@@ -138,15 +143,20 @@ Widget topContent() {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "帖子",
+                "粉丝",
                 style: TextStyle(fontSize: 30.w, height: 1),
               ),
               SizedBox(
                 height: 20.w,
               ),
-              Text(Utils.intFormat(10000100),
-                  style: TextStyle(
-                      fontSize: 28.w, fontWeight: FontWeight.bold, height: 1))
+              Obx(
+                () => Text(
+                    Utils.intFormat(controller.userCountModel.value.fans),
+                    style: TextStyle(
+                        fontSize: 28.w,
+                        fontWeight: FontWeight.bold,
+                        height: 1)),
+              )
             ],
           ),
         )),
@@ -159,15 +169,20 @@ Widget topContent() {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "帖子",
+                "关注",
                 style: TextStyle(fontSize: 30.w, height: 1),
               ),
               SizedBox(
                 height: 20.w,
               ),
-              Text(Utils.intFormat(10000100),
-                  style: TextStyle(
-                      fontSize: 28.w, fontWeight: FontWeight.bold, height: 1))
+              Obx(
+                () => Text(
+                    Utils.intFormat(controller.userCountModel.value.follow),
+                    style: TextStyle(
+                        fontSize: 28.w,
+                        fontWeight: FontWeight.bold,
+                        height: 1)),
+              )
             ],
           ),
         )),
@@ -187,15 +202,20 @@ Widget topContent() {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "帖子",
+                "历史",
                 style: TextStyle(fontSize: 30.w, height: 1),
               ),
               SizedBox(
                 height: 20.w,
               ),
-              Text(Utils.intFormat(10000100),
-                  style: TextStyle(
-                      fontSize: 28.w, fontWeight: FontWeight.bold, height: 1))
+              Obx(
+                () => Text(
+                    Utils.intFormat(controller.userCountModel.value.history),
+                    style: TextStyle(
+                        fontSize: 28.w,
+                        fontWeight: FontWeight.bold,
+                        height: 1)),
+              )
             ],
           ),
         )),

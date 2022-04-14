@@ -71,6 +71,8 @@ dependencies:
   just_audio: ^0.9.20
   #网络状态
   connectivity_plus: ^2.3.0
+  #提示
+  fluttertoast: ^8.0.9
 
 
 dev_dependencies:

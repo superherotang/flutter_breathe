@@ -45,7 +45,7 @@ class ModalView extends GetView {
                         child: const ModalButton("DEMO")),
                     InkWell(
                         onTap: () {
-                         // UserApi.sendSms(phone: "18187418771");
+                          UserApi.sendSms(phone: "18187418771");
                         },
                         child: const ModalButton("视频")),
                     ModalButton("求助"),

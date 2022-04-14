@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_breathe/common/apis/user_api.dart';
+import 'package:flutter_breathe/common/store/user_store.dart';
+import 'package:flutter_breathe/model/request/my_response.dart';
+import 'package:flutter_breathe/model/userCount/user_count_model.dart';
+import 'package:flutter_breathe/model/userData/user_data_model.dart';
+import 'package:flutter_breathe/utils/my_toast.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
@@ -16,14 +22,24 @@ class PersonalController extends GetxController
 
   var fitType = BoxFit.fitWidth.obs;
 
-  var nickname = '未登录'.obs;
-  var uid = '0'.obs;
-  var introduction = ''.obs;
+  //用户资料
+  late Rx<UserDataModel> userDataModel;
+  //用户统计
+  late Rx<UserCountModel> userCountModel;
 
   @override
   void onInit() {
     super.onInit();
     id = Get.parameters['id'];
+    userCountModel = UserCountModel(0, 0, 0, 0).obs;
+    if (id == null) {
+      //别人的主页
+      userDataModel = UserDataModel(0, "", "", "未登录", "", -1, "", "").obs;
+    } else {
+      //自己的主页
+      userDataModel = UserDataModel(0, "", "", "加载中", "", -1, "", "").obs;
+    }
+
     tabController = TabController(length: 2, vsync: this);
     animationController = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 300));
@@ -43,7 +59,7 @@ class PersonalController extends GetxController
         prevDy = change;
       }
       if (extraPicHeight.value > 120.w) {
-        fitType.value = BoxFit.fitHeight;
+        fitType.value = BoxFit.cover;
       }
       //(1 - (extraPicHeight.value / 1.sh)) 屏占比
       extraPicHeight.value +=
@@ -58,7 +74,6 @@ class PersonalController extends GetxController
         .animate(animationController)
       ..addListener(() {
         extraPicHeight.value = animation.value;
-
         if (extraPicHeight.value < 120.w) {
           fitType.value = BoxFit.fitWidth;
         }
@@ -70,5 +85,34 @@ class PersonalController extends GetxController
   void onClose() {
     super.onClose();
     tabController.dispose();
+  }
+
+  @override
+  void onReady() async {
+    super.onReady();
+    //请求用户信息
+    if (id == null) {
+      if (UserStore.to.isLogin) {
+        //请求用户信息
+        MyResponse myResponseUserData = await UserApi.getUserDataByToken();
+        if (myResponseUserData.success) {
+          userDataModel.value =
+              UserDataModel.fromJson(myResponseUserData.data["userData"]);
+          userDataModel.refresh();
+        } else {
+          MyToast(myResponseUserData.message);
+        }
+        //请求用户统计
+        MyResponse myResponseCound =
+            await UserApi.getUserCountByUid(uid: userDataModel.value.uid);
+        if (myResponseCound.success) {
+          userCountModel.value =
+              UserCountModel.fromJson(myResponseCound.data["userCount"]);
+          userCountModel.refresh();
+        } else {
+          MyToast(myResponseCound.message);
+        }
+      }
+    }
   }
 }

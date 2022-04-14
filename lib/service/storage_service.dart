@@ -15,6 +15,8 @@ class StorageService extends GetxService {
 
   Future<void> init() async {
     prefs = await SharedPreferences.getInstance();
+
+    print(prefs);
   }
 
   Future<bool> setJSON(String key, dynamic jsonVal) {

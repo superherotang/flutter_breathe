@@ -1,6 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_breathe/common/apis/user_api.dart';
+import 'package:flutter_breathe/model/request/my_response.dart';
+import 'package:flutter_breathe/utils/my_toast.dart';
 import 'package:get/get.dart';
 
 class LoginController extends GetxController {
@@ -160,25 +163,30 @@ class LoginController extends GetxController {
   }
 
   //获取验证码倒计时
-  void countdown() {
+  void countdown() async {
     if (!validatePhone(textEditingPhoneController.text)) {
       Get.snackbar("错误", "请检测手机号是否正确",
           duration: const Duration(milliseconds: 1500));
       return;
     }
     if (isButtonEnable.value) {
-      isButtonEnable.value = false;
-      timer = Timer.periodic(const Duration(milliseconds: 1000), (timer) {
-        if (timeCount <= 0) {
-          countdownText.value = '重新获取';
-          timer.cancel();
-          timeCount = 60;
-          isButtonEnable.value = true;
-        } else {
-          timeCount--;
-          countdownText.value = "$timeCount" 's';
-        }
-      });
+      MyResponse myResponse = await UserApi.sendSms(phone: "18187418771");
+      if (myResponse.success) {
+        isButtonEnable.value = false;
+        timer = Timer.periodic(const Duration(milliseconds: 1000), (timer) {
+          if (timeCount <= 0) {
+            countdownText.value = '重新获取';
+            timer.cancel();
+            timeCount = 60;
+            isButtonEnable.value = true;
+          } else {
+            timeCount--;
+            countdownText.value = "$timeCount" 's';
+          }
+        });
+      } else {
+        MyToast("发送失败");
+      }
     }
   }
 

@@ -31,8 +31,7 @@ class MultiContent extends GetView {
                 text!,
                 maxLines: (resource.imgList.isEmpty &&
                         resource.videoList.isEmpty &&
-                        resource.soundList.isEmpty &&
-                        resource.bountyList.isEmpty)
+                        resource.soundList.isEmpty)
                     ? 10
                     : 4,
                 id: id,
@@ -53,11 +52,7 @@ class MultiContent extends GetView {
     'https://photo.tuchong.com/5040418/f/43305517.jpg',
     'https://photo.tuchong.com/16763656/f/757342338.jpg'
   ];
-    if (resource.bountyList.isNotEmpty) {
-      return Container(
-        child: Text("赏金"),
-      );
-    } else if (resource.videoList.isNotEmpty) {
+    if (resource.videoList.isNotEmpty) {
       return Padding(
         padding: EdgeInsets.symmetric(vertical: 10.w),
         child: Text("视频"),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+
 class LoadingView extends GetView {
   ///异步事件
   final Future<dynamic> future;

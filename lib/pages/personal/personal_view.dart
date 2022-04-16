@@ -3,9 +3,11 @@ import 'dart:convert';
 import 'package:extended_nested_scroll_view/extended_nested_scroll_view.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_breathe/common/apis/posts_api.dart';
 import 'package:flutter_breathe/common/color.dart';
 import 'package:flutter_breathe/common/middlewares/router_auth.dart';
 import 'package:flutter_breathe/common/store/user_store.dart';
+import 'package:flutter_breathe/model/request/my_response.dart';
 import 'package:flutter_breathe/model/synopsis/synopsis.dart';
 import 'package:flutter_breathe/pages/personal/components/top_image_appbar.dart';
 import 'package:flutter_breathe/routes/app_routes.dart';
@@ -13,6 +15,7 @@ import 'package:flutter_breathe/utils/cus_behavior.dart';
 import 'package:flutter_breathe/utils/mock.dart';
 import 'package:flutter_breathe/widgets/more_text.dart';
 import 'package:flutter_breathe/widgets/multi_content.dart';
+import 'package:flutter_breathe/widgets/null_content.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
@@ -56,15 +59,8 @@ class PersonalView extends GetView<PersonalController> {
               child: TabBarView(
             controller: controller.tabController,
             children: [
-              Material(
-                child: ScrollConfiguration(
-                  behavior: CusBehavior(),
-                  child: posts(),
-                ),
-              ),
-              const Center(
-                child: Text("CENTER"),
-              ),
+              posts(),
+              NullContent(),
             ],
           ))
         ]),
@@ -75,14 +71,14 @@ class PersonalView extends GetView<PersonalController> {
 
 Widget posts() {
   Synopsis synopsis = Synopsis.fromJson(json.decode(JsonString.synopsisdata));
-  return Padding(
-    padding: EdgeInsets.symmetric(horizontal: 20.w),
-    child: ListView.builder(
-      itemBuilder: (BuildContext context, int index) {
-        return GestureDetector(
-          onTap: () {
-            Get.toNamed(Routes.DETAIL + "123");
-          },
+  return ListView.builder(
+    itemBuilder: (BuildContext context, int index) {
+      return GestureDetector(
+        onTap: () {
+          Get.toNamed(Routes.DETAIL + "123");
+        },
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20.w),
           child: Container(
             color: Colors.white,
             margin: EdgeInsets.only(bottom: 30.w),
@@ -93,10 +89,10 @@ Widget posts() {
               route: Routes.DETAIL,
             ),
           ),
-        );
-      },
-      itemCount: 20,
-    ),
+        ),
+      );
+    },
+    itemCount: 20,
   );
 }
 
@@ -158,51 +154,83 @@ Widget topContent() {
         Row(
           children: [
             Expanded(
-              child: InkWell(
-                onTap: () {
-                  if (controller.id == null) {
-                    UserStore().token.value.isEmpty
-                        ? RouteAuth().auth(null)
-                        : null;
-                  }
-                },
-                child: Container(
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.symmetric(vertical: 10.w),
-                    color: AppColor.primaryColor,
-                    child: Text(
-                      "+ 关注",
-                      style: TextStyle(
-                          height: 1.5,
-                          fontSize: 30.w,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
-                    )),
-              ),
+              child: controller.id == null
+                  ? InkWell(
+                      onTap: () {
+                        if (controller.id == null) {
+                          UserStore().token.value.isEmpty
+                              ? RouteAuth().auth(null)
+                              : null;
+                        }
+                      },
+                      child: Container(
+                          alignment: Alignment.center,
+                          padding: EdgeInsets.symmetric(vertical: 10.w),
+                          color: AppColor.primaryColor,
+                          child: Text(
+                            "编辑资料",
+                            style: TextStyle(
+                                height: 1.5,
+                                fontSize: 30.w,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                          )),
+                    )
+                  : InkWell(
+                      onTap: () {},
+                      child: Container(
+                          alignment: Alignment.center,
+                          padding: EdgeInsets.symmetric(vertical: 10.w),
+                          color: AppColor.primaryColor,
+                          child: Text(
+                            "+ 关注",
+                            style: TextStyle(
+                                height: 1.5,
+                                fontSize: 30.w,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                          )),
+                    ),
             ),
             SizedBox(width: 10.w),
             Expanded(
-              child: InkWell(
-                onTap: () {
-                  if (controller.id == null) {
-                    UserStore().token.value.isEmpty
-                        ? RouteAuth().auth(null)
-                        : null;
-                  }
-                },
-                child: Container(
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.symmetric(vertical: 10.w),
-                    color: AppColor.primaryColor,
-                    child: Text(
-                      "私信",
-                      style: TextStyle(
-                          height: 1.5,
-                          fontSize: 30.w,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
-                    )),
-              ),
+              child: controller.id == null
+                  ? InkWell(
+                      onTap: () {
+                        if (controller.id == null) {
+                          UserStore().token.value.isEmpty
+                              ? RouteAuth().auth(null)
+                              : null;
+                        }
+                      },
+                      child: Container(
+                          alignment: Alignment.center,
+                          padding: EdgeInsets.symmetric(vertical: 10.w),
+                          color: AppColor.primaryColor,
+                          child: Text(
+                            "添加朋友",
+                            style: TextStyle(
+                                height: 1.5,
+                                fontSize: 30.w,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                          )),
+                    )
+                  : InkWell(
+                      onTap: () {},
+                      child: Container(
+                          alignment: Alignment.center,
+                          padding: EdgeInsets.symmetric(vertical: 10.w),
+                          color: AppColor.primaryColor,
+                          child: Text(
+                            "私信",
+                            style: TextStyle(
+                                height: 1.5,
+                                fontSize: 30.w,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                          )),
+                    ),
             ),
           ],
         )

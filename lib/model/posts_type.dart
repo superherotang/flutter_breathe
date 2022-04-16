@@ -10,7 +10,4 @@ enum PostsType {
 
   ///声音
   sound,
-
-  ///赏金
-  bounty,
 }

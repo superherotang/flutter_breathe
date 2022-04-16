@@ -27,7 +27,6 @@ class ReleaseController extends GetxController {
   var assetEntitysImage = <AssetEntity>[].obs;
   var assetEntitysVideo = <AssetEntity>[].obs;
   var assetEntitysAudio = <AssetEntity>[].obs;
-  var assetEntitysBounty = false.obs;
 
   BuildContext? context;
 
@@ -50,16 +49,15 @@ class ReleaseController extends GetxController {
   }
 
   void typeThemeChange() {
-    if (textEditingController.text.isEmpty&&assetEntitysImage.isEmpty &&
+    if (textEditingController.text.isEmpty &&
+        assetEntitysImage.isEmpty &&
         assetEntitysVideo.isEmpty &&
         assetEntitysAudio.isEmpty) {
       haveContent.value = false;
     } else {
       haveContent.value = true;
     }
-    if (assetEntitysBounty.isTrue) {
-      postsType.value = PostsType.bounty;
-    } else if (assetEntitysAudio.isNotEmpty) {
+    if (assetEntitysAudio.isNotEmpty) {
       postsType.value = PostsType.sound;
     } else if (assetEntitysVideo.isNotEmpty) {
       postsType.value = PostsType.video;
@@ -99,15 +97,6 @@ class ReleaseController extends GetxController {
       case PostsType.sound:
         typeTheme.value.imageColor = Colors.grey;
         typeTheme.value.imageOnTap = false;
-        typeTheme.value.videoColor = Colors.grey;
-        typeTheme.value.videoOnTap = false;
-        typeTheme.value.soundColor = Colors.black;
-        typeTheme.value.soundOnTap = true;
-        typeTheme.refresh();
-        break;
-      case PostsType.bounty:
-        typeTheme.value.imageColor = Colors.black;
-        typeTheme.value.imageOnTap = true;
         typeTheme.value.videoColor = Colors.grey;
         typeTheme.value.videoOnTap = false;
         typeTheme.value.soundColor = Colors.black;

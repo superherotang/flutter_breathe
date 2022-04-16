@@ -12,6 +12,7 @@ class PersonalController extends GetxController
     with GetTickerProviderStateMixin {
   late TabController tabController;
 
+
   late AnimationController animationController;
   late Animation<double> animation;
   late ScrollController scrollController;
@@ -21,6 +22,8 @@ class PersonalController extends GetxController
   double prevDy = 0.0;
 
   var fitType = BoxFit.fitWidth.obs;
+
+  var count=20.obs;
 
   //用户资料
   late Rx<UserDataModel> userDataModel;
@@ -114,5 +117,6 @@ class PersonalController extends GetxController
         }
       }
     }
+
   }
 }

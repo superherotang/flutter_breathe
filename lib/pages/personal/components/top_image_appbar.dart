@@ -1,3 +1,4 @@
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_breathe/common/middlewares/router_auth.dart';
 import 'package:flutter_breathe/common/store/user_store.dart';
@@ -46,16 +47,23 @@ class TopImageAppbar extends GetView {
             background: Stack(
               children: [
                 GestureDetector(
-                  onTap: () => UserStore().token.value.isEmpty
-                      ? RouteAuth().auth(null)
-                      : null,
-                  child: Image.asset(
-                    "assets/images/personal_top_default.jpg",
-                    width: 1.sw,
-                    height: 330.w + controller.extraPicHeight.value,
-                    fit: controller.fitType.value,
-                  ),
-                ),
+                    onTap: () => UserStore().token.value.isEmpty
+                        ? RouteAuth().auth(null)
+                        : null,
+                    child: controller.userDataModel.value.background.isEmpty
+                        ? Image.asset(
+                            "assets/images/personal_top_default.jpg",
+                            width: 1.sw,
+                            height: 330.w + controller.extraPicHeight.value,
+                            fit: controller.fitType.value,
+                          )
+                        : ExtendedImage.network(
+                            controller.userDataModel.value.background,
+                            width: 1.sw,
+                            height: 330.w + controller.extraPicHeight.value,
+                            fit: controller.fitType.value,
+                            cache: true,
+                          )),
                 topContent(),
                 Positioned(
                     top: 230.w + controller.extraPicHeight.value,
@@ -68,17 +76,19 @@ class TopImageAppbar extends GetView {
                         padding: EdgeInsets.all(5.w),
                         height: 200.w,
                         width: 200.w,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(100.w),
+                        child: ClipOval(
+                        
+                          child: controller
+                                  .userDataModel.value.background.isEmpty
+                              ? Image.asset(
+                                  "assets/images/personal_top_default.jpg",
+                                )
+                              : ExtendedImage.network(
+                                  controller.userDataModel.value.background,
+                                  cache: true,
+                                ),
+                                
                         ),
-                        child: Container(
-                            decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(100.w),
-                          image: const DecorationImage(
-                              image: AssetImage("assets/images/topbg.jpg"),
-                              fit: BoxFit.cover),
-                        )),
                       ),
                     ))
               ],

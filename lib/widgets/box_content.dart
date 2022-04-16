@@ -42,12 +42,6 @@ class BoxContent extends GetView {
 
   List<TagModel> createTagList() {
     List<TagModel> list = [];
-    if (synopsis.data[0].resource[0].bountyList.isNotEmpty) {
-      list.add(TagModel(
-        count: synopsis.data[0].resource[0].bountyList.length,
-        postsType: PostsType.bounty,
-      ));
-    }
     if (synopsis.data[0].resource[0].videoList.isNotEmpty) {
       list.add(TagModel(
         count: synopsis.data[0].resource[0].videoList.length,

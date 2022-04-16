@@ -9,7 +9,6 @@ import 'package:flutter_breathe/utils/utils.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import '../../widgets/box_content.dart';
 import 'chome_controller.dart';
 
 class ChomeView extends GetView<ChomeController> {
@@ -225,14 +224,14 @@ class ChomeView extends GetView<ChomeController> {
   }
 
   Widget widgetone() {
-    Synopsis synopsis = Synopsis.fromJson(json.decode(JsonString.synopsisdata));
     return Material(
       color: AppColor.listBackground,
       child: ListView.builder(
+        // BoxContent(
+        //     synopsis: synopsis,
+        //   )
         itemBuilder: (BuildContext context, int index) {
-          return BoxContent(
-            synopsis: synopsis,
-          );
+          return Container(color: Colors.amber,width: double.infinity,height: 100);
         },
         itemCount: 20,
       ),

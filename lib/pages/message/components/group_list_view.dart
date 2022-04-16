@@ -14,10 +14,10 @@ class GroupListView extends GetView<MessageController> {
   Widget build(BuildContext context) {
     return LoadingView(
         future: getData(),
-        errorWidget: const Text("error"),
-        waitWidget: const Center(
-          child: CircularProgressIndicator(),
-        ),
+        // errorWidget: const Text("error"),
+        // waitWidget: const Center(
+        //   child: CircularProgressIndicator(),
+        // ),
         doneWidget: groupList());
   }
 

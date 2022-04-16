@@ -1,4 +1,5 @@
 import 'package:extended_image/extended_image.dart';
+import 'package:extended_sliver/extended_sliver.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_breathe/common/middlewares/router_auth.dart';
 import 'package:flutter_breathe/common/store/user_store.dart';
@@ -20,13 +21,10 @@ class TopImageAppbar extends GetView {
         statusBarHeight +
             //pinned SliverAppBar height in header
             kToolbarHeight;
-    return Obx(
-      () => SliverAppBar(
-        pinned: true,
-        leading:
-            controller.id == null ? null : const Icon(Icons.arrow_back_sharp),
-        actions: [
-          Padding(
+    return Obx(() => ExtendedSliverAppbar(
+          leading:
+              controller.id == null ? null : const Icon(Icons.arrow_back_sharp),
+          actions: Padding(
               padding: EdgeInsets.symmetric(horizontal: 15.w),
               child: InkWell(
                 onTap: () => Get.to(() => const Setting(),
@@ -35,68 +33,130 @@ class TopImageAppbar extends GetView {
                   Icons.ac_unit,
                   size: 50.w,
                 ),
-              ))
-        ],
-        //bug
-        expandedHeight:
-            (430.w - statusBarHeight + controller.extraPicHeight.value) < 0
-                ? kToolbarHeight
-                : (430.w - statusBarHeight + controller.extraPicHeight.value),
-        flexibleSpace: FlexibleSpaceBar(
-            collapseMode: CollapseMode.pin,
-            background: Stack(
-              children: [
-                GestureDetector(
+              )),
+          background: Stack(
+            children: [
+              GestureDetector(
+                  onTap: () => UserStore().token.value.isEmpty
+                      ? RouteAuth().auth(null)
+                      : null,
+                  child: controller.userDataModel.value.background.isEmpty
+                      ? Image.asset(
+                          "assets/images/personal_top_default.jpg",
+                          width: 1.sw,
+                          height: 330.w + controller.extraPicHeight.value,
+                          fit: controller.fitType.value,
+                        )
+                      : ExtendedImage.network(
+                          controller.userDataModel.value.background,
+                          width: 1.sw,
+                          height: 330.w + controller.extraPicHeight.value,
+                          fit: controller.fitType.value,
+                          cache: true,
+                        )),
+              topContent(),
+              Positioned(
+                  top: 230.w + controller.extraPicHeight.value,
+                  left: 1.sw / 2 - 100.w,
+                  child: GestureDetector(
                     onTap: () => UserStore().token.value.isEmpty
                         ? RouteAuth().auth(null)
                         : null,
-                    child: controller.userDataModel.value.background.isEmpty
-                        ? Image.asset(
-                            "assets/images/personal_top_default.jpg",
-                            width: 1.sw,
-                            height: 330.w + controller.extraPicHeight.value,
-                            fit: controller.fitType.value,
-                          )
-                        : ExtendedImage.network(
-                            controller.userDataModel.value.background,
-                            width: 1.sw,
-                            height: 330.w + controller.extraPicHeight.value,
-                            fit: controller.fitType.value,
-                            cache: true,
-                          )),
-                topContent(),
-                Positioned(
-                    top: 230.w + controller.extraPicHeight.value,
-                    left: 1.sw / 2 - 100.w,
-                    child: GestureDetector(
-                      onTap: () => UserStore().token.value.isEmpty
-                          ? RouteAuth().auth(null)
-                          : null,
-                      child: Container(
-                        padding: EdgeInsets.all(5.w),
-                        height: 200.w,
-                        width: 200.w,
-                        child: ClipOval(
-                        
-                          child: controller
-                                  .userDataModel.value.background.isEmpty
-                              ? Image.asset(
-                                  "assets/images/personal_top_default.jpg",
-                                )
-                              : ExtendedImage.network(
-                                  controller.userDataModel.value.background,
-                                  cache: true,
-                                ),
-                                
-                        ),
+                    child: Container(
+                      padding: EdgeInsets.all(5.w),
+                      height: 200.w,
+                      width: 200.w,
+                      child: ClipOval(
+                        child: controller.userDataModel.value.background.isEmpty
+                            ? Image.asset(
+                                "assets/images/personal_top_default.jpg",
+                              )
+                            : ExtendedImage.network(
+                                controller.userDataModel.value.background,
+                                cache: true,
+                              ),
                       ),
-                    ))
-              ],
-            )),
-      ),
-    );
+                    ),
+                  ))
+            ],
+          ),
+        ));
   }
 }
+
+// SliverAppBar(
+//         pinned: true,
+//         leading:
+//             controller.id == null ? null : const Icon(Icons.arrow_back_sharp),
+//         actions: [
+//           Padding(
+//               padding: EdgeInsets.symmetric(horizontal: 15.w),
+//               child: InkWell(
+//                 onTap: () => Get.to(() => const Setting(),
+//                     transition: Transition.rightToLeft),
+//                 child: Icon(
+//                   Icons.ac_unit,
+//                   size: 50.w,
+//                 ),
+//               ))
+//         ],
+//         //bug
+//         expandedHeight:
+//             (430.w - statusBarHeight + controller.extraPicHeight.value) < 0
+//                 ? kToolbarHeight
+//                 : (430.w - statusBarHeight + controller.extraPicHeight.value),
+//         flexibleSpace: FlexibleSpaceBar(
+//             collapseMode: CollapseMode.pin,
+//             background: Stack(
+//               children: [
+//                 GestureDetector(
+//                     onTap: () => UserStore().token.value.isEmpty
+//                         ? RouteAuth().auth(null)
+//                         : null,
+//                     child: controller.userDataModel.value.background.isEmpty
+//                         ? Image.asset(
+//                             "assets/images/personal_top_default.jpg",
+//                             width: 1.sw,
+//                             height: 330.w + controller.extraPicHeight.value,
+//                             fit: controller.fitType.value,
+//                           )
+//                         : ExtendedImage.network(
+//                             controller.userDataModel.value.background,
+//                             width: 1.sw,
+//                             height: 330.w + controller.extraPicHeight.value,
+//                             fit: controller.fitType.value,
+//                             cache: true,
+//                           )),
+//                 topContent(),
+//                 Positioned(
+//                     top: 230.w + controller.extraPicHeight.value,
+//                     left: 1.sw / 2 - 100.w,
+//                     child: GestureDetector(
+//                       onTap: () => UserStore().token.value.isEmpty
+//                           ? RouteAuth().auth(null)
+//                           : null,
+//                       child: Container(
+//                         padding: EdgeInsets.all(5.w),
+//                         height: 200.w,
+//                         width: 200.w,
+//                         child: ClipOval(
+
+//                           child: controller
+//                                   .userDataModel.value.background.isEmpty
+//                               ? Image.asset(
+//                                   "assets/images/personal_top_default.jpg",
+//                                 )
+//                               : ExtendedImage.network(
+//                                   controller.userDataModel.value.background,
+//                                   cache: true,
+//                                 ),
+
+//                         ),
+//                       ),
+//                     ))
+//               ],
+//             )),
+//       ),
 
 Widget topContent() {
   var controller = Get.find<PersonalController>();

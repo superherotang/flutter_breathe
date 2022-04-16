@@ -3,6 +3,7 @@ import 'package:flutter_breathe/common/color.dart';
 import 'package:flutter_breathe/routes/app_routes.dart';
 
 import 'package:flutter_breathe/utils/utils.dart';
+import 'package:flutter_breathe/widgets/box_background.dart';
 import 'package:flutter_breathe/widgets/more_text.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -14,18 +15,7 @@ class CommunityCard extends GetView {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 20.w),
-      child: Container(
-        decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.all(Radius.circular(20.w)),
-            boxShadow: const [
-              BoxShadow(
-                  color: Color.fromARGB(255, 223, 241, 243),
-                  offset: Offset(0.0, 15.0), //阴影xy轴偏移量
-                  blurRadius: 10.0, //阴影模糊程度
-                  spreadRadius: 1.0 //阴影扩散程度
-                  )
-            ]),
+      child: BoxBackground(
         child: Column(
           children: [
             InkWell(
@@ -68,7 +58,7 @@ class CommunityCard extends GetView {
                           const MoreText(
                             "人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常",
                             maxLines: 2,
-                            id: 123,
+                            id: "123",
                             route: Routes.CHOME,
                           ),
                           SizedBox(

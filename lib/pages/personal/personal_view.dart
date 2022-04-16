@@ -11,11 +11,11 @@ import 'package:flutter_breathe/model/request/my_response.dart';
 import 'package:flutter_breathe/model/synopsis/synopsis.dart';
 import 'package:flutter_breathe/pages/personal/components/top_image_appbar.dart';
 import 'package:flutter_breathe/routes/app_routes.dart';
-import 'package:flutter_breathe/utils/cus_behavior.dart';
 import 'package:flutter_breathe/utils/mock.dart';
 import 'package:flutter_breathe/widgets/more_text.dart';
 import 'package:flutter_breathe/widgets/multi_content.dart';
 import 'package:flutter_breathe/widgets/null_content.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
@@ -70,29 +70,53 @@ class PersonalView extends GetView<PersonalController> {
 }
 
 Widget posts() {
-  Synopsis synopsis = Synopsis.fromJson(json.decode(JsonString.synopsisdata));
-  return ListView.builder(
-    itemBuilder: (BuildContext context, int index) {
-      return GestureDetector(
-        onTap: () {
-          Get.toNamed(Routes.DETAIL + "123");
-        },
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.w),
-          child: Container(
-            color: Colors.white,
-            margin: EdgeInsets.only(bottom: 30.w),
-            child: MultiContent(
-              text: synopsis.data[0].text,
-              resource: synopsis.data[0].resource[0],
-              id: synopsis.data[0].id,
-              route: Routes.DETAIL,
-            ),
-          ),
+  var controller = Get.find<PersonalController>();
+  //Synopsis synopsis = Synopsis.fromJson(json.decode(JsonString.postsCount));
+  return Material(
+    color: AppColor.listBackground,
+    child: Obx(
+      () => EasyRefresh(
+        header: LinkHeader(
+          controller.headerNotifier,
+          extent: 1.sh,
+          triggerDistance: 1.sh,
+          completeDuration: Duration(milliseconds: 500),
         ),
-      );
-    },
-    itemCount: 20,
+        onRefresh: () async {
+          await Future.delayed(Duration(seconds: 1), () {
+            controller.refreshMyPost();
+          });
+        },
+        onLoad: () async {
+          await Future.delayed(Duration(seconds: 2), () {
+            controller.loadMyPost();
+          });
+        },
+        child: ListView.builder(
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: EdgeInsets.symmetric(vertical: 20.w),
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.all(Radius.circular(20.w)),
+                    boxShadow: const [
+                      BoxShadow(
+                          color: Color.fromARGB(255, 223, 241, 243),
+                          offset: Offset(0.0, 15.0), //阴影xy轴偏移量
+                          blurRadius: 10.0, //阴影模糊程度
+                          spreadRadius: 1.0 //阴影扩散程度
+                          )
+                    ]),
+                child: MultiContent(
+                    postsModel: controller.myPosts.elementAt(index)),
+              ),
+            );
+          },
+          itemCount: controller.myPosts.length,
+        ),
+      ),
+    ),
   );
 }
 

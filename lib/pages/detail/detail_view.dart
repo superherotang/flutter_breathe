@@ -4,9 +4,8 @@ import 'package:extended_nested_scroll_view/extended_nested_scroll_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_breathe/common/color.dart';
 import 'package:flutter_breathe/common/middlewares/router_auth.dart';
-import 'package:flutter_breathe/model/synopsis/synopsis.dart';
+import 'package:flutter_breathe/model/posts/posts_model.dart';
 import 'package:flutter_breathe/pages/detail/components/comment_box.dart';
-import 'package:flutter_breathe/routes/app_routes.dart';
 import 'package:flutter_breathe/widgets/loading_view.dart';
 import 'package:flutter_breathe/widgets/multi_content.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,14 +19,16 @@ class DetailView extends GetView<DetailController> {
 
   @override
   Widget build(BuildContext context) {
-    var getId = Get.parameters['id'];
+    //var getId = Get.parameters['id'];
+    final parameters = Get.parameters;
+    final getId=parameters["id"];
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
         title: Chip(
           labelPadding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 5.w),
-          label: const Text(
-            'ALECTANG',
+          label:  Text(
+            getId!,
             style: TextStyle(color: Colors.white),
           ),
           backgroundColor: AppColor.primaryColor,
@@ -158,17 +159,16 @@ class DetailView extends GetView<DetailController> {
         children: [
           Expanded(
               child: GestureDetector(
-                onTap: () {
-                  RouteAuth().auth(null);
-
-                },
-                child: Container(
-                          height: 34,
-                          margin: const EdgeInsets.only(right: 5),
-                          decoration: BoxDecoration(
+            onTap: () {
+              RouteAuth().auth(null);
+            },
+            child: Container(
+              height: 34,
+              margin: const EdgeInsets.only(right: 5),
+              decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),
                   color: const Color.fromARGB(255, 240, 240, 240)),
-                          child: Row(
+              child: Row(
                 children: [
                   Padding(
                     padding: EdgeInsets.only(left: 20.w),
@@ -178,9 +178,9 @@ class DetailView extends GetView<DetailController> {
                     ),
                   )
                 ],
-                          ),
-                        ),
-              )),
+              ),
+            ),
+          )),
           InkWell(
             onTap: () {},
             child: Padding(
@@ -246,28 +246,24 @@ class DetailView extends GetView<DetailController> {
 
 //文章
 Widget buildSliverHeader() {
-      Synopsis synopsis = Synopsis.fromJson(json.decode(JsonString.synopsisdata));
-      
+  PostsModel postsModel =
+      PostsModel.fromJson(json.decode(JsonString.postsData));
   return SliverToBoxAdapter(
-    child: Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.w,vertical: 10.w),
-      child: MultiContent(
-                text: synopsis.data[0].text,
-                resource: synopsis.data[0].resource[0],
-                id: synopsis.data[0].id,
-                route: Routes.DETAIL,
-              ),
-    ));
-  
+      child: Padding(
+    padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.w),
+    child: MultiContent(
+      postsModel: postsModel,
+    ),
+  ));
 }
 
 Widget replyall() {
   return LoadingView(
       future: getData(),
-      errorWidget: const Text("error"),
-      waitWidget: const Center(
-        child: CircularProgressIndicator(),
-      ),
+      // errorWidget: const Text("error"),
+      // waitWidget: const Center(
+      //   child: CircularProgressIndicator(),
+      // ),
       doneWidget: ListView(
         children: [CommentBox()],
       ));
@@ -276,10 +272,10 @@ Widget replyall() {
 Widget replyLZ() {
   return LoadingView(
       future: getData(),
-      errorWidget: const Text("error"),
-      waitWidget: const Center(
-        child: CircularProgressIndicator(),
-      ),
+      // errorWidget: const Text("error"),
+      // waitWidget: const Center(
+      //   child: CircularProgressIndicator(),
+      // ),
       doneWidget: Text("asd"));
 }
 

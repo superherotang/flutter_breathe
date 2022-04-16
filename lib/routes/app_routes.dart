@@ -69,7 +69,7 @@ abstract class AppPages {
         page: () => const CityView(),
         binding: CityBinding()),
     GetPage(
-        name: Routes.DETAILID,
+        name: Routes.DETAIL,
         page: () => const DetailView(),
         binding: DetailBinding()),
     // GetPage(
@@ -103,8 +103,7 @@ abstract class Routes {
   static const MESSAGE = "/message";
   static const MESSAGESERACH = "/messageserach";
   static const CITY = "/city";
-  static const DETAIL = "/detail/";
-  static const DETAILID = "/detail/:id";
+  static const DETAIL = "/detail";
   static const COMMUNITY = "/community";
   static const SERACH = "/serach";
   static const CHOME = "/chome/";

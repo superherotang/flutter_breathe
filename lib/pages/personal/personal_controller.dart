@@ -1,10 +1,15 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_breathe/common/apis/user_api.dart';
 import 'package:flutter_breathe/common/store/user_store.dart';
+import 'package:flutter_breathe/model/posts/posts_model.dart';
 import 'package:flutter_breathe/model/request/my_response.dart';
 import 'package:flutter_breathe/model/userCount/user_count_model.dart';
 import 'package:flutter_breathe/model/userData/user_data_model.dart';
+import 'package:flutter_breathe/utils/mock.dart';
 import 'package:flutter_breathe/utils/my_toast.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
@@ -12,7 +17,9 @@ class PersonalController extends GetxController
     with GetTickerProviderStateMixin {
   late TabController tabController;
 
+  late LinkHeaderNotifier headerNotifier;
 
+//加载
   late AnimationController animationController;
   late Animation<double> animation;
   late ScrollController scrollController;
@@ -23,12 +30,14 @@ class PersonalController extends GetxController
 
   var fitType = BoxFit.fitWidth.obs;
 
-  var count=20.obs;
+  var count = 5.obs;
 
   //用户资料
   late Rx<UserDataModel> userDataModel;
   //用户统计
   late Rx<UserCountModel> userCountModel;
+
+  RxList<PostsModel> myPosts = <PostsModel>[].obs;
 
   @override
   void onInit() {
@@ -42,7 +51,7 @@ class PersonalController extends GetxController
       //自己的主页
       userDataModel = UserDataModel(0, "", "", "加载中", "", -1, "", "").obs;
     }
-
+    headerNotifier = LinkHeaderNotifier();
     tabController = TabController(length: 2, vsync: this);
     animationController = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 300));
@@ -84,6 +93,31 @@ class PersonalController extends GetxController
     prevDy = 0;
   }
 
+  Future refreshMyPost() async {
+    myPosts.clear();
+    myPosts.add(PostsModel.fromJson(jsonDecode(JsonString.postsData)));
+    myPosts.add(PostsModel.fromJson(jsonDecode(JsonString.postsData)));
+    myPosts.add(PostsModel.fromJson(jsonDecode(JsonString.postsData)));
+    myPosts.add(PostsModel.fromJson(jsonDecode(JsonString.postsData)));
+    myPosts.add(PostsModel.fromJson(jsonDecode(JsonString.postsData)));
+    //  myPosts.add(PostsModel("uuid",1, 1, 1, 1, 1, 1, "createTime", "updateTime", 1, "postsContent", "postsImages", "postsVideos", "thumbnailImg", "postsAudio"));
+
+    await Future.delayed(Duration(seconds: 2));
+  }
+
+  Future loadMyPost() async {
+    myPosts.add(PostsModel.fromJson(jsonDecode(JsonString.postsData)));
+    myPosts.add(PostsModel.fromJson(jsonDecode(JsonString.postsData)));
+    myPosts.add(PostsModel.fromJson(jsonDecode(JsonString.postsData)));
+    myPosts.add(PostsModel.fromJson(jsonDecode(JsonString.postsData)));
+    myPosts.add(PostsModel.fromJson(jsonDecode(JsonString.postsData)));
+    //  myPosts.add(PostsModel("uuid",1, 1, 1, 1, 1, 1, "createTime", "updateTime", 1, "postsContent", "postsImages", "postsVideos", "thumbnailImg", "postsAudio"));
+
+    await Future.delayed(Duration(seconds: 2));
+  }
+
+
+
   @override
   void onClose() {
     super.onClose();
@@ -117,6 +151,6 @@ class PersonalController extends GetxController
         }
       }
     }
-
+    refreshMyPost();
   }
 }

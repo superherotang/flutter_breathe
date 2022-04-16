@@ -6,7 +6,7 @@ part of 'posts_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-postsModel _$postsModelFromJson(Map<String, dynamic> json) => postsModel(
+PostsModel _$PostsModelFromJson(Map<String, dynamic> json) => PostsModel(
       json['uuid'] as String,
       json['postsType'] as int,
       json['postsFormat'] as int,
@@ -24,7 +24,7 @@ postsModel _$postsModelFromJson(Map<String, dynamic> json) => postsModel(
       json['postsAudio'] as String,
     );
 
-Map<String, dynamic> _$postsModelToJson(postsModel instance) =>
+Map<String, dynamic> _$PostsModelToJson(PostsModel instance) =>
     <String, dynamic>{
       'uuid': instance.uuid,
       'postsType': instance.postsType,

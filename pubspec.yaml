@@ -42,7 +42,7 @@ dependencies:
   #刷新
   extended_nested_scroll_view: ^5.0.0
   extended_sliver: ^2.0.1
-  pull_to_refresh: ^2.0.0
+  flutter_easyrefresh: ^2.2.1
   #网络请求
   dio: ^4.0.4
   #数据生成

@@ -13,10 +13,12 @@ import 'like_button.dart';
 class ShowBox extends GetView {
   final PostsModel postsModel;
   final PostsCountModel postsCountModel;
+  final bool? my;
   const ShowBox({
     Key? key,
     required this.postsModel,
     required this.postsCountModel,
+    this.my,
   }) : super(key: key);
 
   @override
@@ -27,53 +29,68 @@ class ShowBox extends GetView {
         color: Colors.white,
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           //上
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 30.w),
-            child: Row(
-              children: [
-                GestureDetector(
-                  onTap: () {},
-                  child: CircleAvatar(
-                      backgroundImage: const NetworkImage(
-                          "https://goss.cfp.cn/creative/vcg/800/new/VCG211165042753.jpg"),
-                      radius: 40.w),
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: EdgeInsets.only(left: 10.w),
-                    child: GestureDetector(
-                      onTap: () {
-                        print("object");
-                      },
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "ALEC TANG",
-                            style: TextStyle(
-                                fontSize: 30.w,
-                                fontWeight: FontWeight.w500,
-                                wordSpacing: 2.w,
-                                overflow: TextOverflow.ellipsis,
-                                letterSpacing: 1.w),
-                          ),
-                          Text("昨天",
-                              style: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 26.w,
-                                  wordSpacing: 2.w,
-                                  letterSpacing: 1.w))
-                        ],
+          my == null
+              ? Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 30.w),
+                  child: Row(
+                    children: [
+                      GestureDetector(
+                        onTap: () {},
+                        child: CircleAvatar(
+                            backgroundImage: const NetworkImage(
+                                "https://goss.cfp.cn/creative/vcg/800/new/VCG211165042753.jpg"),
+                            radius: 40.w),
                       ),
-                    ),
+                      Expanded(
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 10.w),
+                          child: GestureDetector(
+                            onTap: () {
+                              print("object");
+                            },
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "ALEC TANG",
+                                  style: TextStyle(
+                                      fontSize: 30.w,
+                                      fontWeight: FontWeight.w500,
+                                      wordSpacing: 2.w,
+                                      overflow: TextOverflow.ellipsis,
+                                      letterSpacing: 1.w),
+                                ),
+                                Text("昨天",
+                                    style: TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 26.w,
+                                        wordSpacing: 2.w,
+                                        letterSpacing: 1.w))
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      IconButton(
+                          onPressed: () {}, icon: const Icon(Icons.ac_unit))
+                    ],
                   ),
+                )
+              : Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 30.w),
+                  child: Row(children: [
+                    Text(
+                      "2020-02-01",
+                      style: TextStyle(fontSize: 50.w),
+                    ),
+                    Expanded(child: Container()),
+                    IconButton(
+                        onPressed: () {}, icon: const Icon(Icons.ac_unit))
+                  ]),
                 ),
-                IconButton(onPressed: () {}, icon: const Icon(Icons.ac_unit))
-              ],
-            ),
-          ),
           GestureDetector(
-            onTap: () => Get.toNamed(Routes.DETAIL), // + id.toString()
+            onTap: () =>
+                Get.toNamed(Routes.DETAIL + postsModel.uuid), // + id.toString()
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 30.w),
               child: MultiContent(
@@ -101,7 +118,8 @@ class ShowBox extends GetView {
                         child: Center(
                             child: LikeButton(
                                 icon: Icons.ac_unit,
-                                count: Utils.intFormat(postsCountModel.share)))),
+                                count:
+                                    Utils.intFormat(postsCountModel.share)))),
                     Expanded(
                         child: Center(
                             child: LikeButton(

@@ -95,13 +95,12 @@ class PersonalController extends GetxController
 
   Future refreshMyPost() async {
     myPosts.clear();
-    myPosts.add(PostsModel.fromJson(jsonDecode(JsonString.postsData)));
-    myPosts.add(PostsModel.fromJson(jsonDecode(JsonString.postsData)));
-    myPosts.add(PostsModel.fromJson(jsonDecode(JsonString.postsData)));
-    myPosts.add(PostsModel.fromJson(jsonDecode(JsonString.postsData)));
-    myPosts.add(PostsModel.fromJson(jsonDecode(JsonString.postsData)));
     //  myPosts.add(PostsModel("uuid",1, 1, 1, 1, 1, 1, "createTime", "updateTime", 1, "postsContent", "postsImages", "postsVideos", "thumbnailImg", "postsAudio"));
-
+    myPosts.add(PostsModel.fromJson(jsonDecode(JsonString.postsData)));
+    myPosts.add(PostsModel.fromJson(jsonDecode(JsonString.postsData)));
+    myPosts.add(PostsModel.fromJson(jsonDecode(JsonString.postsData)));
+    myPosts.add(PostsModel.fromJson(jsonDecode(JsonString.postsData)));
+    myPosts.add(PostsModel.fromJson(jsonDecode(JsonString.postsData)));
     await Future.delayed(Duration(seconds: 2));
   }
 
@@ -115,8 +114,6 @@ class PersonalController extends GetxController
 
     await Future.delayed(Duration(seconds: 2));
   }
-
-
 
   @override
   void onClose() {

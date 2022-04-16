@@ -19,17 +19,15 @@ class DetailView extends GetView<DetailController> {
 
   @override
   Widget build(BuildContext context) {
-    //var getId = Get.parameters['id'];
-    final parameters = Get.parameters;
-    final getId=parameters["id"];
+    final getId = Get.parameters["id"];
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
         title: Chip(
           labelPadding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 5.w),
-          label:  Text(
-            getId!,
-            style: TextStyle(color: Colors.white),
+          label: Text(
+            "AELCTANG",
+            style: const TextStyle(color: Colors.white),
           ),
           backgroundColor: AppColor.primaryColor,
           avatar: const CircleAvatar(

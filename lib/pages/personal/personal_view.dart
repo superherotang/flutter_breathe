@@ -7,14 +7,17 @@ import 'package:flutter_breathe/common/apis/posts_api.dart';
 import 'package:flutter_breathe/common/color.dart';
 import 'package:flutter_breathe/common/middlewares/router_auth.dart';
 import 'package:flutter_breathe/common/store/user_store.dart';
+import 'package:flutter_breathe/model/postsCount/posts_count_model.dart';
 import 'package:flutter_breathe/model/request/my_response.dart';
 import 'package:flutter_breathe/model/synopsis/synopsis.dart';
 import 'package:flutter_breathe/pages/personal/components/top_image_appbar.dart';
 import 'package:flutter_breathe/routes/app_routes.dart';
 import 'package:flutter_breathe/utils/mock.dart';
+import 'package:flutter_breathe/widgets/loading_view.dart';
 import 'package:flutter_breathe/widgets/more_text.dart';
 import 'package:flutter_breathe/widgets/multi_content.dart';
 import 'package:flutter_breathe/widgets/null_content.dart';
+import 'package:flutter_breathe/widgets/show_box.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -32,38 +35,40 @@ class PersonalView extends GetView<PersonalController> {
         statusBarHeight +
             //pinned SliverAppBar height in header
             kToolbarHeight;
-    return Listener(
-      onPointerMove: (event) {
-        controller.updatePicHeight(event.position.dy);
-      },
-      onPointerUp: (_) {
-        controller.runAnimate();
-        controller.animationController.forward(from: 0);
-      },
-      child: ExtendedNestedScrollView(
-        controller: controller.scrollController,
-        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-          return personalTopBuilder();
+    return SafeArea(
+      child: Listener(
+        onPointerMove: (event) {
+          controller.updatePicHeight(event.position.dy);
         },
-        pinnedHeaderSliverHeightBuilder: () {
-          return pinnedHeaderHeight;
+        onPointerUp: (_) {
+          controller.runAnimate();
+          controller.animationController.forward(from: 0);
         },
-        onlyOneScrollInBody: true,
-        body: Column(children: [
-          TabBar(
-            controller: controller.tabController,
-            isScrollable: false,
-            tabs: const [Tab(text: '我的帖子'), Tab(text: '我的收藏')],
-          ),
-          Expanded(
-              child: TabBarView(
-            controller: controller.tabController,
-            children: [
-              posts(),
-              NullContent(),
-            ],
-          ))
-        ]),
+        child: ExtendedNestedScrollView(
+          controller: controller.scrollController,
+          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+            return personalTopBuilder();
+          },
+          pinnedHeaderSliverHeightBuilder: () {
+            return pinnedHeaderHeight;
+          },
+          onlyOneScrollInBody: true,
+          body: Column(children: [
+            TabBar(
+              controller: controller.tabController,
+              isScrollable: false,
+              tabs: const [Tab(text: '我的帖子'), Tab(text: '我的收藏')],
+            ),
+            Expanded(
+                child: TabBarView(
+              controller: controller.tabController,
+              children: [
+                posts(),
+                NullContent(),
+              ],
+            ))
+          ]),
+        ),
       ),
     );
   }
@@ -71,53 +76,64 @@ class PersonalView extends GetView<PersonalController> {
 
 Widget posts() {
   var controller = Get.find<PersonalController>();
-  //Synopsis synopsis = Synopsis.fromJson(json.decode(JsonString.postsCount));
+  PostsCountModel postsCountModel =
+      PostsCountModel.fromJson(json.decode(JsonString.postsCount));
   return Material(
-    color: AppColor.listBackground,
-    child: Obx(
-      () => EasyRefresh(
-        header: LinkHeader(
-          controller.headerNotifier,
-          extent: 1.sh,
-          triggerDistance: 1.sh,
-          completeDuration: Duration(milliseconds: 500),
+      color: AppColor.listBackground,
+      child: LoadingView(
+        future: controller.refreshMyPost(),
+        doneWidget: Obx(
+          () => EasyRefresh(
+            emptyWidget: controller.myPosts.isEmpty
+                ? Container(
+                    color: Colors.amber, width: double.infinity, height: 200)
+                : null,
+            header: LinkHeader(
+              controller.headerNotifier,
+              extent: 1.sh,
+              triggerDistance: 1.sh,
+              completeDuration: Duration(milliseconds: 500),
+            ),
+            footer: ClassicalFooter(),
+            onRefresh: () async {
+              await Future.delayed(Duration(seconds: 1), () {
+                controller.refreshMyPost();
+              });
+            },
+            onLoad: () async {
+              await Future.delayed(Duration(seconds: 2), () {
+                controller.loadMyPost();
+              });
+            },
+            child: ListView.builder(
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: EdgeInsets.symmetric(vertical: 20.w),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(20.w)),
+                        boxShadow: const [
+                          BoxShadow(
+                              color: Color.fromARGB(255, 223, 241, 243),
+                              offset: Offset(0.0, 15.0), //阴影xy轴偏移量
+                              blurRadius: 10.0, //阴影模糊程度
+                              spreadRadius: 1.0 //阴影扩散程度
+                              )
+                        ]),
+                    child: ShowBox(
+                      postsModel: controller.myPosts.elementAt(index),
+                      postsCountModel: postsCountModel,
+                      my: true,
+                    ),
+                  ),
+                );
+              },
+              itemCount: controller.myPosts.length,
+            ),
+          ),
         ),
-        onRefresh: () async {
-          await Future.delayed(Duration(seconds: 1), () {
-            controller.refreshMyPost();
-          });
-        },
-        onLoad: () async {
-          await Future.delayed(Duration(seconds: 2), () {
-            controller.loadMyPost();
-          });
-        },
-        child: ListView.builder(
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: EdgeInsets.symmetric(vertical: 20.w),
-              child: Container(
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.all(Radius.circular(20.w)),
-                    boxShadow: const [
-                      BoxShadow(
-                          color: Color.fromARGB(255, 223, 241, 243),
-                          offset: Offset(0.0, 15.0), //阴影xy轴偏移量
-                          blurRadius: 10.0, //阴影模糊程度
-                          spreadRadius: 1.0 //阴影扩散程度
-                          )
-                    ]),
-                child: MultiContent(
-                    postsModel: controller.myPosts.elementAt(index)),
-              ),
-            );
-          },
-          itemCount: controller.myPosts.length,
-        ),
-      ),
-    ),
-  );
+      ));
 }
 
 List<Widget> personalTopBuilder() {

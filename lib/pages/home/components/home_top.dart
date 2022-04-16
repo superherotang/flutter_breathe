@@ -32,7 +32,6 @@ class HomeTop extends GetView<HomeController> {
   }
 
   Widget selectCity() {
-    
     LocationStore locationService = Get.find<LocationStore>();
     return InkWell(
       onTap: () async {
@@ -63,9 +62,14 @@ class HomeTop extends GetView<HomeController> {
   Widget add() {
     return Container(
       padding: const EdgeInsets.only(left: 5),
-      child: const Icon(
-        Icons.add,
-        size: 30,
+      child: GestureDetector(
+        onTap: () {
+          Get.toNamed(Routes.DEMO, arguments: {"id": "123"});
+        },
+        child: const Icon(
+          Icons.add,
+          size: 30,
+        ),
       ),
     );
   }

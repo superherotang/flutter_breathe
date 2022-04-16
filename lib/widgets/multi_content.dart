@@ -19,7 +19,7 @@ class MultiContent extends GetView {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.toNamed(Routes.DETAIL,arguments: {"id": 999});
+        Get.toNamed(Routes.DETAIL+"9999");
       },
       child: Material(
         color: Colors.white,

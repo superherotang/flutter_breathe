@@ -35,10 +35,7 @@ abstract class AppPages {
         name: Routes.INITIAL,
         page: () => const SplashView(),
         binding: SplashBinding()),
-    GetPage(
-        name: Routes.TABS,
-        page: () => TabsView(),
-        binding: TabsBinding()),
+    GetPage(name: Routes.TABS, page: () => TabsView(), binding: TabsBinding()),
     // GetPage(
     //     name: Routes.HOME,
     //     page: () => const HomeView(),
@@ -69,7 +66,7 @@ abstract class AppPages {
         page: () => const CityView(),
         binding: CityBinding()),
     GetPage(
-        name: Routes.DETAIL,
+        name: Routes.DETAILID,
         page: () => const DetailView(),
         binding: DetailBinding()),
     // GetPage(
@@ -103,7 +100,8 @@ abstract class Routes {
   static const MESSAGE = "/message";
   static const MESSAGESERACH = "/messageserach";
   static const CITY = "/city";
-  static const DETAIL = "/detail";
+  static const DETAIL = "/detail/";
+  static const DETAILID = "/detail/:id";
   static const COMMUNITY = "/community";
   static const SERACH = "/serach";
   static const CHOME = "/chome/";

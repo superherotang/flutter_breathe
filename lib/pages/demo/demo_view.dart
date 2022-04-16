@@ -7,6 +7,15 @@ class DemoView extends GetView<DemoController> {
   const DemoView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Container();
+    final parameters = Get.parameters["id"];
+    return Container(
+      color: Colors.amber,
+      width: double.infinity,
+      height: 500,
+      child: Text(
+        "$parameters",
+        style: TextStyle(fontSize: 50),
+      ),
+    );
   }
 }

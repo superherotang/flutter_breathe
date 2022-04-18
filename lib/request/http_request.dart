@@ -128,7 +128,7 @@ class Http {
     Response response;
     CancelToken dioCancelToken = createDioCancelToken(cancelToken);
     response = await dio.get(
-      baseUrl+path,
+      path,
       queryParameters: params,
       options: requestOptions,
       cancelToken: dioCancelToken,
@@ -151,7 +151,7 @@ class Http {
     }
     CancelToken dioCancelToken = createDioCancelToken(cancelToken);
     var response = await dio.post(
-      baseUrl+path,
+      path,
       data: data,
       queryParameters: params,
       options: requestOptions,
@@ -176,7 +176,7 @@ class Http {
     }
     CancelToken dioCancelToken = createDioCancelToken(cancelToken);
     var response = await dio.put(
-      baseUrl+path,
+      path,
       data: data,
       queryParameters: params,
       options: requestOptions,
@@ -200,7 +200,7 @@ class Http {
     }
     CancelToken dioCancelToken = createDioCancelToken(cancelToken);
     var response = await dio.patch(
-      baseUrl+path,
+      path,
       data: data,
       queryParameters: params,
       options: requestOptions,
@@ -225,7 +225,7 @@ class Http {
     }
     CancelToken dioCancelToken = createDioCancelToken(cancelToken);
     var response = await dio.delete(
-      baseUrl+path,
+      path,
       data: data,
       queryParameters: params,
       options: requestOptions,

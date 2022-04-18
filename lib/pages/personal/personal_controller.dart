@@ -38,6 +38,7 @@ class PersonalController extends GetxController
   late Rx<UserCountModel> userCountModel;
 
   RxList<PostsModel> myPosts = <PostsModel>[].obs;
+  int current = 1;
 
   @override
   void onInit() {
@@ -95,7 +96,6 @@ class PersonalController extends GetxController
 
   Future refreshMyPost() async {
     myPosts.clear();
-    //  myPosts.add(PostsModel("uuid",1, 1, 1, 1, 1, 1, "createTime", "updateTime", 1, "postsContent", "postsImages", "postsVideos", "thumbnailImg", "postsAudio"));
     myPosts.add(PostsModel.fromJson(jsonDecode(JsonString.postsData)));
     myPosts.add(PostsModel.fromJson(jsonDecode(JsonString.postsData)));
     myPosts.add(PostsModel.fromJson(jsonDecode(JsonString.postsData)));
@@ -130,21 +130,30 @@ class PersonalController extends GetxController
         //请求用户信息
         MyResponse myResponseUserData = await UserApi.getUserDataByToken();
         if (myResponseUserData.success) {
+          //用户信息持久化
+
+          ;
+          UserStore.to
+              .setUserData(jsonEncode(myResponseUserData.data["userData"]));
           userDataModel.value =
               UserDataModel.fromJson(myResponseUserData.data["userData"]);
           userDataModel.refresh();
+          //请求用户统计
+          MyResponse myResponseCound =
+              await UserApi.getUserCountByUid(uid: userDataModel.value.uid);
+          if (myResponseCound.success) {
+            //统计信息持久化
+            UserStore.to
+                .setUserCount(jsonEncode(myResponseCound.data["userCount"]));
+            userCountModel.value =
+                UserCountModel.fromJson(myResponseCound.data["userCount"]);
+            userCountModel.refresh();
+          } else {
+            MyToast(myResponseCound.message);
+          }
         } else {
+          UserStore.to.delAll();
           MyToast(myResponseUserData.message);
-        }
-        //请求用户统计
-        MyResponse myResponseCound =
-            await UserApi.getUserCountByUid(uid: userDataModel.value.uid);
-        if (myResponseCound.success) {
-          userCountModel.value =
-              UserCountModel.fromJson(myResponseCound.data["userCount"]);
-          userCountModel.refresh();
-        } else {
-          MyToast(myResponseCound.message);
         }
       }
     }

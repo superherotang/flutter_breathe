@@ -6,11 +6,9 @@ import 'package:flutter_breathe/common/color.dart';
 import 'package:flutter_breathe/common/store/user_store.dart';
 import 'package:flutter_breathe/model/login/login_model.dart';
 import 'package:flutter_breathe/model/request/my_response.dart';
-import 'package:flutter_breathe/service/storage_service.dart';
 import 'package:flutter_breathe/utils/my_toast.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
 import 'login_controller.dart';
@@ -286,6 +284,7 @@ class LoginView extends GetView<LoginController> {
     if (myResponse.success) {
       LoginModel loginModel = LoginModel.fromJson(myResponse.data);
       UserStore().setToken(loginModel.token);
+      Get.back(result: {"success": true});
     } else {
       MyToast(myResponse.message);
     }

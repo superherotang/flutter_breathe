@@ -32,7 +32,7 @@ class CommunityCard extends GetView {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(20),
                         child: Image.network(
-                          "https://goss.cfp.cn/creative/vcg/800/new/VCG211165042753.jpg",
+                          "http://192.168.10.150:9000/breathe-images/1e0c25887594f25a8f57c179427b1713.png",
                           fit: BoxFit.fill,
                         ),
                       ),

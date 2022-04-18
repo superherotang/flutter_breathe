@@ -1,9 +1,12 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_breathe/common/apis/posts_api.dart';
 import 'package:flutter_breathe/common/apis/user_api.dart';
 import 'package:flutter_breathe/common/store/user_store.dart';
 import 'package:flutter_breathe/model/posts/posts_model.dart';
+import 'package:flutter_breathe/model/postsInfo/posts_info_model.dart';
+import 'package:flutter_breathe/model/postsPage/posts_page_model.dart';
 import 'package:flutter_breathe/model/request/my_response.dart';
 import 'package:flutter_breathe/model/userCount/user_count_model.dart';
 import 'package:flutter_breathe/model/userData/user_data_model.dart';
@@ -37,8 +40,8 @@ class PersonalController extends GetxController
   //用户统计
   late Rx<UserCountModel> userCountModel;
 
-  RxList<PostsModel> myPosts = <PostsModel>[].obs;
-  int current = 1;
+  RxList<PostsInfoModel> myPosts = <PostsInfoModel>[].obs;
+  int myCurrent = 1;
 
   @override
   void onInit() {
@@ -46,10 +49,10 @@ class PersonalController extends GetxController
     id = Get.parameters['id'];
     userCountModel = UserCountModel(0, 0, 0, 0).obs;
     if (id == null) {
-      //别人的主页
+      //自己的主页
       userDataModel = UserDataModel(0, "", "", "未登录", "", -1, "", "").obs;
     } else {
-      //自己的主页
+      //别人的主页
       userDataModel = UserDataModel(0, "", "", "加载中", "", -1, "", "").obs;
     }
     headerNotifier = LinkHeaderNotifier();
@@ -94,22 +97,69 @@ class PersonalController extends GetxController
     prevDy = 0;
   }
 
+  Future refreshUser() async {
+    if (id == null) {
+      if (UserStore.to.isLogin) {
+        //请求用户信息
+        MyResponse myResponseUserData = await UserApi.getUserDataByToken();
+        if (myResponseUserData.success) {
+          //用户信息持久化
+          await UserStore.to
+              .setUserData(jsonEncode(myResponseUserData.data["userData"]));
+          userDataModel.value =
+              UserDataModel.fromJson(myResponseUserData.data["userData"]);
+          userDataModel.refresh();
+          //请求用户统计
+          MyResponse myResponseCound =
+              await UserApi.getUserCountByUid(uid: userDataModel.value.uid);
+
+          if (myResponseCound.success) {
+            //统计信息持久化
+            await UserStore.to
+                .setUserCount(jsonEncode(myResponseCound.data["userCount"]));
+            userCountModel.value =
+                UserCountModel.fromJson(myResponseCound.data["userCount"]);
+            userCountModel.refresh();
+          } else {
+            MyToast(myResponseCound.message);
+          }
+          await UserStore.to.updataUser();
+          refreshMyPost();
+        } else {
+          UserStore.to.delAll();
+          MyToast(myResponseUserData.message);
+        }
+      } else {
+        userDataModel.value = UserDataModel(0, "", "", "未登录", "", -1, "", "");
+        userCountModel.value = UserCountModel(0, 0, 0, 0);
+        userCountModel.refresh();
+        userCountModel.refresh();
+      }
+    }
+  }
+
   Future refreshMyPost() async {
     myPosts.clear();
-    myPosts.add(PostsModel.fromJson(jsonDecode(JsonString.postsData)));
-    myPosts.add(PostsModel.fromJson(jsonDecode(JsonString.postsData)));
-    myPosts.add(PostsModel.fromJson(jsonDecode(JsonString.postsData)));
-    myPosts.add(PostsModel.fromJson(jsonDecode(JsonString.postsData)));
-    myPosts.add(PostsModel.fromJson(jsonDecode(JsonString.postsData)));
-    await Future.delayed(Duration(seconds: 2));
+    if (!UserStore.to.isLogin) {
+      return null;
+    }
+    myCurrent = 1;
+    dynamic myResponse = await PostsApi.getPostsInfoByUid(
+        myCurrent, UserStore.to.userData!.uid.toString());
+    if (myResponse["success"]) {
+      PostsPageModel postsPageModel =
+          PostsPageModel.fromJson(myResponse["data"]);
+      List<PostsInfoModel> postsInfoModelList=[];
+      for (var item in postsPageModel.items) {
+        //无敌转换
+        myPosts.add(PostsInfoModel.fromJson(jsonDecode(jsonEncode(item))));
+      }
+    } else {
+      MyToast(myResponse.message);
+    }
   }
 
   Future loadMyPost() async {
-    myPosts.add(PostsModel.fromJson(jsonDecode(JsonString.postsData)));
-    myPosts.add(PostsModel.fromJson(jsonDecode(JsonString.postsData)));
-    myPosts.add(PostsModel.fromJson(jsonDecode(JsonString.postsData)));
-    myPosts.add(PostsModel.fromJson(jsonDecode(JsonString.postsData)));
-    myPosts.add(PostsModel.fromJson(jsonDecode(JsonString.postsData)));
     //  myPosts.add(PostsModel("uuid",1, 1, 1, 1, 1, 1, "createTime", "updateTime", 1, "postsContent", "postsImages", "postsVideos", "thumbnailImg", "postsAudio"));
 
     await Future.delayed(Duration(seconds: 2));
@@ -125,38 +175,6 @@ class PersonalController extends GetxController
   void onReady() async {
     super.onReady();
     //请求用户信息
-    if (id == null) {
-      if (UserStore.to.isLogin) {
-        //请求用户信息
-        MyResponse myResponseUserData = await UserApi.getUserDataByToken();
-        if (myResponseUserData.success) {
-          //用户信息持久化
-
-          ;
-          UserStore.to
-              .setUserData(jsonEncode(myResponseUserData.data["userData"]));
-          userDataModel.value =
-              UserDataModel.fromJson(myResponseUserData.data["userData"]);
-          userDataModel.refresh();
-          //请求用户统计
-          MyResponse myResponseCound =
-              await UserApi.getUserCountByUid(uid: userDataModel.value.uid);
-          if (myResponseCound.success) {
-            //统计信息持久化
-            UserStore.to
-                .setUserCount(jsonEncode(myResponseCound.data["userCount"]));
-            userCountModel.value =
-                UserCountModel.fromJson(myResponseCound.data["userCount"]);
-            userCountModel.refresh();
-          } else {
-            MyToast(myResponseCound.message);
-          }
-        } else {
-          UserStore.to.delAll();
-          MyToast(myResponseUserData.message);
-        }
-      }
-    }
-    refreshMyPost();
+    refreshUser();
   }
 }

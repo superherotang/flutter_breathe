@@ -6,13 +6,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_breathe/common/color.dart';
 import 'package:flutter_breathe/common/middlewares/router_auth.dart';
 import 'package:flutter_breathe/common/store/user_store.dart';
+import 'package:flutter_breathe/model/posts/posts_model.dart';
 import 'package:flutter_breathe/model/postsCount/posts_count_model.dart';
 import 'package:flutter_breathe/pages/personal/components/top_image_appbar.dart';
 import 'package:flutter_breathe/utils/mock.dart';
 import 'package:flutter_breathe/widgets/loading_view.dart';
 import 'package:flutter_breathe/widgets/more_text.dart';
-import 'package:flutter_breathe/widgets/null_content.dart';
 import 'package:flutter_breathe/widgets/show_box.dart';
+import 'package:flutter_breathe/widgets/status.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -30,40 +31,38 @@ class PersonalView extends GetView<PersonalController> {
         statusBarHeight +
             //pinned SliverAppBar height in header
             kToolbarHeight;
-    return SafeArea(
-      child: Listener(
-        onPointerMove: (event) {
-          controller.updatePicHeight(event.position.dy);
+    return Listener(
+      onPointerMove: (event) {
+        controller.updatePicHeight(event.position.dy);
+      },
+      onPointerUp: (_) {
+        controller.runAnimate();
+        controller.animationController.forward(from: 0);
+      },
+      child: ExtendedNestedScrollView(
+        controller: controller.scrollController,
+        headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+          return personalTopBuilder();
         },
-        onPointerUp: (_) {
-          controller.runAnimate();
-          controller.animationController.forward(from: 0);
+        pinnedHeaderSliverHeightBuilder: () {
+          return pinnedHeaderHeight;
         },
-        child: ExtendedNestedScrollView(
-          controller: controller.scrollController,
-          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-            return personalTopBuilder();
-          },
-          pinnedHeaderSliverHeightBuilder: () {
-            return pinnedHeaderHeight;
-          },
-          onlyOneScrollInBody: true,
-          body: Column(children: [
-            TabBar(
-              controller: controller.tabController,
-              isScrollable: false,
-              tabs: const [Tab(text: '我的帖子'), Tab(text: '我的收藏')],
-            ),
-            Expanded(
-                child: TabBarView(
-              controller: controller.tabController,
-              children: [
-                posts(),
-                NullContent(),
-              ],
-            ))
-          ]),
-        ),
+        onlyOneScrollInBody: true,
+        body: Column(children: [
+          TabBar(
+            controller: controller.tabController,
+            isScrollable: false,
+            tabs: const [Tab(text: '我的帖子'), Tab(text: '我的收藏')],
+          ),
+          Expanded(
+              child: TabBarView(
+            controller: controller.tabController,
+            children: [
+              posts(),
+              nullStatus(),
+            ],
+          ))
+        ]),
       ),
     );
   }
@@ -76,13 +75,12 @@ Widget posts() {
   return Material(
       color: AppColor.listBackground,
       child: LoadingView(
-        future: controller.refreshMyPost(),
+        future: controller.refreshUser(),
         doneWidget: Obx(
           () => EasyRefresh(
-            emptyWidget: controller.myPosts.isEmpty
-                ? Container(
-                    color: Colors.amber, width: double.infinity, height: 200)
-                : null,
+            emptyWidget: UserStore.to.isLogin
+                ? (controller.myPosts.isEmpty ? nullStatus() : null)
+                : noLoginStatus(),
             header: LinkHeader(
               controller.headerNotifier,
               extent: 1.sh,
@@ -91,9 +89,7 @@ Widget posts() {
             ),
             footer: ClassicalFooter(),
             onRefresh: () async {
-              await Future.delayed(Duration(seconds: 1), () {
-                controller.refreshMyPost();
-              });
+             await controller.refreshMyPost();
             },
             onLoad: () async {
               await Future.delayed(Duration(seconds: 2), () {
@@ -117,7 +113,7 @@ Widget posts() {
                               )
                         ]),
                     child: ShowBox(
-                      postsModel: controller.myPosts.elementAt(index),
+                      postsModel: PostsModel("uuid",1, 1, 1, 1, 1, 1, "createTime", "updateTime", 1, "postsContent", "postsImages", "postsVideos", "thumbnailImg", "postsAudio"),
                       postsCountModel: postsCountModel,
                       my: true,
                     ),
@@ -146,9 +142,13 @@ Widget topContent() {
       padding: EdgeInsets.symmetric(horizontal: 40.w),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         GestureDetector(
-          onTap: () {
+          onTap: () async {
             if (controller.id == null) {
-              UserStore().token.value.isEmpty ? RouteAuth().auth(null) : null;
+              UserStore.to.token.value.isEmpty
+                  ? await RouteAuth()
+                      .auth()
+                      .then((value) => value ? controller.refreshUser() : null)
+                  : null;
             }
           },
           child: Obx(
@@ -170,10 +170,11 @@ Widget topContent() {
                 TextSpan(
                   text: controller.userDataModel.value.uid.toString(),
                   recognizer: TapGestureRecognizer()
-                    ..onTap = () {
+                    ..onTap = () async {
                       if (controller.id == null) {
-                        UserStore().token.value.isEmpty
-                            ? RouteAuth().auth(null)
+                        UserStore.to.token.value.isEmpty
+                            ? await RouteAuth().auth().then((value) =>
+                                value ? controller.refreshUser() : null)
                             : null;
                       }
                     },
@@ -191,10 +192,11 @@ Widget topContent() {
             Expanded(
               child: controller.id == null
                   ? InkWell(
-                      onTap: () {
+                      onTap: () async {
                         if (controller.id == null) {
-                          UserStore().token.value.isEmpty
-                              ? RouteAuth().auth(null)
+                          UserStore.to.token.value.isEmpty
+                              ? await RouteAuth().auth().then((value) =>
+                                  value ? controller.refreshUser() : null)
                               : null;
                         }
                       },
@@ -231,10 +233,11 @@ Widget topContent() {
             Expanded(
               child: controller.id == null
                   ? InkWell(
-                      onTap: () {
+                      onTap: () async {
                         if (controller.id == null) {
-                          UserStore().token.value.isEmpty
-                              ? RouteAuth().auth(null)
+                          UserStore.to.token.value.isEmpty
+                              ? await RouteAuth().auth().then((value) =>
+                                  value ? controller.refreshUser() : null)
                               : null;
                         }
                       },

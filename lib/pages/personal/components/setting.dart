@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_breathe/common/store/user_store.dart';
+import 'package:flutter_breathe/pages/personal/personal_controller.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-class Setting extends GetView<SettingController> {
+class Setting extends GetView {
   const Setting({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var controller = Get.find<PersonalController>();
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -43,6 +46,19 @@ class Setting extends GetView<SettingController> {
           "通用设置",
           leading: Icons.ac_unit,
           onTap: () => print("object"),
+          actions: const Icon(Icons.ac_unit),
+        ),
+        Padding(
+            padding: EdgeInsets.symmetric(horizontal: 30.w),
+            child: const Divider()),
+        ListItem(
+          "退出登录",
+          leading: Icons.ac_unit,
+          onTap: () async {
+            await UserStore.to.delAll();
+            await controller.refreshUser();
+            Get.back();
+          },
           actions: const Icon(Icons.ac_unit),
         ),
       ]),
@@ -103,5 +119,3 @@ class ListItem extends GetView {
     );
   }
 }
-
-class SettingController extends GetxController {}

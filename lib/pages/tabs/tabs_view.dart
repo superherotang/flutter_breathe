@@ -68,9 +68,6 @@ class TabsView extends GetView<TabsController> {
             margin: EdgeInsets.only(top: 70.w),
             child: FloatingActionButton(
               onPressed: () {
-                // UserStore().token.value.isEmpty
-                //     ? RouteAuth().auth(null)
-                //     : controller.showModelView();
                     controller.showModelView();
               },
               child: Icon(

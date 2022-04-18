@@ -14,13 +14,11 @@ class UserStore extends GetxController {
   bool get isLogin => token.isNotEmpty;
   UserDataModel? get user => userData;
 
-  // 获取Token
-  Future<void> getToken(String value) async {}
   @override
   void onInit() {
     super.onInit();
     delAll();
-    token.value=StorageService().getString("token");
+    token.value = StorageService().getString("token");
     String userDataStr = StorageService().getString("userData");
     if (userDataStr.isNotEmpty) {
       userData = UserDataModel.fromJson(jsonDecode(userDataStr));
@@ -33,8 +31,13 @@ class UserStore extends GetxController {
 
   // 保存 token
   Future<void> setToken(String value) async {
-    await StorageService().setString("token", value);
     token.value = value;
+    await StorageService().setString("token", value);
+  }
+
+  // 获取Token
+  Future<void> getToken() async {
+    token.value = StorageService().getString("token");
   }
 
   // 清除所有
@@ -43,8 +46,8 @@ class UserStore extends GetxController {
     await StorageService().setString("userData", "");
     await StorageService().setString("userCount", "");
     token.value = '';
-    userData=null;
-    userCount=null;
+    userData = null;
+    userCount = null;
   }
 
   // 保存用户信息
@@ -55,5 +58,13 @@ class UserStore extends GetxController {
   // 保存用户统计信息
   Future<void> setUserCount(String value) async {
     await StorageService().setString("userCount", value);
+  }
+
+  // 更新用户信息
+  Future<void> updataUser() async {
+    userData = UserDataModel.fromJson(
+        jsonDecode(StorageService().getString("userData")));
+    userCount = UserCountModel.fromJson(
+        jsonDecode(StorageService().getString("userCount")));
   }
 }

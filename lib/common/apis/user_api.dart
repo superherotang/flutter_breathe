@@ -3,10 +3,9 @@ import 'package:flutter_breathe/common/store/user_store.dart';
 import 'package:flutter_breathe/model/request/my_response.dart';
 import 'package:flutter_breathe/request/http_utils.dart';
 
-class UserApi {
-  static const String userUrl = "http://10.6.50.108:8001";
-  static const String postsUrl = "http://10.6.50.108:8003";
 
+class UserApi {
+  static String userUrl = "http://10.6.50.108:8001";
   ///发送短信
   static Future<MyResponse> sendSms({
     required String phone,
@@ -39,12 +38,5 @@ class UserApi {
   static Future<MyResponse> getUserCountByUid({required int uid}) async {
     return await HttpUtils.get(userUrl + "/userData/getUserCount/$uid",
         cacheDisk: true);
-  }
-
-  ///根据token获取用户帖子
-  static Future<MyResponse> getPostsInfoByUid() async {
-    return await HttpUtils.post(
-      postsUrl + "/posts/getPostInfoPage",
-    );
   }
 }

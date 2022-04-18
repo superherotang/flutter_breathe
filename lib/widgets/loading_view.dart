@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_breathe/widgets/status.dart';
 import 'package:get/get.dart';
 
 class LoadingView extends GetView {
@@ -28,14 +29,14 @@ class LoadingView extends GetView {
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.none:
-              return Text("加载错误1");
+              return errorStatus();
             case ConnectionState.waiting:
-              return Text("等待加载");
+              return loadingStatus();
             case ConnectionState.done:
               if (snapshot.hasError) return Text('Error: ${snapshot.error}');
               return doneWidget;
             default:
-              return Text("加载错误2");
+              return errorStatus();
           }
         });
   }

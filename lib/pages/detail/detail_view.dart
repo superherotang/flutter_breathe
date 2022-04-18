@@ -32,7 +32,7 @@ class DetailView extends GetView<DetailController> {
           backgroundColor: AppColor.primaryColor,
           avatar: const CircleAvatar(
             backgroundImage: NetworkImage(
-                'https://goss.cfp.cn/creative/vcg/800/new/VCG211165042753.jpg'),
+                'http://192.168.10.150:9000/breathe-images/1e0c25887594f25a8f57c179427b1713.png'),
           ),
         ),
         actions: [
@@ -158,7 +158,7 @@ class DetailView extends GetView<DetailController> {
           Expanded(
               child: GestureDetector(
             onTap: () {
-              RouteAuth().auth(null);
+              RouteAuth().auth();
             },
             child: Container(
               height: 34,

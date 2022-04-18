@@ -1,13 +1,32 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'posts_info_model.dart';
+part of 'posts_page_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-PostsInfoModel _$PostsInfoModelFromJson(Map<String, dynamic> json) =>
-    PostsInfoModel(
+PostsPageModel _$PostsPageModelFromJson(Map<String, dynamic> json) =>
+    PostsPageModel(
+      json['current'] as int,
+      json['total'] as int,
+      json['pages'] as int,
+      json['size'] as int,
+      (json['items'] as List<dynamic>)
+          .map((e) => Items.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$PostsPageModelToJson(PostsPageModel instance) =>
+    <String, dynamic>{
+      'current': instance.current,
+      'total': instance.total,
+      'pages': instance.pages,
+      'size': instance.size,
+      'items': instance.items,
+    };
+
+Items _$ItemsFromJson(Map<String, dynamic> json) => Items(
       json['uuid'] as String,
       json['postsType'] as int,
       json['postsFormat'] as int,
@@ -31,8 +50,7 @@ PostsInfoModel _$PostsInfoModelFromJson(Map<String, dynamic> json) =>
       json['communityName'] as String,
     );
 
-Map<String, dynamic> _$PostsInfoModelToJson(PostsInfoModel instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$ItemsToJson(Items instance) => <String, dynamic>{
       'uuid': instance.uuid,
       'postsType': instance.postsType,
       'postsFormat': instance.postsFormat,

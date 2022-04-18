@@ -283,7 +283,7 @@ class LoginView extends GetView<LoginController> {
         await UserApi.smsLoginOrRegister(phone: phone, code: code);
     if (myResponse.success) {
       LoginModel loginModel = LoginModel.fromJson(myResponse.data);
-      UserStore().setToken(loginModel.token);
+      UserStore.to.setToken(loginModel.token);
       Get.back(result: {"success": true});
     } else {
       MyToast(myResponse.message);
@@ -341,8 +341,8 @@ class LoginView extends GetView<LoginController> {
             ),
             ElevatedButton(
               onPressed: () {
-                controller.clickOnSelect();
-                Get.back();
+                clickLogin("18187418771", "111111");
+                Get.back(result: {"success": true});
               },
               style: ButtonStyle(
                   textStyle: MaterialStateProperty.all(

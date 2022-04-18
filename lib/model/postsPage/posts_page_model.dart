@@ -1,10 +1,37 @@
 import 'package:json_annotation/json_annotation.dart'; 
   
-part 'posts_info_model.g.dart';
+part 'posts_page_model.g.dart';
 
 
 @JsonSerializable()
-  class PostsInfoModel extends Object {
+  class PostsPageModel extends Object {
+
+  @JsonKey(name: 'current')
+  int current;
+
+  @JsonKey(name: 'total')
+  int total;
+
+  @JsonKey(name: 'pages')
+  int pages;
+
+  @JsonKey(name: 'size')
+  int size;
+
+  @JsonKey(name: 'items')
+  List<Items> items;
+
+  PostsPageModel(this.current,this.total,this.pages,this.size,this.items,);
+
+  factory PostsPageModel.fromJson(Map<String, dynamic> srcJson) => _$PostsPageModelFromJson(srcJson);
+
+  Map<String, dynamic> toJson() => _$PostsPageModelToJson(this);
+
+}
+
+  
+@JsonSerializable()
+  class Items extends Object {
 
   @JsonKey(name: 'uuid')
   String uuid;
@@ -69,11 +96,11 @@ part 'posts_info_model.g.dart';
   @JsonKey(name: 'communityName')
   String communityName;
 
-  PostsInfoModel(this.uuid,this.postsType,this.postsFormat,this.communityId,this.uid,this.postsStatus,this.isTop,this.createTime,this.updateTime,this.isDeleted,this.postsContent,this.postsImages,this.postsVideos,this.thumbnailImg,this.postsAudio,this.nickname,this.avatar,this.share,this.comment,this.like,this.communityName,);
+  Items(this.uuid,this.postsType,this.postsFormat,this.communityId,this.uid,this.postsStatus,this.isTop,this.createTime,this.updateTime,this.isDeleted,this.postsContent,this.postsImages,this.postsVideos,this.thumbnailImg,this.postsAudio,this.nickname,this.avatar,this.share,this.comment,this.like,this.communityName,);
 
-  factory PostsInfoModel.fromJson(Map<String, dynamic> srcJson) => _$PostsInfoModelFromJson(srcJson);
+  factory Items.fromJson(Map<String, dynamic> srcJson) => _$ItemsFromJson(srcJson);
 
-  Map<String, dynamic> toJson() => _$PostsInfoModelToJson(this);
+  Map<String, dynamic> toJson() => _$ItemsToJson(this);
 
 }
 

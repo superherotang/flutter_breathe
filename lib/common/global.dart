@@ -33,8 +33,6 @@ class Global {
     //用户信息
     Get.put<UserStore>(UserStore());
 
-    // Get.put<ConfigStore>(ConfigStore());
-    // Get.put<UserStore>(UserStore());
 
     AssetPicker.registerObserve();
   }

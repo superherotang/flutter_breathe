@@ -144,25 +144,28 @@ class PersonalController extends GetxController
       return null;
     }
     myCurrent = 1;
+    getPosts(myCurrent);
+  }
+
+  Future loadMyPost() async {
+    myCurrent += 1;
+    getPosts(myCurrent);
+  }
+
+  getPosts(int current) async {
     dynamic myResponse = await PostsApi.getPostsInfoByUid(
-        myCurrent, UserStore.to.userData!.uid.toString());
+        current, UserStore.to.userData!.uid.toString());
     if (myResponse["success"]) {
       PostsPageModel postsPageModel =
           PostsPageModel.fromJson(myResponse["data"]);
-      List<PostsInfoModel> postsInfoModelList=[];
       for (var item in postsPageModel.items) {
         //无敌转换
         myPosts.add(PostsInfoModel.fromJson(jsonDecode(jsonEncode(item))));
+        myPosts.refresh();
       }
     } else {
       MyToast(myResponse.message);
     }
-  }
-
-  Future loadMyPost() async {
-    //  myPosts.add(PostsModel("uuid",1, 1, 1, 1, 1, 1, "createTime", "updateTime", 1, "postsContent", "postsImages", "postsVideos", "thumbnailImg", "postsAudio"));
-
-    await Future.delayed(Duration(seconds: 2));
   }
 
   @override

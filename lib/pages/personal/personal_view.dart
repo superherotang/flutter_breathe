@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_breathe/common/color.dart';
 import 'package:flutter_breathe/common/middlewares/router_auth.dart';
 import 'package:flutter_breathe/common/store/user_store.dart';
-import 'package:flutter_breathe/model/posts/posts_model.dart';
 import 'package:flutter_breathe/model/postsCount/posts_count_model.dart';
 import 'package:flutter_breathe/pages/personal/components/top_image_appbar.dart';
 import 'package:flutter_breathe/utils/mock.dart';
@@ -70,8 +69,6 @@ class PersonalView extends GetView<PersonalController> {
 
 Widget posts() {
   var controller = Get.find<PersonalController>();
-  PostsCountModel postsCountModel =
-      PostsCountModel.fromJson(json.decode(JsonString.postsCount));
   return Material(
       color: AppColor.listBackground,
       child: LoadingView(
@@ -113,8 +110,7 @@ Widget posts() {
                               )
                         ]),
                     child: ShowBox(
-                      postsModel: PostsModel("uuid",1, 1, 1, 1, 1, 1, "createTime", "updateTime", 1, "postsContent", "postsImages", "postsVideos", "thumbnailImg", "postsAudio"),
-                      postsCountModel: postsCountModel,
+                      postsInfoModel: controller.myPosts[index],
                       my: true,
                     ),
                   ),

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_breathe/common/color.dart';
 import 'package:flutter_breathe/common/middlewares/router_auth.dart';
 import 'package:flutter_breathe/model/posts/posts_model.dart';
+import 'package:flutter_breathe/model/postsInfo/posts_info_model.dart';
 import 'package:flutter_breathe/pages/detail/components/comment_box.dart';
 import 'package:flutter_breathe/widgets/loading_view.dart';
 import 'package:flutter_breathe/widgets/multi_content.dart';
@@ -250,7 +251,28 @@ Widget buildSliverHeader() {
       child: Padding(
     padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.w),
     child: MultiContent(
-      postsModel: postsModel,
+      postsInfoModel: PostsInfoModel(
+          "uuid",
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          "createTime",
+          "updateTime",
+          1,
+          "postsContent",
+          "postsImages",
+          "postsVideos",
+          "thumbnailImg",
+          "postsAudio",
+          "nickname",
+          "avatar",
+          0,
+          0,
+          0,
+          "communityName"),
     ),
   ));
 }

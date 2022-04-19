@@ -17,11 +17,11 @@ PostsModel _$PostsModelFromJson(Map<String, dynamic> json) => PostsModel(
       json['createTime'] as String,
       json['updateTime'] as String,
       json['isDeleted'] as int,
-      json['postsContent'] as String,
-      json['postsImages'] as String,
-      json['postsVideos'] as String,
-      json['thumbnailImg'] as String,
-      json['postsAudio'] as String,
+      (json['postsContent'] ?? '') as String,
+      (json['postsImages'] ?? '') as String,
+      (json['postsVideos'] ?? '') as String,
+      (json['thumbnailImg'] ?? '') as String,
+      (json['postsAudio'] ?? '') as String,
     );
 
 Map<String, dynamic> _$PostsModelToJson(PostsModel instance) =>

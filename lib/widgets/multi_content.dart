@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_breathe/model/posts/posts_model.dart';
+import 'package:flutter_breathe/model/postsInfo/posts_info_model.dart';
 import 'package:flutter_breathe/routes/app_routes.dart';
 import 'package:flutter_breathe/widgets/audio_player_unit.dart';
 import 'package:flutter_breathe/widgets/more_text.dart';
@@ -9,11 +10,11 @@ import 'show_type_box/show_type_images.dart';
 
 ///帖子内容
 class MultiContent extends GetView {
-  final PostsModel postsModel;
+  final PostsInfoModel postsInfoModel;
 
   const MultiContent({
     Key? key,
-    required this.postsModel,
+    required this.postsInfoModel,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -26,12 +27,12 @@ class MultiContent extends GetView {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            postsModel.postsContent.isEmpty
+            postsInfoModel.postsContent.isEmpty
                 ? Container()
                 : MoreText(
-                    postsModel.postsContent,
-                    maxLines: postsModel.postsType != 1 ? 10 : 4,
-                    id: postsModel.uuid,
+                    postsInfoModel.postsContent,
+                    maxLines: postsInfoModel.postsType != 1 ? 10 : 4,
+                    id: postsInfoModel.uuid,
                     route: Routes.DETAIL,
                   ),
             showContent()
@@ -43,9 +44,9 @@ class MultiContent extends GetView {
 
   Widget showContent() {
     Widget content = Container();
-    switch (postsModel.postsType) {
+    switch (postsInfoModel.postsType) {
       case 2:
-        content = ShowTypeImages(data: postsModel.postsImages.split(","));
+        content = ShowTypeImages(data: postsInfoModel.postsImages.split(","));
         break;
       case 3:
         content = const Text("我是视频");

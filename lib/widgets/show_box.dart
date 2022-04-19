@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_breathe/model/posts/posts_model.dart';
-import 'package:flutter_breathe/model/postsCount/posts_count_model.dart';
+import 'package:flutter_breathe/model/postsInfo/posts_info_model.dart';
 import 'package:flutter_breathe/routes/app_routes.dart';
 import 'package:flutter_breathe/utils/utils.dart';
 import 'package:flutter_breathe/widgets/multi_content.dart';
@@ -11,13 +10,11 @@ import 'like_button.dart';
 
 ///帖子框架
 class ShowBox extends GetView {
-  final PostsModel postsModel;
-  final PostsCountModel postsCountModel;
+  final PostsInfoModel postsInfoModel;
   final bool? my;
   const ShowBox({
     Key? key,
-    required this.postsModel,
-    required this.postsCountModel,
+    required this.postsInfoModel,
     this.my,
   }) : super(key: key);
 
@@ -90,11 +87,11 @@ class ShowBox extends GetView {
                 ),
           GestureDetector(
             onTap: () =>
-                Get.toNamed(Routes.DETAIL + postsModel.uuid), // + id.toString()
+                Get.toNamed(Routes.DETAIL + postsInfoModel.uuid), // + id.toString()
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 30.w),
               child: MultiContent(
-                postsModel: postsModel,
+                postsInfoModel: postsInfoModel,
               ),
             ),
           ),
@@ -119,18 +116,18 @@ class ShowBox extends GetView {
                             child: LikeButton(
                                 icon: Icons.ac_unit,
                                 count:
-                                    Utils.intFormat(postsCountModel.share)))),
+                                    Utils.intFormat(postsInfoModel.share)))),
                     Expanded(
                         child: Center(
                             child: LikeButton(
                                 icon: Icons.ac_unit,
                                 count:
-                                    Utils.intFormat(postsCountModel.comment)))),
+                                    Utils.intFormat(postsInfoModel.comment)))),
                     Expanded(
                         child: Center(
                             child: LikeButton(
                                 icon: Icons.ac_unit,
-                                count: Utils.intFormat(postsCountModel.like)))),
+                                count: Utils.intFormat(postsInfoModel.like)))),
                   ],
                 ),
               ],

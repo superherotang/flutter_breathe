@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_breathe/common/apis/user_api.dart';
+import 'package:flutter_breathe/pages/community/components/create_community.dart';
 import 'package:flutter_breathe/pages/tabs/tabs_controller.dart';
 import 'package:flutter_breathe/routes/app_routes.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -40,16 +41,24 @@ class ModalView extends GetView {
                         child: const ModalButton("帖子")),
                     InkWell(
                         onTap: () {
-                          Get.toNamed(Routes.DEMO);
+                          Get.toNamed(Routes.RELEASE, arguments: 1);
                         },
-                        child: const ModalButton("DEMO")),
+                        child: const ModalButton("图文")),
                     InkWell(
                         onTap: () {
-                          UserApi.sendSms(phone: "18187418771");
+                          Get.toNamed(Routes.RELEASE, arguments: 2);
                         },
                         child: const ModalButton("视频")),
-                    ModalButton("求助"),
-                    ModalButton("悬赏"),
+                    InkWell(
+                        onTap: () {
+                          Get.toNamed(Routes.RELEASE, arguments: 3);
+                        },
+                        child: const ModalButton("音频")),
+                    InkWell(
+                        onTap: () {
+                          Get.to(() => const CreateCommunity());
+                        },
+                        child: const ModalButton("创建社区")),
                     ModalButton("提问"),
                   ],
                 ),
@@ -61,18 +70,34 @@ class ModalView extends GetView {
                   children: [
                     InkWell(
                       onTap: () => tabsController.showModelView(),
-                      child: Container(
-                        height: 150.w,
-                        width: 150.w,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(50),
-                            color: Colors.amber),
+                      child: Column(
+                        children: [
+                          Container(
+                            height: 150.w,
+                            width: 150.w,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(50),
+                                border:
+                                    Border.all(width: 5, color: Colors.grey)),
+                            child: Icon(
+                              Icons.close_sharp,
+                              size: 80.w,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            "关闭",
+                            style: TextStyle(fontSize: 30.w),
+                          )
+                        ],
                       ),
                     ),
                   ],
                 ),
                 SizedBox(
-                  height: 80.w,
+                  height: 100.w,
                 ),
               ],
             ),

@@ -75,19 +75,37 @@ class ShowBox extends GetView {
                 )
               : Padding(
                   padding: EdgeInsets.symmetric(horizontal: 30.w),
-                  child: Row(children: [
-                    Text(
-                      "2020-02-01",
-                      style: TextStyle(fontSize: 50.w),
-                    ),
-                    Expanded(child: Container()),
-                    IconButton(
-                        onPressed: () {}, icon: const Icon(Icons.ac_unit))
-                  ]),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(children: [
+                        Text(
+                          "2020-02-01",
+                          style: TextStyle(fontSize: 50.w),
+                        ),
+                        Expanded(child: Container()),
+                        IconButton(
+                            onPressed: () {}, icon: const Icon(Icons.ac_unit))
+                      ]),
+                      Text.rich(TextSpan(children: [
+                        TextSpan(
+                            text: "所属社区:  ",
+                            style: TextStyle(
+                                fontSize: 30.w,
+                                fontWeight: FontWeight.bold)),
+                        TextSpan(
+                            text: postsInfoModel.communityName,
+                            style: TextStyle(
+                                fontSize: 30.w,
+                                color: Colors.red,
+                                fontWeight: FontWeight.bold))
+                      ])),
+                    ],
+                  ),
                 ),
           GestureDetector(
-            onTap: () =>
-                Get.toNamed(Routes.DETAIL + postsInfoModel.uuid), // + id.toString()
+            onTap: () => Get.toNamed(
+                Routes.DETAIL + postsInfoModel.uuid), // + id.toString()
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 30.w),
               child: MultiContent(
@@ -115,8 +133,7 @@ class ShowBox extends GetView {
                         child: Center(
                             child: LikeButton(
                                 icon: Icons.ac_unit,
-                                count:
-                                    Utils.intFormat(postsInfoModel.share)))),
+                                count: Utils.intFormat(postsInfoModel.share)))),
                     Expanded(
                         child: Center(
                             child: LikeButton(

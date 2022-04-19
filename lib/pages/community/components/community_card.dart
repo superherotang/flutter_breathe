@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_breathe/common/color.dart';
+import 'package:flutter_breathe/common/middlewares/router_auth.dart';
+import 'package:flutter_breathe/common/store/user_store.dart';
 import 'package:flutter_breathe/routes/app_routes.dart';
 
 import 'package:flutter_breathe/utils/utils.dart';
@@ -100,7 +102,9 @@ class CommunityCard extends GetView {
             Padding(
               padding: EdgeInsets.only(bottom: 30.w, left: 30.w, right: 30.w),
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () async{
+                   bool flag = await RouteAuth().auth();
+                },
                 child: Container(
                   alignment: Alignment.center,
                   width: double.maxFinite,

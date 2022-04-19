@@ -12,9 +12,14 @@ class ShowTypeImages extends GetView {
     if (data.length == 1) {
       return Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.w),
-        child: Image.network(
-          data.first,
-          fit: BoxFit.fitWidth,
+        child: GestureDetector(
+          onTap: () {
+              Get.to(()=>SlideImagePage(images: data,current: 1));
+            },
+          child: ExtendedImage.network(
+            data.first,
+            fit: BoxFit.fitWidth,
+          ),
         ),
       );
     }

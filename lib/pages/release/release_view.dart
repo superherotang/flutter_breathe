@@ -1,12 +1,15 @@
 import 'package:extended_text_field/extended_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_breathe/common/color.dart';
+import 'package:flutter_breathe/model/city/location.dart';
 import 'package:flutter_breathe/model/posts_type.dart';
 import 'package:flutter_breathe/pages/release/components/small_button.dart';
 import 'package:flutter_breathe/widgets/icon.dart';
 import 'package:flutter_breathe/widgets/release_type_box/release_type_audio.dart';
 import 'package:flutter_breathe/widgets/release_type_box/release_type_images.dart';
 import 'package:flutter_breathe/widgets/release_type_box/release_type_video.dart';
+import 'package:flutter_pickers/address_picker/locations_data.dart';
+import 'package:flutter_pickers/pickers.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
@@ -18,6 +21,20 @@ class ReleaseView extends GetView<ReleaseController> {
   @override
   Widget build(BuildContext context) {
     controller.context = context;
+
+    var flag = Get.arguments;
+    switch (flag) {
+      case 1:
+        controller.pickImages();
+        break;
+      case 2:
+        controller.pickVideo();
+        break;
+      case 3:
+        controller.pickAudio();
+        break;
+      default:
+    }
     return Scaffold(
       resizeToAvoidBottomInset: true, // 允许键盘事件影响界面
       appBar: topAppBar(),
@@ -102,32 +119,26 @@ class ReleaseView extends GetView<ReleaseController> {
                 child: Row(children: [
                   SizedBox(width: 10.w),
                   InkWell(
-                    onTap: () => Get.bottomSheet(Container(
-                      child: Wrap(
-                        children: [
-                          ListTile(
-                            tileColor: Colors.white,
-                            leading: Icon(Icons.wb_sunny_outlined),
-                            title: Text("白天模式"),
-                            onTap: () {
-                              Get.changeTheme(ThemeData.light());
-                            },
-                          ),
-                          ListTile(
-                            leading: Icon(Icons.wb_sunny),
-                            title: Text("黑夜模式"),
-                            onTap: () {
-                              Get.changeTheme(ThemeData.dark());
-                            },
-                          )
-                        ],
-                      ),
-                    )),
-                    child: const SmallButton(
-                      "定位",
-                      svg: SvgIconWidget(
-                        "assets/icon/home.svg",
-                        color: Colors.white,
+                    onTap: () async {
+                      Pickers.showAddressPicker(context,
+                          initProvince: controller.location.area,
+                          initCity: controller.location.city,
+                          initTown: controller.location.county,
+                          onConfirm: (p, c, t) {
+                        controller.selectCity(p, c, t);
+                      }, onCancel: (bool isCancel) {
+                        controller.location =
+                            const Location(area: '', city: '', county: '');
+                            controller.city.value="定位";
+                      });
+                    },
+                    child: Obx(
+                      () => SmallButton(
+                        controller.city.value,
+                        svg: SvgIconWidget(
+                          "assets/icon/home.svg",
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ),

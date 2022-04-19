@@ -17,7 +17,6 @@ class UserStore extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    delAll();
     token.value = StorageService().getString("token");
     String userDataStr = StorageService().getString("userData");
     if (userDataStr.isNotEmpty) {

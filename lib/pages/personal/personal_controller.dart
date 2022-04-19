@@ -4,17 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_breathe/common/apis/posts_api.dart';
 import 'package:flutter_breathe/common/apis/user_api.dart';
 import 'package:flutter_breathe/common/store/user_store.dart';
-import 'package:flutter_breathe/model/posts/posts_model.dart';
 import 'package:flutter_breathe/model/postsInfo/posts_info_model.dart';
 import 'package:flutter_breathe/model/postsPage/posts_page_model.dart';
 import 'package:flutter_breathe/model/request/my_response.dart';
 import 'package:flutter_breathe/model/userCount/user_count_model.dart';
 import 'package:flutter_breathe/model/userData/user_data_model.dart';
-import 'package:flutter_breathe/utils/mock.dart';
+import 'package:flutter_breathe/service/storage_service.dart';
 import 'package:flutter_breathe/utils/my_toast.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class PersonalController extends GetxController
     with GetTickerProviderStateMixin {
@@ -100,34 +100,41 @@ class PersonalController extends GetxController
   Future refreshUser() async {
     if (id == null) {
       if (UserStore.to.isLogin) {
-        //请求用户信息
-        MyResponse myResponseUserData = await UserApi.getUserDataByToken();
-        if (myResponseUserData.success) {
-          //用户信息持久化
-          await UserStore.to
-              .setUserData(jsonEncode(myResponseUserData.data["userData"]));
-          userDataModel.value =
-              UserDataModel.fromJson(myResponseUserData.data["userData"]);
+        //判断本地是否有信息
+        if (UserStore.to.userData != null || UserStore.to.userCount != null) {
+          userDataModel.value = UserStore.to.userData!;
+          userCountModel.value = UserStore.to.userCount!;
           userDataModel.refresh();
-          //请求用户统计
-          MyResponse myResponseCound =
-              await UserApi.getUserCountByUid(uid: userDataModel.value.uid);
-
-          if (myResponseCound.success) {
-            //统计信息持久化
-            await UserStore.to
-                .setUserCount(jsonEncode(myResponseCound.data["userCount"]));
-            userCountModel.value =
-                UserCountModel.fromJson(myResponseCound.data["userCount"]);
-            userCountModel.refresh();
-          } else {
-            MyToast(myResponseCound.message);
-          }
-          await UserStore.to.updataUser();
-          refreshMyPost();
+          userCountModel.refresh();
         } else {
-          UserStore.to.delAll();
-          MyToast(myResponseUserData.message);
+          //请求用户信息
+          MyResponse myResponseUserData = await UserApi.getUserDataByToken();
+          if (myResponseUserData.success) {
+            //用户信息持久化
+            await UserStore.to
+                .setUserData(jsonEncode(myResponseUserData.data["userData"]));
+            userDataModel.value =
+                UserDataModel.fromJson(myResponseUserData.data["userData"]);
+            userDataModel.refresh();
+            //请求用户统计
+            MyResponse myResponseCound =
+                await UserApi.getUserCountByUid(uid: userDataModel.value.uid);
+
+            if (myResponseCound.success) {
+              //统计信息持久化
+              await UserStore.to
+                  .setUserCount(jsonEncode(myResponseCound.data["userCount"]));
+              userCountModel.value =
+                  UserCountModel.fromJson(myResponseCound.data["userCount"]);
+              userCountModel.refresh();
+            } else {
+              MyToast(myResponseCound.message);
+            }
+            await UserStore.to.updataUser();
+          } else {
+            UserStore.to.delAll();
+            MyToast(myResponseUserData.message);
+          }
         }
       } else {
         userDataModel.value = UserDataModel(0, "", "", "未登录", "", -1, "", "");
@@ -153,8 +160,13 @@ class PersonalController extends GetxController
   }
 
   getPosts(int current) async {
-    dynamic myResponse = await PostsApi.getPostsInfoByUid(
-        current, UserStore.to.userData!.uid.toString());
+    dynamic myResponse;
+    try {
+      myResponse = await PostsApi.getPostsInfoByUid(
+          [UserStore.to.userData!.uid.toString()], current);
+    } catch (e) {
+      MyToast(e.toString());
+    }
     if (myResponse["success"]) {
       PostsPageModel postsPageModel =
           PostsPageModel.fromJson(myResponse["data"]);
@@ -164,7 +176,7 @@ class PersonalController extends GetxController
         myPosts.refresh();
       }
     } else {
-      MyToast(myResponse.message);
+      MyToast(myResponse["message"]);
     }
   }
 

@@ -43,7 +43,7 @@ class HomeTop extends GetView<HomeController> {
           Container(
             constraints: BoxConstraints(maxWidth: 150.w),
             child: Obx(
-              () => Text(locationService.city.value,
+              () => Text(LocationStore.to.city.value,
                   style: TextStyle(fontSize: 36.w, fontWeight: FontWeight.bold),
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1),

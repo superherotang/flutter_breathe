@@ -15,7 +15,7 @@ class HomeController extends GetxController
       text: '关注的人',
     ),
     const Tab(
-      text: '关注的社区',
+      text: '加入的社区',
     ),
     const Tab(
       text: '图文',

@@ -195,7 +195,6 @@ class Domestic extends GetView<DomesticController> {
 
   //选择城市
   Widget currentCity() {
-    var locationService = Get.find<LocationStore>();
     return Obx(
       () => ExpansionPanelList(
         elevation: 1,
@@ -209,7 +208,7 @@ class Domestic extends GetView<DomesticController> {
                         TextStyle(fontSize: 36.w, fontWeight: FontWeight.bold),
                     children: [
                       const TextSpan(text: "您正在看: "),
-                      TextSpan(text: locationService.city.value)
+                      TextSpan(text: LocationStore.to.city.value)
                     ])),
                 Expanded(
                     child: Container(
@@ -494,9 +493,10 @@ class DomesticController extends GetxController {
 
   //点击定位
   void onChangerCity(Location location) {
-    LocationStore()
-        .add(area: location.area, city: location.city, county: location.county);
-    LocationStore().upadte();
+    LocationStore.to.add( location: location);
+    // LocationStore()
+    //     .add(area: location.area, city: location.city, county: location.county);
+    LocationStore.to.upadte();
     Get.back();
   }
 }

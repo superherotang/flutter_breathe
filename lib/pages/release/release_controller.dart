@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_breathe/model/city/location.dart';
 import 'package:flutter_breathe/model/posts_type.dart';
 import 'package:flutter_breathe/utils/picker_method.dart';
 import 'package:flutter_breathe/widgets/special_text/my_extended_text_selection_controls.dart';
@@ -13,6 +14,11 @@ class ReleaseController extends GetxController {
   late MySpecialTextSpanBuilder mySpecialTextSpanBuilder;
   late MyTextSelectionControls myTextSelectionControls;
   late FocusNode focusNode;
+
+  //地址
+  var location = const Location(area: '', city: '', county: '');
+
+  var city = "定位".obs;
 
   //当前类型
   var postsType = PostsType.text.obs;
@@ -46,6 +52,28 @@ class ReleaseController extends GetxController {
         haveContent.value = true;
       }
     });
+  }
+
+  void selectCity(String p,String c,String? t) {
+    if (c == "全部") {
+      c = '';
+    }
+    if (t == null || t == "全部") {
+      t = '';
+    }
+    location = Location(area: p, city: c, county: t);
+    if(location.area.isEmpty){
+      city.value="定位";
+    }
+    if(location.area.isNotEmpty&&location.city.isNotEmpty&&location.county.isNotEmpty){
+      city.value=p+'·'+c+'·'+t;
+    }
+    if(location.area.isNotEmpty&&location.city.isNotEmpty&&location.county.isEmpty){
+      city.value=p+'·'+c;
+    }
+    if(location.area.isNotEmpty&&location.city.isEmpty&&location.county.isEmpty){
+      city.value=p;
+    }
   }
 
   void typeThemeChange() {

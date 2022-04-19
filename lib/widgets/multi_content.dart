@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_breathe/model/posts/posts_model.dart';
 import 'package:flutter_breathe/model/postsInfo/posts_info_model.dart';
 import 'package:flutter_breathe/routes/app_routes.dart';
 import 'package:flutter_breathe/widgets/audio_player_unit.dart';
 import 'package:flutter_breathe/widgets/more_text.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import 'show_type_box/show_type_images.dart';
@@ -20,7 +20,7 @@ class MultiContent extends GetView {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.toNamed(Routes.DETAIL+"9999");
+        Get.toNamed(Routes.DETAIL + postsInfoModel.uuid);
       },
       child: Material(
         color: Colors.white,
@@ -29,11 +29,14 @@ class MultiContent extends GetView {
           children: [
             postsInfoModel.postsContent.isEmpty
                 ? Container()
-                : MoreText(
-                    postsInfoModel.postsContent,
-                    maxLines: postsInfoModel.postsType != 1 ? 10 : 4,
-                    id: postsInfoModel.uuid,
-                    route: Routes.DETAIL,
+                : Padding(
+                    padding: EdgeInsets.symmetric(vertical: 10.w),
+                    child: MoreText(
+                      postsInfoModel.postsContent,
+                      maxLines: postsInfoModel.postsType != 1 ? 10 : 4,
+                      id: postsInfoModel.uuid,
+                      route: Routes.DETAIL,
+                    ),
                   ),
             showContent()
           ],

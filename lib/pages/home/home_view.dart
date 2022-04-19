@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_breathe/common/color.dart';
+import 'package:flutter_breathe/pages/home/components/community_list.dart';
+import 'package:flutter_breathe/pages/home/components/follow_list.dart';
+import 'package:flutter_breathe/pages/home/components/image_list.dart';
+import 'package:flutter_breathe/pages/home/components/sounds_list.dart';
+import 'package:flutter_breathe/pages/home/components/videos_list.dart';
 import 'package:flutter_breathe/pages/home/home_controller.dart';
 import 'package:get/get.dart';
 import 'components/home_top.dart';
@@ -29,12 +34,27 @@ class HomeView extends GetView<HomeController> {
 
 List<Widget> tabsContent = [
   const Material(
-    child:  Recommend(),
+    child: Recommend(),
     color: AppColor.listBackground,
   ),
-  Text("111"),
-  Text("111"),
-  Text("111"),
-  Text("111"),
-  Text("111"),
+  const Material(
+    child: FollowList(),
+    color: AppColor.listBackground,
+  ),
+  const Material(
+    child: CommunityList(),
+    color: AppColor.listBackground,
+  ),
+  const Material(
+    child: ImageList(),
+    color: AppColor.listBackground,
+  ),
+  const Material(
+    child: VideosList(),
+    color: AppColor.listBackground,
+  ),
+  const Material(
+    child: SoundsList(),
+    color: AppColor.listBackground,
+  ),
 ];

@@ -12,12 +12,11 @@ import 'package:flutter_breathe/widgets/status.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 
-class Recommend extends GetView {
-  const Recommend({Key? key}) : super(key: key);
-
+class CommunityList extends GetView {
+  const CommunityList({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    var controller = Get.put(RecommendController());
+    var controller = Get.put(CommunityListController());
     return KeepAliveWrapper(
       child: LoadingView(
           future: controller.refreshMyPost(),
@@ -42,7 +41,7 @@ class Recommend extends GetView {
   }
 }
 
-class RecommendController extends GetxController {
+class CommunityListController extends GetxController {
   RxList<PostsInfoModel> myPosts = <PostsInfoModel>[].obs;
   int myCurrent = 1;
 
@@ -60,9 +59,10 @@ class RecommendController extends GetxController {
   }
 
   getPosts(int current) async {
+    List<String> list = ["16", "17"];
     dynamic myResponse;
     try {
-      myResponse = await PostsApi.getAllPostsInfo(current);
+      myResponse = await PostsApi.getPostsInfoByCom(list, current);
     } catch (e) {
       MyToast(e.toString());
     }
@@ -75,38 +75,7 @@ class RecommendController extends GetxController {
         myPosts.refresh();
       }
     } else {
-      MyToast(myResponse["message"]);
+      MyToast(myResponse["messsage"]);
     }
   }
 }
-
-
-    //  ListView.builder(
-    //   itemBuilder: (BuildContext context, int index) {
-    //     return ShowBox(
-    //       postsInfoModel: PostsInfoModel(
-    //           "uuid",
-    //           1,
-    //           1,
-    //           1,
-    //           1,
-    //           1,
-    //           1,
-    //           "createTime",
-    //           "updateTime",
-    //           1,
-    //           "postsContent",
-    //           "postsImages",
-    //           "postsVideos",
-    //           "thumbnailImg",
-    //           "postsAudio",
-    //           "nickname",
-    //           "avatar",
-    //           0,
-    //           0,
-    //           0,
-    //           "communityName"),
-    //     );
-    //   },
-    //   itemCount: 20,
-    // );

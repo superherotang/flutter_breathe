@@ -32,7 +32,12 @@ class SmallButton extends GetView {
         ),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 15.w),
-          child: Text(text),
+          child: Container(
+              constraints: BoxConstraints(maxWidth: 1.sw / 2),
+              child: Text(
+                text,
+                overflow: TextOverflow.ellipsis,
+              )),
         )
       ]),
     );

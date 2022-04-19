@@ -12,6 +12,6 @@ class RouteAuth {
         return true;
       }
     }
-    return false;
+    return true;
   }
 }

@@ -67,8 +67,10 @@ class TabsView extends GetView<TabsController> {
           floatingActionButton: Container(
             margin: EdgeInsets.only(top: 70.w),
             child: FloatingActionButton(
-              onPressed: () {
-                    controller.showModelView();
+              onPressed: () async {
+                if (await RouteAuth().auth()) {
+                  controller.showModelView();
+                }
               },
               child: Icon(
                 Icons.add_circle_rounded,

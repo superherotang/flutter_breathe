@@ -12,19 +12,21 @@ class ModalButton extends GetView {
     return Column(
       children: [
         Container(
-            height: 150.w,
-            width: 150.w,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(80),
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  Colors.pinkAccent,
-                  Colors.yellow,
-                ],
-              ),
-            )),
+          height: 150.w,
+          width: 150.w,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(80),
+            gradient: const LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Colors.pinkAccent,
+                Colors.yellow,
+              ],
+            ),
+          ),
+          child: Icon(Icons.ac_unit,size: 80.w,),
+        ),
         SizedBox(
           height: 10,
         ),

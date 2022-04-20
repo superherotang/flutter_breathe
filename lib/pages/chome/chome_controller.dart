@@ -22,6 +22,7 @@ class ChomeController extends GetxController
   void onInit() {
     super.onInit();
     tabController = TabController(length: 3, vsync: this);
+    var getId = Get.parameters['id'];
   }
 
   @override

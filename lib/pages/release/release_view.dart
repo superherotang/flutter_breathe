@@ -127,9 +127,8 @@ class ReleaseView extends GetView<ReleaseController> {
                           onConfirm: (p, c, t) {
                         controller.selectCity(p, c, t);
                       }, onCancel: (bool isCancel) {
-                        controller.location =
-                            const Location(area: '', city: '', county: '');
-                            controller.city.value="定位";
+                        controller.location = Location('', '', '');
+                        controller.city.value = "定位";
                       });
                     },
                     child: Obx(

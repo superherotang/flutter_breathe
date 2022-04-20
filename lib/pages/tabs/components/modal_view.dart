@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_breathe/common/apis/user_api.dart';
-import 'package:flutter_breathe/pages/community/components/create_community.dart';
+import 'package:flutter_breathe/pages/community/components/create_update_community.dart';
 import 'package:flutter_breathe/pages/tabs/tabs_controller.dart';
 import 'package:flutter_breathe/routes/app_routes.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,13 +15,12 @@ class ModalView extends GetView {
 
   @override
   Widget build(BuildContext context) {
-    var tabsController = Get.find<TabsController>();
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
         child: GestureDetector(
-          onTap: () => tabsController.showModelView(),
+          onTap: () => Get.back(),
           child: Container(
             color: Colors.white.withOpacity(0.8),
             height: 1.sh,
@@ -56,7 +55,7 @@ class ModalView extends GetView {
                         child: const ModalButton("音频")),
                     InkWell(
                         onTap: () {
-                          Get.to(() => const CreateCommunity());
+                          Get.to(() => const CreateUpdateCommunity());
                         },
                         child: const ModalButton("创建社区")),
                     ModalButton("提问"),
@@ -69,7 +68,7 @@ class ModalView extends GetView {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     InkWell(
-                      onTap: () => tabsController.showModelView(),
+                      onTap: () => Get.back(),
                       child: Column(
                         children: [
                           Container(

@@ -20,7 +20,9 @@ class Domestic extends GetView<DomesticController> {
     Get.put(DomesticController());
     return Obx(() => controller.isInit.value
         ? cityList()
-        : const Center(child: CircularProgressIndicator(),));
+        : const Center(
+            child: CircularProgressIndicator(),
+          ));
   }
 
   Widget cityList() {
@@ -260,7 +262,7 @@ class Domestic extends GetView<DomesticController> {
           Wrap(
             children: [
               ButtonItem(
-                location: const Location(area: '北京市', city: '北京', county: ''),
+                location: Location('北京市', '北京', ''),
                 text: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -314,8 +316,7 @@ List<Widget> currentDistrict(Location location, List<CityPinying> allCity) {
   var areaName = getDistrictList.county.toList().map((e) => e.label);
   return areaName
       .map((item) => ButtonItem(
-          location:
-              Location(area: location.area, city: location.city, county: item),
+          location: Location(location.area, location.city, item),
           text: Text(
             item,
             style: TextStyle(
@@ -370,16 +371,16 @@ List<Widget> generateList() {
       .toList();
 }
 
-List<Location> hotCity = const [
-  Location(area: '北京市', city: '北京', county: ''),
-  Location(area: '北京市', city: '北京', county: ''),
-  Location(area: '北京市', city: '北京', county: ''),
-  Location(area: '北京市', city: '北京', county: ''),
-  Location(area: '北京市', city: '北京', county: ''),
-  Location(area: '北京市', city: '北京', county: ''),
-  Location(area: '北京市', city: '北京', county: ''),
-  Location(area: '北京市', city: '北京', county: ''),
-  Location(area: '北京市', city: '北京', county: ''),
+List<Location> hotCity = [
+  Location('北京市', '北京', ''),
+  Location('北京市', '北京', ''),
+  Location('北京市', '北京', ''),
+  Location('北京市', '北京', ''),
+  Location('北京市', '北京', ''),
+  Location('北京市', '北京', ''),
+  Location('北京市', '北京', ''),
+  Location('北京市', '北京', ''),
+  Location('北京市', '北京', ''),
 ];
 
 class DomesticController extends GetxController {
@@ -435,10 +436,8 @@ class DomesticController extends GetxController {
 
   void mapToList() {
     for (var element in locationListMap) {
-      locationList.add(Location(
-          area: element['area'],
-          city: element['city'],
-          county: element['county']));
+      locationList
+          .add(Location(element['area'], element['city'], element['county']));
     }
   }
 
@@ -461,8 +460,7 @@ class DomesticController extends GetxController {
         pinyingList.add(CityPinying(
             pinying: pinYin,
             name: cityName,
-            location:
-                Location(area: item.label, city: city.label, county: '')));
+            location: Location(item.label, city.label, '')));
       });
     });
     //排序
@@ -493,7 +491,7 @@ class DomesticController extends GetxController {
 
   //点击定位
   void onChangerCity(Location location) {
-    LocationStore.to.add( location: location);
+    LocationStore.to.add(location: location);
     // LocationStore()
     //     .add(area: location.area, city: location.city, county: location.county);
     LocationStore.to.upadte();

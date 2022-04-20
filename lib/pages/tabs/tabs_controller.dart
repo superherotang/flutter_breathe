@@ -10,8 +10,4 @@ class TabsController extends GetxController {
     tabIndex.value = index;
     pageController.jumpToPage(index);
   }
-
-  void showModelView() {
-    modalView.value = !modalView.value;
-  }
 }

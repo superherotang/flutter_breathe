@@ -1,11 +1,26 @@
-class Location {
-  const Location({
-    required this.area,
-    required this.city,
-    required this.county,
-  });
+import 'package:json_annotation/json_annotation.dart'; 
+  
+part 'location.g.dart';
 
-  final String area;
-  final String city;
-  final String county;
+
+@JsonSerializable()
+  class Location extends Object {
+
+  @JsonKey(name: 'area')
+  String area;
+
+  @JsonKey(name: 'city')
+  String city;
+
+  @JsonKey(name: 'county')
+  String county;
+
+  Location(this.area,this.city,this.county,);
+
+  factory Location.fromJson(Map<String, dynamic> srcJson) => _$LocationFromJson(srcJson);
+
+  Map<String, dynamic> toJson() => _$LocationToJson(this);
+
 }
+
+  

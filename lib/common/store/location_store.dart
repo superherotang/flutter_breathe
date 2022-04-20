@@ -17,7 +17,7 @@ class LocationStore extends GetxController {
         List.from(StorageService().getJSON("location") ?? []);
     historyLocationList.addAll(hisData);
     if (historyLocationList.isEmpty) {
-      add(location: const Location(area: '北京市', city: '北京', county: ''));
+      add(location:  Location( '北京市',  '北京',  ''));
     }
     updateCity();
   }

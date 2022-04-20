@@ -69,7 +69,7 @@ class TabsView extends GetView<TabsController> {
             child: FloatingActionButton(
               onPressed: () async {
                 if (await RouteAuth().auth()) {
-                  controller.showModelView();
+                  Get.to(() => const ModalView());
                 }
               },
               child: Icon(

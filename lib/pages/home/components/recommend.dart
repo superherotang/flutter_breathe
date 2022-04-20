@@ -63,19 +63,19 @@ class RecommendController extends GetxController {
     dynamic myResponse;
     try {
       myResponse = await PostsApi.getAllPostsInfo(current);
+      if (myResponse["success"]) {
+        PostsPageModel postsPageModel =
+            PostsPageModel.fromJson(myResponse["data"]);
+        for (var item in postsPageModel.items) {
+          //无敌转换
+          myPosts.add(PostsInfoModel.fromJson(jsonDecode(jsonEncode(item))));
+          myPosts.refresh();
+        }
+      } else {
+        MyToast(myResponse["message"]);
+      }
     } catch (e) {
       MyToast(e.toString());
-    }
-    if (myResponse["success"]) {
-      PostsPageModel postsPageModel =
-          PostsPageModel.fromJson(myResponse["data"]);
-      for (var item in postsPageModel.items) {
-        //无敌转换
-        myPosts.add(PostsInfoModel.fromJson(jsonDecode(jsonEncode(item))));
-        myPosts.refresh();
-      }
-    } else {
-      MyToast(myResponse["message"]);
     }
   }
 }

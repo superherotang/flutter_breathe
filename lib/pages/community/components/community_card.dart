@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_breathe/common/color.dart';
 import 'package:flutter_breathe/common/middlewares/router_auth.dart';
-import 'package:flutter_breathe/common/store/user_store.dart';
 import 'package:flutter_breathe/routes/app_routes.dart';
 
 import 'package:flutter_breathe/utils/utils.dart';

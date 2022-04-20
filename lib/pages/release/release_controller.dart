@@ -16,7 +16,7 @@ class ReleaseController extends GetxController {
   late FocusNode focusNode;
 
   //地址
-  var location = const Location(area: '', city: '', county: '');
+  var location = Location('', '', '');
 
   var city = "定位".obs;
 
@@ -27,8 +27,6 @@ class ReleaseController extends GetxController {
 
   var haveContent = false.obs;
 
-  ValueNotifier<RxList<AssetEntity>> isDataNull =
-      ValueNotifier(<AssetEntity>[].obs);
   //资源类型列表
   var assetEntitysImage = <AssetEntity>[].obs;
   var assetEntitysVideo = <AssetEntity>[].obs;
@@ -54,25 +52,31 @@ class ReleaseController extends GetxController {
     });
   }
 
-  void selectCity(String p,String c,String? t) {
+  void selectCity(String p, String c, String? t) {
     if (c == "全部") {
       c = '';
     }
     if (t == null || t == "全部") {
       t = '';
     }
-    location = Location(area: p, city: c, county: t);
-    if(location.area.isEmpty){
-      city.value="定位";
+    location = Location(p, c, t);
+    if (location.area.isEmpty) {
+      city.value = "定位";
     }
-    if(location.area.isNotEmpty&&location.city.isNotEmpty&&location.county.isNotEmpty){
-      city.value=p+'·'+c+'·'+t;
+    if (location.area.isNotEmpty &&
+        location.city.isNotEmpty &&
+        location.county.isNotEmpty) {
+      city.value = p + '·' + c + '·' + t;
     }
-    if(location.area.isNotEmpty&&location.city.isNotEmpty&&location.county.isEmpty){
-      city.value=p+'·'+c;
+    if (location.area.isNotEmpty &&
+        location.city.isNotEmpty &&
+        location.county.isEmpty) {
+      city.value = p + '·' + c;
     }
-    if(location.area.isNotEmpty&&location.city.isEmpty&&location.county.isEmpty){
-      city.value=p;
+    if (location.area.isNotEmpty &&
+        location.city.isEmpty &&
+        location.county.isEmpty) {
+      city.value = p;
     }
   }
 
@@ -162,7 +166,7 @@ class ReleaseController extends GetxController {
     typeThemeChange();
   }
 
-  //图片选择
+  //视频选择
   Future<void> pickVideo() async {
     unFocusFunction();
     var temp = await PickMethod().pickVideo(context!, assetEntitysImage);

@@ -35,7 +35,7 @@ class ChomeView extends GetView<ChomeController> {
         body: Column(children: [
           TabBar(
             controller: controller.tabController,
-            tabs: [Tab(text: 'Tab0'), Tab(text: 'Tab1'), Tab(text: 'Tab2')],
+            tabs: [Tab(text: '热门'), Tab(text: '最新'), Tab(text: '视频')],
           ),
           Expanded(
               child: Stack(
@@ -50,16 +50,6 @@ class ChomeView extends GetView<ChomeController> {
                   widgetone()
                 ],
               ),
-              Container(
-                width: double.infinity,
-                color: Color(0xBB87CEFA),
-                height: 60.w,
-                alignment: Alignment.center,
-                child: Text(
-                  "为您推荐30条内容",
-                  style: TextStyle(color: Colors.white, fontSize: 28.w),
-                ),
-              )
             ],
           ))
         ]),
@@ -227,7 +217,8 @@ class ChomeView extends GetView<ChomeController> {
         //     synopsis: synopsis,
         //   )
         itemBuilder: (BuildContext context, int index) {
-          return Container(color: Colors.amber,width: double.infinity,height: 100);
+          return Container(
+              color: Colors.amber, width: double.infinity, height: 100);
         },
         itemCount: 20,
       ),

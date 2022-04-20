@@ -4,13 +4,14 @@ import 'package:wechat_camera_picker/wechat_camera_picker.dart';
 
 class PickMethod {
   Future<List<AssetEntity>?> pickImages(
-      BuildContext context, List<AssetEntity> assets) async {
+      BuildContext context, List<AssetEntity> assets,
+      {int maxAssets = 9}) async {
     const AssetPickerTextDelegate textDelegate = AssetPickerTextDelegate();
     final List<AssetEntity>? result = await AssetPicker.pickAssets(
       context,
       pickerConfig: AssetPickerConfig(
         requestType: RequestType.image,
-        maxAssets: 9,
+        maxAssets: maxAssets,
         selectedAssets: assets,
         specialItemPosition: SpecialItemPosition.prepend,
         specialItemBuilder: (

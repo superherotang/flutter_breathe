@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_breathe/common/apis/posts_api.dart';
 import 'package:flutter_breathe/common/apis/user_api.dart';
@@ -108,32 +109,38 @@ class PersonalController extends GetxController
           userCountModel.refresh();
         } else {
           //请求用户信息
-          MyResponse myResponseUserData = await UserApi.getUserDataByToken();
-          if (myResponseUserData.success) {
-            //用户信息持久化
-            await UserStore.to
-                .setUserData(jsonEncode(myResponseUserData.data["userData"]));
-            userDataModel.value =
-                UserDataModel.fromJson(myResponseUserData.data["userData"]);
-            userDataModel.refresh();
-            //请求用户统计
-            MyResponse myResponseCound =
-                await UserApi.getUserCountByUid(uid: userDataModel.value.uid);
-
-            if (myResponseCound.success) {
-              //统计信息持久化
+          try {
+            MyResponse myResponseUserData = await UserApi.getUserDataByToken();
+            if (myResponseUserData.success) {
+              //用户信息持久化
               await UserStore.to
-                  .setUserCount(jsonEncode(myResponseCound.data["userCount"]));
-              userCountModel.value =
-                  UserCountModel.fromJson(myResponseCound.data["userCount"]);
-              userCountModel.refresh();
+                  .setUserData(jsonEncode(myResponseUserData.data["userData"]));
+              userDataModel.value =
+                  UserDataModel.fromJson(myResponseUserData.data["userData"]);
+              userDataModel.refresh();
+              //请求用户统计
+              MyResponse myResponseCound =
+                  await UserApi.getUserCountByUid(uid: userDataModel.value.uid);
+
+              if (myResponseCound.success) {
+                //统计信息持久化
+                await UserStore.to.setUserCount(
+                    jsonEncode(myResponseCound.data["userCount"]));
+                userCountModel.value =
+                    UserCountModel.fromJson(myResponseCound.data["userCount"]);
+                userCountModel.refresh();
+              } else {
+                MyToast(myResponseCound.message);
+              }
+              await UserStore.to.updataUser();
             } else {
-              MyToast(myResponseCound.message);
+              UserStore.to.delAll();
+              MyToast(myResponseUserData.message);
             }
-            await UserStore.to.updataUser();
-          } else {
-            UserStore.to.delAll();
-            MyToast(myResponseUserData.message);
+          } on DioError catch (e) {
+            MyToast(e.message);
+          } catch (e) {
+            MyToast(e.toString());
           }
         }
         refreshMyPost();
@@ -176,6 +183,8 @@ class PersonalController extends GetxController
       } else {
         MyToast(myResponse["message"]);
       }
+    } on DioError catch (e) {
+      MyToast(e.message);
     } catch (e) {
       MyToast(e.toString());
     }

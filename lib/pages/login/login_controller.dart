@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_breathe/common/apis/user_api.dart';
 import 'package:flutter_breathe/model/request/my_response.dart';
@@ -170,22 +171,28 @@ class LoginController extends GetxController {
       return;
     }
     if (isButtonEnable.value) {
-      MyResponse myResponse = await UserApi.sendSms(phone: "18187418771");
-      if (myResponse.success) {
-        isButtonEnable.value = false;
-        timer = Timer.periodic(const Duration(milliseconds: 1000), (timer) {
-          if (timeCount <= 0) {
-            countdownText.value = '重新获取';
-            timer.cancel();
-            timeCount = 60;
-            isButtonEnable.value = true;
-          } else {
-            timeCount--;
-            countdownText.value = "$timeCount" 's';
-          }
-        });
-      } else {
-        MyToast("发送失败");
+      try {
+        MyResponse myResponse = await UserApi.sendSms(phone: "18187418771");
+        if (myResponse.success) {
+          isButtonEnable.value = false;
+          timer = Timer.periodic(const Duration(milliseconds: 1000), (timer) {
+            if (timeCount <= 0) {
+              countdownText.value = '重新获取';
+              timer.cancel();
+              timeCount = 60;
+              isButtonEnable.value = true;
+            } else {
+              timeCount--;
+              countdownText.value = "$timeCount" 's';
+            }
+          });
+        } else {
+          MyToast("发送失败");
+        }
+      } on DioError catch (e) {
+        MyToast(e.message);
+      } catch (e) {
+        MyToast(e.toString());
       }
     }
   }

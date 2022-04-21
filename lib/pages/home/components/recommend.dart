@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_breathe/common/apis/posts_api.dart';
 import 'package:flutter_breathe/model/postsInfo/posts_info_model.dart';
@@ -74,6 +75,8 @@ class RecommendController extends GetxController {
       } else {
         MyToast(myResponse["message"]);
       }
+    } on DioError catch (e) {
+      MyToast(e.message);
     } catch (e) {
       MyToast(e.toString());
     }

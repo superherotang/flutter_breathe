@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_breathe/common/apis/community_api.dart';
 import 'package:flutter_breathe/model/announcement/announcement.dart';
@@ -27,8 +28,6 @@ class ChomeController extends GetxController
 
   RxList<Announcement> announcementList = <Announcement>[].obs;
 
-
-  
   @override
   void onInit() {
     super.onInit();
@@ -57,12 +56,13 @@ class ChomeController extends GetxController
         } else {
           MyToast(myResponse.message);
         }
+      } on DioError catch (e) {
+        MyToast(e.message);
       } catch (e) {
         MyToast(e.toString());
       }
     }
   }
-
 
   //顶部公告
   void getTopping() async {
@@ -104,11 +104,13 @@ class ChomeController extends GetxController
         } else {
           MyToast(myResponse.message);
         }
+      } on DioError catch (e) {
+        MyToast(e.message);
       } catch (e) {
         MyToast(e.toString());
       }
     }
-   
+
     list.addAll(exList);
 
     listHeight.value += exList.length * 60.w;

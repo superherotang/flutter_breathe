@@ -83,6 +83,22 @@ class TopImageAppbar extends GetView {
                                 : ExtendedImage.network(
                                     controller.userDataModel.value.background,
                                     cache: true,
+                                    loadStateChanged:
+                                        (ExtendedImageState state) {
+                                      switch (state.extendedImageLoadState) {
+                                        case LoadState.loading:
+                                          break;
+                                        case LoadState.completed:
+                                          break;
+                                        case LoadState.failed:
+                                          return Image.asset(
+                                            "assets/images/image_failed.png",
+                                            fit: BoxFit.fill,
+                                          );
+                                          break;
+                                        default:
+                                      }
+                                    },
                                   ),
                           ),
                         ),

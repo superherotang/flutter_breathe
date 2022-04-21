@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_breathe/common/apis/community_api.dart';
@@ -22,7 +23,7 @@ class CreateUpdateCommunity extends GetView {
   Widget build(BuildContext context) {
     var controller = Get.put(CreateCommunityController());
     controller.context = context;
-    
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -76,9 +77,9 @@ class CreateUpdateCommunity extends GetView {
                 maxLength: 20,
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 50.w),
-                decoration: const InputDecoration(
-                  contentPadding: const EdgeInsets.symmetric(vertical: 10.0),
-                  border: OutlineInputBorder(
+                decoration: InputDecoration(
+                  contentPadding: EdgeInsets.symmetric(vertical: 10.w),
+                  border: const OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(30)),
                   ),
                 ),
@@ -201,6 +202,11 @@ class CreateCommunityController extends GetxController {
     } else {
       AssetEntity asset = image.first;
       File? file = await asset.file;
+      try {} on DioError catch (e) {
+        MyToast(e.message);
+      } catch (e) {
+        MyToast(e.toString());
+      }
       String fileUrl = await UploadApi.singleUpload(file: file!);
       MyResponse myResponse = MyResponse.fromJson(
           await CommunityApi.createCommunity(

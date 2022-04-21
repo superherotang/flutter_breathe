@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_breathe/common/apis/posts_api.dart';
 import 'package:flutter_breathe/model/postsInfo/posts_info_model.dart';
@@ -46,7 +47,7 @@ class NewList extends GetView {
 class NetListController extends GetxController {
   RxList<PostsInfoModel> myPosts = <PostsInfoModel>[].obs;
   int myCurrent = 1;
-  List<String> cidList=[];
+  List<String> cidList = [];
 
   //重新加载
   Future refreshMyPost() async {
@@ -64,7 +65,7 @@ class NetListController extends GetxController {
   getPosts(int current) async {
     dynamic myResponse;
     try {
-      myResponse = await PostsApi.getPostsInfoByCom(cidList,myCurrent);
+      myResponse = await PostsApi.getPostsInfoByCom(cidList, myCurrent);
       if (myResponse["success"]) {
         PostsPageModel postsPageModel =
             PostsPageModel.fromJson(myResponse["data"]);
@@ -76,6 +77,8 @@ class NetListController extends GetxController {
       } else {
         MyToast(myResponse["message"]);
       }
+    } on DioError catch (e) {
+      MyToast(e.message);
     } catch (e) {
       MyToast(e.toString());
     }

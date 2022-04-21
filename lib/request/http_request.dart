@@ -1,7 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
-import 'package:flutter_breathe/common/apis/base_url.dart';
-import 'package:flutter_breathe/model/request/my_response.dart';
 // 拦截器
 import 'interceptor/cache.dart';
 import 'interceptor/error.dart';

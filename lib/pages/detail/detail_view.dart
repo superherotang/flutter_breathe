@@ -1,18 +1,14 @@
-import 'dart:convert';
-
 import 'package:extended_nested_scroll_view/extended_nested_scroll_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_breathe/common/color.dart';
 import 'package:flutter_breathe/common/middlewares/router_auth.dart';
-import 'package:flutter_breathe/model/posts/posts_model.dart';
-import 'package:flutter_breathe/model/postsInfo/posts_info_model.dart';
 import 'package:flutter_breathe/pages/detail/components/comment_box.dart';
 import 'package:flutter_breathe/widgets/loading_view.dart';
 import 'package:flutter_breathe/widgets/multi_content.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
-import '../../utils/mock.dart';
 import 'detail_controller.dart';
 
 class DetailView extends GetView<DetailController> {
@@ -20,20 +16,18 @@ class DetailView extends GetView<DetailController> {
 
   @override
   Widget build(BuildContext context) {
-    final getId = Get.parameters["id"];
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
         title: Chip(
           labelPadding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 5.w),
           label: Text(
-            "AELCTANG",
+            controller.postsInfoModel.nickname,
             style: const TextStyle(color: Colors.white),
           ),
           backgroundColor: AppColor.primaryColor,
-          avatar: const CircleAvatar(
-            backgroundImage: NetworkImage(
-                'http://192.168.10.150:9000/breathe-images/1e0c25887594f25a8f57c179427b1713.png'),
+          avatar: CircleAvatar(
+            backgroundImage: NetworkImage(controller.postsInfoModel.avatar),
           ),
         ),
         actions: [
@@ -52,12 +46,10 @@ class DetailView extends GetView<DetailController> {
                 (BuildContext context, bool innerBoxIsScrolled) {
               return [buildSliverHeader()];
             },
-            //2.[inner scrollables in tabview sync issue](https://github.com/flutter/flutter/issues/21868)
             onlyOneScrollInBody: true,
             body: Stack(
               children: [
                 replyList(),
-                //replyDetails(),
               ],
             ),
           )),
@@ -162,117 +154,165 @@ class DetailView extends GetView<DetailController> {
               RouteAuth().auth();
             },
             child: Container(
-              height: 34,
-              margin: const EdgeInsets.only(right: 5),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
-                  color: const Color.fromARGB(255, 240, 240, 240)),
-              child: Row(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(left: 20.w),
-                    child: const Text(
-                      "我来说点什么",
-                      style: TextStyle(fontSize: 16),
+              height: 70.w,
+              child: Center(
+                child: TextField(
+                  controller: controller.textEditingController,
+                  focusNode: controller.focusNode,
+                  style: TextStyle(fontSize: 30.w),
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: Colors.grey[100],
+                    contentPadding:
+                        EdgeInsets.symmetric(vertical: 10.w, horizontal: 20.w),
+                    border: const OutlineInputBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(30)),
                     ),
-                  )
-                ],
+                  ),
+                ),
               ),
             ),
           )),
           InkWell(
             onTap: () {},
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15.w),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.ac_unit,
-                    size: 40.w,
-                  ),
-                  Text("100",
-                      style: TextStyle(
-                        height: 2.5.w,
-                      ))
-                ],
-              ),
+            child: Obx(
+              () => Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20.w),
+                  child: controller.isFocus.value
+                      ? Container(
+                          child: const Text("发送"),
+                        )
+                      : Icon(
+                          Icons.ac_unit,
+                          size: 40.w,
+                        )),
             ),
           ),
-          InkWell(
-            onTap: () {},
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15.w),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.ac_unit,
-                    size: 40.w,
-                  ),
-                  Text("评论",
-                      style: TextStyle(
-                        height: 2.5.w,
-                      ))
-                ],
-              ),
-            ),
-          ),
-          InkWell(
-            onTap: () {},
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15.w),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.ac_unit,
-                    size: 40.w,
-                  ),
-                  Text("收藏",
-                      style: TextStyle(
-                        height: 2.5.w,
-                      ))
-                ],
-              ),
-            ),
-          )
         ],
       ),
     );
   }
 }
 
+// Row(
+//         children: [
+//           Expanded(
+//               child: GestureDetector(
+//             onTap: () {
+//               RouteAuth().auth();
+//             },
+//             child: Container(
+//               height: 34,
+//               margin: const EdgeInsets.only(right: 5),
+//               decoration: BoxDecoration(
+//                   borderRadius: BorderRadius.circular(30),
+//                   color: const Color.fromARGB(255, 240, 240, 240)),
+//               child: Row(
+//                 children: [
+//                   Padding(
+//                     padding: EdgeInsets.only(left: 20.w),
+//                     child: const Text(
+//                       "我来说点什么",
+//                       style: TextStyle(fontSize: 16),
+//                     ),
+//                   )
+//                 ],
+//               ),
+//             ),
+//           )),
+//           InkWell(
+//             onTap: () {},
+//             child: Padding(
+//               padding: EdgeInsets.symmetric(horizontal: 15.w),
+//               child: Column(
+//                 mainAxisAlignment: MainAxisAlignment.center,
+//                 children: [
+//                   Icon(
+//                     Icons.ac_unit,
+//                     size: 40.w,
+//                   ),
+//                   Text("100",
+//                       style: TextStyle(
+//                         height: 2.5.w,
+//                       ))
+//                 ],
+//               ),
+//             ),
+//           ),
+//           InkWell(
+//             onTap: () {},
+//             child: Padding(
+//               padding: EdgeInsets.symmetric(horizontal: 15.w),
+//               child: Column(
+//                 mainAxisAlignment: MainAxisAlignment.center,
+//                 children: [
+//                   Icon(
+//                     Icons.ac_unit,
+//                     size: 40.w,
+//                   ),
+//                   Text("评论",
+//                       style: TextStyle(
+//                         height: 2.5.w,
+//                       ))
+//                 ],
+//               ),
+//             ),
+//           ),
+//           InkWell(
+//             onTap: () {},
+//             child: Padding(
+//               padding: EdgeInsets.symmetric(horizontal: 15.w),
+//               child: Column(
+//                 mainAxisAlignment: MainAxisAlignment.center,
+//                 children: [
+//                   Icon(
+//                     Icons.ac_unit,
+//                     size: 40.w,
+//                   ),
+//                   Text("收藏",
+//                       style: TextStyle(
+//                         height: 2.5.w,
+//                       ))
+//                 ],
+//               ),
+//             ),
+//           )
+//         ],
+//       ),
+
 //文章
 Widget buildSliverHeader() {
-  PostsModel postsModel =
-      PostsModel.fromJson(json.decode(JsonString.postsData));
+  var controller = Get.find<DetailController>();
   return SliverToBoxAdapter(
       child: Padding(
     padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.w),
-    child: MultiContent(
-      postsInfoModel: PostsInfoModel(
-          "uuid",
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          "createTime",
-          "updateTime",
-          1,
-          "postsContent",
-          "postsImages",
-          "postsVideos",
-          "thumbnailImg",
-          "postsAudio",
-          "nickname",
-          "avatar",
-          0,
-          0,
-          0,
-          "communityName"),
+    child: Column(
+      children: [
+        Row(children: [
+          Expanded(
+              child: Text(
+            "发布日期:" +
+                DateFormat("yyyy-MM-dd").format(DateFormat("yyyy-MM-dd")
+                    .parse(controller.postsInfoModel.createTime)),
+            style: TextStyle(fontSize: 30.w),
+          )),
+          Expanded(
+              child: Text(
+            "更新日期:" +
+                DateFormat("yyyy-MM-dd").format(DateFormat("yyyy-MM-dd")
+                    .parse(controller.postsInfoModel.updateTime)),
+            style: TextStyle(fontSize: 30.w),
+          )),
+        ]),
+        Text(
+          "所属社区: " + controller.postsInfoModel.communityName,
+          style: TextStyle(fontSize: 40.w),
+        ),
+        SizedBox(height: 10.w),
+        MultiContent(
+          postsInfoModel: controller.postsInfoModel,
+        ),
+      ],
     ),
   ));
 }
@@ -280,23 +320,13 @@ Widget buildSliverHeader() {
 Widget replyall() {
   return LoadingView(
       future: getData(),
-      // errorWidget: const Text("error"),
-      // waitWidget: const Center(
-      //   child: CircularProgressIndicator(),
-      // ),
       doneWidget: ListView(
-        children: [CommentBox()],
+        children: [CommentBox(), CommentBox(), CommentBox(), CommentBox()],
       ));
 }
 
 Widget replyLZ() {
-  return LoadingView(
-      future: getData(),
-      // errorWidget: const Text("error"),
-      // waitWidget: const Center(
-      //   child: CircularProgressIndicator(),
-      // ),
-      doneWidget: Text("asd"));
+  return LoadingView(future: getData(), doneWidget: Text("asd"));
 }
 
 Future getData() async {

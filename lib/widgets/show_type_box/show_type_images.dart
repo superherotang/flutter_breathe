@@ -14,11 +14,26 @@ class ShowTypeImages extends GetView {
         padding: EdgeInsets.symmetric(horizontal: 20.w),
         child: GestureDetector(
           onTap: () {
-              Get.to(()=>SlideImagePage(images: data,current: 1));
-            },
+            Get.to(() => SlideImagePage(images: data, current: 1));
+          },
           child: ExtendedImage.network(
             data.first,
             fit: BoxFit.fitWidth,
+            loadStateChanged: (ExtendedImageState state) {
+              switch (state.extendedImageLoadState) {
+                case LoadState.loading:
+                  break;
+                case LoadState.completed:
+                  break;
+                case LoadState.failed:
+                  return Image.asset(
+                    "assets/images/image_failed.png",
+                    fit: BoxFit.fill,
+                  );
+                  break;
+                default:
+              }
+            },
           ),
         ),
       );
@@ -38,12 +53,27 @@ class ShowTypeImages extends GetView {
         itemBuilder: (BuildContext context, int index) {
           return GestureDetector(
             onTap: () {
-              Get.to(()=>SlideImagePage(images: data,current: index));
+              Get.to(() => SlideImagePage(images: data, current: index));
             },
             child: ExtendedImage.network(
-                            data[index],
-                            fit: BoxFit.cover,
-                          ),
+              data[index],
+              fit: BoxFit.cover,
+              loadStateChanged: (ExtendedImageState state) {
+                switch (state.extendedImageLoadState) {
+                  case LoadState.loading:
+                    break;
+                  case LoadState.completed:
+                    break;
+                  case LoadState.failed:
+                    return Image.asset(
+                      "assets/images/image_failed.png",
+                      fit: BoxFit.fill,
+                    );
+                    break;
+                  default:
+                }
+              },
+            ),
           );
         },
       ),

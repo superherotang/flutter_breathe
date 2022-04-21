@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_breathe/common/apis/posts_api.dart';
 import 'package:flutter_breathe/model/postsInfo/posts_info_model.dart';
@@ -62,20 +63,23 @@ class FollowListContoller extends GetxController {
     List<String> list = ["22"];
     dynamic myResponse;
     try {
-      myResponse = await PostsApi.getPostsInfoByUid(list,current);
+      myResponse = await PostsApi.getPostsInfoByUid(list, current);
+
+      if (myResponse["success"]) {
+        PostsPageModel postsPageModel =
+            PostsPageModel.fromJson(myResponse["data"]);
+        for (var item in postsPageModel.items) {
+          //无敌转换
+          myPosts.add(PostsInfoModel.fromJson(jsonDecode(jsonEncode(item))));
+          myPosts.refresh();
+        }
+      } else {
+        MyToast(myResponse["message"]);
+      }
+    } on DioError catch (e) {
+      MyToast(e.message);
     } catch (e) {
       MyToast(e.toString());
-    }
-    if (myResponse["success"]) {
-      PostsPageModel postsPageModel =
-          PostsPageModel.fromJson(myResponse["data"]);
-      for (var item in postsPageModel.items) {
-        //无敌转换
-        myPosts.add(PostsInfoModel.fromJson(jsonDecode(jsonEncode(item))));
-        myPosts.refresh();
-      }
-    } else {
-      MyToast(myResponse["message"]);
     }
   }
 }

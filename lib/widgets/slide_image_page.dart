@@ -19,6 +19,7 @@ class SlideImagePage extends GetView {
           itemCount: images.length,
           itemBuilder: (BuildContext context, int index) {
             return ExtendedImage.network(
+              
               images[index],
               fit: BoxFit.contain,
               mode: ExtendedImageMode.gesture,

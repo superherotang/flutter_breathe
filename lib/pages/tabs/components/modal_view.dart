@@ -1,9 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_breathe/common/apis/user_api.dart';
 import 'package:flutter_breathe/pages/community/components/create_update_community.dart';
-import 'package:flutter_breathe/pages/tabs/tabs_controller.dart';
+
 import 'package:flutter_breathe/routes/app_routes.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -58,7 +57,11 @@ class ModalView extends GetView {
                           Get.to(() => const CreateUpdateCommunity());
                         },
                         child: const ModalButton("创建社区")),
-                    ModalButton("提问"),
+                    InkWell(
+                        onTap: () {
+                          Get.toNamed(Routes.DETAIL + "123");
+                        },
+                        child: const ModalButton("创建社区")),
                   ],
                 ),
                 SizedBox(

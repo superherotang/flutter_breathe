@@ -127,7 +127,23 @@ class ChomeView extends GetView<ChomeController> {
                       )
                     : ExtendedImage.network(
                         controller.communityHome.value.avatar,
-                        fit: BoxFit.fill),
+                        fit: BoxFit.fill,
+                        loadStateChanged: (ExtendedImageState state) {
+                          switch (state.extendedImageLoadState) {
+                            case LoadState.loading:
+                              break;
+                            case LoadState.completed:
+                              break;
+                            case LoadState.failed:
+                              return Image.asset(
+                                "assets/images/image_failed.png",
+                                fit: BoxFit.fill,
+                              );
+                              break;
+                            default:
+                          }
+                        },
+                      ),
               ),
             ),
           ),
@@ -170,7 +186,23 @@ class ChomeView extends GetView<ChomeController> {
                                   fit: BoxFit.fill)
                               : ExtendedImage.network(
                                   controller.communityHome.value.avatar,
-                                  fit: BoxFit.fill),
+                                  fit: BoxFit.fill,
+                                  loadStateChanged: (ExtendedImageState state) {
+                                    switch (state.extendedImageLoadState) {
+                                      case LoadState.loading:
+                                        break;
+                                      case LoadState.completed:
+                                        break;
+                                      case LoadState.failed:
+                                        return Image.asset(
+                                          "assets/images/image_failed.png",
+                                          fit: BoxFit.fill,
+                                        );
+                                        break;
+                                      default:
+                                    }
+                                  },
+                                ),
                         ),
                       ),
                       SizedBox(

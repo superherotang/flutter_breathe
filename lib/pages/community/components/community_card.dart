@@ -1,3 +1,4 @@
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_breathe/common/color.dart';
 import 'package:flutter_breathe/common/middlewares/router_auth.dart';
@@ -32,9 +33,24 @@ class CommunityCard extends GetView {
                       width: 250.w,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(20),
-                        child: Image.network(
+                        child: ExtendedImage.network(
                           "http://192.168.10.150:9000/breathe-images/1e0c25887594f25a8f57c179427b1713.png",
                           fit: BoxFit.fill,
+                          loadStateChanged: (ExtendedImageState state) {
+                            switch (state.extendedImageLoadState) {
+                              case LoadState.loading:
+                                break;
+                              case LoadState.completed:
+                                break;
+                              case LoadState.failed:
+                                return Image.asset(
+                                  "assets/images/image_failed.png",
+                                  fit: BoxFit.fill,
+                                );
+                                break;
+                              default:
+                            }
+                          },
                         ),
                       ),
                     ),
@@ -101,8 +117,8 @@ class CommunityCard extends GetView {
             Padding(
               padding: EdgeInsets.only(bottom: 30.w, left: 30.w, right: 30.w),
               child: ElevatedButton(
-                onPressed: () async{
-                   bool flag = await RouteAuth().auth();
+                onPressed: () async {
+                  bool flag = await RouteAuth().auth();
                 },
                 child: Container(
                   alignment: Alignment.center,

@@ -1,3 +1,4 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -82,7 +83,6 @@ class LoginView extends GetView<LoginController> {
                 //输入
                 Expanded(
                     child: TextField(
-                  focusNode: controller.phoneFocusNode,
                   controller: controller.textEditingPhoneController,
                   keyboardType: TextInputType.number,
                   inputFormatters: [
@@ -279,14 +279,20 @@ class LoginView extends GetView<LoginController> {
   }
 
   void clickLogin(String phone, String code) async {
-    MyResponse myResponse =
-        await UserApi.smsLoginOrRegister(phone: phone, code: code);
-    if (myResponse.success) {
-      LoginModel loginModel = LoginModel.fromJson(myResponse.data);
-      UserStore.to.setToken(loginModel.token);
-      Get.back(result: {"success": true});
-    } else {
-      MyToast(myResponse.message);
+    try {
+      MyResponse myResponse =
+          await UserApi.smsLoginOrRegister(phone: phone, code: code);
+      if (myResponse.success) {
+        LoginModel loginModel = LoginModel.fromJson(myResponse.data);
+        UserStore.to.setToken(loginModel.token);
+        Get.back(result: {"success": true});
+      } else {
+        MyToast(myResponse.message);
+      }
+    } on DioError catch (e) {
+      MyToast(e.message);
+    } catch (e) {
+      MyToast(e.toString());
     }
   }
 

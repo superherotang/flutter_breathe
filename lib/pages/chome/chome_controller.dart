@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_breathe/common/apis/community_api.dart';
+import 'package:flutter_breathe/model/announcement/announcement.dart';
+import 'package:flutter_breathe/model/communityHome/community_home.dart';
+import 'package:flutter_breathe/model/request/my_response.dart';
+import 'package:flutter_breathe/utils/my_toast.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
@@ -8,47 +13,102 @@ class ChomeController extends GetxController
     with GetSingleTickerProviderStateMixin {
   late TabController tabController;
   //公告 置顶
-  List<Widget> list = [];
-  List<Widget> exList = [];
-  List<Widget> overList = [];
+  RxList<Widget> list = <Widget>[].obs;
+  RxList<Widget> exList = <Widget>[].obs;
+  RxList<Widget> overList = <Widget>[].obs;
   //列表高度
   var listHeight = 0.0.obs;
   //超出高度
   var overHeight = 0.0.obs;
 
   var isOpen = false.obs;
+  Rx<CommunityHome> communityHome =
+      CommunityHome("", "加载中", -1, "加载中", "", "", "").obs;
 
+  RxList<Announcement> announcementList = <Announcement>[].obs;
+
+
+  
   @override
   void onInit() {
     super.onInit();
-    tabController = TabController(length: 3, vsync: this);
-    var getId = Get.parameters['id'];
+    tabController = TabController(length: 2, vsync: this);
   }
 
   @override
   void onReady() {
     super.onReady();
     getTopping();
+    getCommunityInfo();
   }
 
-  void getTopping() {
-    exList.add(Topping(
-      text: "测试测试测试aaa",
-      textType: "公告",
-    ));
-    exList.add(Topping(
-      text: "测试测试测试aaa",
-      textType: "公告",
-    ));
-    exList.add(Topping(
-      text: "测试测试测试aaa",
-      textType: "公告",
-    ));
+  //主页信息
+  getCommunityInfo() async {
+    if (Get.parameters['id'] == null) {
+    } else {
+      String cid = Get.parameters['id']!;
 
-    overList.add(Topping(
-      text: "测试测试测试over1",
-      textType: "公告",
-    ));
+      try {
+        MyResponse myResponse =
+            await CommunityApi.getCommunityInfo(Get.parameters['id']!);
+        if (myResponse.success) {
+          communityHome.value = CommunityHome.fromJson(myResponse.data);
+          communityHome.refresh();
+        } else {
+          MyToast(myResponse.message);
+        }
+      } catch (e) {
+        MyToast(e.toString());
+      }
+    }
+  }
+
+
+  //顶部公告
+  void getTopping() async {
+    if (Get.parameters['id'] == null) {
+    } else {
+      String cid = Get.parameters['id']!;
+
+      try {
+        MyResponse myResponse =
+            await CommunityApi.getCommunityAnnouncement(Get.parameters['id']!);
+        if (myResponse.success) {
+          List temp = myResponse.data['announcement'];
+          for (var item in temp) {
+            Announcement announcement = Announcement.fromJson(item);
+            announcementList.add(announcement);
+          }
+          announcementList.refresh();
+          if (announcementList.length < 3) {
+            for (var item in announcementList) {
+              exList.add(Topping(
+                text: item.postsContent,
+                textType: item.contentType == 1 ? "公告" : "社规",
+              ));
+            }
+          } else {
+            for (var i = 0; i < 3; i++) {
+              exList.add(Topping(
+                text: announcementList[i].postsContent,
+                textType: announcementList[i].contentType == 1 ? "公告" : "社规",
+              ));
+            }
+            for (var i = 3; i < announcementList.length; i++) {
+              overList.add(Topping(
+                text: announcementList[i].postsContent,
+                textType: announcementList[i].contentType == 1 ? "公告" : "社规",
+              ));
+            }
+          }
+        } else {
+          MyToast(myResponse.message);
+        }
+      } catch (e) {
+        MyToast(e.toString());
+      }
+    }
+   
     list.addAll(exList);
 
     listHeight.value += exList.length * 60.w;

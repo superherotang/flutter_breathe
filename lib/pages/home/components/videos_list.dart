@@ -61,7 +61,7 @@ class VideosListContoller extends GetxController {
   getPosts(int current) async {
     dynamic myResponse;
     try {
-      myResponse = await PostsApi.getPostsTextAndImage("3", current);
+      myResponse = await PostsApi.getPostsTextByType("3", current);
     } catch (e) {
       MyToast(e.toString());
     }

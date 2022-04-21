@@ -6,23 +6,11 @@ part 'community_home.g.dart';
 @JsonSerializable()
   class CommunityHome extends Object {
 
-  @JsonKey(name: 'community')
-  Community community;
+  @JsonKey(name: 'cAvatar')
+  String cAvatar;
 
   @JsonKey(name: 'cAdmin')
   String cAdmin;
-
-  CommunityHome(this.community,this.cAdmin,);
-
-  factory CommunityHome.fromJson(Map<String, dynamic> srcJson) => _$CommunityHomeFromJson(srcJson);
-
-  Map<String, dynamic> toJson() => _$CommunityHomeToJson(this);
-
-}
-
-  
-@JsonSerializable()
-  class Community extends Object {
 
   @JsonKey(name: 'id')
   int id;
@@ -39,23 +27,11 @@ part 'community_home.g.dart';
   @JsonKey(name: 'location')
   String location;
 
-  @JsonKey(name: 'founder')
-  int founder;
+  CommunityHome(this.cAvatar,this.cAdmin,this.id,this.communityName,this.avatar,this.description,this.location,);
 
-  @JsonKey(name: 'administrator')
-  int administrator;
+  factory CommunityHome.fromJson(Map<String, dynamic> srcJson) => _$CommunityHomeFromJson(srcJson);
 
-  @JsonKey(name: 'status')
-  int status;
-
-  @JsonKey(name: 'createdTime')
-  String createdTime;
-
-  Community(this.id,this.communityName,this.avatar,this.description,this.location,this.founder,this.administrator,this.status,this.createdTime,);
-
-  factory Community.fromJson(Map<String, dynamic> srcJson) => _$CommunityFromJson(srcJson);
-
-  Map<String, dynamic> toJson() => _$CommunityToJson(this);
+  Map<String, dynamic> toJson() => _$CommunityHomeToJson(this);
 
 }
 

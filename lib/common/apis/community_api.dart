@@ -1,3 +1,4 @@
+import 'package:flutter_breathe/model/request/my_response.dart';
 import 'package:flutter_breathe/request/http_utils.dart';
 
 class CommunityApi {
@@ -23,5 +24,16 @@ class CommunityApi {
 
     return await HttpUtils.post(postsUrl + "/community/createCommunity",
         params: map);
+  }
+
+
+  ///获取社区信息
+  static Future<MyResponse> getCommunityInfo(String cid) async {
+    return await HttpUtils.get(postsUrl + "/community/getCommunityInfo/" + cid);
+  }
+
+   ///获取社区信息
+  static Future<MyResponse> getCommunityAnnouncement(String cid) async {
+    return await HttpUtils.get(postsUrl + "/communityAnnouncement/getCommunityAnnouncement/" + cid);
   }
 }

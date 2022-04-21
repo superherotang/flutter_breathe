@@ -1,7 +1,11 @@
+import 'package:extended_image/extended_image.dart';
 import 'package:extended_nested_scroll_view/extended_nested_scroll_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_breathe/common/color.dart';
+import 'package:flutter_breathe/pages/chome/components/c_%20image_List.dart';
+import 'package:flutter_breathe/pages/chome/components/new_list.dart';
 import 'package:flutter_breathe/utils/utils.dart';
+import 'package:flutter_breathe/widgets/status.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
@@ -12,7 +16,7 @@ class ChomeView extends GetView<ChomeController> {
 
   @override
   Widget build(BuildContext context) {
-    var getId = Get.parameters['id'];
+    var cid = Get.parameters['id'];
     final double statusBarHeight = ScreenUtil().statusBarHeight;
     final double pinnedHeaderHeight =
         //statusBar height
@@ -35,7 +39,7 @@ class ChomeView extends GetView<ChomeController> {
         body: Column(children: [
           TabBar(
             controller: controller.tabController,
-            tabs: [Tab(text: '热门'), Tab(text: '最新'), Tab(text: '视频')],
+            tabs: [Tab(text: '最新'), Tab(text: '图文')],
           ),
           Expanded(
               child: Stack(
@@ -43,11 +47,8 @@ class ChomeView extends GetView<ChomeController> {
               TabBarView(
                 controller: controller.tabController,
                 children: [
-                  widgetone(),
-                  Center(
-                    child: Text("asd"),
-                  ),
-                  widgetone()
+                  cid == null ? errorStatus() : NewList(cid: cid),
+                  cid == null ? errorStatus() : CImageList(cid: cid),
                 ],
               ),
             ],
@@ -116,11 +117,17 @@ class ChomeView extends GetView<ChomeController> {
             height:
                 350.w - ScreenUtil().statusBarHeight - kToolbarHeight - 50.w,
             width: 350.w - ScreenUtil().statusBarHeight - kToolbarHeight - 50.w,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: Image.asset(
-                "assets/images/topbg.jpg",
-                fit: BoxFit.fill,
+            child: Obx(
+              () => ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: controller.communityHome.value.avatar.isEmpty
+                    ? ExtendedImage.asset(
+                        "assets/images/default_avatar.png",
+                        fit: BoxFit.fill,
+                      )
+                    : ExtendedImage.network(
+                        controller.communityHome.value.avatar,
+                        fit: BoxFit.fill),
               ),
             ),
           ),
@@ -132,13 +139,15 @@ class ChomeView extends GetView<ChomeController> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    "人生无常人生无常",
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        fontSize: 38.w,
-                        overflow: TextOverflow.ellipsis),
+                  Obx(
+                    () => Text(
+                      controller.communityHome.value.communityName,
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          fontSize: 38.w,
+                          overflow: TextOverflow.ellipsis),
+                    ),
                   ),
                   Text.rich(TextSpan(
                       style: TextStyle(color: Colors.white),
@@ -154,9 +163,14 @@ class ChomeView extends GetView<ChomeController> {
                       SizedBox(
                         height: 40.w,
                         width: 40.w,
-                        child: const CircleAvatar(
-                          backgroundImage: NetworkImage(
-                              'http://192.168.10.150:9000/breathe-images/1e0c25887594f25a8f57c179427b1713.png'),
+                        child: ClipOval(
+                          child: controller.communityHome.value.avatar.isEmpty
+                              ? ExtendedImage.asset(
+                                  "assets/images/default_avatar.png",
+                                  fit: BoxFit.fill)
+                              : ExtendedImage.network(
+                                  controller.communityHome.value.avatar,
+                                  fit: BoxFit.fill),
                         ),
                       ),
                       SizedBox(
@@ -164,11 +178,13 @@ class ChomeView extends GetView<ChomeController> {
                       ),
                       Container(
                         constraints: BoxConstraints(maxWidth: 200.w),
-                        child: const Text(
-                          "ALEC TANG",
-                          style: TextStyle(
-                              color: Colors.white,
-                              overflow: TextOverflow.ellipsis),
+                        child: Obx(
+                          () => Text(
+                            controller.communityHome.value.cAdmin,
+                            style: const TextStyle(
+                                color: Colors.white,
+                                overflow: TextOverflow.ellipsis),
+                          ),
                         ),
                       ),
                       Padding(
@@ -205,22 +221,6 @@ class ChomeView extends GetView<ChomeController> {
             ),
           )
         ]),
-      ),
-    );
-  }
-
-  Widget widgetone() {
-    return Material(
-      color: AppColor.listBackground,
-      child: ListView.builder(
-        // BoxContent(
-        //     synopsis: synopsis,
-        //   )
-        itemBuilder: (BuildContext context, int index) {
-          return Container(
-              color: Colors.amber, width: double.infinity, height: 100);
-        },
-        itemCount: 20,
       ),
     );
   }

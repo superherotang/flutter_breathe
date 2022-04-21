@@ -20,7 +20,7 @@ class CommunityCard extends GetView {
         child: Column(
           children: [
             InkWell(
-              onTap: () => Get.toNamed(Routes.CHOME + "123"),
+              onTap: () => Get.toNamed(Routes.CHOME + "30"),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

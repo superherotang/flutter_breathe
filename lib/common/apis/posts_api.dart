@@ -22,7 +22,7 @@ class PostsApi {
         params: map);
   }
 
-  ///根据社区社区获取所有帖子
+  ///根据社区获取所有帖子
   static Future<dynamic> getPostsInfoByCom(
     List<String> cid,
     int current,
@@ -35,11 +35,23 @@ class PostsApi {
 
 
     ///根据类型获取所有帖子
-  static Future<dynamic> getPostsTextAndImage(
-    String cid,
+  static Future<dynamic> getPostsTextByType(
+    String type,
     int current,
   ) async {
-    Map<String, dynamic> map = {'type': cid, 'current': current};
+    Map<String, dynamic> map = {'type': type, 'current': current};
+
+    return await HttpUtils.post(postsUrl + "/posts/getPostInfoPage",
+        params: map);
+  }
+
+  ///根据社区获取所有帖子
+  static Future<dynamic> getPostsInfoByComAndType(
+    List<String> cid,
+    String type,
+    int current,
+  ) async {
+    Map<String, dynamic> map = {'cid': cid,'type': type,  'current': current};
 
     return await HttpUtils.post(postsUrl + "/posts/getPostInfoPage",
         params: map);

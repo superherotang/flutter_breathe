@@ -91,8 +91,7 @@ class ShowBox extends GetView {
                         TextSpan(
                             text: "所属社区:  ",
                             style: TextStyle(
-                                fontSize: 30.w,
-                                fontWeight: FontWeight.bold)),
+                                fontSize: 30.w, fontWeight: FontWeight.bold)),
                         TextSpan(
                             text: postsInfoModel.communityName,
                             style: TextStyle(
@@ -104,8 +103,8 @@ class ShowBox extends GetView {
                   ),
                 ),
           GestureDetector(
-            onTap: () => Get.toNamed(
-                Routes.DETAIL + postsInfoModel.uuid), // + id.toString()
+            onTap: () => Get.toNamed(Routes.DETAIL + postsInfoModel.uuid,
+                arguments: postsInfoModel), // + id.toString()
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 30.w),
               child: MultiContent(

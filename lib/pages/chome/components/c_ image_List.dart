@@ -12,11 +12,13 @@ import 'package:flutter_breathe/widgets/status.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:get/get.dart';
 
-class ImageList extends GetView {
-  const ImageList({Key? key}) : super(key: key);
+class CImageList extends GetView {
+  final String cid;
+  const CImageList({Key? key, required this.cid}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    var controller = Get.put(ImageListContoller());
+    var controller = Get.put(CImageListController());
+    controller.cidList.add(cid);
     return KeepAliveWrapper(
       child: LoadingView(
           future: controller.refreshMyPost(),
@@ -41,9 +43,10 @@ class ImageList extends GetView {
   }
 }
 
-class ImageListContoller extends GetxController {
+class CImageListController extends GetxController {
   RxList<PostsInfoModel> myPosts = <PostsInfoModel>[].obs;
   int myCurrent = 1;
+  List<String> cidList = [];
 
   //重新加载
   Future refreshMyPost() async {
@@ -61,20 +64,21 @@ class ImageListContoller extends GetxController {
   getPosts(int current) async {
     dynamic myResponse;
     try {
-      myResponse = await PostsApi.getPostsTextByType("1", current);
+      myResponse =
+          await PostsApi.getPostsInfoByComAndType(cidList, "1", myCurrent);
+      if (myResponse["success"]) {
+        PostsPageModel postsPageModel =
+            PostsPageModel.fromJson(myResponse["data"]);
+        for (var item in postsPageModel.items) {
+          //无敌转换
+          myPosts.add(PostsInfoModel.fromJson(jsonDecode(jsonEncode(item))));
+          myPosts.refresh();
+        }
+      } else {
+        MyToast(myResponse["message"]);
+      }
     } catch (e) {
       MyToast(e.toString());
-    }
-    if (myResponse["success"]) {
-      PostsPageModel postsPageModel =
-          PostsPageModel.fromJson(myResponse["data"]);
-      for (var item in postsPageModel.items) {
-        //无敌转换
-        myPosts.add(PostsInfoModel.fromJson(jsonDecode(jsonEncode(item))));
-        myPosts.refresh();
-      }
-    } else {
-      MyToast(myResponse["message"]);
     }
   }
 }

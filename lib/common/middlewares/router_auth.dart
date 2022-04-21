@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_breathe/common/store/user_store.dart';
 import 'package:flutter_breathe/routes/app_routes.dart';
 import 'package:get/get.dart';
@@ -10,6 +11,8 @@ class RouteAuth {
 
       if (result != null) {
         return true;
+      } else {
+        return false;
       }
     }
     return true;

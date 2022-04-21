@@ -136,6 +136,7 @@ class PersonalController extends GetxController
             MyToast(myResponseUserData.message);
           }
         }
+        refreshMyPost();
       } else {
         userDataModel.value = UserDataModel(0, "", "", "未登录", "", -1, "", "");
         userCountModel.value = UserCountModel(0, 0, 0, 0);
@@ -164,19 +165,19 @@ class PersonalController extends GetxController
     try {
       myResponse = await PostsApi.getPostsInfoByUid(
           [UserStore.to.userData!.uid.toString()], current);
+      if (myResponse["success"]) {
+        PostsPageModel postsPageModel =
+            PostsPageModel.fromJson(myResponse["data"]);
+        for (var item in postsPageModel.items) {
+          //无敌转换
+          myPosts.add(PostsInfoModel.fromJson(jsonDecode(jsonEncode(item))));
+          myPosts.refresh();
+        }
+      } else {
+        MyToast(myResponse["message"]);
+      }
     } catch (e) {
       MyToast(e.toString());
-    }
-    if (myResponse["success"]) {
-      PostsPageModel postsPageModel =
-          PostsPageModel.fromJson(myResponse["data"]);
-      for (var item in postsPageModel.items) {
-        //无敌转换
-        myPosts.add(PostsInfoModel.fromJson(jsonDecode(jsonEncode(item))));
-        myPosts.refresh();
-      }
-    } else {
-      MyToast(myResponse["message"]);
     }
   }
 

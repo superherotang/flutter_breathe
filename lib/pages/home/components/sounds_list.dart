@@ -61,7 +61,7 @@ class SoundsListContoller extends GetxController {
   getPosts(int current) async {
     dynamic myResponse;
     try {
-      myResponse = await PostsApi.getPostsTextAndImage("4", current);
+      myResponse = await PostsApi.getPostsTextByType("4", current);
     } catch (e) {
       MyToast(e.toString());
     }

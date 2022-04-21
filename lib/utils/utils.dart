@@ -1,4 +1,6 @@
 
+import 'package:intl/intl.dart';
+
 class Utils {
   //数值显示格式化
   static String intFormat(int count) {
@@ -13,6 +15,11 @@ class Utils {
     } else {
       return count.toString();
     }
+  }
+
+  static String myDataFormat(String date){
+    return DateFormat("yyyy-MM-dd").format(DateFormat("yyyy-MM-dd")
+                    .parse(date));
   }
 
 }

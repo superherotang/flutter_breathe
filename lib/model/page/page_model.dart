@@ -4,7 +4,7 @@ part 'page_model.g.dart';
 
 
 @JsonSerializable()
-  class pageModel extends Object {
+  class PageModel extends Object {
 
   @JsonKey(name: 'current')
   int current;
@@ -21,11 +21,11 @@ part 'page_model.g.dart';
   @JsonKey(name: 'items')
   List<dynamic> items;
 
-  pageModel(this.current,this.total,this.pages,this.size,this.items,);
+  PageModel(this.current,this.total,this.pages,this.size,this.items,);
 
-  factory pageModel.fromJson(Map<String, dynamic> srcJson) => _$pageModelFromJson(srcJson);
+  factory PageModel.fromJson(Map<String, dynamic> srcJson) => _$PageModelFromJson(srcJson);
 
-  Map<String, dynamic> toJson() => _$pageModelToJson(this);
+  Map<String, dynamic> toJson() => _$PageModelToJson(this);
 
 }
 

@@ -2,12 +2,11 @@ import 'package:extended_nested_scroll_view/extended_nested_scroll_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_breathe/common/color.dart';
 import 'package:flutter_breathe/common/middlewares/router_auth.dart';
-import 'package:flutter_breathe/pages/detail/components/comment_box.dart';
-import 'package:flutter_breathe/widgets/loading_view.dart';
+import 'package:flutter_breathe/pages/detail/components/all_reply.dart';
+import 'package:flutter_breathe/utils/utils.dart';
 import 'package:flutter_breathe/widgets/multi_content.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 
 import 'detail_controller.dart';
 
@@ -123,14 +122,18 @@ class DetailView extends GetView<DetailController> {
         child: TabBarView(
             physics: const NeverScrollableScrollPhysics(), //禁止滑动
             controller: controller.tabController,
-            children: [replyall(), replyLZ()]),
+            children: [
+              AllReply(
+                pid: controller.postsInfoModel.uuid,
+              ),
+              AllReply(
+                pid: controller.postsInfoModel.uuid,
+              ),
+            ]),
       )
     ]);
   }
 
-  Widget replyDetails() {
-    return Container(width: double.infinity, height: 500, color: Colors.red);
-  }
 
   Container bottonBox() {
     return Container(
@@ -179,8 +182,19 @@ class DetailView extends GetView<DetailController> {
               () => Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20.w),
                   child: controller.isFocus.value
-                      ? Container(
-                          child: const Text("发送"),
+                      ? InkWell(
+                          onTap: () => controller.publishComment(),
+                          child: Container(
+                            color: Colors.blueAccent[200],
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 10.w, vertical: 10.w),
+                              child: const Text(
+                                "发送",
+                                style: TextStyle(color: Colors.white),
+                              ),
+                            ),
+                          ),
                         )
                       : Icon(
                           Icons.ac_unit,
@@ -291,16 +305,12 @@ Widget buildSliverHeader() {
         Row(children: [
           Expanded(
               child: Text(
-            "发布日期:" +
-                DateFormat("yyyy-MM-dd").format(DateFormat("yyyy-MM-dd")
-                    .parse(controller.postsInfoModel.createTime)),
+            "发布日期:" + Utils.myDataFormat(controller.postsInfoModel.createTime),
             style: TextStyle(fontSize: 30.w),
           )),
           Expanded(
               child: Text(
-            "更新日期:" +
-                DateFormat("yyyy-MM-dd").format(DateFormat("yyyy-MM-dd")
-                    .parse(controller.postsInfoModel.updateTime)),
+            "更新日期:" + Utils.myDataFormat(controller.postsInfoModel.updateTime),
             style: TextStyle(fontSize: 30.w),
           )),
         ]),
@@ -315,20 +325,4 @@ Widget buildSliverHeader() {
       ],
     ),
   ));
-}
-
-Widget replyall() {
-  return LoadingView(
-      future: getData(),
-      doneWidget: ListView(
-        children: [CommentBox(), CommentBox(), CommentBox(), CommentBox()],
-      ));
-}
-
-Widget replyLZ() {
-  return LoadingView(future: getData(), doneWidget: Text("asd"));
-}
-
-Future getData() async {
-  await Future.delayed(Duration(milliseconds: 0), () {});
 }

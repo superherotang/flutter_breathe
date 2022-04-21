@@ -14,51 +14,40 @@ class MessageView extends GetView<MessageController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: messageAppBar(),
-      body: TabBarView(controller: controller.tabController, children: const [
-        KeepAliveWrapper(child: ChatListView()),
-        KeepAliveWrapper(child: GroupListView()),
-      ]),
-    );
+        appBar: messageAppBar(), body: KeepAliveWrapper(child: ChatListView()));
   }
 
   //顶部
   AppBar messageAppBar() {
     return AppBar(
-        leadingWidth: double.infinity,
-        leading: Padding(
-          padding: EdgeInsets.only(left: 30.w, top: 25.w),
-          child: Text(
-            "消息",
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40.w),
-          ),
+      leadingWidth: double.infinity,
+      leading: Padding(
+        padding: EdgeInsets.only(left: 30.w, top: 25.w),
+        child: Text(
+          "消息",
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40.w),
         ),
-        actions: [
-          Padding(
-              padding: EdgeInsets.only(right: 15.w),
-              child: IconButton(
-                icon: Icon(
-                  Icons.search,
-                  size: 60.w,
-                ),
-                onPressed: () {
-                  Get.toNamed(Routes.MESSAGESERACH);
-                },
-              )),
-          Padding(
-            padding: EdgeInsets.only(right: 25.w),
-            child: Icon(
-              Icons.add,
-              size: 60.w,
-            ),
-          )
-        ],
-        bottom: TabBar(
-          controller: controller.tabController,
-          indicatorSize: TabBarIndicatorSize.label,
-          indicatorWeight: 2.0,
-          isScrollable: false,
-          tabs: const <Tab>[Tab(text: '聊天'), Tab(text: '群组')],
-        ));
+      ),
+      actions: [
+        Padding(
+            padding: EdgeInsets.only(right: 15.w),
+            child: IconButton(
+              icon: Icon(
+                Icons.search,
+                size: 60.w,
+              ),
+              onPressed: () {
+                Get.toNamed(Routes.MESSAGESERACH);
+              },
+            )),
+        Padding(
+          padding: EdgeInsets.only(right: 25.w),
+          child: Icon(
+            Icons.add,
+            size: 60.w,
+          ),
+        )
+      ],
+    );
   }
 }

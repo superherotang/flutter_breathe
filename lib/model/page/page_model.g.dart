@@ -6,7 +6,7 @@ part of 'page_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-pageModel _$pageModelFromJson(Map<String, dynamic> json) => pageModel(
+PageModel _$PageModelFromJson(Map<String, dynamic> json) => PageModel(
       json['current'] as int,
       json['total'] as int,
       json['pages'] as int,
@@ -14,7 +14,7 @@ pageModel _$pageModelFromJson(Map<String, dynamic> json) => pageModel(
       json['items'] as List<dynamic>,
     );
 
-Map<String, dynamic> _$pageModelToJson(pageModel instance) => <String, dynamic>{
+Map<String, dynamic> _$PageModelToJson(PageModel instance) => <String, dynamic>{
       'current': instance.current,
       'total': instance.total,
       'pages': instance.pages,

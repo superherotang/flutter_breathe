@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 Widget errorStatus() {
   return Padding(
-    padding: EdgeInsets.only(top: 20.w),
+    padding: EdgeInsets.only(top: 60.w),
     child: Column(
       children: [
         Image.asset(
@@ -23,7 +23,7 @@ Widget errorStatus() {
 
 Widget loadingStatus() {
   return Padding(
-    padding: EdgeInsets.only(top: 20.w),
+    padding: EdgeInsets.only(top: 60.w),
     child: Column(
       children: [
         Image.asset(
@@ -43,7 +43,7 @@ Widget loadingStatus() {
 
 Widget nullStatus() {
   return Padding(
-    padding: EdgeInsets.only(top: 20.w),
+    padding: EdgeInsets.only(top: 60.w),
     child: Column(
       children: [
         Image.asset(
@@ -63,7 +63,7 @@ Widget nullStatus() {
 
 Widget noLoginStatus() {
   return Padding(
-    padding: EdgeInsets.only(top: 20.w),
+    padding: EdgeInsets.only(top: 60.w),
     child: Column(
       children: [
         Image.asset(

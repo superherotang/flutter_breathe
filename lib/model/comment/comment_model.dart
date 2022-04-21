@@ -6,6 +6,9 @@ part 'comment_model.g.dart';
 @JsonSerializable()
   class CommentModel extends Object {
 
+  @JsonKey(name: 'uuid')
+  String uuid;
+
   @JsonKey(name: 'content')
   String content;
 
@@ -21,7 +24,7 @@ part 'comment_model.g.dart';
   @JsonKey(name: 'avatar')
   String avatar;
 
-  CommentModel(this.content,this.like,this.createTime,this.nickname,this.avatar,);
+  CommentModel(this.uuid,this.content,this.like,this.createTime,this.nickname,this.avatar,);
 
   factory CommentModel.fromJson(Map<String, dynamic> srcJson) => _$CommentModelFromJson(srcJson);
 

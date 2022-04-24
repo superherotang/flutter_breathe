@@ -82,6 +82,7 @@ class TopImageAppbar extends GetView {
                                   )
                                 : ExtendedImage.network(
                                     controller.userDataModel.value.background,
+                                    fit: BoxFit.fill,
                                     cache: true,
                                     loadStateChanged:
                                         (ExtendedImageState state) {

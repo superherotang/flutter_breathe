@@ -1,8 +1,9 @@
+import 'package:flutter_breathe/common/apis/base_url.dart';
 import 'package:flutter_breathe/model/request/my_response.dart';
 import 'package:flutter_breathe/request/http_utils.dart';
 
 class CommunityApi {
-  static const String postsUrl = "http://10.6.50.108:8002";
+  static const String communityUrl = "/breatheCommunity";
 
   ///创建社区
   static Future<dynamic> createCommunity({
@@ -22,18 +23,34 @@ class CommunityApi {
       "status": 1
     };
 
-    return await HttpUtils.post(postsUrl + "/community/createCommunity",
+    return await HttpUtils.post(
+        baseUrl + communityUrl + "/community/createCommunity",
         params: map);
   }
 
-
   ///获取社区信息
   static Future<MyResponse> getCommunityInfo(String cid) async {
-    return await HttpUtils.get(postsUrl + "/community/getCommunityInfo/" + cid);
+    return await HttpUtils.get(
+        baseUrl + communityUrl + "/community/getCommunityInfo/" + cid);
   }
 
-   ///获取社区信息
+  ///获取社区公告信息
   static Future<MyResponse> getCommunityAnnouncement(String cid) async {
-    return await HttpUtils.get(postsUrl + "/communityAnnouncement/getCommunityAnnouncement/" + cid);
+    return await HttpUtils.get(baseUrl +
+        communityUrl +
+        "/communityAnnouncement/getCommunityAnnouncement/" +
+        cid);
+  }
+
+  static Future<MyResponse> getMyCommunity(String uid) async {
+    return await HttpUtils.get(baseUrl +
+        communityUrl +
+        "/communityPersonnel/getCommunityByUid/" +
+        uid);
+  }
+
+  static Future<MyResponse> getCommunityList(int current) async {
+    return await HttpUtils.get(
+        baseUrl + communityUrl + "/community/getCommunityList/" + current.toString());
   }
 }

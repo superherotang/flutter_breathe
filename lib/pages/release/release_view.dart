@@ -1,6 +1,7 @@
 import 'package:extended_text_field/extended_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_breathe/common/color.dart';
+import 'package:flutter_breathe/common/store/user_store.dart';
 import 'package:flutter_breathe/model/city/location.dart';
 import 'package:flutter_breathe/model/posts_type.dart';
 import 'package:flutter_breathe/pages/release/components/small_button.dart';
@@ -8,11 +9,11 @@ import 'package:flutter_breathe/widgets/icon.dart';
 import 'package:flutter_breathe/widgets/release_type_box/release_type_audio.dart';
 import 'package:flutter_breathe/widgets/release_type_box/release_type_images.dart';
 import 'package:flutter_breathe/widgets/release_type_box/release_type_video.dart';
-import 'package:flutter_pickers/address_picker/locations_data.dart';
 import 'package:flutter_pickers/pickers.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import 'components/pick_community.dart';
 import 'release_controller.dart';
 
 class ReleaseView extends GetView<ReleaseController> {
@@ -49,17 +50,30 @@ class ReleaseView extends GetView<ReleaseController> {
               Expanded(
                   child: ListView(
                 children: [
-                  Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20.w),
-                      child: Row(
-                        children: [
-                          const Icon(Icons.ac_unit),
-                          SizedBox(width: 10.w),
-                          const Text("选择社区"),
-                          Expanded(child: Container()),
-                          const Icon(Icons.arrow_right_sharp)
-                        ],
-                      )),
+                  InkWell(
+                    onTap: () => Get.bottomSheet(Container(
+                      color: Colors.white,
+                      width: double.infinity,
+                      height: 1.sh,
+                      child: PickCommunity(
+                        uid: UserStore.to.userData!.uid.toString(),
+                      ),
+                    )),
+                    child: Obx(
+                      () => Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 20.w),
+                          child: Row(
+                            children: [
+                              const Icon(Icons.ac_unit),
+                              SizedBox(width: 10.w),
+                              Text(controller
+                                  .selectCommunity.value.communityName),
+                              Expanded(child: Container()),
+                              const Icon(Icons.arrow_right_sharp)
+                            ],
+                          )),
+                    ),
+                  ),
                   SizedBox(height: 15.w),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -188,7 +202,7 @@ class ReleaseView extends GetView<ReleaseController> {
           padding: EdgeInsets.only(
               right: 20.w, top: kToolbarHeight / 4, bottom: kToolbarHeight / 4),
           child: InkWell(
-            onTap: () => print("object"),
+            onTap: () => controller.haveContent.value?controller.releaseContent():null,
             child: Obx(
               () => Opacity(
                 opacity: controller.haveContent.value == false ? 0.5 : 1,

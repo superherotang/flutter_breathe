@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_breathe/common/apis/posts_api.dart';
+import 'package:flutter_breathe/common/color.dart';
 import 'package:flutter_breathe/model/postsInfo/posts_info_model.dart';
 import 'package:flutter_breathe/model/postsPage/posts_page_model.dart';
 import 'package:flutter_breathe/utils/my_toast.dart';
@@ -21,25 +22,28 @@ class NewList extends GetView {
     var controller = Get.put(NetListController());
     controller.cidList.add(cid);
     return KeepAliveWrapper(
-      child: LoadingView(
-          future: controller.refreshMyPost(),
-          doneWidget: Obx(() => EasyRefresh(
-                emptyWidget: controller.myPosts.isEmpty ? nullStatus() : null,
-                header: PhoenixHeader(),
-                footer: ClassicalFooter(enableHapticFeedback: true),
-                onRefresh: () async {
-                  controller.refreshMyPost();
-                },
-                onLoad: () async {
-                  controller.loadMyPost();
-                },
-                child: ListView.builder(
-                  itemBuilder: (context, index) {
-                    return ShowBox(postsInfoModel: controller.myPosts[index]);
+      child: Material(
+        color: AppColor.listBackground,
+        child: LoadingView(
+            future: controller.refreshMyPost(),
+            doneWidget: Obx(() => EasyRefresh(
+                  emptyWidget: controller.myPosts.isEmpty ? nullStatus() : null,
+                  header: PhoenixHeader(),
+                  footer: ClassicalFooter(enableHapticFeedback: true),
+                  onRefresh: () async {
+                    controller.refreshMyPost();
                   },
-                  itemCount: controller.myPosts.length,
-                ),
-              ))),
+                  onLoad: () async {
+                    controller.loadMyPost();
+                  },
+                  child: ListView.builder(
+                    itemBuilder: (context, index) {
+                      return ShowBox(postsInfoModel: controller.myPosts[index]);
+                    },
+                    itemCount: controller.myPosts.length,
+                  ),
+                ))),
+      ),
     );
   }
 }

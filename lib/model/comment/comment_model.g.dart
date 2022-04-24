@@ -12,7 +12,7 @@ CommentModel _$CommentModelFromJson(Map<String, dynamic> json) => CommentModel(
       json['like'] as int,
       json['createTime'] as String,
       json['nickname'] as String,
-      json['avatar'] as String,
+      (json['avatar']??'') as String,
     );
 
 Map<String, dynamic> _$CommentModelToJson(CommentModel instance) =>

@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_breathe/common/color.dart';
 import 'package:flutter_breathe/common/middlewares/router_auth.dart';
+import 'package:flutter_breathe/model/city/location.dart';
+import 'package:flutter_breathe/model/community/community_model.dart';
 import 'package:flutter_breathe/routes/app_routes.dart';
 
 import 'package:flutter_breathe/utils/utils.dart';
@@ -11,17 +15,26 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class CommunityCard extends GetView {
-  const CommunityCard({Key? key}) : super(key: key);
+  final CommunityModel communityModel;
+  const CommunityCard({
+    Key? key,
+    required this.communityModel,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    Location? location = communityModel.location.isEmpty
+        ? null
+        : Location.fromJson(jsonDecode(communityModel.location));
+
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 20.w),
       child: BoxBackground(
         child: Column(
           children: [
             InkWell(
-              onTap: () => Get.toNamed(Routes.CHOME + "30"),
+              onTap: () =>
+                  Get.toNamed(Routes.CHOME + communityModel.id.toString()),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -34,7 +47,7 @@ class CommunityCard extends GetView {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(20),
                         child: ExtendedImage.network(
-                          "http://192.168.10.150:9000/breathe-images/1e0c25887594f25a8f57c179427b1713.png",
+                          communityModel.avatar,
                           fit: BoxFit.fill,
                           loadStateChanged: (ExtendedImageState state) {
                             switch (state.extendedImageLoadState) {
@@ -47,7 +60,6 @@ class CommunityCard extends GetView {
                                   "assets/images/image_failed.png",
                                   fit: BoxFit.fill,
                                 );
-                                break;
                               default:
                             }
                           },
@@ -63,7 +75,7 @@ class CommunityCard extends GetView {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "人生无常人生无常",
+                            communityModel.communityName,
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
                             style: TextStyle(
@@ -72,38 +84,45 @@ class CommunityCard extends GetView {
                           SizedBox(
                             height: 10.w,
                           ),
-                          const MoreText(
-                            "人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常人生无常",
+                          MoreText(
+                            communityModel.description,
                             maxLines: 2,
-                            id: "123",
+                            id: communityModel.id.toString(),
                             route: Routes.CHOME,
                           ),
                           SizedBox(
                             height: 10.w,
                           ),
-                          Text.rich(
-                              TextSpan(children: [
-                                const TextSpan(text: "云南"),
-                                TextSpan(
-                                    text: "•",
-                                    style: TextStyle(letterSpacing: 15.w)),
-                                const TextSpan(text: "曲靖"),
-                                TextSpan(
-                                    text: "•",
-                                    style: TextStyle(letterSpacing: 15.w)),
-                                const TextSpan(text: "麒麟区"),
-                              ]),
-                              style: const TextStyle(
-                                  color: Colors.orange,
-                                  fontWeight: FontWeight.bold)),
+                          location == null
+                              ? Text(
+                                  "该社区未设置地址",
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(fontSize: 30.w),
+                                )
+                              : Text.rich(
+                                  TextSpan(children: [
+                                    TextSpan(text: location.area),
+                                    TextSpan(
+                                        text: "•",
+                                        style: TextStyle(letterSpacing: 15.w)),
+                                    TextSpan(text: location.city),
+                                    TextSpan(
+                                        text: "•",
+                                        style: TextStyle(letterSpacing: 15.w)),
+                                    TextSpan(text: location.county),
+                                  ]),
+                                  style: const TextStyle(
+                                      color: Colors.orange,
+                                      fontWeight: FontWeight.bold)),
                           SizedBox(
                             height: 5.w,
                           ),
                           Text.rich(TextSpan(children: [
-                            const TextSpan(text: "入驻人数"),
+                            const TextSpan(text: "创建时间:"),
                             const TextSpan(text: "  "),
                             TextSpan(
-                                text: Utils.intFormat(10000),
+                                text: Utils.myDataFormat(
+                                    communityModel.createdTime),
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold))
                           ])),

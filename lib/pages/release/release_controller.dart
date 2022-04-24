@@ -1,7 +1,16 @@
+import 'dart:io';
+
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_breathe/common/apis/posts_api.dart';
+import 'package:flutter_breathe/common/apis/upload_api.dart';
+import 'package:flutter_breathe/common/store/user_store.dart';
 import 'package:flutter_breathe/model/city/location.dart';
+import 'package:flutter_breathe/model/myCommunity/my_community_model.dart';
 import 'package:flutter_breathe/model/posts_type.dart';
+import 'package:flutter_breathe/model/request/my_response.dart';
+import 'package:flutter_breathe/utils/my_toast.dart';
 import 'package:flutter_breathe/utils/picker_method.dart';
 import 'package:flutter_breathe/widgets/special_text/my_extended_text_selection_controls.dart';
 import 'package:flutter_breathe/widgets/special_text/my_special_text_span_builder.dart';
@@ -22,6 +31,8 @@ class ReleaseController extends GetxController {
 
   //当前类型
   var postsType = PostsType.text.obs;
+  var postsTypeCode = 1.obs;
+
   var typeTheme =
       TypeTheme(Colors.black, true, Colors.black, true, Colors.black, true).obs;
 
@@ -31,6 +42,8 @@ class ReleaseController extends GetxController {
   var assetEntitysImage = <AssetEntity>[].obs;
   var assetEntitysVideo = <AssetEntity>[].obs;
   var assetEntitysAudio = <AssetEntity>[].obs;
+
+  var selectCommunity = MyCommunityModel(0, "选择社区", "").obs;
 
   BuildContext? context;
 
@@ -91,12 +104,16 @@ class ReleaseController extends GetxController {
     }
     if (assetEntitysAudio.isNotEmpty) {
       postsType.value = PostsType.sound;
+      postsTypeCode.value = 4;
     } else if (assetEntitysVideo.isNotEmpty) {
       postsType.value = PostsType.video;
+      postsTypeCode.value = 3;
     } else if (assetEntitysImage.isNotEmpty) {
       postsType.value = PostsType.img;
+      postsTypeCode.value = 2;
     } else {
       postsType.value = PostsType.text;
+      postsTypeCode.value = 1;
     }
     switch (postsType.value) {
       case PostsType.text:
@@ -136,6 +153,66 @@ class ReleaseController extends GetxController {
         typeTheme.refresh();
         break;
       default:
+    }
+  }
+
+  void releaseContent() async {
+    if (selectCommunity.value.id == 0) {
+      MyToast("请选择社区");
+      return;
+    }
+    Map<String, dynamic> map = {};
+    //上传图片
+    if (postsType.value == PostsType.img) {
+      List<AssetEntity> assets = assetEntitysImage;
+      List<File> files = [];
+      for (AssetEntity asset in assets) {
+        files.add((await asset.originFile)!);
+      }
+      String str = await UploadApi.multiUpload(files: files,bucketName: "breathe-images");
+      map["postsImages"] = str;
+    }
+    //上传视频
+    if (postsType.value == PostsType.video) {
+      List<AssetEntity> assets = assetEntitysVideo;
+      List<File> files = [];
+      File? file = await assets.first.file;
+      print("object");
+      for (AssetEntity asset in assets) {
+        files.add((await asset.originFile)!);
+      }
+      String str = await UploadApi.multiUpload(files: files,bucketName: "breathe-videos");
+      map["postsVideos"] = str;
+    }
+    //上传音频
+    if (postsType.value == PostsType.sound) {
+      List<AssetEntity> assets = assetEntitysAudio;
+      List<File> files = [];
+      for (AssetEntity asset in assets) {
+        files.add((await asset.originFile)!);
+      }
+      String str = await UploadApi.multiUpload(files: files,bucketName: "breathe-sounds");
+      map["postsAudio"] = str;
+    }
+    map["postsType"] = postsTypeCode.value;
+    map["postsContent"] = textEditingController.text;
+    map["postsFormat"] = 1;
+    map['communityId'] = selectCommunity.value.id;
+    map['uid'] = UserStore.to.userData!.uid;
+
+    try {
+      MyResponse myResponse = MyResponse.fromJson( await PostsApi.releasePosts(map));
+
+      print("object");
+      if (myResponse.success) {
+        MyToast(myResponse.message);
+      } else {
+        MyToast(myResponse.message);
+      }
+    } on DioError catch (e) {
+      MyToast(e.message);
+    } catch (e) {
+      MyToast(e.toString());
     }
   }
 

@@ -78,16 +78,14 @@ Widget posts() {
               controller.headerNotifier,
               extent: 1.sh,
               triggerDistance: 1.sh,
-              completeDuration: Duration(milliseconds: 500),
+              completeDuration: const Duration(milliseconds: 500),
             ),
             footer: ClassicalFooter(),
             onRefresh: () async {
-             await controller.refreshMyPost();
+              await controller.refreshMyPost();
             },
             onLoad: () async {
-              await Future.delayed(Duration(seconds: 2), () {
-                controller.loadMyPost();
-              });
+              await controller.loadMyPost();
             },
             child: ListView.builder(
               itemBuilder: (context, index) {

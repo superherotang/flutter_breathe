@@ -19,6 +19,8 @@ class ShowTypeImages extends GetView {
           child: ExtendedImage.network(
             data.first,
             fit: BoxFit.fitWidth,
+            height: 1.sw - 40.w,
+            width: 1.sw - 40.w,
             loadStateChanged: (ExtendedImageState state) {
               switch (state.extendedImageLoadState) {
                 case LoadState.loading:
@@ -30,7 +32,6 @@ class ShowTypeImages extends GetView {
                     "assets/images/image_failed.png",
                     fit: BoxFit.fill,
                   );
-                  break;
                 default:
               }
             },

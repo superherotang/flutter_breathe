@@ -34,7 +34,7 @@ class _MoreTextState extends State<MoreText> {
           ..onTap = () {
             widget.id == null
                 ? setState(() => readMore = !readMore)
-                : Get.toNamed(widget.route!, arguments: widget.id);
+                : Get.toNamed(widget.route! + widget.id!);
           });
 
     Widget result = LayoutBuilder(

@@ -1,14 +1,16 @@
+import 'package:flutter_breathe/common/apis/base_url.dart';
+import 'package:flutter_breathe/model/request/my_response.dart';
 import 'package:flutter_breathe/request/http_utils.dart';
 
 class PostsApi {
-  static const String postsUrl = "http://10.6.50.108:8003";
+  static const String postsUrl = "/breathePosts";
 
   ///根据uid获取用户帖子
   static Future<dynamic> getPostsInfoByUid(
       List<String> uid, int current) async {
     Map<String, dynamic> map = {'uid': uid, 'current': current};
 
-    return await HttpUtils.post(postsUrl + "/posts/getPostInfoPage",
+    return await HttpUtils.post(baseUrl + postsUrl + "/posts/getPostInfoPage",
         params: map);
   }
 
@@ -18,7 +20,7 @@ class PostsApi {
   ) async {
     Map<String, dynamic> map = {'current': current};
 
-    return await HttpUtils.post(postsUrl + "/posts/getPostInfoPage",
+    return await HttpUtils.post(baseUrl + postsUrl + "/posts/getPostInfoPage",
         params: map);
   }
 
@@ -29,7 +31,7 @@ class PostsApi {
   ) async {
     Map<String, dynamic> map = {'cid': cid, 'current': current};
 
-    return await HttpUtils.post(postsUrl + "/posts/getPostInfoPage",
+    return await HttpUtils.post(baseUrl + postsUrl + "/posts/getPostInfoPage",
         params: map);
   }
 
@@ -40,7 +42,7 @@ class PostsApi {
   ) async {
     Map<String, dynamic> map = {'type': type, 'current': current};
 
-    return await HttpUtils.post(postsUrl + "/posts/getPostInfoPage",
+    return await HttpUtils.post(baseUrl + postsUrl + "/posts/getPostInfoPage",
         params: map);
   }
 
@@ -52,7 +54,7 @@ class PostsApi {
   ) async {
     Map<String, dynamic> map = {'cid': cid, 'type': type, 'current': current};
 
-    return await HttpUtils.post(postsUrl + "/posts/getPostInfoPage",
+    return await HttpUtils.post(baseUrl + postsUrl + "/posts/getPostInfoPage",
         params: map);
   }
 
@@ -62,7 +64,7 @@ class PostsApi {
     int current,
   ) async {
     return await HttpUtils.get(
-        postsUrl + "/comment/getComment/$pid/" + current.toString());
+        baseUrl + postsUrl + "/comment/getComment/$pid/" + current.toString());
   }
 
   ///评论
@@ -76,6 +78,13 @@ class PostsApi {
       'uid': uid,
       'postsId': postsId
     };
-    return await HttpUtils.post(postsUrl + "/comment/insertComment", params: map);
+    return await HttpUtils.post(baseUrl + postsUrl + "/comment/insertComment",
+        params: map);
+  }
+
+  ///发布帖子
+  static Future<dynamic> releasePosts(Map<String, dynamic> map) async {
+    return await HttpUtils.post(baseUrl + postsUrl + "/posts/release",
+        params: map);
   }
 }

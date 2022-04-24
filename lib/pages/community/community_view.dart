@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_breathe/common/color.dart';
 import 'package:flutter_breathe/common/store/location_store.dart';
+import 'package:flutter_breathe/widgets/keep_alive_wrapper.dart';
+import 'package:flutter_breathe/widgets/loading_view.dart';
 
 import 'package:flutter_breathe/widgets/search_input.dart';
+import 'package:flutter_breathe/widgets/status.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
@@ -62,11 +66,30 @@ class CommunityView extends GetView<CommunityController> {
               ),
             ),
             Expanded(
-              child: ListView.builder(
-                itemBuilder: (BuildContext context, int index) {
-                  return const CommunityCard();
-                },
-                itemCount: 20,
+              child: KeepAliveWrapper(
+                child: LoadingView(
+                    future: controller.refreshMyPost(),
+                    doneWidget: Obx(() => EasyRefresh(
+                          emptyWidget: controller.communityList.isEmpty
+                              ? nullStatus()
+                              : null,
+                          header: PhoenixHeader(),
+                          footer: ClassicalFooter(enableHapticFeedback: true),
+                          onRefresh: () async {
+                            controller.refreshMyPost();
+                          },
+                          onLoad: () async {
+                            controller.loadMyPost();
+                          },
+                          child: ListView.builder(
+                            itemBuilder: (context, index) {
+                              return CommunityCard(
+                                  communityModel:
+                                      controller.communityList[index]);
+                            },
+                            itemCount: controller.communityList.length,
+                          ),
+                        ))),
               ),
             )
           ],

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_breathe/model/postsInfo/posts_info_model.dart';
 import 'package:flutter_breathe/routes/app_routes.dart';
-import 'package:flutter_breathe/utils/utils.dart';
 import 'package:flutter_breathe/widgets/multi_content.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -132,18 +131,19 @@ class ShowBox extends GetView {
                         child: Center(
                             child: LikeButton(
                                 icon: Icons.ac_unit,
-                                count: Utils.intFormat(postsInfoModel.share)))),
+                                count: postsInfoModel.share))),
                     Expanded(
                         child: Center(
                             child: LikeButton(
                                 icon: Icons.ac_unit,
-                                count:
-                                    Utils.intFormat(postsInfoModel.comment)))),
+                                count: postsInfoModel.comment))),
                     Expanded(
-                        child: Center(
-                            child: LikeButton(
-                                icon: Icons.ac_unit,
-                                count: Utils.intFormat(postsInfoModel.like)))),
+                      child: Center(
+                          child: LikeButton(
+                              icon: Icons.ac_unit,
+                              pid: postsInfoModel.uuid,
+                              count: postsInfoModel.like)),
+                    ),
                   ],
                 ),
               ],

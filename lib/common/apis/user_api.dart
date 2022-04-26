@@ -41,4 +41,22 @@ class UserApi {
         baseUrl + userUrl + "/userData/getUserCount/$uid",
         cacheDisk: true);
   }
+
+    ///点赞
+  static Future<dynamic> userLike(String pid, int uid,int status) async {
+    Map<String, dynamic> map = {'pid': pid, 'uid': uid,'status':status};
+
+    return await HttpUtils.post(
+        baseUrl + userUrl + "/userLike/save",
+        params: map);
+  }
+
+  ///判断用户是否点赞
+  static Future<dynamic> isUserLike(String pid, int uid) async {
+    Map<String, dynamic> map = {'pid': pid, 'uid': uid};
+
+    return await HttpUtils.post(
+        baseUrl + userUrl + "/userLike/isLike",
+        params: map);
+  }
 }

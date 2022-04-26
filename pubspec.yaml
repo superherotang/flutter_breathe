@@ -76,6 +76,7 @@ dependencies:
   connectivity_plus: ^2.3.0
   #提示
   fluttertoast: ^8.0.9
+  flutter_smart_dialog: ^3.4.2+2
 
 
 dev_dependencies:

@@ -1,7 +1,6 @@
 import 'package:extended_nested_scroll_view/extended_nested_scroll_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_breathe/common/color.dart';
-import 'package:flutter_breathe/common/middlewares/router_auth.dart';
 import 'package:flutter_breathe/pages/detail/components/all_reply.dart';
 import 'package:flutter_breathe/utils/utils.dart';
 import 'package:flutter_breathe/widgets/multi_content.dart';
@@ -152,32 +151,29 @@ class DetailView extends GetView<DetailController> {
       child: Row(
         children: [
           Expanded(
-              child: GestureDetector(
-            onTap: () {
-              RouteAuth().auth();
-            },
-            child: Container(
-              height: 70.w,
-              child: Center(
-                child: TextField(
-                  controller: controller.textEditingController,
-                  focusNode: controller.focusNode,
-                  style: TextStyle(fontSize: 30.w),
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Colors.grey[100],
-                    contentPadding:
-                        EdgeInsets.symmetric(vertical: 10.w, horizontal: 20.w),
-                    border: const OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(30)),
+              child: SizedBox(
+                height: 70.w,
+                child: Center(
+                  child: TextField(
+                    controller: controller.textEditingController,
+                    focusNode: controller.focusNode,
+                    style: TextStyle(fontSize: 30.w),
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: Colors.grey[100],
+                      contentPadding:
+                          EdgeInsets.symmetric(vertical: 10.w, horizontal: 20.w),
+                      border: const OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(30)),
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ),
-          )),
+              )),
           InkWell(
-            onTap: () {},
+            onTap: () {
+              print("");
+            },
             child: Obx(
               () => Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20.w),

@@ -76,10 +76,7 @@ class CommentBox extends GetView {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        LikeButton(
-            size: 60.w,
-            icon: Icons.ac_unit,
-            count: Utils.intFormat(commentModel.like)),
+        LikeButton(size: 60.w, icon: Icons.ac_unit, count: commentModel.like),
         Expanded(child: Container()),
         InkWell(
           onTap: () {},

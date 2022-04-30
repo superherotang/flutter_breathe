@@ -172,7 +172,7 @@ class LoginController extends GetxController {
     }
     if (isButtonEnable.value) {
       try {
-        MyResponse myResponse = await UserApi.sendSms(phone: "18187418771");
+        MyResponse myResponse = await UserApi.sendSms(phone: textEditingPhoneController.text);
         if (myResponse.success) {
           isButtonEnable.value = false;
           timer = Timer.periodic(const Duration(milliseconds: 1000), (timer) {

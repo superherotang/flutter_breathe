@@ -10,12 +10,10 @@ import 'package:flutter_breathe/model/postsPage/posts_page_model.dart';
 import 'package:flutter_breathe/model/request/my_response.dart';
 import 'package:flutter_breathe/model/userCount/user_count_model.dart';
 import 'package:flutter_breathe/model/userData/user_data_model.dart';
-import 'package:flutter_breathe/service/storage_service.dart';
 import 'package:flutter_breathe/utils/my_toast.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class PersonalController extends GetxController
     with GetTickerProviderStateMixin {

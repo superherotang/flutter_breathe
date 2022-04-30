@@ -6,7 +6,6 @@ import 'package:flutter_breathe/widgets/keep_alive_wrapper.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import 'components/group_list_view.dart';
 
 class MessageView extends GetView<MessageController> {
   const MessageView({Key? key}) : super(key: key);
@@ -14,7 +13,8 @@ class MessageView extends GetView<MessageController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: messageAppBar(), body: KeepAliveWrapper(child: ChatListView()));
+        appBar: messageAppBar(),
+        body: const KeepAliveWrapper(child: ChatListView()));
   }
 
   //顶部

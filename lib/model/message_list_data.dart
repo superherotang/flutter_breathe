@@ -5,6 +5,7 @@ class MessageListData {
     required this.messageDate,
     required this.dataMessage,
     required this.profilePicture,
+    required this.targetUid,
   });
 
   final String senderName;
@@ -12,4 +13,5 @@ class MessageListData {
   final DateTime messageDate;
   final String dataMessage;
   final String profilePicture;
+  final int targetUid;
 }

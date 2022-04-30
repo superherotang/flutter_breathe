@@ -59,9 +59,9 @@ class ModalView extends GetView {
                         child: const ModalButton("创建社区")),
                     InkWell(
                         onTap: () {
-                          Get.toNamed(Routes.DETAIL + "123");
+                          Get.toNamed(Routes.DEMO);
                         },
-                        child: const ModalButton("创建社区")),
+                        child: const ModalButton("DEMO")),
                   ],
                 ),
                 SizedBox(

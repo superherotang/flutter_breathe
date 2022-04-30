@@ -8,8 +8,8 @@ import 'common/theme.dart';
 
 Widget createApp() {
   return GetMaterialApp(
-    title: '虎帮',
-    translations: TranslationService(), //国际化词
+    title: '呼吸',
+    translations: TranslationService(), //国际化
     debugShowCheckedModeBanner: false,
     locale: Get.deviceLocale, //跟随系统语言
     fallbackLocale: const Locale('zh', 'CN'), //配置错误的情况

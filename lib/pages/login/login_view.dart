@@ -280,8 +280,9 @@ class LoginView extends GetView<LoginController> {
 
   void clickLogin(String phone, String code) async {
     try {
-      MyResponse myResponse =
-          await UserApi.smsLoginOrRegister(phone: phone, code: code);
+      MyResponse myResponse = await UserApi.smsLoginOrRegister(
+          phone: controller.textEditingPhoneController.text,
+          code: controller.textEditingCodeController.text);
       if (myResponse.success) {
         LoginModel loginModel = LoginModel.fromJson(myResponse.data);
         UserStore.to.setToken(loginModel.token);

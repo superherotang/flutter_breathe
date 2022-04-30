@@ -1,24 +1,20 @@
 // ignore_for_file: constant_identifier_names
 
-import 'package:flutter_breathe/common/middlewares/router_auth.dart';
+import 'package:flutter_breathe/pages/chat/chat_binding.dart';
+import 'package:flutter_breathe/pages/chat/chat_view.dart';
 import 'package:flutter_breathe/pages/chome/chome_binding.dart';
 import 'package:flutter_breathe/pages/chome/chome_view.dart';
 import 'package:flutter_breathe/pages/city/city_binding.dart';
 import 'package:flutter_breathe/pages/city/city_view.dart';
-import 'package:flutter_breathe/pages/community/community_binding.dart';
-import 'package:flutter_breathe/pages/community/community_view.dart';
 import 'package:flutter_breathe/pages/demo/demo_binding.dart';
 import 'package:flutter_breathe/pages/demo/demo_view.dart';
 import 'package:flutter_breathe/pages/detail/detail_binding.dart';
 import 'package:flutter_breathe/pages/detail/detail_view.dart';
-import 'package:flutter_breathe/pages/home/home_binding.dart';
-import 'package:flutter_breathe/pages/home/home_view.dart';
 import 'package:flutter_breathe/pages/login/login_binding.dart';
 import 'package:flutter_breathe/pages/login/login_view.dart';
 import 'package:flutter_breathe/pages/message/components/message_search/message_search_binding.dart';
 import 'package:flutter_breathe/pages/message/components/message_search/message_search_view.dart';
-import 'package:flutter_breathe/pages/message/message_binding.dart';
-import 'package:flutter_breathe/pages/message/message_view.dart';
+
 import 'package:flutter_breathe/pages/personal/personal_binding.dart';
 import 'package:flutter_breathe/pages/personal/personal_view.dart';
 import 'package:flutter_breathe/pages/release/release_binding.dart';
@@ -86,6 +82,10 @@ abstract class AppPages {
         name: Routes.DEMO,
         page: () => const DemoView(),
         binding: DemoBinding()),
+    GetPage(
+        name: Routes.CHATID,
+        page: () => const ChatView(),
+        binding: ChatBinding()),
   ];
 }
 
@@ -108,4 +108,6 @@ abstract class Routes {
   static const CHOMEID = "/chome/:id";
   static const RELEASE = "/release";
   static const DEMO = "/demo";
+  static const CHAT = "/chat/";
+  static const CHATID = "/chat/:id";
 }

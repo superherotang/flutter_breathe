@@ -1,12 +1,18 @@
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
 import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_breathe/common/apis/community_api.dart';
+import 'package:flutter_breathe/common/apis/user_api.dart';
 import 'package:flutter_breathe/common/color.dart';
 import 'package:flutter_breathe/common/middlewares/router_auth.dart';
+import 'package:flutter_breathe/common/store/user_store.dart';
 import 'package:flutter_breathe/model/city/location.dart';
 import 'package:flutter_breathe/model/community/community_model.dart';
+import 'package:flutter_breathe/model/request/my_response.dart';
 import 'package:flutter_breathe/routes/app_routes.dart';
+import 'package:flutter_breathe/utils/my_toast.dart';
 
 import 'package:flutter_breathe/utils/utils.dart';
 import 'package:flutter_breathe/widgets/box_background.dart';
@@ -14,7 +20,7 @@ import 'package:flutter_breathe/widgets/more_text.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-class CommunityCard extends GetView {
+class CommunityCard extends StatefulWidget {
   final CommunityModel communityModel;
   const CommunityCard({
     Key? key,
@@ -22,10 +28,70 @@ class CommunityCard extends GetView {
   }) : super(key: key);
 
   @override
+  State<CommunityCard> createState() => _CommunityCardState();
+}
+
+class _CommunityCardState extends State<CommunityCard> {
+  bool isAdd = false;
+
+  @override
+  void initState() {
+    super.initState();
+    if (UserStore.to.isLogin) {
+      getAdd();
+    }
+  }
+
+  getAdd() async {
+    try {
+      MyResponse myResponse = await CommunityApi.getMyAdd(
+          UserStore.to.userData!.uid, widget.communityModel.id);
+      //MyResponse myResponse = MyResponse.fromJson(response);
+      if (myResponse.success) {
+        bool flag = myResponse.data['flag'];
+        if (flag) {
+          if (mounted) {
+            setState(() {
+              isAdd = true;
+            });
+          }
+        }
+      }
+    } on DioError catch (e) {
+      MyToast(e.message);
+    } catch (e) {
+      MyToast(e.toString());
+    }
+  }
+
+  userAddCommunity() async {
+    try {
+      dynamic response = await CommunityApi.addCommunity(
+          UserStore.to.userData!.uid, widget.communityModel.id, 2);
+
+      MyResponse myResponse = MyResponse.fromJson(response);
+      if (myResponse.success) {
+        if (mounted) {
+          setState(() {
+            isAdd = true;
+          });
+        }
+        Get.toNamed(Routes.CHOME + widget.communityModel.id.toString());
+      } else {
+        MyToast(myResponse.message);
+      }
+    } on DioError catch (e) {
+      MyToast(e.message);
+    } catch (e) {
+      MyToast(e.toString());
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    Location? location = communityModel.location.isEmpty
+    Location? location = widget.communityModel.location.isEmpty
         ? null
-        : Location.fromJson(jsonDecode(communityModel.location));
+        : Location.fromJson(jsonDecode(widget.communityModel.location));
 
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 30.w, vertical: 20.w),
@@ -33,8 +99,8 @@ class CommunityCard extends GetView {
         child: Column(
           children: [
             InkWell(
-              onTap: () =>
-                  Get.toNamed(Routes.CHOME + communityModel.id.toString()),
+              onTap: () => Get.toNamed(
+                  Routes.CHOME + widget.communityModel.id.toString()),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -47,7 +113,7 @@ class CommunityCard extends GetView {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(20),
                         child: ExtendedImage.network(
-                          communityModel.avatar,
+                          widget.communityModel.avatar,
                           fit: BoxFit.fill,
                           loadStateChanged: (ExtendedImageState state) {
                             switch (state.extendedImageLoadState) {
@@ -75,7 +141,7 @@ class CommunityCard extends GetView {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            communityModel.communityName,
+                            widget.communityModel.communityName,
                             overflow: TextOverflow.ellipsis,
                             maxLines: 1,
                             style: TextStyle(
@@ -85,9 +151,9 @@ class CommunityCard extends GetView {
                             height: 10.w,
                           ),
                           MoreText(
-                            communityModel.description,
+                            widget.communityModel.description,
                             maxLines: 2,
-                            id: communityModel.id.toString(),
+                            id: widget.communityModel.id.toString(),
                             route: Routes.CHOME,
                           ),
                           SizedBox(
@@ -122,7 +188,7 @@ class CommunityCard extends GetView {
                             const TextSpan(text: "  "),
                             TextSpan(
                                 text: Utils.myDataFormat(
-                                    communityModel.createdTime),
+                                    widget.communityModel.createdTime),
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold))
                           ])),
@@ -137,14 +203,20 @@ class CommunityCard extends GetView {
               padding: EdgeInsets.only(bottom: 30.w, left: 30.w, right: 30.w),
               child: ElevatedButton(
                 onPressed: () async {
-                  bool flag = await RouteAuth().auth();
+                  if (await RouteAuth().auth()) {
+                    if (!isAdd) {
+                      await userAddCommunity();
+                    }else{
+                      MyToast("您已加入该社区");
+                    }
+                  }
                 },
                 child: Container(
                   alignment: Alignment.center,
                   width: double.maxFinite,
                   height: 60.w,
                   child: Text(
-                    "加入社区",
+                    isAdd ? "您已加入" : "加入社区",
                     style: TextStyle(
                         letterSpacing: 25.w,
                         fontSize: 30.w,
@@ -154,8 +226,8 @@ class CommunityCard extends GetView {
                 style: ButtonStyle(
                   shape: MaterialStateProperty.all(RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30))),
-                  backgroundColor:
-                      MaterialStateProperty.all(AppColor.primaryColor),
+                  backgroundColor: MaterialStateProperty.all(
+                      isAdd ? Colors.grey : AppColor.primaryColor),
                 ),
               ),
             )

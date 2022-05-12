@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_breathe/model/postsInfo/posts_info_model.dart';
 import 'package:flutter_breathe/routes/app_routes.dart';
+import 'package:flutter_breathe/utils/utils.dart';
 import 'package:flutter_breathe/widgets/multi_content.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -33,8 +34,9 @@ class ShowBox extends GetView {
                       GestureDetector(
                         onTap: () {},
                         child: CircleAvatar(
-                            backgroundImage: const NetworkImage(
-                                "http://192.168.10.150:9000/breathe-images/1e0c25887594f25a8f57c179427b1713.png"),
+                            backgroundImage: NetworkImage(
+                              postsInfoModel.avatar,
+                            ),
                             radius: 40.w),
                       ),
                       Expanded(
@@ -48,7 +50,7 @@ class ShowBox extends GetView {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "ALEC TANG",
+                                  postsInfoModel.nickname,
                                   style: TextStyle(
                                       fontSize: 30.w,
                                       fontWeight: FontWeight.w500,
@@ -56,7 +58,9 @@ class ShowBox extends GetView {
                                       overflow: TextOverflow.ellipsis,
                                       letterSpacing: 1.w),
                                 ),
-                                Text("昨天",
+                                Text(
+                                    Utils.myDataFormat(
+                                        postsInfoModel.createTime),
                                     style: TextStyle(
                                         color: Colors.grey,
                                         fontSize: 26.w,
@@ -68,7 +72,7 @@ class ShowBox extends GetView {
                         ),
                       ),
                       IconButton(
-                          onPressed: () {}, icon: const Icon(Icons.ac_unit))
+                          onPressed: () {}, icon: const Icon(Icons.more_horiz))
                     ],
                   ),
                 )

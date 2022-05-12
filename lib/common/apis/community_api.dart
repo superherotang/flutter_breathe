@@ -42,6 +42,7 @@ class CommunityApi {
         cid);
   }
 
+  //我加入的社区
   static Future<MyResponse> getMyCommunity(String uid) async {
     return await HttpUtils.get(baseUrl +
         communityUrl +
@@ -49,8 +50,36 @@ class CommunityApi {
         uid);
   }
 
+  ///获取社区列表
   static Future<MyResponse> getCommunityList(int current) async {
+    return await HttpUtils.get(baseUrl +
+        communityUrl +
+        "/community/getCommunityList/" +
+        current.toString());
+  }
+
+  ///获取我是否加入该社区
+  static Future<MyResponse> getMyAdd(int uid, int cid) async {
     return await HttpUtils.get(
-        baseUrl + communityUrl + "/community/getCommunityList/" + current.toString());
+        baseUrl + communityUrl + "/communityPersonnel/isAdd/${cid}/${uid}");
+  }
+
+  ///加入该社区
+  static Future<dynamic> addCommunity(int uid, int cid, int type) async {
+    Map<String, dynamic> map = {
+      'communityId': cid,
+      'uid': uid,
+      'userType': type
+    };
+
+    return await HttpUtils.post(
+        baseUrl + communityUrl + "/communityPersonnel/addCommunity",
+        data: map);
+  }
+
+   ///退出该社区
+  static Future<MyResponse> quitCommunity(int uid, int cid) async {
+    return await HttpUtils.get(
+        baseUrl + communityUrl + "/communityPersonnel/outCommunity/${cid}/${uid}");
   }
 }

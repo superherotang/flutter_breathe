@@ -7,6 +7,8 @@ import 'package:flutter_breathe/common/color.dart';
 import 'package:flutter_breathe/common/store/user_store.dart';
 import 'package:flutter_breathe/model/login/login_model.dart';
 import 'package:flutter_breathe/model/request/my_response.dart';
+import 'package:flutter_breathe/pages/login/components/create_update_user.dart';
+import 'package:flutter_breathe/pages/personal/personal_controller.dart';
 import 'package:flutter_breathe/utils/my_toast.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -278,15 +280,45 @@ class LoginView extends GetView<LoginController> {
     );
   }
 
-  void clickLogin(String phone, String code) async {
+  void clickLoginCode(String phone, String code) async {
     try {
-      MyResponse myResponse = await UserApi.smsLoginOrRegister(
-          phone: controller.textEditingPhoneController.text,
-          code: controller.textEditingCodeController.text);
+      MyResponse myResponse =
+          await UserApi.smsLoginOrRegister(phone: phone, code: code);
       if (myResponse.success) {
         LoginModel loginModel = LoginModel.fromJson(myResponse.data);
-        UserStore.to.setToken(loginModel.token);
-        Get.back(result: {"success": true});
+        await UserStore.to.setToken(loginModel.token);
+        var pController = Get.find<PersonalController>();
+        await pController.refreshUser();
+        if (loginModel.status == 2) {
+          Get.to(() => const CreateUpdateUser());
+        } else {
+          Get.back(result: {"success": true});
+        }
+      } else {
+        MyToast(myResponse.message);
+      }
+    } on DioError catch (e) {
+      MyToast(e.message);
+    } catch (e) {
+      MyToast(e.toString());
+    }
+  }
+
+  void clickLoginPwd(String phone, String pwd) async {
+    try {
+      MyResponse myResponse = await UserApi.pwdLogin(
+          phone: controller.textEditingPhoneController.text,
+          pwd: controller.textEditingPwdController.text);
+      if (myResponse.success) {
+        LoginModel loginModel = LoginModel.fromJson(myResponse.data);
+        await UserStore.to.setToken(loginModel.token);
+        var pController = Get.find<PersonalController>();
+        await pController.refreshUser();
+        if (loginModel.status == 2) {
+          Get.to(() => const CreateUpdateUser());
+        } else {
+          Get.back(result: {"success": true});
+        }
       } else {
         MyToast(myResponse.message);
       }
@@ -305,9 +337,12 @@ class LoginView extends GetView<LoginController> {
         child: ElevatedButton(
           onPressed: controller.readOnlyButton.value
               ? () {
+                  // controller.loginMode.value?
                   controller.unAllFocus();
                   controller.checkOnSelect.value
-                      ? clickLogin("18187418771", "111111")
+                      ? clickLoginCode(
+                          controller.textEditingPhoneController.text,
+                          controller.textEditingCodeController.text)
                       : agreementDialog();
                 }
               : null,
@@ -348,7 +383,8 @@ class LoginView extends GetView<LoginController> {
             ),
             ElevatedButton(
               onPressed: () {
-                clickLogin("18187418771", "111111");
+                clickLoginCode(controller.textEditingPhoneController.text,
+                    controller.textEditingCodeController.text);
                 Get.back(result: {"success": true});
               },
               style: ButtonStyle(

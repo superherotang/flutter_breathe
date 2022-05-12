@@ -373,14 +373,14 @@ List<Widget> generateList() {
 
 List<Location> hotCity = [
   Location('北京市', '北京', ''),
-  Location('北京市', '北京', ''),
-  Location('北京市', '北京', ''),
-  Location('北京市', '北京', ''),
-  Location('北京市', '北京', ''),
-  Location('北京市', '北京', ''),
-  Location('北京市', '北京', ''),
-  Location('北京市', '北京', ''),
-  Location('北京市', '北京', ''),
+  Location('云南省', '昆明', ''),
+  Location('云南省', '曲靖', ''),
+  Location('天津市', '天津', ''),
+  Location('上海市', '上海', ''),
+  Location('四川省', '成都', ''),
+  Location('广东省', '广州', ''),
+  Location('广东省', '深圳', ''),
+  Location('河北省', '石家庄', ''),
 ];
 
 class DomesticController extends GetxController {

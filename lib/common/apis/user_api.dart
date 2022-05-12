@@ -16,13 +16,23 @@ class UserApi {
     );
   }
 
-  ///登录
+  ///短信登录
   static Future<MyResponse> smsLoginOrRegister({
     required String phone,
     required String code,
   }) async {
     return await HttpUtils.get(
       baseUrl + userUrl + "/user/codeLogin?phone=$phone&code=$code",
+    );
+  }
+
+  ///登录
+  static Future<MyResponse> pwdLogin({
+    required String phone,
+    required String pwd,
+  }) async {
+    return await HttpUtils.post(
+      baseUrl + userUrl + "/user/codeLogin?phone=$phone&code=$pwd",
     );
   }
 
@@ -42,12 +52,11 @@ class UserApi {
         cacheDisk: true);
   }
 
-    ///点赞
-  static Future<dynamic> userLike(String pid, int uid,int status) async {
-    Map<String, dynamic> map = {'pid': pid, 'uid': uid,'status':status};
+  ///点赞
+  static Future<dynamic> userLike(String pid, int uid, int status) async {
+    Map<String, dynamic> map = {'pid': pid, 'uid': uid, 'status': status};
 
-    return await HttpUtils.post(
-        baseUrl + userUrl + "/userLike/save",
+    return await HttpUtils.post(baseUrl + userUrl + "/userLike/save",
         params: map);
   }
 
@@ -55,8 +64,36 @@ class UserApi {
   static Future<dynamic> isUserLike(String pid, int uid) async {
     Map<String, dynamic> map = {'pid': pid, 'uid': uid};
 
-    return await HttpUtils.post(
-        baseUrl + userUrl + "/userLike/isLike",
+    return await HttpUtils.post(baseUrl + userUrl + "/userLike/isLike",
+        params: map);
+  }
+
+  ///更新用户状态
+  static Future<MyResponse> changeStates(
+      {required int uid, required int states}) async {
+    return await HttpUtils.get(
+        baseUrl + userUrl + "/user/changeStates/${uid}/${states}");
+  }
+
+  ///更新用户资料
+  static Future<dynamic> updateUserData(
+      {required String uid,
+      required String avatar,
+      String? birthday,
+      String? description,
+      String? location,
+      required String nickname,
+      required int sex}) async {
+    Map<String, dynamic> map = {
+      'uid': uid,
+      'avatar': avatar,
+      'birthday': birthday,
+      'description': description,
+      'location': location,
+      'nickname': nickname,
+      'sex': sex
+    };
+    return await HttpUtils.post(baseUrl + userUrl + "/userData/updateUserData",
         params: map);
   }
 }

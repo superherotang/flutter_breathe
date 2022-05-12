@@ -12,10 +12,7 @@ Widget errorStatus() {
           height: 1.sw/2,
           fit: BoxFit.fitWidth,
         ),
-        Text(
-          "错误",
-          style: TextStyle(fontSize: 36.w),
-        )
+
       ],
     ),
   );
@@ -32,10 +29,7 @@ Widget loadingStatus() {
           height: 1.sw/2,
           fit: BoxFit.fitWidth,
         ),
-        Text(
-          "正在加载",
-          style: TextStyle(fontSize: 36.w),
-        )
+
       ],
     ),
   );
@@ -52,10 +46,7 @@ Widget nullStatus() {
           height: 1.sw/2,
           fit: BoxFit.fitWidth,
         ),
-        Text(
-          "空空如也",
-          style: TextStyle(fontSize: 36.w),
-        )
+        
       ],
     ),
   );
@@ -72,10 +63,7 @@ Widget noLoginStatus() {
           height: 1.sw/2,
           fit: BoxFit.fitWidth,
         ),
-        Text(
-          "没有登录",
-          style: TextStyle(fontSize: 36.w),
-        )
+
       ],
     ),
   );

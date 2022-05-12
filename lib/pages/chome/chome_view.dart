@@ -239,17 +239,23 @@ class ChomeView extends GetView<ChomeController> {
             ),
           ),
           InkWell(
-            onTap: () {},
+            onTap: () {
+              controller.isAdd.value
+                  ? controller.userQuitCommunity()
+                  : controller.userAddCommunity();
+            },
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 40.w, vertical: 14.w),
               decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular((60.w))),
-              child: Text('入驻',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 26.w,
-                      fontWeight: FontWeight.bold)),
+              child: Obx(
+                () => Text(controller.isAdd.value ? '退出' : '入驻',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 26.w,
+                        fontWeight: FontWeight.bold)),
+              ),
             ),
           )
         ]),

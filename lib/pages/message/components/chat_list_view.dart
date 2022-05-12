@@ -23,23 +23,23 @@ class ChatListView extends GetView{
             delegate: SliverChildListDelegate([
           MessageItem(
             messageListData: MessageListData(
-                senderName: "用户21",
-                message: "用户21",
+                senderName: "TANG",
+                message: "TANG",
                 messageDate: DateTime(2022, 1, 1, 1, 1),
                 dataMessage: "昨天",
                 profilePicture:
                     "http://192.168.10.150:9000/breathe-images/1e0c25887594f25a8f57c179427b1713.png",
-                targetUid: 21),
+                targetUid: 24),
           ),
           MessageItem(
               messageListData: MessageListData(
-                  senderName: "用户23",
-                  message: "用户23",
+                  senderName: "ttt",
+                  message: "ttt",
                   messageDate: DateTime(2022, 2, 2, 2, 2),
                   dataMessage: "昨天",
                   profilePicture:
                       "http://192.168.10.150:9000/breathe-images/1e0c25887594f25a8f57c179427b1713.png",
-                  targetUid: 23)),
+                  targetUid: 25)),
           MessageItem(
               messageListData: MessageListData(
                   senderName: "群聊",

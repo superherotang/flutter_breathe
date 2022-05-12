@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_breathe/common/middlewares/router_auth.dart';
 import 'package:flutter_breathe/pages/Message/message_view.dart';
 import 'package:flutter_breathe/pages/community/community_view.dart';
 import 'package:flutter_breathe/pages/home/home_view.dart';
@@ -65,10 +66,9 @@ class TabsView extends GetView<TabsController> {
             margin: EdgeInsets.only(top: 70.w),
             child: FloatingActionButton(
               onPressed: () async {
-                // if (await RouteAuth().auth()) {
-                //   Get.to(() => const ModalView());
-                // }
-                Get.to(() => const ModalView());
+                if (await RouteAuth().auth()) {
+                  Get.to(() => const ModalView());
+                }
               },
               child: Icon(
                 Icons.add_circle_rounded,

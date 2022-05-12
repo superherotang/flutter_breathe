@@ -100,54 +100,53 @@ class PersonalController extends GetxController
     if (id == null) {
       if (UserStore.to.isLogin) {
         //判断本地是否有信息
-        if (UserStore.to.userData != null || UserStore.to.userCount != null) {
-          userDataModel.value = UserStore.to.userData!;
-          userCountModel.value = UserStore.to.userCount!;
-          userDataModel.refresh();
-          userCountModel.refresh();
-        } else {
-          //请求用户信息
-          try {
-            MyResponse myResponseUserData = await UserApi.getUserDataByToken();
-            if (myResponseUserData.success) {
-              //用户信息持久化
-              await UserStore.to
-                  .setUserData(jsonEncode(myResponseUserData.data["userData"]));
-              userDataModel.value =
-                  UserDataModel.fromJson(myResponseUserData.data["userData"]);
-              userDataModel.refresh();
-              //请求用户统计
-              MyResponse myResponseCound =
-                  await UserApi.getUserCountByUid(uid: userDataModel.value.uid);
 
-              if (myResponseCound.success) {
-                //统计信息持久化
-                await UserStore.to.setUserCount(
-                    jsonEncode(myResponseCound.data["userCount"]));
-                userCountModel.value =
-                    UserCountModel.fromJson(myResponseCound.data["userCount"]);
-                userCountModel.refresh();
-              } else {
-                MyToast(myResponseCound.message);
-              }
-              await UserStore.to.updataUser();
+        //请求用户信息
+        try {
+          MyResponse myResponseUserData = await UserApi.getUserDataByToken();
+          if (myResponseUserData.success) {
+            //用户信息持久化
+            await UserStore.to
+                .setUserData(jsonEncode(myResponseUserData.data["userData"]));
+            userDataModel.value =
+                UserDataModel.fromJson(myResponseUserData.data["userData"]);
+            userDataModel.refresh();
+            //请求用户统计
+            MyResponse myResponseCound =
+                await UserApi.getUserCountByUid(uid: userDataModel.value.uid);
+
+            if (myResponseCound.success) {
+              //统计信息持久化
+              await UserStore.to
+                  .setUserCount(jsonEncode(myResponseCound.data["userCount"]));
+              userCountModel.value =
+                  UserCountModel.fromJson(myResponseCound.data["userCount"]);
+              userCountModel.refresh();
             } else {
-              UserStore.to.delAll();
-              MyToast(myResponseUserData.message);
+              MyToast(myResponseCound.message);
             }
-          } on DioError catch (e) {
-            MyToast(e.message);
-          } catch (e) {
-            MyToast(e.toString());
+            await UserStore.to.updataUser();
+          } else {
+            UserStore.to.delAll();
+            MyToast(myResponseUserData.message);
           }
+        } on DioError catch (e) {
+          MyToast(e.message);
+        } catch (e) {
+          MyToast(e.toString());
         }
-        refreshMyPost();
       } else {
         userDataModel.value = UserDataModel(0, "", "", "未登录", "", -1, "", "");
         userCountModel.value = UserCountModel(0, 0, 0, 0);
         userCountModel.refresh();
         userCountModel.refresh();
       }
+      refreshMyPost();
+    } else {
+      userDataModel.value = UserDataModel(0, "", "", "未登录", "", -1, "", "");
+      userCountModel.value = UserCountModel(0, 0, 0, 0);
+      userCountModel.refresh();
+      userCountModel.refresh();
     }
   }
 

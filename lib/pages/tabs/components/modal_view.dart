@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_breathe/pages/community/components/create_update_community.dart';
+import 'package:flutter_breathe/pages/login/components/create_update_user.dart';
 
 import 'package:flutter_breathe/routes/app_routes.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -59,7 +60,7 @@ class ModalView extends GetView {
                         child: const ModalButton("创建社区")),
                     InkWell(
                         onTap: () {
-                          Get.toNamed(Routes.DEMO);
+                          Get.to(() => CreateUpdateUser());
                         },
                         child: const ModalButton("DEMO")),
                   ],

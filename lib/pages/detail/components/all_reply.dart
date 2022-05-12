@@ -29,7 +29,7 @@ class AllReply extends GetView {
                   controller.headerNotifier,
                   extent: 1.sh,
                   triggerDistance: 1.sh,
-                  completeDuration: Duration(milliseconds: 500),
+                  completeDuration: const Duration(milliseconds: 500),
                 ),
                 footer: ClassicalFooter(enableHapticFeedback: true),
                 onRefresh: () async {

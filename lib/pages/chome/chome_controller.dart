@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_breathe/common/apis/community_api.dart';
+import 'package:flutter_breathe/common/store/user_store.dart';
 import 'package:flutter_breathe/model/announcement/announcement.dart';
 import 'package:flutter_breathe/model/communityHome/community_home.dart';
 import 'package:flutter_breathe/model/request/my_response.dart';
@@ -17,6 +18,8 @@ class ChomeController extends GetxController
   RxList<Widget> list = <Widget>[].obs;
   RxList<Widget> exList = <Widget>[].obs;
   RxList<Widget> overList = <Widget>[].obs;
+
+  var isAdd = false.obs;
   //列表高度
   var listHeight = 0.0.obs;
   //超出高度
@@ -39,6 +42,65 @@ class ChomeController extends GetxController
     super.onReady();
     getTopping();
     getCommunityInfo();
+    getAdd();
+  }
+
+  //获取用户是否属于该社区
+  getAdd() async {
+    String cid = Get.parameters['id']!;
+    try {
+      MyResponse myResponse = await CommunityApi.getMyAdd(
+          UserStore.to.userData!.uid, int.parse(cid));
+      //MyResponse myResponse = MyResponse.fromJson(response);
+      if (myResponse.success) {
+        bool flag = myResponse.data['flag'];
+        if (flag) {
+          isAdd.value = true;
+        }
+      }
+    } on DioError catch (e) {
+      MyToast(e.message);
+    } catch (e) {
+      MyToast(e.toString());
+    }
+  }
+
+  //用户加入该社区
+  userAddCommunity() async {
+    String cid = Get.parameters['id']!;
+    try {
+      dynamic response = await CommunityApi.addCommunity(
+          UserStore.to.userData!.uid, int.parse(cid), 2);
+
+      MyResponse myResponse = MyResponse.fromJson(response);
+      if (myResponse.success) {
+        isAdd.value = true;
+      } else {
+        MyToast(myResponse.message);
+      }
+    } on DioError catch (e) {
+      MyToast(e.message);
+    } catch (e) {
+      MyToast(e.toString());
+    }
+  }
+
+  //用户退出该社区
+  userQuitCommunity() async {
+    String cid = Get.parameters['id']!;
+    MyResponse myResponse = await CommunityApi.quitCommunity(
+        UserStore.to.userData!.uid, int.parse(cid));
+    try {
+      if (myResponse.success) {
+        isAdd.value = false;
+      } else {
+        MyToast(myResponse.message);
+      }
+    } on DioError catch (e) {
+      MyToast(e.message);
+    } catch (e) {
+      MyToast(e.toString());
+    }
   }
 
   //主页信息

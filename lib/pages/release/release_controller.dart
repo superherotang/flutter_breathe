@@ -10,6 +10,7 @@ import 'package:flutter_breathe/model/city/location.dart';
 import 'package:flutter_breathe/model/myCommunity/my_community_model.dart';
 import 'package:flutter_breathe/model/posts_type.dart';
 import 'package:flutter_breathe/model/request/my_response.dart';
+import 'package:flutter_breathe/pages/home/components/recommend.dart';
 import 'package:flutter_breathe/utils/my_toast.dart';
 import 'package:flutter_breathe/utils/picker_method.dart';
 import 'package:flutter_breathe/widgets/special_text/my_extended_text_selection_controls.dart';
@@ -169,7 +170,8 @@ class ReleaseController extends GetxController {
       for (AssetEntity asset in assets) {
         files.add((await asset.originFile)!);
       }
-      String str = await UploadApi.multiUpload(files: files,bucketName: "breathe-images");
+      String str = await UploadApi.multiUpload(
+          files: files, bucketName: "breathe-images");
       map["postsImages"] = str;
     }
     //上传视频
@@ -181,7 +183,8 @@ class ReleaseController extends GetxController {
       for (AssetEntity asset in assets) {
         files.add((await asset.originFile)!);
       }
-      String str = await UploadApi.multiUpload(files: files,bucketName: "breathe-videos");
+      String str = await UploadApi.multiUpload(
+          files: files, bucketName: "breathe-videos");
       map["postsVideos"] = str;
     }
     //上传音频
@@ -191,7 +194,8 @@ class ReleaseController extends GetxController {
       for (AssetEntity asset in assets) {
         files.add((await asset.originFile)!);
       }
-      String str = await UploadApi.multiUpload(files: files,bucketName: "breathe-sounds");
+      String str = await UploadApi.multiUpload(
+          files: files, bucketName: "breathe-sounds");
       map["postsAudio"] = str;
     }
     map["postsType"] = postsTypeCode.value;
@@ -201,10 +205,13 @@ class ReleaseController extends GetxController {
     map['uid'] = UserStore.to.userData!.uid;
 
     try {
-      MyResponse myResponse = MyResponse.fromJson( await PostsApi.releasePosts(map));
+      MyResponse myResponse =
+          MyResponse.fromJson(await PostsApi.releasePosts(map));
 
-      print("object");
       if (myResponse.success) {
+        var recommendController = Get.find<RecommendController>();
+        Get.until((route) => route.isFirst);
+        recommendController.refreshMyPost();
         MyToast(myResponse.message);
       } else {
         MyToast(myResponse.message);
